@@ -21,3 +21,6 @@ pip install -r requirements.txt
 ./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.create_superuser('vasya', '1@abc.net', 'promprog')"
 ./manage.py runserver
 ```
+
+## Read more
+- FBY API: [https://yandex.ru/dev/market/partner-marketplace/doc/dg/concepts/about.html](https://yandex.ru/dev/market/partner-marketplace/doc/dg/concepts/about.html)
