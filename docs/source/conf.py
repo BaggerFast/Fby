@@ -102,6 +102,7 @@ def setup(app):
     app.connect('autodoc-skip-member', skip_queryset)
     if enchant is not None:
         app.connect('autodoc-process-docstring', process_modules)
+    app.add_css_file('theme_wide.css')
 
 
 # -- Project information -----------------------------------------------------
