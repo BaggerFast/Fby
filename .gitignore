@@ -2,8 +2,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django,pycharm+all,python,linux,macos,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,pycharm+all,python,linux,macos,windows
 
-docs/
-
 ### Django ###
 *.log
 *.pot
@@ -85,8 +83,9 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
-doc/_build/
+docs/build/
+docs/source/coverage/
+docs/source/coverage.rst
 
 # PyBuilder
 target/

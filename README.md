@@ -24,3 +24,13 @@ pip install -r requirements.txt
 
 ## Read more
 - FBY API: [https://yandex.ru/dev/market/partner-marketplace/doc/dg/concepts/about.html](https://yandex.ru/dev/market/partner-marketplace/doc/dg/concepts/about.html)
+
+
+## Документация
+```bash
+cd docs
+sphinx-build -v -b coverage source/ source/coverage/
+mv source/coverage/python.txt source/coverage.rst
+rm -rf source/coverage/
+make html
+```
