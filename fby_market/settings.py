@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -124,3 +124,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     'static'
 ]
+
+YA_MARKET_TOKEN = os.environ.get('YANDEX_MARKET_TOKEN', 'define me!')
+YA_MARKET_CLIENT_ID = os.environ.get('YANDEX_MARKET_CLIENT_ID', 'define me!')
+YA_MARKET_SHOP_ID = 21953534

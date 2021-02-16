@@ -2,9 +2,16 @@
 Django==3.1.6
 
 # Documentation
-Sphinx==3.4.3
+Sphinx==3.5.0
 sphinx-rtd-theme==0.5.1
 
 # Documentations spelling
 pyenchant==3.2.0
 sphinxcontrib-spelling==7.1.0
+
+# Network
+requests==2.25.1
+
+# JsonFormatter
+Pygments==2.8.0
+
