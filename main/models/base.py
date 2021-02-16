@@ -1,7 +1,7 @@
 from django.db import models
 
 from main.models import ManufacturerCountry, WeightDimension, Barcode, Timing, CustomsCommodityCode, \
-    ProcessingState, MappingType, Mapping
+    ProcessingState, MappingType, Mapping, Url
 from main.models.choices import TimingTypeChoices, AvailabilityChoices, SupplyScheduleDayChoices
 
 
@@ -32,7 +32,7 @@ class Offer(models.Model):
         verbose_name='Габариты упаковки и вес товара'
     )
     urls = models.ForeignKey(
-        to=WeightDimension,
+        to=Url,
         on_delete=models.CASCADE,
         related_name='urls',
         verbose_name='Список URL',
