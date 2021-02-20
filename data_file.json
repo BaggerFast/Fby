@@ -1,0 +1,5374 @@
+{
+  "status": "OK",
+  "result": {
+    "paging": {},
+    "offerMappingEntries": [
+      {
+        "offer": {
+          "name": "Масляный фильтр VOLKSWAGEN 04e115561h",
+          "shopSku": "04e115561h",
+          "category": "Масляные фильтры",
+          "vendor": "VOLKSWAGEN",
+          "vendorCode": "04e115561h",
+          "description": "Применение: для моторных масел\nПодходит для: Audi A5, Audi A3, Audi A1, Audi Q3, Audi S5, Audi S3, Audi A4, Audi Q2, Audi S4, Seat Leon, Seat Ibiza, Seat Toledo, Seat Alhambra, Seat Ateca, Seat Mii, Skoda Kodiaq, Skoda Superb, Skoda Rapid, Skoda Octavia, Skoda Fabia, Skoda Yeti, Skoda Citigo, Volkswagen Caddy, Volkswagen Jetta, Volkswagen Golf, Volkswagen Beetle, Volkswagen CC, Volkswagen Touran, Volkswagen Polo, Volkswagen Up, Volkswagen Passat, Volkswagen Scirocco, Volkswagen Sharan, Volkswagen Tiguan",
+          "barcodes": [
+            "04e115561h"
+          ],
+          "urls": [
+            "https://yadi.sk/d/8SJpvTFn5wH7Vw"
+          ],
+          "manufacturer": "Фольцваген",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 10,
+            "height": 9,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 561833112,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Смазка для садовой техники ВМПАВТО ULTRA-0 200 г",
+          "shopSku": "1003",
+          "category": "Масла для садовой техники",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "1003",
+          "description": "Объем упаковки 0.2 л\nДвигатель: двухтактный и четырехтактный",
+          "barcodes": [
+            "4607012404879"
+          ],
+          "urls": [
+            "https://yadi.sk/d/TipaN1TOmS0STw"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 6,
+            "height": 20,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 662551101,
+          "categoryId": 15772208
+        }
+      },
+      {
+        "offer": {
+          "name": "Фильтр LADA 11180-8122010-82",
+          "shopSku": "11180-8122010-82",
+          "category": "Салонные фильтры",
+          "vendor": "LADA",
+          "vendorCode": "11180-8122010-82",
+          "description": "Марка автомобиля: LADA (ВАЗ), Chevrolet\nДлина 160 мм\nШирина 260 мм\nТолщина 40 мм",
+          "barcodes": [
+            "11180812201082"
+          ],
+          "urls": [
+            "https://yadi.sk/d/05f12a7KVkx52A"
+          ],
+          "manufacturer": "лада",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 5,
+            "width": 30,
+            "height": 17,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 650493032,
+          "categoryId": 13477846
+        }
+      },
+      {
+        "offer": {
+          "name": "Перчатки х/б с ПВХ '4 нитки' (уп. 5 пар) черные",
+          "shopSku": "1137672",
+          "category": "Защита рук",
+          "vendor": "DolleX",
+          "vendorCode": "5PVX-4B",
+          "description": "х/б с ПВХ '4 нитки' (уп. 5 пар) черные",
+          "barcodes": [
+            "4630074550543"
+          ],
+          "urls": [
+            "https://yadi.sk/d/L_0NBnTZbPWa8A"
+          ],
+          "manufacturer": "Долекс",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 21,
+            "width": 28,
+            "height": 5,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "IN_WORK"
+          },
+          "availability": "ACTIVE"
+        }
+      },
+      {
+        "offer": {
+          "name": "Перчатки Dollex, х/б с ПВХ 5 ниток (уп. 5 пар) черные",
+          "shopSku": "11376721",
+          "category": "Средства индивидуальной защиты рук для строительства и ремонта",
+          "vendor": "Dollex",
+          "vendorCode": "5PVX-4B",
+          "description": "х/б с ПВХ '4 нитки' (уп. 5 пар) черные",
+          "barcodes": [
+            "4630074550543"
+          ],
+          "urls": [
+            "https://yadi.sk/d/L_0NBnTZbPWa8A"
+          ],
+          "manufacturer": "Долекс",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 15,
+            "width": 5,
+            "height": 20,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "IN_WORK"
+          },
+          "availability": "ACTIVE"
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная светодиодная Philips Ultinon LED 11961ULW4X2 W5W 1W 2 шт.",
+          "shopSku": "11961ULW4X2",
+          "category": "Лампы для автомобилей",
+          "vendor": "Philips",
+          "vendorCode": "11961ULW4X2",
+          "description": "Назначение: габаритные фонари, стоп-сигналы, салонное освещение\nТипоразмер: W5W\nЦветовая температура 4000 K\nМощность 1 Вт\nНапряжение: 12 В",
+          "barcodes": [
+            "8719018050830"
+          ],
+          "urls": [
+            "https://yadi.sk/d/XF2fCy8rCh9MeA"
+          ],
+          "manufacturer": "Филипс",
+          "manufacturerCountries": [
+            "Нидерланды"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 13,
+            "height": 4,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 651075744,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная светодиодная Philips Ultinon LED 11961ULWX2 W5W 2 шт.",
+          "shopSku": "11961ULWX2",
+          "category": "Лампы для автомобилей",
+          "vendor": "Philips",
+          "vendorCode": "11961ULWX2",
+          "description": "Назначение: габаритные фонари, салонное освещение\nТипоразмер: W5W\nЦветовая температура 6000 K\nСветовой поток 50 лм",
+          "barcodes": [
+            "8719018050311"
+          ],
+          "urls": [
+            "https://yadi.sk/d/tvwdu84Uz72C-A"
+          ],
+          "manufacturer": "Филипс",
+          "manufacturerCountries": [
+            "Нидерланды"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 13,
+            "height": 4,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 649989798,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Philips X-tremeVision +130% H4 3700K 60/55W 2 шт.",
+          "shopSku": "12342XVS2",
+          "category": "Лампы для автомобилей",
+          "vendor": "Philips",
+          "vendorCode": "12342XVS2",
+          "description": "Назначение: ближний/дальний свет\nТипоразмер: H4\nЦветовая температура 3700 K\nСветовой поток 1650 лм\nНапряжение: 12 В",
+          "barcodes": [
+            "8711500221094"
+          ],
+          "urls": [
+            "https://yadi.sk/d/BPhT8D2opec2tg"
+          ],
+          "manufacturer": "филипс",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 11,
+            "width": 15,
+            "height": 4,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 582962144,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная накаливания Philips VisionPlus +60% 12498VPB2 P21W 2 шт.",
+          "shopSku": "12498VPB2",
+          "category": "Лампы для автомобилей",
+          "vendor": "Philips",
+          "vendorCode": "12498VPB2",
+          "description": "Назначение: противотуманные фары, указатели поворота задние, указатели поворота боковые, освещение номерного знака, указатели поворота передние, стоп-сигналы, фонари заднего хода, салонное освещение\nТипоразмер: P21W\nМощность 21 Вт\nНапряжение: 12 В",
+          "barcodes": [
+            "8727900363173"
+          ],
+          "urls": [
+            "https://yadi.sk/d/ETJIhPUv1LCshQ"
+          ],
+          "manufacturer": "Филиппс",
+          "manufacturerCountries": [
+            "Нидерланды"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 49,
+            "width": 49,
+            "height": 49,
+            "weight": 1
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 662684692,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная светодиодная Philips X-tremeUltinon LED 127998000KX2 Т10 2 шт.",
+          "shopSku": "127998000KX2",
+          "category": "Лампы для автомобилей",
+          "vendor": "Philips",
+          "vendorCode": "127998000KX2",
+          "description": "Назначение: габаритные фонари, салонное освещение\nТипоразмер: W5W\nСвет: холодный белый\nЦветовая температура 8000 K\nНапряжение: 12 В",
+          "barcodes": [
+            "8727900395983"
+          ],
+          "urls": [
+            "https://yadi.sk/d/JPa1TXBM_KBY0Q"
+          ],
+          "manufacturer": "Филипс",
+          "manufacturerCountries": [
+            "Китай"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 10,
+            "height": 3,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 656593390,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная накаливания Philips Vision 12961B2 W5W 12V 5W 2 шт.",
+          "shopSku": "12961B2",
+          "category": "Лампы для автомобилей",
+          "vendor": "Philips",
+          "vendorCode": "12961B2",
+          "description": "Назначение: освещение номерного знака, стоп-сигналы, салонное освещение\nТипоразмер: W5W\nСветовой поток 50 лм\nМощность 5 Вт\nНапряжение: 12 В",
+          "barcodes": [
+            "8711500404213"
+          ],
+          "urls": [
+            "https://yadi.sk/d/ibk5Kfe15wpzXA"
+          ],
+          "manufacturer": "филипс",
+          "manufacturerCountries": [
+            "Нидерланды"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 14,
+            "height": 3,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 642756555,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Philips White Vision 12961NBVB2 12V W5W 2 шт.",
+          "shopSku": "12961NBVB2",
+          "category": "Лампы для автомобилей",
+          "vendor": "Philips",
+          "vendorCode": "12961NBVB2",
+          "description": "Назначение: указатели поворота боковые, стоп-сигналы, фонари заднего хода, салонное освещение\nТипоразмер: W5W\nЦветовая температура 4500 K\nМощность 5 Вт\nНапряжение: 12 В",
+          "barcodes": [
+            "8727900392050"
+          ],
+          "urls": [
+            "https://yadi.sk/d/OJ8YCJdZmJsOLQ"
+          ],
+          "manufacturer": "Филипс",
+          "manufacturerCountries": [
+            "Нидерланды"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 13,
+            "width": 13,
+            "height": 8,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 645435860,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильная смазка ВМПАВТО MC 1510 BLUE 0.42 л",
+          "shopSku": "1304",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "1304",
+          "description": "Область применения: подшипники\nСпециализация: противокоррозийная\nКонсистенция: пластичная\nТемпературный режим: высокотемпературная",
+          "barcodes": [
+            "4607012401977"
+          ],
+          "urls": [
+            "https://yadi.sk/d/mlolSkvmmDHAAQ"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 5,
+            "width": 26,
+            "height": 7,
+            "weight": 0.5
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100774780752,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Смазка ВМПАВТО МС 1520 RUBIN 0.375 кг",
+          "shopSku": "1407",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": " 1407",
+          "description": "Область применения: подшипники, карданный вал\nСпециализация: влаговытесняющая, антифрикционная\nКонсистенция: пластичная",
+          "barcodes": [
+            "4607012403124"
+          ],
+          "urls": [
+            "https://yadi.sk/d/aak5QNTtMe6VIg"
+          ],
+          "manufacturer": "ВМПавто",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 6,
+            "width": 26,
+            "height": 7,
+            "weight": 0.5
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100774717217,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильная смазка ВМПАВТО МС 1600 0.005 кг",
+          "shopSku": "1505",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": " 1505",
+          "description": "Область применения: суппорты, тормозная система\nСпециализация: противокоррозийная\nКонсистенция: пластичная\nТемпературный режим: высокотемпературная",
+          "barcodes": [
+            "4607012403568"
+          ],
+          "urls": [
+            "https://yadi.sk/d/l5PlBkhkUTrI3Q"
+          ],
+          "manufacturer": "ВмпАвто",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 5,
+            "width": 15,
+            "height": 2,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100831300759,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр Nissan 15208-65F0A",
+          "shopSku": "15208-65F0A",
+          "category": "Масляные фильтры",
+          "vendor": "Nissan",
+          "vendorCode": "15208-65F0A",
+          "description": "Применение: для моторных масел\nПодходит для: Nissan Murano, Nissan XTerra, Nissan X-Trail, Infiniti FX45, Infiniti FX35",
+          "barcodes": [
+            "1520865F0A"
+          ],
+          "urls": [
+            "https://yadi.sk/d/j-tzO7_K-gyWoQ"
+          ],
+          "manufacturer": "Ниссан",
+          "manufacturerCountries": [
+            "Япония"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 8,
+            "height": 7,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 645423421,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр Nissan 15208-9F60A",
+          "shopSku": "15208-9F60A",
+          "category": "Масляные фильтры",
+          "vendor": "Nissan",
+          "vendorCode": "15208-9F60A",
+          "description": "Подходит для: Infiniti Q70, Infiniti QX50, Infiniti Q50, Infiniti QX70, Infiniti M, Infiniti G, Infiniti FX, Infiniti EX, Nissan Murano, Nissan X-Trail, Nissan Patrol, Nissan Pathfinder, Nissan 350Z, Nissan Almera, Nissan Maxima, Nissan Qashqai, Nissan Primera, Nissan Juke, Nissan Tiida, Nissan Qashqai+2, Nissan Note, Nissan Teana, Nissan Sentra, Infiniti M35\nАналог: W 67/1, OP 595, H97W06, LS892",
+          "barcodes": [
+            "4994109007700"
+          ],
+          "urls": [
+            "https://yadi.sk/d/5v1TKF1G8hhYSw"
+          ],
+          "manufacturer": "Ниссан",
+          "manufacturerCountries": [
+            "Япония"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 9,
+            "height": 8,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 650491338,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр Renault 152089599R",
+          "shopSku": "152089599R",
+          "category": "Масляные фильтры",
+          "vendor": "Renault",
+          "vendorCode": "152089599R",
+          "description": "Применение: для моторных масел\nПодходит для: Hyundai H1, Hyundai Getz, Hyundai XG, Hyundai Accent, Hyundai Trajet, Hyundai Galloper, Hyundai Matrix, Hyundai Sonata, Hyundai Elantra, Hyundai Santa Fe, Infiniti Q30, Isuzu Trooper, Mazda 6, Mazda 323, Mazda Premacy, Mercedes-Benz CLA-class, Mercedes-Benz B-class, Mercedes-Benz A-class, Mercedes-Benz GLA-class, Mitsubishi Lancer, Mitsubishi Outlander, Mitsubishi Colt, Mitsubishi Pajero Sport, Mitsubishi Pajero, Mitsubishi Pajero Pinin, Mitsubishi Carisma, Mitsubishi Grandis, Mitsubishi Galant, Mitsubishi Space Runner, Mitsubishi 3000 GT, Nissan Qashqai, Nissan Juke, Nissan Note, Renault Clio, Renault Scenic, Renault Kangoo, Renault Megane, Renault Kadjar, Subaru Outback, Subaru Legacy, Dacia Dokker, Renault Grand Scenic, Dacia Duster, Dacia Lodgy, ASIA Rocsta, Hyundai H100, Opel Monterey, Mitsubishi Space Wagon, Opel Campo, Proton Persona, Proton Wira, Proton Satria, Renault Captur, Nissan Pulsar, Mercedes-Benz Citan, Dacia Sandero, Dacia Logan, Isuzu Gemini, Mitsubishi L300, Hyundai Excel, Hyundai Coupe, Hyundai Santamo, Hyundai Pony, Hyundai Scoupe, Hyundai Lantra, Lotus Elan, Isuzu Piazza, Isuzu Midi, Mitsubishi Santamo, Mitsubishi Sigma, Hyundai Starex",
+          "barcodes": [
+            "152089599R"
+          ],
+          "urls": [
+            "https://yadi.sk/d/Os1Ih68zlsqCnw"
+          ],
+          "manufacturer": "Рено",
+          "manufacturerCountries": [
+            "Франция"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 9,
+            "height": 10,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 670607571,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Моторное масло MOBIL Super 3000 X1 5W-40 4 л",
+          "shopSku": "152566",
+          "category": "Моторные масла",
+          "vendor": "MOBIL",
+          "vendorCode": "152566",
+          "description": "Класс вязкости 5W-40\nСинтетическое моторное масло\nДвигатель: бензиновый или дизельный, четырехтактный\nПодходит для турбированных двигателей\nКласс API SN, SM\nДопуски: AAE (STO 003) Group B6, MB-Approval 229.3, VW 502 00/505 00, Porsche A40, Peugeot/Citroën Automobiles B71 2296, Renault RN0710 / RN0700, AVTOVAZ (автомобили “Лада”), Opel GM-LL-B-025",
+          "barcodes": [
+            "5055107443934"
+          ],
+          "urls": [
+            "https://yadi.sk/d/z4CUvynX_OVdqg"
+          ],
+          "manufacturer": "Мобил",
+          "manufacturerCountries": [
+            "США"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 20,
+            "width": 10,
+            "height": 20,
+            "weight": 3.772
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 12692301,
+          "categoryId": 90478
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр Ford 1883037",
+          "shopSku": "1883037",
+          "category": "Масляные фильтры",
+          "vendor": "Ford",
+          "vendorCode": "1883037",
+          "description": "Подходит для: Ford S-Max, Ford Escape, Ford Fiesta, Ford Puma, Ford B-Max, Ford Galaxy, Ford C-Max, Ford Mondeo, Ford Fusion, Ford Transit, Ford Focus, Ford Kuga, Ford Grand C-Max, Ford Ikon, Ford Courier",
+          "barcodes": [
+            "1883037"
+          ],
+          "urls": [
+            "https://yadi.sk/d/d1biOREqOuFE6g"
+          ],
+          "manufacturer": "Форд",
+          "manufacturerCountries": [
+            "США"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 9,
+            "height": 9,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 647123423,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильная смазка ВМПАВТО МС 1630 0.03 кг",
+          "shopSku": "1907",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "1907",
+          "description": "Тип смазки: силиконовая\nОбласть применения: суппорты, тормозная система\nСпециализация: противокоррозийная, противоскрипная\nКонсистенция: пластичная",
+          "barcodes": [
+            "4607012405074"
+          ],
+          "urls": [
+            "https://yadi.sk/d/xNwWPXGY62Rr5w"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 13,
+            "width": 21,
+            "height": 2,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100777394732,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильная смазка ВМПАВТО Медная МС 1640 0.03 кг",
+          "shopSku": "1911",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "1911",
+          "description": "Тип смазки: медная\nОбласть применения: тормозная система\nСпециализация: ремонтная, универсальная, влаговытесняющая, противокоррозийная\nКонсистенция: пластичная",
+          "barcodes": [
+            "4607012403421"
+          ],
+          "urls": [
+            "https://yadi.sk/d/3yXXYhmeaITuYg"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 3,
+            "width": 16,
+            "height": 4,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100830888747,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Bosch Pure Light 1987301012 H7 12V 55W 1 шт.",
+          "shopSku": "1987301012",
+          "category": "Лампы для автомобилей",
+          "vendor": "Bosch",
+          "vendorCode": "1987301012",
+          "description": "Назначение: ближний/дальний свет\nТипоразмер: H7\nСвет: дневной белый\nМощность 55 Вт",
+          "barcodes": [
+            "3165141228793"
+          ],
+          "urls": [
+            "https://yadi.sk/d/GyfHx30UpOZE7g"
+          ],
+          "manufacturer": "БОШ",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 11,
+            "width": 15,
+            "height": 1,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 576045010,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная накаливания Bosch Pure Light 1987301026 W5W 12V 5W 2 шт.",
+          "shopSku": "1987301026",
+          "category": "Лампы для автомобилей",
+          "vendor": "Bosch",
+          "vendorCode": "1987301026",
+          "description": "Назначение: габаритные фонари, освещение номерного знака, салонное освещение\nТипоразмер: W5W\nСвет: дневной белый\nМощность 5 Вт\nНапряжение: 12 В",
+          "barcodes": [
+            "3165141228939"
+          ],
+          "urls": [
+            "https://yadi.sk/d/8jjj9qH_tK7pvw"
+          ],
+          "manufacturer": "Бош",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 13,
+            "height": 2,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 575777118,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Bosch Gigalight Plus 120 1987301107 H7 12V 55W 2 шт.",
+          "shopSku": "1987301107",
+          "category": "Лампы для автомобилей",
+          "vendor": "Bosch",
+          "vendorCode": "1987301107",
+          "description": "Назначение: ближний/дальний свет\nТипоразмер: H7\nМощность 55 Вт\nНапряжение: 12 В",
+          "barcodes": [
+            "4047025251662"
+          ],
+          "urls": [
+            "https://yadi.sk/d/2_fV6JmHb0cDEQ"
+          ],
+          "manufacturer": "бош",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 6,
+            "width": 11,
+            "height": 9,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 576814022,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильная смазка ВМПАВТО Silicot REZIN 0.03 л",
+          "shopSku": "2101",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "2101",
+          "description": "Тип смазки: силиконовая\nОбласть применения: резиновые уплотнители\nСпециализация: размораживающая, влаговытесняющая\nКонсистенция: жидкая",
+          "barcodes": [
+            "4607012402714"
+          ],
+          "urls": [
+            "https://yadi.sk/d/aULGr5v5vd16ng"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 4,
+            "width": 11,
+            "height": 2,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100777891862,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр LADA 21010-1012005-82",
+          "shopSku": "21010-1012005-82",
+          "category": "Масляные фильтры",
+          "vendor": "LADA",
+          "vendorCode": "21010-1012005-82",
+          "description": "Применение: для моторных масел\nПодходит для: LADA 2102, LADA 2103, LADA 2101, LADA 2106, LADA 2107, LADA 2104, LADA 2105, LADA 2121",
+          "barcodes": [
+            "21010101200582"
+          ],
+          "urls": [
+            "https://yadi.sk/d/Xk69PJ6Ql3NwHA"
+          ],
+          "manufacturer": "лада",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 12,
+            "height": 11,
+            "weight": 0.5
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 650524037,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр LADA 21050-1012005-82",
+          "shopSku": "21050-1012005-82",
+          "category": "Масляные фильтры",
+          "vendor": "LADA",
+          "vendorCode": "21050-1012005-82",
+          "description": "Применение: для моторных масел\nПодходит для: LADA 2102, LADA 2103, LADA Priora, LADA 2101, LADA 2106, LADA 2107, LADA 2104, LADA 2105, LADA 2110, LADA 2121, LADA Kalina, LADA Samara",
+          "barcodes": [
+            "21050101200582"
+          ],
+          "urls": [
+            "https://yadi.sk/d/Tn0PwijoWH0Sgg"
+          ],
+          "manufacturer": "лада",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 10,
+            "width": 11,
+            "height": 9,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 650536056,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Панельный фильтр LADA 21120-1109080-82",
+          "shopSku": "21120-1109080-82",
+          "category": "Воздушные фильтры",
+          "vendor": "LADA",
+          "vendorCode": "21120-1109080-82",
+          "description": "Тип фильтра: панельный\nМарка автомобиля: LADA (ВАЗ)",
+          "barcodes": [
+            "21120110908082"
+          ],
+          "urls": [
+            "https://yadi.sk/d/nqywdSvAqmQ_ZQ"
+          ],
+          "manufacturer": "Лада",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 24,
+            "height": 24,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 650493186,
+          "categoryId": 6101352
+        }
+      },
+      {
+        "offer": {
+          "name": "Смазка ВМПАВТО МС силиконовая с фторопластом 0.4 кг",
+          "shopSku": "2201",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "2201",
+          "description": "Тип смазки: силиконовая\nОбласть применения: подшипники, резиновые уплотнители, замки и петли\nСпециализация: консервационная, влаговытесняющая, противокоррозийная, противоскрипная, антифрикционная\nКонсистенция: пластичная",
+          "barcodes": [
+            "4607012400437"
+          ],
+          "urls": [
+            "https://yadi.sk/d/MDkQvl-b5St3cA"
+          ],
+          "manufacturer": "ВМПАвто",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 10,
+            "width": 11,
+            "height": 10,
+            "weight": 0.5
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100830900759,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильная смазка ВМПАВТО Silicot Gel 0.04 кг",
+          "shopSku": "2204",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "2204",
+          "description": "Тип смазки: силиконовая\nОбласть применения: резиновые уплотнители\nСпециализация: влаговытесняющая, противоскрипная, антифрикционная\nКонсистенция: пластичная",
+          "barcodes": [
+            "4607012403711"
+          ],
+          "urls": [
+            "https://yadi.sk/d/fNaMFOqxWuoE0Q"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 7,
+            "height": 19,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100777321090,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр HYUNDAI 26300-02503",
+          "shopSku": "26300-02503",
+          "category": "Масляные фильтры",
+          "vendor": "HYUNDAI",
+          "vendorCode": "26300-02503",
+          "description": "Применение: для моторных масел\nПодходит для: Hyundai i30, Hyundai i20, Hyundai i10, Hyundai Accent, Hyundai Kona, Hyundai Solaris",
+          "barcodes": [
+            "2630002503"
+          ],
+          "urls": [
+            "https://yadi.sk/d/WMmRx-lRgUlE8Q"
+          ],
+          "manufacturer": "Хундай",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 11,
+            "height": 8,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 647046004,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр HYUNDAI 26300-35505",
+          "shopSku": "26300-35505",
+          "category": "Масляные фильтры",
+          "vendor": "HYUNDAI",
+          "vendorCode": "26300-35505",
+          "description": "Общие характеристики\n\nТип\n\nмасляный фильтр\n\nПрименение\n\nдля моторных масел\n\nДиаметр\n\n90 мм\n\nДлина\n\n80 мм\n\nВес\n\n0.344 кг\n\nСтрана производства\n\nЮжная Корея\n\n",
+          "barcodes": [
+            "2630035505001"
+          ],
+          "urls": [
+            "https://yadi.sk/d/Hydry3OqdePRMA"
+          ],
+          "manufacturer": "Хунде",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 10,
+            "height": 9,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 647041018,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр HYUNDAI 26300-35531",
+          "shopSku": "26300-35531",
+          "category": "Масляные фильтры",
+          "vendor": "HYUNDAI",
+          "vendorCode": "26300-35531",
+          "description": "Применение: для моторных масел\nПодходит для: Hyundai i40, Hyundai i30, Hyundai ix35, Hyundai Tucson, Hyundai Veloster, Hyundai ix20, Hyundai Elantra, Hyundai Santa Fe, Kia Sorento, Kia Rio, Kia Ceed, KIA ProCeed\nАналог: MANN-FILTER: W8017",
+          "barcodes": [
+            "2630035531"
+          ],
+          "urls": [
+            "https://yadi.sk/d/FAmDVFPW90Vh9A"
+          ],
+          "manufacturer": "Хёнде",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 10,
+            "width": 10,
+            "height": 9,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 647028484,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр HYUNDAI 26300-35504",
+          "shopSku": "2630035504",
+          "category": "Масляные фильтры",
+          "vendor": "HYUNDAI",
+          "vendorCode": "26300-35504",
+          "description": "Коротко о товаре\nПрименение: для моторных масел\nПодходит для: Genesis G70, Hyundai i40, Hyundai i30, Hyundai H1, Hyundai Creta, Hyundai Tucson, Hyundai Accent, Hyundai Kona, Hyundai Verna, Hyundai Grandeur, Hyundai Ioniq, Hyundai Sonata, Hyundai Veloster, Hyundai ix20, Hyundai Azera, Hyundai Elantra, Hyundai Genesis, Hyundai Santa Fe, Hyundai Solaris\nАналог: HYUNDAI: 26300-11100, 26300-21010, 26300-21A00, 26300-35054, 26300-35056, 26300-35500, 26300-35501, 26300-35502, 26300-35503, S26300-35503, FILTRON: OP558, OP617, KIA: 0 RF03 23 802, 0 RF03 23802A, 26300-35501, 26300-35502, 26300-35503, K KY01 14302, K KYO1 14302, O RF03 23 802, O RF03 23 802 A, O RF03 23 802 B, S26300 35503",
+          "barcodes": [
+            "2630035504"
+          ],
+          "urls": [
+            "https://yadi.sk/d/pCVM96UZNvg_oA"
+          ],
+          "manufacturer": "Хёнде",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 9,
+            "height": 9,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 647041010,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр HYUNDAI 26300-35504",
+          "shopSku": "2630035504KIA",
+          "category": "Масляные фильтры",
+          "vendor": "HYUNDAI",
+          "vendorCode": "26300-35504",
+          "description": "HYUNDAI: 26300-11100, 26300-21010, 26300-21A00, 26300-35054, 26300-35056, 26300-35500, 26300-35501, 26300-35502, 26300-35503, S26300-35503, FILTRON: OP558, OP617, KIA: 0 RF03 23 802, 0 RF03 23802A, 26300-35501, 26300-35502, 26300-35503, K KY01 14302, K KYO1 14302, O RF03 23 802, O RF03 23 802 A, O RF03 23 802 B, S26300 35503",
+          "barcodes": [
+            "2630035504"
+          ],
+          "urls": [
+            "https://yadi.sk/i/XrC64JibVigqDQ"
+          ],
+          "manufacturer": "Хенде",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 10,
+            "height": 9,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 647041010,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр HYUNDAI/KIA 26300-35505",
+          "shopSku": "2630035505KIA",
+          "category": "Масляные фильтры",
+          "vendor": "HYUNDAI/KIA",
+          "vendorCode": "26300-35505",
+          "description": "Фильтр масляный HYUNDAI ACCENT LC (ТагАЗ) (1999-2012)/CRETA (2015- )/I30 II (2012- )/SOLARIS (RB) (2010- )/KIA CEED II (2012- )/CERATO II (2009-2013)/",
+          "barcodes": [
+            "2630035505"
+          ],
+          "urls": [
+            "https://yadi.sk/d/_UHilAmNnm7jsw"
+          ],
+          "manufacturer": "КИА",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 10,
+            "width": 11,
+            "height": 10,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 647041018,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Панельный фильтр HYUNDAI 28113-1R100",
+          "shopSku": "28113-1R100",
+          "category": "Воздушные фильтры",
+          "vendor": "HYUNDAI",
+          "vendorCode": " 28113-1R100",
+          "description": "Тип фильтра: панельный\nКонструкция панельного фильтра: каркасный",
+          "barcodes": [
+            "281131R100001",
+            "281131R1000001",
+            "281131R100"
+          ],
+          "urls": [
+            "https://yadi.sk/d/jXV1zrHXA670Tg"
+          ],
+          "manufacturer": "Хёнде",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 20,
+            "width": 28,
+            "height": 6,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 646970633,
+          "categoryId": 6101352
+        }
+      },
+      {
+        "offer": {
+          "name": "Панельный фильтр HYUNDAI 28113-M4000",
+          "shopSku": "28113-M4000",
+          "category": "Воздушные фильтры",
+          "vendor": "HYUNDAI",
+          "vendorCode": "28113-M4000",
+          "description": "Тип фильтра: панельный\nМарка автомобиля: Hyundai",
+          "barcodes": [
+            "28113M4000001",
+            "28113M4000"
+          ],
+          "urls": [
+            "https://yadi.sk/d/C1ApJXdTvn1tpA"
+          ],
+          "manufacturer": "Хёнде",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 6,
+            "width": 19,
+            "height": 27,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 632488472,
+          "categoryId": 6101352
+        }
+      },
+      {
+        "offer": {
+          "name": "Панельный фильтр HYUNDAI 28113H8100",
+          "shopSku": "28113H8100",
+          "category": "Воздушные фильтры",
+          "vendor": "HYUNDAI",
+          "vendorCode": "28113H8100",
+          "description": "Тип фильтра: панельный",
+          "barcodes": [
+            "28113H8100001",
+            "28113H8100"
+          ],
+          "urls": [
+            "https://yadi.sk/d/FmTnKLuAGXNqfA"
+          ],
+          "manufacturer": "Хёнде",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 16,
+            "width": 28,
+            "height": 7,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 647004211,
+          "categoryId": 6101352
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная накаливания Osram 2825-02B W5W 5W 2 шт.",
+          "shopSku": "282502B",
+          "category": "Лампы для автомобилей",
+          "vendor": "Osram",
+          "vendorCode": "282502B",
+          "description": "Назначение: габаритные фонари\nТипоразмер: W5W\nМощность 5 Вт\nНапряжение: 12 В",
+          "barcodes": [
+            "4050300925684"
+          ],
+          "urls": [
+            "https://yadi.sk/d/LAvHQPV4U7-88Q"
+          ],
+          "manufacturer": "Осрам",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 11,
+            "height": 1,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 650491022,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Моторное масло IDEMITSU 5W-30 SN/GF-5 4 л",
+          "shopSku": "30011328746",
+          "category": "Моторные масла",
+          "vendor": "IDEMITSU",
+          "vendorCode": "30011328746",
+          "description": "Класс вязкости 5W-30\nСинтетическое моторное масло\nДвигатель: бензиновый, четырехтактный\nКласс API SN\nКласс ILSAC GF-5",
+          "urls": [
+            "https://yadi.sk/d/T8tTnd0vfREJvg"
+          ],
+          "manufacturer": "Идемитсу",
+          "manufacturerCountries": [
+            "Япония"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 11,
+            "width": 22,
+            "height": 27,
+            "weight": 3.6
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 12808759,
+          "categoryId": 90478
+        }
+      },
+      {
+        "offer": {
+          "name": "Топливный фильтр HYUNDAI 31112-1R000",
+          "shopSku": "311121R000",
+          "category": "Топливные фильтры",
+          "vendor": "KIA",
+          "vendorCode": "31112-1R000",
+          "description": "Модель автомобиля\n\nHyundai ix35, Hyundai i10, Hyundai Tucson, Hyundai Accent, Hyundai Verna, Hyundai Eon, Hyundai Elantra, Hyundai Santa Fe, Kia Sorento, Kia Rio, Kia Sportage\n\nТип\n\nтопливный фильтр\n\nТип топлива\n\nБензин\n\nСтрана производства\n\nЮжная Корея\n",
+          "urls": [
+            "https://yadi.sk/d/fULeq4De25Znug"
+          ],
+          "manufacturer": "Киа",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 11,
+            "width": 12,
+            "height": 12,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 642290215,
+          "categoryId": 90449
+        }
+      },
+      {
+        "offer": {
+          "name": "Фильтр топливного насоса HYUNDAI 31184-1R000",
+          "shopSku": "31184-1R000",
+          "category": "Топливные фильтры",
+          "vendor": "HYUNDAI",
+          "vendorCode": " 31184-1R000",
+          "description": "Подходит для: Hyundai Solaris",
+          "barcodes": [
+            "311841R000001"
+          ],
+          "urls": [
+            "https://yadi.sk/d/xh_hG2NfQNkMJA"
+          ],
+          "manufacturer": "Хёнде",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 10,
+            "width": 16,
+            "height": 3,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 642777577,
+          "categoryId": 90449
+        }
+      },
+      {
+        "offer": {
+          "name": "ВМПАВТО Resurs Next 0.075 кг",
+          "shopSku": "4304",
+          "category": "Присадки и промывки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "4304",
+          "description": "Тип: присадка\nОбласть применения: двигатель\nСпецификация присадок: реметаллизаторы\nДействие: снижение вибрации, снижение уровня шума",
+          "barcodes": [
+            "4607012405050"
+          ],
+          "urls": [
+            "https://yadi.sk/d/IAYe83TZEGB9jA"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 4,
+            "height": 15,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100777485768,
+          "categoryId": 14350309
+        }
+      },
+      {
+        "offer": {
+          "name": "Впитывающий наполнитель Мурзик Силикагель 4 л",
+          "shopSku": "5000100",
+          "category": "Наполнитель для кошачьих туалетов",
+          "vendor": "Мурзик",
+          "description": "наполнители из смеси мелкопористого и крупнопористого силикагелей",
+          "barcodes": [
+            "4612511500014"
+          ],
+          "urls": [
+            "https://yadi.sk/d/qR45Vjn4hLAnwA"
+          ],
+          "manufacturer": "Мурзик",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 8,
+          "transportUnitSize": 1,
+          "weightDimensions": {
+            "length": 24,
+            "width": 34,
+            "height": 7,
+            "weight": 2.3
+          },
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 14252675,
+          "categoryId": 12766642
+        }
+      },
+      {
+        "offer": {
+          "name": "Впитывающий наполнитель ",
+          "shopSku": "5000101",
+          "category": "Наполнители для кошачьих туалетов",
+          "vendor": "Мурзик",
+          "description": "Наполнитель СНЕЖОК Производятся из силикоцеолитов, обладающих лучшими влагопоглотительными свойствами силикагелей и цеолитов. Силикоцеолиты - это однородные по размеру гранулы бело-кремового цвета. Структура их при намокании сохраняется и обеспечивает высокую эффективность поглощения влаги и запаха. \nБелые гранулы этого наполнителя позволяют отмечать необычные по цвету выделения у домашних животных и своевременно обращаться к ветврачу для предупреждения серьезных заболеваний.\n",
+          "barcodes": [
+            "4612590500011"
+          ],
+          "urls": [
+            "https://yadi.sk/i/AruK3u77UiBVtQ"
+          ],
+          "manufacturer": "Мурзик",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 22,
+            "width": 32,
+            "height": 2,
+            "weight": 2.3
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "processingState": {
+            "status": "NEED_INFO",
+            "notes": [
+              {
+                "type": "NO_PARAMETERS_IN_SHOP_TITLE",
+                "payload": "{\"itemsAsString\":\"Объём\",\"items\":[\"Объём\"]}"
+              }
+            ]
+          },
+          "availability": "ACTIVE"
+        }
+      },
+      {
+        "offer": {
+          "name": "Наполнитель для кошачьего туалета Мурзик \"Цеолайт\", 4 л",
+          "shopSku": "5000103",
+          "category": "Наполнители для кошачьих туалетов",
+          "vendor": "Мурзик",
+          "description": "аполнитель для кошачьего туалета Мурзик \"Цеолайт\" состоит из высококачественного сорбента, прошедшего термическую обработку. Эффективно поглощает запахи и влагу. Не разрушается при использовании и не требует замены. Является высокоэффективным и экономичным наполнителем.\n\nТовар сертифицирован.",
+          "barcodes": [
+            "4612511500021"
+          ],
+          "urls": [
+            "https://yadi.sk/d/QgRl-FR2e3kVSQ"
+          ],
+          "manufacturer": "Мурзик",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 8,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 23,
+            "width": 33,
+            "height": 5,
+            "weight": 2.1
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 14232607,
+          "categoryId": 12766642
+        }
+      },
+      {
+        "offer": {
+          "name": "Впитывающий наполнитель Снежок Цеолайт 4 л",
+          "shopSku": "5000104",
+          "category": "Наполнители для кошачьих туалетов",
+          "vendor": "Снежок",
+          "description": "Минеральный\nС защитой от запаха\nВес 2.5 кг\nОбъем 4 л",
+          "barcodes": [
+            "4612590500028"
+          ],
+          "urls": [
+            "https://yadi.sk/d/m0-dhbxyeTMCig"
+          ],
+          "manufacturer": "Снежок",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 20,
+            "width": 15,
+            "height": 43,
+            "weight": 2.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 14232596,
+          "categoryId": 12766642
+        }
+      },
+      {
+        "offer": {
+          "name": "Массажная подушка CAR & HOME CHM-8028",
+          "shopSku": "5000401",
+          "category": "Массажные матрасы и подушки",
+          "vendor": "CAR & HOME",
+          "vendorCode": "CHM-8028",
+          "description": "Комплект: Массажная подушка, адаптер для питания от «прикуривателя» автомобиля, адаптер для питания от сети 220В, инструкция по эксплуатации.\nПитание :DC 12 В, сетевой адаптер АС 220 В, 50 Гц / DC 12 В, 2,0 А.\n",
+          "barcodes": [
+            "9781251375625"
+          ],
+          "urls": [
+            "https://yadi.sk/d/oHF8zRTpnZF49g"
+          ],
+          "manufacturer": "Кар энд Хом",
+          "manufacturerCountries": [
+            "Китай"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 21,
+            "width": 34,
+            "height": 12,
+            "weight": 1.1
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "NEED_CONTENT"
+          },
+          "availability": "ACTIVE"
+        }
+      },
+      {
+        "offer": {
+          "name": "Умная автовизитка с QR код",
+          "shopSku": "500500",
+          "category": "Прочие элементы тюнинга автомобиля",
+          "vendor": "HONEYCARD",
+          "vendorCode": "500500",
+          "description": "Вам не придется переживать за свой автомобиль, потому что с Вами в любой момент можно связаться по указанному номеру.\n\nОПОВЕЩЕНИЯ ЧЕРЕЗ СМС\nУслуга работает 24/7\n\nОЧЕНЬ ЛЕГКО ЗАКРЕПИТЬ\nИмеет фиксатор на стекло\n\nЗАЩИТА ОТ МОШЕННИКОВ\nНа карте отсутствуют ваши личные данные\n\nНИКОГДА НЕ РАЗМАГНИТИТСЯ\nДостаточно навести камеру чтобы получить информацию\n\nЗАЩИТА ОТ УЛЬТРАФИОЛЕТА\nЗащищена специальной оболочкой от внешней среды",
+          "barcodes": [
+            "500500"
+          ],
+          "urls": [
+            "https://yadi.sk/d/BrbKIwMw6r1Zew"
+          ],
+          "manufacturer": "HONEYCARD",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 5,
+            "width": 4,
+            "height": 1,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "NEED_CONTENT"
+          },
+          "availability": "ACTIVE"
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильный аккумулятор VARTA Blue Dynamic D59 (560 409 054)",
+          "shopSku": "560409054",
+          "category": "Аккумуляторные батареи",
+          "vendor": "VARTA",
+          "vendorCode": "560409054",
+          "description": "Напряжение: 12 В\nПусковой ток 540 А\nЕмкость 60 А·ч\nРазмеры: 242x175x175 мм",
+          "barcodes": [
+            "4016987119525"
+          ],
+          "urls": [
+            "https://yadi.sk/d/StUiPoIQbg4T3g"
+          ],
+          "manufacturer": "ВАРТА",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 19,
+            "width": 26,
+            "height": 18,
+            "weight": 13.7
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 1716371689,
+          "categoryId": 90436
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильный аккумулятор VARTA Blue Dynamic D47 (560 410 054)",
+          "shopSku": "560410054",
+          "category": "Аккумуляторные батареи",
+          "vendor": "VARTA",
+          "vendorCode": "560410054",
+          "description": "Напряжение: 12 В\nПусковой ток 540 А\nЕмкость 60 А·ч\nРазмеры: 232x173x225 мм",
+          "barcodes": [
+            "4016987119679"
+          ],
+          "urls": [
+            "https://yadi.sk/d/qFHqecRrEcJ63A"
+          ],
+          "manufacturer": "Варта",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 17,
+            "width": 26,
+            "height": 22,
+            "weight": 14.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 1716371690,
+          "categoryId": 90436
+        }
+      },
+      {
+        "offer": {
+          "name": "Антикор OILRIGHT Пушечное сало 2 кг ведро черный",
+          "shopSku": "6105",
+          "category": "Антикоры",
+          "vendor": "OILRIGHT",
+          "vendorCode": "6105",
+          "description": "Область применения: дно, пороги, колесные арки, скрытые полости\nСпособ нанесения: пистолет\nОснова: масло\nОсобенности: высокая адгезия",
+          "barcodes": [
+            "4606882006589"
+          ],
+          "urls": [
+            "https://yadi.sk/d/Na1dgA2RPPe-eQ"
+          ],
+          "manufacturer": "Оилрайт",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 16,
+            "width": 16,
+            "height": 13,
+            "weight": 2
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100834032564,
+          "categoryId": 90488
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Osram 64180L H18 12V 65W 1 шт.",
+          "shopSku": "64180L",
+          "category": "Лампы для автомобилей",
+          "vendor": "Osram",
+          "vendorCode": "64180L",
+          "description": "Назначение: ближний свет, противотуманные фары\nТипоразмер: H18\nСветовой поток 1700 лм\nМощность 65 Вт\nНапряжение: 12 В",
+          "barcodes": [
+            "4052899479968"
+          ],
+          "urls": [
+            "https://yadi.sk/d/Pgfz2DWg147tiw"
+          ],
+          "manufacturer": "осрам",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 5,
+            "width": 6,
+            "height": 6,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 665056133,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Osram COOL BLUE INTENSE H4 64193CBI-HCB 12V 60/55W 2 шт.",
+          "shopSku": "64193CBI-HCB",
+          "category": "Лампы для автомобилей",
+          "vendor": "Osram",
+          "vendorCode": "64193CBI-HCB",
+          "description": "Назначение: ближний/дальний свет\nТипоразмер: H4\nСвет: теплый белый\nЦветовая температура 4200 K\nСветовой поток 1000/1650 лм\nНапряжение: 12 В",
+          "barcodes": [
+            "4052899413061"
+          ],
+          "urls": [
+            "https://yadi.sk/d/ZHD2ea-7dp_JCg"
+          ],
+          "manufacturer": "Осрам",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 12,
+            "width": 14,
+            "height": 5,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 530361599,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Osram Original line 64193CLC H4 60/55W 1 шт.",
+          "shopSku": "64193CLC",
+          "category": "Лампы для автомобилей",
+          "vendor": "Osram",
+          "vendorCode": "64193CLC",
+          "description": "Назначение: ближний/дальний свет\nТипоразмер: H4\nЦветовая температура 3200 K\nСветовой поток 1000/1650 лм",
+          "barcodes": [
+            "4052899287549"
+          ],
+          "urls": [
+            "https://yadi.sk/d/9wqS6KsUcwm_lg"
+          ],
+          "manufacturer": "Осрам",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 6,
+            "width": 6,
+            "height": 7,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 641424576,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Osram NIGHT BREAKER LASER H4 64193NL-HCB 12V 60/55W 2 шт.",
+          "shopSku": "64193NLHCB",
+          "category": "Лампы для автомобилей",
+          "vendor": "Osram",
+          "vendorCode": "64193NLHCB",
+          "description": "Назначение: ближний/дальний свет\nТипоразмер: H4\nСветовой поток 1000/1650 лм",
+          "barcodes": [
+            "4062172114318"
+          ],
+          "urls": [
+            "https://yadi.sk/d/yfVCFENHJlSl_Q"
+          ],
+          "manufacturer": "Осрам",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 11,
+            "width": 13,
+            "height": 5,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 573945001,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Osram Original Line 64210 H7 12V 55W 1 шт.",
+          "shopSku": "64210",
+          "category": "Лампы для автомобилей",
+          "vendor": "Osram",
+          "vendorCode": "64210",
+          "description": "Назначение: противотуманные фары, ближний/дальний свет\nТипоразмер: H7\nСветовой поток 1500 лм\nМощность 55 Вт",
+          "barcodes": [
+            "4050300332185"
+          ],
+          "urls": [
+            "https://yadi.sk/d/z5UxL4okakteKQ"
+          ],
+          "manufacturer": "Осрам",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 4,
+            "width": 6,
+            "height": 7,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 581436053,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Osram ALLSEASON 64210ALL-HCB +30% H7 55W 2 шт.",
+          "shopSku": "64210ALLHCB",
+          "category": "Лампы для автомобилей",
+          "vendor": "Osram",
+          "vendorCode": "64210ALLHCB",
+          "description": "Назначение: ближний/дальний свет\nТипоразмер: H7\nСвет: теплый белый\nЦветовая температура 3200 K\nСветовой поток 1500 лм\nМощность 55 Вт\nНапряжение: 12 В",
+          "barcodes": [
+            "4052899503335"
+          ],
+          "urls": [
+            "https://yadi.sk/d/9LpSPMCIngfwYA"
+          ],
+          "manufacturer": "осрам",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 11,
+            "width": 13,
+            "height": 5,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 530363054,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная галогенная Osram ULTRA LIFE H7 64210ULT-HCB 12V 55W 2 шт.",
+          "shopSku": "64210ULT-HCB",
+          "category": "Лампы для автомобилей",
+          "vendor": "Osram",
+          "vendorCode": "64210ULT-HCB",
+          "description": "Назначение: ближний/дальний свет\nТипоразмер: H7\nЦветовая температура 3200 K\nСветовой поток 1500 лм\nМощность 55 Вт\nНапряжение: 12 В",
+          "barcodes": [
+            "4052899436213"
+          ],
+          "urls": [
+            "https://yadi.sk/d/1EW97zLC6SugAg"
+          ],
+          "manufacturer": "Осрам",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 12,
+            "width": 13,
+            "height": 5,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 530337006,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Женские цветные носки 5 пар с яркими принтами (фрукты) 37-41",
+          "shopSku": "700113",
+          "category": "Носки",
+          "vendor": "chosèt",
+          "vendorCode": "6958689403992",
+          "description": "Размер 37-41\n80% Хлопок\n15% Полиамид\n5% Эластан",
+          "barcodes": [
+            "6958689403992"
+          ],
+          "urls": [
+            "https://yadi.sk/d/i6H41wYIx_Lt3w"
+          ],
+          "manufacturer": "chosèt",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 15,
+            "width": 5,
+            "height": 5,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "IN_WORK"
+          },
+          "availability": "ACTIVE"
+        }
+      },
+      {
+        "offer": {
+          "name": "Лампа автомобильная накаливания Osram Original line 7528-02B P21/5W (BAY15d) 12V 21/5W 2 шт.",
+          "shopSku": "752802B",
+          "category": "Лампы для автомобилей",
+          "vendor": "Osram",
+          "vendorCode": "752802B",
+          "description": "Назначение: габаритные фонари, стоп-сигналы\nТипоразмер: P21/5W\nНапряжение: 12 В",
+          "barcodes": [
+            "4050300925523"
+          ],
+          "urls": [
+            "https://yadi.sk/d/OXF21GitSDmkFQ"
+          ],
+          "manufacturer": "Осрам",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 12,
+            "height": 5,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 645434637,
+          "categoryId": 14405299
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр Renault 7700274177",
+          "shopSku": "7700274177",
+          "category": "Масляные фильтры",
+          "vendor": "Renault",
+          "vendorCode": "7700274177",
+          "barcodes": [
+            "7700274177"
+          ],
+          "urls": [
+            "https://yadi.sk/d/lVSak_CIFFxBkQ"
+          ],
+          "manufacturer": "РЕНО",
+          "manufacturerCountries": [
+            "Франция"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 9,
+            "height": 6,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 653347486,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Панельный фильтр Renault 8200431051",
+          "shopSku": "8200431051",
+          "category": "Воздушные фильтры",
+          "vendor": "Renault",
+          "vendorCode": "8200431051",
+          "description": "Тип фильтра: панельный\nМарка автомобиля: Renault",
+          "barcodes": [
+            "8200431051"
+          ],
+          "urls": [
+            "https://yadi.sk/d/-OiWSytzVOaGbw"
+          ],
+          "manufacturer": "Рено",
+          "manufacturerCountries": [
+            "Франция"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 16,
+            "width": 21,
+            "height": 9,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 652536529,
+          "categoryId": 6101352
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр Renault 8200768913",
+          "shopSku": "8200768913",
+          "category": "Масляные фильтры",
+          "vendor": "Renault",
+          "vendorCode": "8200768913",
+          "description": "Применение: для моторных масел\nПодходит для: Alfa Romeo GTV, Alfa Romeo 156, Alfa Romeo Spider, Alfa Romeo GT, Citroen C5, Jeep Cherokee, Jeep Wrangler, Lexus LS, Lexus IS, Lancia Lybra, Mitsubishi Carisma, Mitsubishi Space Star, Nissan Almera, Nissan Qashqai, Nissan Primera, Nissan Juke, Nissan Tiida, Nissan Qashqai+2, Nissan Note, Nissan Micra, Opel Vivaro, Renault Avantime, Renault Clio, Renault Modus, Renault Espace, Renault Kangoo, Renault Laguna, Renault Trafic, Renault Fluence, Dacia Dokker, Renault Grand Scenic, Dacia Duster, Dacia Lodgy, Peugeot 205, Renault Safrane, Renault Rapid, Renault 19, Renault 18, Renault 11, ARO 10, Renault 9, Renault 5, Ford Sierra, Nissan Primastar, Opel Movano, Dacia Sandero, Dacia Logan, Nissan Interstar, Nissan NV200, Renault 21, Ford Scorpio, Alfa Romeo AR6, Nissan Kubistar, Renault 20, Renault 25, Volvo 360, Volvo 340, Ford Granada, Opel Arena, Renault Alpine V6, Dacia Solenza, Renault Super 5",
+          "barcodes": [
+            "8200768913"
+          ],
+          "urls": [
+            "https://yadi.sk/d/eFpO1P6b7us6Rw"
+          ],
+          "manufacturer": "Рено",
+          "manufacturerCountries": [
+            "Франция"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 10,
+            "height": 7,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 672917214,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Фильтр Renault 8201153808",
+          "shopSku": "8201153808",
+          "category": "Салонные фильтры",
+          "vendor": "Renault",
+          "vendorCode": " 8201153808",
+          "description": "Марка автомобиля: Renault, Dacia",
+          "barcodes": [
+            "82011538081"
+          ],
+          "urls": [
+            "https://yadi.sk/d/myXrMNrHR1E5bw"
+          ],
+          "manufacturer": "Рено",
+          "manufacturerCountries": [
+            "Франция"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 23,
+            "width": 25,
+            "height": 4,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 651859652,
+          "categoryId": 13477846
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильная смазка ВМПАВТО Для цепей Дорожных и Спортивных мотоциклов 0.4 л",
+          "shopSku": "8406",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "8406",
+          "description": "Специализация: противокоррозийная\nКонсистенция: жидкая",
+          "barcodes": [
+            "4607012403841"
+          ],
+          "urls": [
+            "https://yadi.sk/d/tctjF1bkg2Asbg"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 6,
+            "width": 7,
+            "height": 25,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100802758357,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильная смазка ВМПАВТО Для цепей Внедорожных мотоциклов 0.4 л",
+          "shopSku": "8408",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "8408",
+          "description": "Специализация: проникающая, противокоррозийная\nКонсистенция: жидкая",
+          "barcodes": [
+            "4607012405029"
+          ],
+          "urls": [
+            "https://yadi.sk/d/5K3WwiZctNtPAA"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 7,
+            "height": 25,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100774659035,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "ВМПАВТО Пенная раскоксовка двигателя Валера 0.4 л",
+          "shopSku": "8505",
+          "category": "Присадки и промывки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "8505",
+          "description": "астер-пена \"Валера\" - это инновационная пенная раскоксовка для очистки клапанов, впускного тракта, камеры сгорания, компрессионных поршневых колец.\nЧто нового в этом продукте?\nПервое - стабильная пена. Пена медленнее оседает, а поэтому, и дольше контактирует с нагаром на стенках.\nВторое - активная пена. Продукт работает именно в состоянии пены в отличие от японского аналога Shumma, который быстрее превращается в жидкость и оседает на клапанах. Стабильная и активная пена очищает верхнюю часть камеры сгорания, которая часть остается без внимания",
+          "barcodes": [
+            "4607012407108"
+          ],
+          "urls": [
+            "https://yadi.sk/d/_exGZ2Dvdt3l4g"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 7,
+            "height": 23,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100895436705,
+          "categoryId": 14350309
+        }
+      },
+      {
+        "offer": {
+          "name": "ВМПАВТО Пенная раскоксовка двигателя Валера 0.25 л",
+          "shopSku": "8506",
+          "category": "Присадки и промывки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "8506",
+          "description": "астер-пена \"Валера\" - это инновационная пенная раскоксовка для очистки клапанов, впускного тракта, камеры сгорания, компрессионных поршневых колец.\nЧто нового в этом продукте?\nПервое - стабильная пена. Пена медленнее оседает, а поэтому, и дольше контактирует с нагаром на стенках.\nВторое - активная пена. Продукт работает именно в состоянии пены в отличие от японского аналога Shumma, который быстрее превращается в жидкость и оседает на клапанах. Стабильная и активная пена очищает верхнюю часть камеры сгорания, которая часть остается без внимания",
+          "barcodes": [
+            "4607012407139"
+          ],
+          "urls": [
+            "https://yadi.sk/d/7Zhk2WmkIy1b3Q"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 7,
+            "height": 13,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100895436704,
+          "categoryId": 14350309
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильная смазка ВМПАВТО Валера 0.4 л",
+          "shopSku": "8601",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "8601",
+          "description": "Область применения: тормозная система, замки и петли\nСпециализация: проникающая, противокоррозийная\nКонсистенция: жидкая",
+          "barcodes": [
+            "4607012405401"
+          ],
+          "urls": [
+            "https://yadi.sk/d/G-S0yblzBElyQA"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 5,
+            "width": 25,
+            "height": 5,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100774859729,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Автомобильная смазка ВМПАВТО Валера 0.21 л",
+          "shopSku": "8603",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
+          "vendorCode": "8603",
+          "description": "Коротко о товаре\nОбласть применения: тормозная система, замки и петли\nСпециализация: проникающая, противокоррозийная\nКонсистенция: жидкая",
+          "barcodes": [
+            "4607012405647"
+          ],
+          "urls": [
+            "https://yadi.sk/d/HaN0kLfJnxB7og"
+          ],
+          "manufacturer": "ВМПАВТО",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 6,
+            "height": 13,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100802750464,
+          "categoryId": 90489
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр TOYOTA 90915-YZZE1",
+          "shopSku": "90915-YZZE1",
+          "category": "Масляные фильтры",
+          "vendor": "TOYOTA",
+          "vendorCode": "90915-YZZE1",
+          "barcodes": [
+            "90915YZZE1",
+            "90915YZZE13"
+          ],
+          "urls": [
+            "https://yadi.sk/d/2gRqr5VEa9jlGw"
+          ],
+          "manufacturer": "Тойота",
+          "manufacturerCountries": [
+            "Япония"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 9,
+            "height": 7,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 643041366,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр TOYOTA 90915-YZZE2",
+          "shopSku": "90915-YZZE2",
+          "category": "Масляные фильтры",
+          "vendor": "TOYOTA",
+          "vendorCode": "90915-YZZE2",
+          "description": "Подходит для: Toyota Avensis, Toyota Camry, Toyota Corolla, Toyota RAV4, Toyota Yaris, Toyota Carina",
+          "barcodes": [
+            "90915YZZE25"
+          ],
+          "urls": [
+            "https://yadi.sk/d/gZSgUariFiNxBA"
+          ],
+          "manufacturer": "Тойота",
+          "manufacturerCountries": [
+            "Япония"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 8,
+            "height": 9,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 643311025,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Фильтр KIA 97133-4L000",
+          "shopSku": "971334L000",
+          "category": "Салонные фильтры",
+          "vendor": "KIA",
+          "vendorCode": "97133-4L000",
+          "description": "Марка автомобиля\n\nHyundai, Kia\n\nМодель автомобиля\n\nHyundai Solaris, Kia Rio\n\nАналог фильтра\n\n1AFIRSTAUTOMOTIVE: C30225, ALCOFILTER: MS-6485, AMC: KC-6113C, KC-6113, AMD: AMD.FC167, ARIRANG: ARG32-4332, AWM: C1107, BLUEPRINT: ADG02582, COMLINE: EKF399, FORTECH: FS130C, FS130, HANSPRIES: 821512, JPGROUP: 3628100709, JSASAKASHI: AC101J, AC101JC, KAISHIN: A20187, KORTEX: KC0045S, KC0045, LYNX: LAC-1947C, LAC-1947, MISTRAL: AVF1601, AVF2320С, AVF2320, AVF1601C, MULLERFILTER: FC225, Parts-Mall: PMAC43, PMA043, SAKURA: CA29080, SAT: ST-97133-4L000, SCTGermany: SAK279, STELLOX: 71-10219-SX, TECNECO: CK-PREPARATION\n\nСтрана производства\n\nЮжная Корея\n",
+          "barcodes": [
+            "971334L0000001",
+            "971334L000",
+            "2009988919708"
+          ],
+          "urls": [
+            "https://yadi.sk/d/cK_VhvUNmRQobQ"
+          ],
+          "manufacturer": "Киа",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 24,
+            "width": 28,
+            "height": 2,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 647120562,
+          "categoryId": 13477846
+        }
+      },
+      {
+        "offer": {
+          "name": "Фильтр KIA 97133D1000",
+          "shopSku": "97133D1000",
+          "category": "Салонные фильтры",
+          "vendor": "KIA",
+          "vendorCode": "97133D1000",
+          "description": "Марка автомобиля\n\nHyundai\n\nМодель автомобиля\n\nHyundai Creta, Hyundai Solaris\n\nСтрана производства\n\nЮжная Корея\n",
+          "barcodes": [
+            "97133D1000CG"
+          ],
+          "urls": [
+            "https://yadi.sk/d/A9rmj5u9iev7mw"
+          ],
+          "manufacturer": "Киа",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 25,
+            "width": 28,
+            "height": 3,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "SATURDAY",
+            "SUNDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 650140569,
+          "categoryId": 13477846
+        }
+      },
+      {
+        "offer": {
+          "name": "Универсальный силиконовый герметик для ремонта автомобиля ABRO 9-AB, 0.085 кг серый",
+          "shopSku": "ABRO9-AB",
+          "category": "Клеи и герметики",
+          "vendor": "ABRO",
+          "vendorCode": "ABRO9-AB",
+          "description": "Назначение: система охлаждения, двигатель, трансмиссия\nВид упаковки: тюбик\nМаксимальная температура эксплуатации: 343 °C\nТип нанесения: выдавливаемый",
+          "barcodes": [
+            "0790920047567"
+          ],
+          "urls": [
+            "https://yadi.sk/d/Q52gebSRjeOiLg"
+          ],
+          "manufacturer": "абро",
+          "manufacturerCountries": [
+            "США"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 10,
+            "width": 22,
+            "height": 2,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100814366733,
+          "categoryId": 90483
+        }
+      },
+      {
+        "offer": {
+          "name": "Воздушный фильтр MANNFILTER C 14 130",
+          "shopSku": "C14130",
+          "category": "Воздушные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "C14130",
+          "description": "Форма фильтра: цилиндрический\nМарка автомобиля: Skoda, Volkswagen, Audi, SEAT\nАналог: VW GROUP (AUDI/SEAT/SKODA/VW): 1F0129620, 3C0129620",
+          "barcodes": [
+            "4011558221904"
+          ],
+          "urls": [
+            "https://yadi.sk/d/NruV-eIH55vCzA"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 17,
+            "width": 24,
+            "height": 16,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 591296117,
+          "categoryId": 6101352
+        }
+      },
+      {
+        "offer": {
+          "name": "Воздушный фильтр MANNFILTER C 22 117",
+          "shopSku": "C22117",
+          "category": "Воздушные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "C 22 117",
+          "description": "Форма фильтра: панельный\nКонструкция панельного фильтра: бескаркасный\nФильтрующий материал: бумага\nКоличество степеней фильтрации: 1\nМарка автомобиля: LADA (ВАЗ), Volkswagen, Audi, SEAT, Chevrolet, Porsche, Jaguar, Volvo\nАналог: CITROEN:1444 Q2,FORD:A 790 X 9601 AA,5005 156,5016 787,860 X 9601 BA,GENERAL MOTORS (GM):93152007,JAGUAR:EAC 5672,NBB 3500 AA,LADA:2108-0110-901,2108-0110-901-1,2112-1109-080-01,2112-1109-080-06,2112-0110-9080,21120-1109080-02,PORSCHE:021.129.620,STILL:524 560,VOLVO CARS:1257305,1328047,1328047-4,VW GROUP (AUDI/SEAT/SKODA/VW):021 129 620,021 129 620 D,027 129 620,WARTBURG:91 18 002 460",
+          "barcodes": [
+            "4011558130909"
+          ],
+          "urls": [
+            "https://yadi.sk/d/3CsXbVj32Bd9dQ"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 24,
+            "width": 24,
+            "height": 8,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 525016011,
+          "categoryId": 6101352
+        }
+      },
+      {
+        "offer": {
+          "name": "Воздушный фильтр MANNFILTER C 27 009",
+          "shopSku": "C27009",
+          "category": "Воздушные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "C 27 009",
+          "description": "Форма фильтра: панельный\nКонструкция панельного фильтра: бескаркасный\nФильтрующий материал: бумага\nКоличество степеней фильтрации: 1\nМарка автомобиля: Skoda, Volkswagen, Audi, SEAT",
+          "barcodes": [
+            "4011558025717"
+          ],
+          "urls": [
+            "https://yadi.sk/d/tIPkhLPdoYnT-g"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 23,
+            "width": 30,
+            "height": 4,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 531302015,
+          "categoryId": 6101352
+        }
+      },
+      {
+        "offer": {
+          "name": "Воздушный фильтр MANNFILTER C 27 030",
+          "shopSku": "C27030",
+          "category": "Воздушные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "C27030",
+          "description": "Форма фильтра: панельный\nКонструкция панельного фильтра: бескаркасный\nКоличество степеней фильтрации: 2\nМарка автомобиля: LADA (ВАЗ), Renault, Dacia",
+          "barcodes": [
+            "4011558070793"
+          ],
+          "urls": [
+            "https://yadi.sk/i/UCASjyV-XH6Yog"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 13,
+            "width": 30,
+            "height": 8,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 530929542,
+          "categoryId": 6101352
+        }
+      },
+      {
+        "offer": {
+          "name": "Воздушный фильтр MANNFILTER C35154",
+          "shopSku": "C35154",
+          "category": "Воздушные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "C35154",
+          "description": "Форма фильтра: панельный\nКонструкция панельного фильтра: бескаркасный\nФильтрующий материал: бумага\nКоличество степеней фильтрации: 1\nМарка автомобиля: Skoda, Volkswagen, Audi, SEAT\nАналог: VAG: 1K0129620D, 1K0129620G, 1K0129620F, 3C0129620A, 5C0129620, 3C0129620B",
+          "barcodes": [
+            "4011558222000"
+          ],
+          "urls": [
+            "https://yadi.sk/d/PmcJxn3zkZ6Yag"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 17,
+            "height": 38,
+            "weight": 0.5
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 531671088,
+          "categoryId": 6101352
+        }
+      },
+      {
+        "offer": {
+          "name": "Фильтр MANNFILTER CU2939",
+          "shopSku": "CU2939",
+          "category": "Салонные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "CU2939",
+          "description": "Марка автомобиля: Skoda, Volkswagen, Audi, SEAT\nДлина 288 мм\nШирина 215 мм\nТолщина 34 мм\nАналог: 1K0819644, 1K0819644A, 1K0819644B",
+          "barcodes": [
+            "4011558308902"
+          ],
+          "urls": [
+            "https://yadi.sk/d/rl_YdA0fB6Dk7Q"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 24,
+            "width": 31,
+            "height": 7,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 591308023,
+          "categoryId": 13477846
+        }
+      },
+      {
+        "offer": {
+          "name": "Фильтр MANNFILTER CUK2939",
+          "shopSku": "CUK2939",
+          "category": "Салонные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "CUK2939",
+          "description": "Фильтрующий материал: уголь\nМарка автомобиля: Skoda, Volkswagen, Audi, SEAT\nДлина 288 мм\nШирина 215 мм\nТолщина 34 мм\nАналог: VW GROUP (AUDI/SEAT/SKODA/VW): 1K1819653, 1K1819653A, 1K1819653B, JZW819653B",
+          "barcodes": [
+            "4011558405205"
+          ],
+          "urls": [
+            "https://yadi.sk/d/tlmCqhg73_OU1A"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 6,
+            "width": 26,
+            "height": 31,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 592359022,
+          "categoryId": 13477846
+        }
+      },
+      {
+        "offer": {
+          "name": "Батарейка Energizer Max 9V/Крона 1 шт блистер",
+          "shopSku": "E301531801",
+          "category": "Батарейки и аккумуляторы",
+          "vendor": "Energizer",
+          "vendorCode": "E301531801",
+          "description": "Батарейка\nТипоразмер: Крона\nТехнология: щелочная\nНапряжение 9 В",
+          "barcodes": [
+            "7638900410297"
+          ],
+          "urls": [
+            "https://yadi.sk/d/GRXFI9Qwu4NpTg"
+          ],
+          "manufacturer": "Энержайзер",
+          "manufacturerCountries": [
+            "Китай"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 13,
+            "height": 1,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100595340380,
+          "categoryId": 90626
+        }
+      },
+      {
+        "offer": {
+          "name": "Диагностический адаптер Автосканер Bluetooth ELM-327",
+          "shopSku": "ELM327",
+          "category": "Бортовые компьютеры",
+          "vendor": "ELM 327",
+          "vendorCode": "ELM327",
+          "description": "Автомобильный адаптер, обеспечивающий диагностику автомобиля через OBD-II разъем с помощью беспроводной связи Bluetooth. Интерфейс Bluetooth позволяет использовать с ПК, ноутбуком, КПК, мобильными телефонами или планшетами. Адаптер предназначен для диагностики двигателя, чтения и сброс ошибок, просмотра данных в реальном времени, снятие индикации Check Engine.",
+          "barcodes": [
+            "2000000000510"
+          ],
+          "urls": [
+            "https://yadi.sk/d/h5PJRNJWUtyYQA"
+          ],
+          "manufacturer": "елм327",
+          "manufacturerCountries": [
+            "Китай"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 13,
+            "width": 14,
+            "height": 1,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "NEED_CONTENT"
+          },
+          "availability": "ACTIVE"
+        }
+      },
+      {
+        "offer": {
+          "name": "Hi-Gear Шампунь для бесконтактной мойки автомобиля HG8009/HG8002N 1 л",
+          "shopSku": "HG8002N",
+          "category": "Автошампуни и пены",
+          "vendor": "Hi-Gear",
+          "vendorCode": "HG8002N",
+          "description": "Концентрат\nВид мойки: бесконтактная\nТип автотехники: легковые автомобили",
+          "barcodes": [
+            "009603080051"
+          ],
+          "urls": [
+            "https://yadi.sk/d/KOhyObvwgH0aAg"
+          ],
+          "manufacturer": "хайгир",
+          "manufacturerCountries": [
+            "США"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 14,
+            "height": 23,
+            "weight": 1.2
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100856991755,
+          "categoryId": 90430
+        }
+      },
+      {
+        "offer": {
+          "name": "Фильтрующий элемент MANNFILTER HU612/2X",
+          "shopSku": "HU612/2X",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "HU 612/2 X",
+          "description": "Применение: для моторных масел\nПодходит для: Alfa Romeo 159, Chevrolet Cruze, Chevrolet Aveo, Chevrolet Trax, Chevrolet Orlando, Fiat Croma, Opel Adam, Opel Combo, Opel Corsa, Opel Insignia, Opel Astra, Opel Mokka, Opel Signum, Opel Vectra, Opel Meriva, Opel Zafira, Opel Cascada, Opel Agila, Opel Zafira Tourer, Opel Tigra, Saab 9-5x, Suzuki Wagon R+\nАналог: 71744410, 55594651, 95526685, 73504179, 93185674, 5650359, 650172, 55353324",
+          "barcodes": [
+            "4011558299507"
+          ],
+          "urls": [
+            "https://yadi.sk/d/Z5BvSajMrE3uKA"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 6,
+            "width": 13,
+            "height": 7,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 586043299,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Крепёжный комплект Dollex KNS-01 хром",
+          "shopSku": "KNS-01",
+          "category": "Рамки для номеров",
+          "vendor": "Dollex",
+          "vendorCode": "KNS-01",
+          "description": "Материал: металл, пластик",
+          "barcodes": [
+            "4680011298793"
+          ],
+          "urls": [
+            "https://yadi.sk/d/7xVyaWjLSyyiZw"
+          ],
+          "manufacturer": "Долекс",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 10,
+            "height": 1,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100733049740,
+          "categoryId": 13208249
+        }
+      },
+      {
+        "offer": {
+          "name": "Крепёжный комплект Dollex KNV-01 хром",
+          "shopSku": "KNV-01",
+          "category": "Рамки для номеров",
+          "vendor": "Dollex",
+          "vendorCode": "KNV-01",
+          "description": "Материал: металл, пластик",
+          "barcodes": [
+            "4680011298809"
+          ],
+          "urls": [
+            "https://yadi.sk/d/vzV2szywrj6Q5g"
+          ],
+          "manufacturer": "Долекс",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 10,
+            "height": 2,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100802754174,
+          "categoryId": 13208249
+        }
+      },
+      {
+        "offer": {
+          "name": "Преобразователь ржавчины KUDO со структурным модификатором с кисточкой 0.01 л",
+          "shopSku": "KU-70005",
+          "category": "Преобразователи ржавчины",
+          "vendor": "KUDO",
+          "vendorCode": " KU-70005",
+          "description": "Тип: гель\nОсобенности: улучшение адгезии, защитная пленка",
+          "barcodes": [
+            "4606445021868"
+          ],
+          "urls": [
+            "https://yadi.sk/d/MuAUC_9YrDnwSQ"
+          ],
+          "manufacturer": "Кудо",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 10,
+            "width": 14,
+            "height": 7,
+            "weight": 0.1
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100675883694,
+          "categoryId": 90484
+        }
+      },
+      {
+        "offer": {
+          "name": "Лак KUDO универсальный глянцевый прозрачный 520 мл",
+          "shopSku": "KU-9002",
+          "category": "Аэрозольная краска",
+          "vendor": "KUDO",
+          "vendorCode": "KU-9002",
+          "description": "Тип основы: акриловая\nМатериал обработки: металл, дерево, пластик\nСтепень глянца: глянцевая\nДля внутренних работ\nДля наружных работ\nМинимальный расход (мл/кв.м) 260",
+          "barcodes": [
+            "4606445001983"
+          ],
+          "urls": [
+            "https://yadi.sk/d/eYZxSwV3aYMRUw"
+          ],
+          "manufacturer": "кудо",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 9,
+            "height": 20,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100627669049,
+          "categoryId": 2561869
+        }
+      },
+      {
+        "offer": {
+          "name": "Лак KUDO универсальный матовый прозрачный 520 мл",
+          "shopSku": "KU9004",
+          "category": "Аэрозольная краска",
+          "vendor": "KUDO",
+          "vendorCode": "KU9004",
+          "description": "Тип основы: акриловая\nМатериал обработки: металл, дерево, пластик\nСтепень глянца: матовая\nДля внутренних работ\nДля наружных работ\nМинимальный расход (мл/кв.м) 260",
+          "barcodes": [
+            "4606445019810"
+          ],
+          "urls": [
+            "https://yadi.sk/d/uLxgg264t_xVxA"
+          ],
+          "manufacturer": "Кудо",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 9,
+            "height": 21,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100627609999,
+          "categoryId": 2561869
+        }
+      },
+      {
+        "offer": {
+          "name": "Lavr Промывка инжекторных систем ML101 1 л",
+          "shopSku": "LN2001",
+          "category": "Присадки и промывки",
+          "vendor": "Lavr",
+          "vendorCode": "LN2001",
+          "description": "тип: присадка\nтип автотехники: легковые автомобили\nобласть применения: топливная система\nдействие: снижение расхода топлива, очищение системы впуска",
+          "barcodes": [
+            "4607038890076"
+          ],
+          "urls": [
+            "https://yadi.sk/i/coL0fYFgPugzqw"
+          ],
+          "manufacturer": "Лавр",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 11,
+            "height": 21,
+            "weight": 0.9
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100829030635,
+          "categoryId": 14350309
+        }
+      },
+      {
+        "offer": {
+          "name": "Lavr 5-минутная промывка двигателя 0.45 л",
+          "shopSku": "Ln1003",
+          "category": "Присадки и промывки",
+          "vendor": "Lavr",
+          "vendorCode": "Ln1003",
+          "description": "Тип: промывка\nТип автотехники: грузовые автомобили, легковые автомобили\nОбласть применения: двигатель\nТип промывки: 5-минутная промывка\nДействие: снижение расхода масла",
+          "barcodes": [
+            "4607038891868"
+          ],
+          "urls": [
+            "https://yadi.sk/d/orzcdCLxNYkbvA"
+          ],
+          "manufacturer": "Лавр",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 19,
+            "height": 7,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100818299757,
+          "categoryId": 14350309
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER MW 64/1",
+          "shopSku": "MW641",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "MW 64/1",
+          "description": "Применение: для моторных масел\nПодходит для: Honda",
+          "barcodes": [
+            "4011558844806"
+          ],
+          "urls": [
+            "https://yadi.sk/d/lpyZBB3Q5Ah0GA"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 9,
+            "height": 8,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 626707061,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр Mitsubishi MZ690115",
+          "shopSku": "MZ690115",
+          "category": "Масляные фильтры",
+          "vendor": "Mitsubishi",
+          "vendorCode": "MZ690115",
+          "description": "Применение: для моторных масел",
+          "barcodes": [
+            "MZ6901150001"
+          ],
+          "urls": [
+            "https://yadi.sk/d/lLEs_j-uyaB74A"
+          ],
+          "manufacturer": "Митсубиси",
+          "manufacturerCountries": [
+            "Япония"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 9,
+            "height": 10,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 649710736,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MAHLE OC 196",
+          "shopSku": "OC196",
+          "category": "Масляные фильтры",
+          "vendor": "MAHLE",
+          "vendorCode": "OC196",
+          "description": "Применение: для моторных масел\nПодходит для: Chery Tiggo, Citroen C4 Aircross, Citroen C-Crosser, Infiniti QX4, Infiniti FX, Isuzu Trooper, Mazda B-Series, Mazda 626, Mazda 323, Mazda MPV, Mitsubishi Lancer, Mitsubishi Outlander, Mitsubishi Colt, Mitsubishi Pajero, Mitsubishi Pajero Pinin, Mitsubishi Carisma, Mitsubishi Galant, Mitsubishi Space Star, Mitsubishi Eclipse, Mitsubishi Mirage, Mitsubishi L200, Mitsubishi ASX, Mitsubishi Space Runner, Nissan Armada, Nissan Pathfinder, Nissan Terrano, Nissan Maxima, Opel Combo, Opel Corsa, Opel Astra, Peugeot 4008, Peugeot 4007, Volvo V40, Volvo S40, Mazda 616, Mazda 818, Mazda 929, Vauxhall Astra, Mazda Bongo, Mitsubishi Delica, Opel Monterey, Mazda Proceed, Vauxhall Monterey, Mazda Capella, Mazda Eunos, Proton Persona, Mitsubishi Chariot, Proton Wira, Vauxhall Combo, Vauxhall Corsa, Proton Satria, Mazda MX-3, Isuzu Gemini, Mitsubishi L300, Mitsubishi L400, Mazda MX-6, Mazda Familia, Mazda Luce, Mazda Xedos, Tata Gurkha, Mitsubishi Galloper, Mitsubishi Eterna, Infiniti I30, Proton Gen-2, Mitsubishi Montero, Mitsubishi Libero, Ford Probe\nАналог: CITROEN/PEUGEOT: 1109AE, 1109CG, FIAT/LANCIA/ALFA: 71736161, FORD: 3396825, F32Z6731A, 3803268, GMC 90541162, 90511146, 91151707, 93156093, HONDA: 15400PLC003, 15400PLC004, HYUNDAI/KIA(MOBIS): 2630021010, KOMATSU: 8943687270, 89425111011, 8941494180, 8944128150, MAZDA: N3R114302, JEY0-14-302A, 15208-31U00, JEY0143029A, G6Y014302A, HE1923802, JEY014302, MITSUBISHI MZ690115, MZ690072, MZ690070, MD360935, MD325714, MD135737, 1230A105, NISSAN: 152089E000, OPEL: 649006, 649013, 649014, 94314263, VOF88, 649007, VOF225, VOF500, 649012, PROTON: PW510577, PW510253, VAUXHALL: VOF225, VOF156, VOLVO 30866266-7, 30866266",
+          "barcodes": [
+            "4009026015674"
+          ],
+          "urls": [
+            "https://yadi.sk/d/0JIqhb_iZ_0wjw"
+          ],
+          "manufacturer": "Мале",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 9,
+            "height": 9,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "FRIDAY",
+            "MONDAY",
+            "WEDNESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 647028079,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр Mazda PE0114302B9A",
+          "shopSku": "PE0114302B9A",
+          "category": "Масляные фильтры",
+          "vendor": "Mazda",
+          "vendorCode": " PE0114302B9A",
+          "description": "применение: для моторных масел\nподходит для: Mazda CX-5, Mazda 6",
+          "barcodes": [
+            "PE0114302B9A"
+          ],
+          "urls": [
+            "https://yadi.sk/d/FoRC_2KwJMIogg"
+          ],
+          "manufacturer": "Мазда",
+          "manufacturerCountries": [
+            "Япония"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 10,
+            "height": 6,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 646823336,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W610/3",
+          "shopSku": "W610/3",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W610/3",
+          "description": "Подходит для: Alfa Romeo MiTo, Citroen C4 Aircross, Citroen C-Crosser, Fiat Albea, Fiat 500, Fiat 500L, Fiat Stilo, Fiat Panda, Fiat Idea, Fiat Marea, Fiat Punto, Fiat Doblo, Fiat Linea, Fiat Strada, Fiat Brava, Fiat Tipo, Fiat Qubo, Fiat Siena, Fiat Bravo, Fiat Palio, Ford Ka, Kia Carnival, Lancia Ypsilon, Lancia Musa, Mazda RX-7, Mazda 626, Mazda 323, Mazda MPV, Mitsubishi Space Gear, Mitsubishi Lancer, Mitsubishi Outlander, Mitsubishi Colt, Mitsubishi Pajero Sport, Mitsubishi Pajero, Mitsubishi Carisma, Mitsubishi Galant, Mitsubishi Space Star, Mitsubishi Eclipse, Mitsubishi Mirage, Mitsubishi L200, Mitsubishi ASX, Mitsubishi Space Runner, Opel Combo, Opel Corsa, Opel Astra, Opel Vectra, Peugeot 4008, Peugeot 4007, Volvo V40, Volvo S40",
+          "barcodes": [
+            "4011558738402"
+          ],
+          "urls": [
+            "https://yadi.sk/d/CbtOqJVDw9kLFA"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 8,
+            "height": 10,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 520672345,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W610/6",
+          "shopSku": "W610/6",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W 610/6",
+          "description": "Применение: для моторных масел\nПодходит для: Honda Legend, Honda Civic, Honda Pilot, Honda HR-V, Honda FR-V, Honda Accord, Honda Insight, Honda Jazz, Honda S2000, Honda City, Honda CR-V, Honda CR-Z",
+          "barcodes": [
+            "4011558759506"
+          ],
+          "urls": [
+            "https://yadi.sk/d/1UaDOBY5RgsJ3A"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 9,
+            "height": 10,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 521410007,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W 610/1",
+          "shopSku": "W6101",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W 610/1",
+          "description": "Применение: для моторных масел\nПодходит для: Fiat Sedici, Suzuki Swift, Suzuki SX4, Suzuki Vitara, Suzuki Kizashi, Suzuki Wagon R+, Suzuki Baleno, Subaru Justy, Suzuki Ignis, Suzuki Liana, Suzuki Jimny, Suzuki Grand Vitara\nПодходит для: VOLVO\nПодходит для: Gehl, Case construction, Caterpillar, Komatsu, NEW HOLLAND, Terex, JCB, O&K, Schaeff, Gehlmax, Manitou, Goldoni, Weidemann, Toyota Industrial, Yanmar",
+          "barcodes": [
+            "4011558738204"
+          ],
+          "urls": [
+            "https://yadi.sk/d/XA-f11_VV1IQ-g"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 9,
+            "height": 11,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 520671317,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W67/1",
+          "shopSku": "W671",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W671",
+          "description": "Подходит для: Honda Insight, Hyundai Atos Prime, Infiniti QX56, Infiniti Q70, Infiniti QX50, Infiniti QX4, Infiniti QX60, Infiniti QX70, Infiniti M, Infiniti FX, Infiniti EX, Kia Spectra, Kia Clarus, Kia Shuma, Kia Rio, Kia Picanto, Kia Carens, Mazda RX-7, Mazda 2, Mazda MX-5, Mazda RX-8, Mazda 626, Mazda 323, Mazda Premacy, Mazda 3, Mazda MPV, Mitsubishi Pajero, Nissan Murano, Nissan X-Trail, Nissan Patrol, Nissan Pathfinder, Nissan Terrano, Nissan 370Z, Nissan 350Z, Nissan Almera, Nissan Maxima, Nissan Qashqai, Nissan Altima, Nissan Primera, Nissan Juke, Nissan Tiida, Nissan Navara, Nissan Qashqai+2, Nissan Note, Nissan Micra, Nissan Teana, Nissan Sentra, Renault Clio, Renault Koleos, Renault Espace, Renault Laguna, Renault Vel Satis, Subaru Forester, Subaru Outback, Subaru Impreza, Subaru Justy, Subaru Legacy",
+          "barcodes": [
+            "4011558738006"
+          ],
+          "urls": [
+            "https://yadi.sk/d/1l-54Uz-GZc3NA"
+          ],
+          "manufacturer": "ман фильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 7,
+            "width": 8,
+            "height": 8,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 514787011,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W 68/3",
+          "shopSku": "W68/3",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W68/3",
+          "description": "Подходит для: Citroen C1, Lexus NX, Peugeot 107, Peugeot 108, Toyota Corolla Verso, Toyota Avensis, Toyota Celica, Toyota C-HR, Toyota iQ, Toyota Auris, Toyota Camry, Toyota MR2, Toyota Corolla, Toyota Aygo, Toyota Yaris Verso, Toyota RAV4, Toyota Prius, Toyota Yaris, Toyota Picnic",
+          "barcodes": [
+            "4011558759308"
+          ],
+          "urls": [
+            "https://yadi.sk/d/4g7gbSNkqpWuzA"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 9,
+            "height": 10,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 514786043,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W7008",
+          "shopSku": "W7008",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W7008",
+          "description": "Подходит для: Ford S-Max, Ford Fiesta, Ford Transit Connect, Ford Puma, Ford B-Max, Ford Galaxy, Ford C-Max, Ford Mondeo, Ford Fusion, Ford Tourneo Connect, Ford EcoSport, Ford Focus, Ford Ka, Ford Kuga, Mazda 2, Volvo C30, Volvo S80, Volvo V50, Volvo V40, Volvo S40, Volvo S60, Volvo V70, Ford Grand C-Max\nС этим товаром смотрят",
+          "barcodes": [
+            "4011558018412"
+          ],
+          "urls": [
+            "https://yadi.sk/d/g1DvbSEVOeEtWQ"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 11,
+            "height": 8,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 514794001,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W 7015",
+          "shopSku": "W7015",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W7015",
+          "description": "Подходит для: Ford S-Max, Ford Fiesta, Ford Mustang, Ford Transit Connect, Ford Maverick, Ford B-Max, Ford Galaxy, Ford C-Max, Ford Mondeo, Ford Tourneo Connect, Ford Transit, Ford Ranger, Ford EcoSport, Ford Focus, Ford Kuga, Jaguar F-Pace, Jaguar XE, Jaguar XJ, Jaguar XF, Land Rover Freelander, Land Rover Range Rover Sport, Land Rover Evoque, Land Rover Discovery Sport, Volvo C30, Volvo S80, Volvo V50, Volvo S40, Volvo S60, Volvo V70, Volvo XC60, Ford Grand C-Max",
+          "barcodes": [
+            "4011558044220"
+          ],
+          "urls": [
+            "https://yadi.sk/i/R8DGtsuHVQVMFQ"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "США"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 10,
+            "height": 9,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 514778017,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W712/52",
+          "shopSku": "W712/52",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W712/52",
+          "description": "Применение: для моторных масел\nПодходит для: Audi A2, Seat Leon, Seat Ibiza, Seat Toledo, Seat Cordoba, Seat Altea, Seat Arosa, Seat Altea XL, Seat Altea Freetrack, Skoda Praktik, Skoda Octavia, Skoda Fabia, Skoda Roomster, Skoda Felicia, Volkswagen Caddy, Volkswagen Golf, Volkswagen Fox, Volkswagen Bora, Volkswagen Lupo, Volkswagen New Beetle, Volkswagen Polo, Seat Inca\nАналог: 030115561AA, 030115561AB, 030115561AD, 030115561E, 030115561F, 030115561K, 030115561P, 030115561AN, 030115561L",
+          "barcodes": [
+            "4011558729509"
+          ],
+          "urls": [
+            "https://yadi.sk/d/FUOWhQDs5JIF-Q"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 10,
+            "height": 11,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 590366899,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W 712/73",
+          "shopSku": "W71273",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W71273",
+          "description": "Применение: для моторных масел\nПодходит для: Mazda 6, Mazda MX-5, Mazda Tribute, Mazda 3, Mazda MPV, Mazda 5\nАналог: LF10-143029A, LF10-14-302, LF05-14-302A, LF10-14-302A, LFY1-14302, LF10-143029B, 7424990748",
+          "barcodes": [
+            "4011558739607"
+          ],
+          "urls": [
+            "https://yadi.sk/d/bOFbRMZgQc7cFA"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 11,
+            "height": 10,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 590364599,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W 712/75",
+          "shopSku": "W71275",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W 712/75",
+          "description": "Применение: для моторных масел\nПодходит для: Chevrolet Lacetti, Chevrolet Niva, Chevrolet Captiva, Chevrolet Lanos, Chevrolet Cruze, Chevrolet Rezzo, Chevrolet Aveo, Daewoo Nubira, Daewoo Kalos, Daewoo Evanda, Daewoo Nexia, Daewoo Leganza, Lotus Europa S, Opel Combo, Opel Corsa, Opel Astra, Opel Signum, Opel Vectra, Opel Meriva, Opel Zafira, Opel Frontera, Opel Omega, Opel Speedster, Opel Astra GTS, Opel Tigra, Saab 09-3x, LADA 2110, Chevrolet Montana, Chevrolet Lublin, Opel Kadett, Opel Manta, Opel Rekord, Irmscher Coupé, Vauxhall Astra, Vauxhall Ampera, Vauxhall Zafira\nАналог: MLS000-530, 94797406, EC94797406, 96458873D, 96458873, 96352845, 96879797, 93745067, 5009285, 5016786, 93156245, 93156300, 93156954, 93178952, 6439929, 93156310, 95509857, A124E6196S, VOF93, 650381, 650401, 5650343, 96395221, 650104, 1109A9, 7701415070, 4502696, 93179720",
+          "barcodes": [
+            "4011558744502"
+          ],
+          "urls": [
+            "https://yadi.sk/d/bLfWJIqmHgyFnQ"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 9,
+            "height": 9,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 590364609,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W 712/83",
+          "shopSku": "W71283",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W 712/83",
+          "description": "Применение: для моторных масел\nПодходит для: Lexus LS, Lexus IS, Lexus GS, Lexus ES, Lexus RX, Lexus LX, Lexus GX, Lexus SC, Mini One, Toyota FJ Cruiser, Toyota Fortuner, Toyota Celica, Toyota Auris, Toyota Hilux, Toyota Land Cruiser Prado, Toyota Camry, Toyota Hiace, Toyota Alphard, Toyota Highlander, Toyota Land Cruiser, Toyota Corolla, Toyota Sequoia, Toyota Yaris Verso, Toyota Tacoma, Toyota Previa, Toyota Yaris, Toyota Cressida\nПодходит для: Caterpillar, John Deere, Wacker Neuson\nАналог: 11427791059, 491056, 807894, 220-1523, 15600-25010, 15600-87104, 15600-87307, 15601-87307, 15601-87705, 40111-834, 59030255, 74434793, 74434794, 74446335, AM101207, 51346113, 5205002, 5205002S, 11420306483, 0122-0645, 122-0645, 140517050, 15600-25010-83, 15601-25010, 15601-76009, 15601-76009-71, 15601-78001, 15601-78001-71, 15601-96006, 40150-30370-71, 90915-03002, 90915-03005, 90915-20001, 90915-20002, 90915-20003, 90915-33021, 90915-40001, 04152-03002, 90915-20004, 08922-02011, 90915-TB001-00, 90915-TB001, 90915-YZZJ3, 90915-YZZJ4, 04152-64010, 90915-YZZG1, J9091520001, J9091520003, 2804639, 5747517050, 1000231366",
+          "barcodes": [
+            "4011558000943"
+          ],
+          "urls": [
+            "https://yadi.sk/d/6hsDL9fWA-qzKg"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 11,
+            "height": 9,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 591150006,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W712/94",
+          "shopSku": "W71294",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W71294",
+          "description": "Применение: для моторных масел\nПодходит для: Audi A3, Audi A1, Seat Leon, Seat Ibiza, Seat Toledo, Seat Altea, Seat Alhambra, Seat Altea XL, Seat Altea Freetrack, Skoda Superb, Skoda Rapid, Skoda Praktik, Skoda Octavia, Skoda Fabia, Skoda Roomster, Skoda Yeti, Volkswagen Caddy, Volkswagen Jetta, Volkswagen Golf, Volkswagen Beetle, Volkswagen Eos, Volkswagen CC, Volkswagen Touran, Volkswagen Polo, Volkswagen Passat, Volkswagen Scirocco, Volkswagen Sharan, Volkswagen Passat CC, Volkswagen Tiguan\nАналог: 03C115561D, 03C115561H",
+          "barcodes": [
+            "4011558041403"
+          ],
+          "urls": [
+            "https://yadi.sk/d/Wna7CmFJAUQGGA"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 10,
+            "height": 11,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 590358983,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W 712/95",
+          "shopSku": "W71295",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W712/95",
+          "description": "Применение: для моторных масел\nПодходит для: Audi A5, Audi A3, Audi A1, Audi Q3, Audi A4, Audi Q2, Seat Leon, Seat Ibiza, Seat Toledo, Seat Alhambra, Seat Ateca, Seat Mii, Skoda Kodiaq, Skoda Superb, Skoda Rapid, Skoda Octavia, Skoda Fabia, Skoda Karoq, Skoda Yeti, Skoda Citigo, Volkswagen Caddy, Volkswagen Jetta, Volkswagen Golf, Volkswagen Beetle, Volkswagen CC, Volkswagen Arteon, Volkswagen Touran, Volkswagen Polo, Volkswagen Up, Volkswagen Passat, Volkswagen Scirocco, Volkswagen Sharan, Volkswagen Tiguan\nАналог: 04E115561H, 04E115561, 04E115561B, 04E115561D, 04E115561T",
+          "barcodes": [
+            "4011558036010"
+          ],
+          "urls": [
+            "https://yadi.sk/i/vDNq60QaKFcsMw"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 10,
+            "height": 8,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 590366821,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W 719/30",
+          "shopSku": "W719/30",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W719/30",
+          "description": "Подходит для: Audi A3, Audi A8, Audi A6, Audi A4, Audi TT, Seat Leon, Seat Ibiza, Seat Toledo, Seat Cordoba, Seat Altea, Seat Alhambra, Seat Exeo, Seat Altea XL, Seat Altea Freetrack, Skoda Superb, Skoda Octavia, Skoda Fabia, Volkswagen Caddy, Volkswagen Jetta, Volkswagen Golf, Volkswagen Bora, Volkswagen New Beetle, Volkswagen Touran, Volkswagen Polo, Volkswagen Transporter, Volkswagen Passat, Volkswagen Sharan",
+          "barcodes": [
+            "4011558730307"
+          ],
+          "urls": [
+            "https://yadi.sk/i/vTSIdxBXf0KQ1Q"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 15,
+            "height": 9,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 514703012,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W719/45",
+          "shopSku": "W71945",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W719/45",
+          "description": "Применение: для моторных масел\nПодходит для: Audi A5, Audi A3, Audi Q5, Audi Q3, Audi A8, Audi A6, Audi A4, Audi TT RS, Audi TTS, Audi TT, Seat Leon, Seat Toledo, Seat Altea, Seat Alhambra, Seat Exeo, Seat Altea XL, Seat Altea Freetrack, Skoda Superb, Skoda Octavia, Skoda Yeti, Volkswagen Jetta, Volkswagen Golf, Volkswagen Beetle, Volkswagen Eos, Volkswagen CC, Volkswagen Amarok, Volkswagen Transporter, Volkswagen Passat, Volkswagen Scirocco, Volkswagen Sharan, Volkswagen Passat CC, Volkswagen Tiguan\nАналог: 06H115403, 06J115561B, 06H115561, 06J115403C, 06J115403J, 06J115403M, 06J115403Q",
+          "barcodes": [
+            "4011558758806"
+          ],
+          "urls": [
+            "https://yadi.sk/d/jj_fc0I0R24Q_Q"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 11,
+            "height": 16,
+            "weight": 0.5
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 586038012,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W75/3",
+          "shopSku": "W75/3",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W 75/3",
+          "description": "Подходит для: Alfa Romeo GTV, Alfa Romeo Spider, Alfa Romeo GT, Jeep Cherokee, Lancia Lybra, Mitsubishi Carisma, Mitsubishi Space Star, Nissan Terrano, Nissan Almera, Nissan Qashqai, Nissan Primera, Nissan Tiida, Nissan Note, Nissan Micra, Opel Vivaro, Renault Avantime, Renault Clio, Renault Twingo, Renault Symbol, Renault Kaptur, Renault Master, Renault Duster, Renault Modus, Renault Scenic, Renault Espace, Renault Sandero, Renault Logan, Renault Kangoo, Renault Megane, Renault Laguna, Renault Trafic, Renault Fluence, Renault Vel Satis, Renault Wind, Suzuki Jimny, LADA Largus, Dacia Dokker, Renault Grand Scenic, Dacia Duster, Renault Express, Renault Rapid\nАналог: MLS000-462A, MLS000-602, 6001543357, 73500506, 5006227, 5013388, 5013389, 5016714, 5016715, 5016785, 5016956, 5017317, 5017319, 107.2175.117.06, 107.2175.107.00, 107.2175.184, 2175.107, 2175.117, 2175.136, 2175.184, 107.2175.107, 0021.7510.70, AM15-14302, M852065, M851139, M883804, 82000-33468, 15208-BN700, 15208-00QAB, 15208-00Q0F, 1520800QAC, 15208-00Q0H, 4402718, 4403019, 4449274, 1109A4, 1109A5, 7700033408, 7700073302, 7700107905, 7700110796, 7700272523, 7700272902, 7700272903, 7700272982, 7700274177, 7700676302, 7700695801, 7700695804, 7700727401, 7700727478, 7700727479, 7700727480, 7700728310, 7700730077, 7700734945, 7700734957, 7700735917, 7700737991, 7700744879, 7700745708, 7700748326, 7700854776, 7700854852, 7700855853, 7700856114, 7700866099, 7700869390, 7700871919, 7700873583, 7700873603, 7701043377, 7701349452, 7701349725, 7701349752, 7701727480, 7702144083, 7708715147, 8200033408, 8200867976, 8933004195, 8983501900, 8983601900, 8200768913, 16510-84CT0, 16510-84CT0-000",
+          "barcodes": [
+            "4011558728809"
+          ],
+          "urls": [
+            "https://yadi.sk/d/ju39mFf_zClxsQ"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 10,
+            "height": 6,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 586011000,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W 8017",
+          "shopSku": "W8017",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": " W8017",
+          "description": "Применение: для моторных масел\nПодходит для: Hyundai i40, Hyundai i30, Hyundai ix35, Hyundai Tucson, Hyundai Veloster, Hyundai ix20, Hyundai Santa Fe, Kia Sorento Prime, Kia Soul, Kia Sorento, Kia Rio, Kia Sportage, Kia Ceed, Kia Carens",
+          "barcodes": [
+            "4011558024178"
+          ],
+          "urls": [
+            "https://yadi.sk/i/iuFP7-Uxj0r2Ow"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 11,
+            "height": 9,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 515114312,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W811/80",
+          "shopSku": "W81180",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W81180",
+          "description": "Применение: для моторных масел\nПодходит для: Great Wall Wingle, Genesis G80, Hyundai i40, Hyundai Genesis Coupe, Hyundai i30, Hyundai H1, Hyundai Getz, Hyundai ix35, Hyundai Creta, Hyundai i20, Hyundai XG, Hyundai Tucson, Hyundai Accent, Hyundai Trajet, Hyundai Galloper, Hyundai Kona, Hyundai Matrix, Hyundai Grandeur, Hyundai Terracan, Hyundai Sonata, Hyundai Veloster, Hyundai ix20, Hyundai Porter, Hyundai Azera, Hyundai Elantra, Hyundai Santa Fe, Hyundai Solaris, Kia Optima, Kia Soul, Kia Stinger, Kia Venga, Kia Sorento, Kia Opirus, Kia Rio, Kia Carnival, Kia Sportage, Kia Cerato, Kia Niro, Kia Ceed, Isuzu Trooper, Isuzu D-Max, Kia Carens, Mazda B-Series, Mazda CX-7, Mazda 6, Mazda 626, Mazda 323, Mazda Premacy, Mazda 3, Mazda MPV, Mazda 5, Mitsubishi Lancer, Mitsubishi Outlander, Mitsubishi Colt, Mitsubishi Pajero Sport, Mitsubishi Pajero, Mitsubishi Grandis, Mitsubishi Galant, Mitsubishi Mirage, Mitsubishi L200, Mitsubishi Space Runner, Mitsubishi 3000 GT, Smart Forfour, Subaru Outback, Suzuki Vitara, Subaru Tribeca, Subaru Legacy",
+          "barcodes": [
+            "4011558720001"
+          ],
+          "urls": [
+            "https://yadi.sk/d/7o3IqfnSzek67Q"
+          ],
+          "manufacturer": "манфильтер",
+          "manufacturerCountries": [
+            "Южная Корея"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 11,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 10,
+            "height": 9,
+            "weight": 0.4
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 515114314,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W914/2",
+          "shopSku": "W9142",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": " W9142",
+          "description": "Применение: для моторных масел\nПодходит для: Chevrolet Niva, Fiat 124 Spider, Lancia Delta, Lotus Europa S, Renault Trafic, LADA Granta, LADA X-RAY, LADA Vesta, LADA Priora, LADA 2107, LADA 21099, LADA 2105, LADA 2108, LADA 2109, LADA 2110, LADA 2113, LADA 2114, LADA 2111, LADA 2112, LADA 2115, LADA Kalina, LADA Largus, Fiat Argenta, Renault Fuego, Renault 16, Renault 18, Renault Estafette, Renault 11, ARO 10, Renault 12, Renault 9, Ford Sierra, Dacia 1000-Serie, Ford Scorpio, Lancia Beta, Lancia Trevi, ЗАЗ-1102 Таврия, ЗАЗ-1103 Славута, Renault 30, Ford Cortina, Renault Alpine A310, Dacia Nova, TVR Tuscan\nПодходит для: Renault\nПодходит для: Case construction, Agrale-Deutz, Pel-Job, BOMAG, Aveling-Barford, BCS, Benford, Weidemann, Antonio Carraro\nАналог: BOMAG: 05715464, CITROEN: MLS000-144A, CLARK MICHIGAN: 995390, CUMMINS: 148459, 162097, DAF: 0224788, DEUTZ AG/DEUTZ-FAHR(KHD): 29353002, DYNAPAC: 748640, FARYMANN: 541002-2, FIAT GROUP: 5951891, 7032389, FOMOCO: A700X6714EA, D1RY6731A, 542957, 78TM6714BA, FORD: 1498018, 1641158, 5005097, 5005805, 5006946, 5012035, 5012040, 5013146, 6063340, 5024424, 2167934, GM: 5579164, 7984225, 7984366, HATZ: 40094200.499, HOLDER: 019466, 0227051, IHC/CASE IH: 3136569, 3136569R1, 395789R92, LADA: 2105-1012-005, 2105-1012-005-01, 2108-1012-005-07, 2108-1012-005, 2105-0101-200-500, 21080-1012005-08, PEGASO: 770286, PETTER: 358702, PEUGEOT: 1109A0, RENAULT: 0855823800, 7700538153, 7700542086, 7700542286, 7700545868, 7700553733, 7700634818, 7700638670, 7700646761, 7700651432, 7700673219, 7701031111, 7701348023, 7701348107, 7701365661, 7701415049, 7701638670, VOLVO(TRUCKS/VCE/VME/PENTA): 7897321, 897321, RENAULTTRUCKS(RVI): 0008547327, 0008548979, 0008558238, 0008558910, 0024560060, 0085558910, 0854897999, 0855823800, 5000100351, 5000789225, 7700538153, 7700553733, 5001846323",
+          "barcodes": [
+            "4011558708306"
+          ],
+          "urls": [
+            "https://yadi.sk/d/1LleQCiKUMlJCA"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 11,
+            "width": 11,
+            "height": 8,
+            "weight": 0.5
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 519704496,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Масляный фильтр MANNFILTER W 920/21",
+          "shopSku": "W92021",
+          "category": "Масляные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "W 920/21",
+          "description": "Применение: для моторных масел\nПодходит для: Iveco Daily, Renault Trafic, ГАЗ Газель, ГАЗ 3110 Волга, УАЗ Хантер, УАЗ Патриот, УАЗ 3151, LADA 2107, LADA 2105, LADA 2121\nПодходит для: Iveco",
+          "barcodes": [
+            "4011558710101"
+          ],
+          "urls": [
+            "https://yadi.sk/d/10e4-DJo9GSJ4A"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 11,
+            "width": 13,
+            "height": 11,
+            "weight": 0.5
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 521723669,
+          "categoryId": 90442
+        }
+      },
+      {
+        "offer": {
+          "name": "Топливный фильтр MANNFILTER WK 69/2",
+          "shopSku": "WK692",
+          "category": "Топливные фильтры",
+          "vendor": "MANNFILTER",
+          "vendorCode": "WK 69/2",
+          "description": "Подходит для: Audi A3, Audi TTS, Audi TT, BMW 1 series, Seat Leon, Seat Ibiza, Seat Toledo, Seat Cordoba, Seat Altea, Skoda Rapid, Skoda Praktik, Skoda Octavia, Skoda Fabia, Skoda Roomster, Volkswagen Caddy, Volkswagen Jetta, Volkswagen Golf, Volkswagen Beetle, Volkswagen Eos, Volkswagen Touran, Volkswagen Polo\nАналог: 21-00478-SX, GB-3229, AFFF043, AFFF054, PF3177, 31.833.00, DF3528, 1003230003, KF5039, FS0061, PP836/4, ST 6108, CFF100488, F026403006, H155WK02, 6Q0201051C",
+          "barcodes": [
+            "4011558955601"
+          ],
+          "urls": [
+            "https://yadi.sk/d/7ABIblQN6v4-1A"
+          ],
+          "manufacturer": "Манфильтер",
+          "manufacturerCountries": [
+            "Германия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 8,
+            "width": 6,
+            "height": 18,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 577015081,
+          "categoryId": 90449
+        }
+      },
+      {
+        "offer": {
+          "name": "Фильтр внутренний с аэратором и флейтой 200 л/ч (FILTER 002)",
+          "shopSku": "WP-310F",
+          "category": "Фильтры",
+          "vendor": "BARBUS",
+          "vendorCode": "WP-310F (FILTER 002)",
+          "description": "• Механическая фильтрация происходит за счёт губки, которая поглощает грязь и очищает воду.\n• Равномерно распределяет поток воды в аквариуме с помощью насадки «Водяная флейта».\n• Имеет дополнительную насадку с возможностью аэрации воды.\n• Укомплектован тремя видами насадок:\n• Фильтрация и дождевание\n• Циркуляция и фильтрация\n• Аэрация и фильтрация",
+          "barcodes": [
+            "4627075160413"
+          ],
+          "urls": [
+            "https://yadi.sk/d/Z9GPscGz37G9XQ"
+          ],
+          "manufacturer": "Барбус",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 14,
+            "width": 10,
+            "height": 7,
+            "weight": 0.2
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 573635044,
+          "categoryId": 15967001
+        }
+      },
+      {
+        "offer": {
+          "name": "Фильтр BARBUS WP-320F",
+          "shopSku": "WP-320F",
+          "category": "Фильтры",
+          "vendor": "BARBUS",
+          "vendorCode": "WP-320F",
+          "description": "Тип фильтра: внутренний\nТип очистки фильтра: механическая\nДополнительные функции: аэрация, флейта\nТип аквариума: морской, пресноводный",
+          "barcodes": [
+            "4627075160420"
+          ],
+          "urls": [
+            "https://yadi.sk/d/v9P36v5NuI4FVw"
+          ],
+          "manufacturer": "Барбус",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 10,
+            "width": 7,
+            "height": 20,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 573465082,
+          "categoryId": 15967001
+        }
+      },
+      {
+        "offer": {
+          "name": "Зарядное устройство C2R  (автомат, 8А, 6-12В)",
+          "shopSku": "XW-10",
+          "category": "Зарядные устройства для аккумуляторов",
+          "vendor": "C2R",
+          "vendorCode": "XW-10",
+          "description": "Параметры:\nВходное напряжение: 130V-250V \nДля АКБ: 6V/12V авто\nТок зарядки: 8А, 6AH-80AH \nДлина проводы выхода: 120 см. Длина проводы входа: 60 см.\n",
+          "barcodes": [
+            "4627126552655"
+          ],
+          "urls": [
+            "https://yadi.sk/d/cbwSsvoppUXO8g"
+          ],
+          "manufacturer": "Кадва Р",
+          "manufacturerCountries": [
+            "Китай"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 19,
+            "width": 9,
+            "height": 21,
+            "weight": 0.9
+          },
+          "supplyScheduleDays": [
+            "SUNDAY",
+            "MONDAY",
+            "THURSDAY",
+            "WEDNESDAY",
+            "FRIDAY",
+            "TUESDAY",
+            "SATURDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100882792732,
+          "categoryId": 6856242
+        }
+      },
+      {
+        "offer": {
+          "name": "CTX FIX-A-LEAK 1л.  Для устранения протечки в бассейнах, трубах, СПА.",
+          "shopSku": "fix-a-leak",
+          "category": "Химические средства",
+          "vendor": " CTX",
+          "description": "FIX A LEAK - химический реагент специально созданный для определения и устранения протечек в  бассейнах, СПА, горячих трубах и т.д.",
+          "barcodes": [
+            "627987052084"
+          ],
+          "urls": [
+            "https://yadi.sk/d/QKDklO2ZpcdHjA"
+          ],
+          "manufacturer": "CTX",
+          "manufacturerCountries": [
+            "Канада"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "deliveryDurationDays": 1,
+          "weightDimensions": {
+            "length": 30,
+            "width": 10,
+            "height": 10,
+            "weight": 1
+          },
+          "supplyScheduleDays": [
+            "MONDAY",
+            "WEDNESDAY",
+            "FRIDAY"
+          ],
+          "shelfLifeDays": 1825,
+          "processingState": {
+            "status": "NEED_CONTENT"
+          },
+          "availability": "ACTIVE",
+          "shelfLife": {
+            "timePeriod": 5,
+            "timeUnit": "YEAR"
+          }
+        }
+      },
+      {
+        "offer": {
+          "name": "Антикор КППС Удалитель ржавчины 0.25 кг банка бежевый",
+          "shopSku": "УТ000191573",
+          "category": "Антикоры",
+          "vendor": "КППС",
+          "vendorCode": " УТ000191573",
+          "description": "Для водного транспорта\nОбласть применения: дно, корпус, пороги, колесные арки\nСпособ нанесения: кисть\nОсобенности: высокая адгезия",
+          "barcodes": [
+            "4670083080013"
+          ],
+          "urls": [
+            "https://yadi.sk/d/bdW5DXM4HfRPEA"
+          ],
+          "manufacturer": "КППС",
+          "manufacturerCountries": [
+            "Россия"
+          ],
+          "minShipment": 1,
+          "transportUnitSize": 1,
+          "quantumOfSupply": 1,
+          "weightDimensions": {
+            "length": 9,
+            "width": 9,
+            "height": 7,
+            "weight": 0.3
+          },
+          "supplyScheduleDays": [
+            "THURSDAY",
+            "TUESDAY"
+          ],
+          "processingState": {
+            "status": "READY"
+          },
+          "availability": "ACTIVE"
+        },
+        "mapping": {
+          "marketSku": 100940009728,
+          "categoryId": 90488
+        }
+      }
+    ]
+  }
+}
