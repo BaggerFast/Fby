@@ -46,10 +46,6 @@ class Offer(models.Model):
     .. todo:: 
        Добавить проверку на то, что в списке URL'ов присутствует минимум одна запись
     """
-    vendor = models.CharField(max_length=255, verbose_name='Бренд товара')
-    vendor_code = models.CharField(max_length=255, verbose_name='Артикул товара от производителя')
-    barcodes = models.ForeignKey(to=Barcode, on_delete=models.CASCADE, verbose_name='Штрихкоды товара')
-    description = models.CharField(max_length=2000, verbose_name='Описание товара')
     timings = models.ForeignKey(
         to=Timing,
         on_delete=models.CASCADE,
@@ -64,6 +60,11 @@ class Offer(models.Model):
     .. todo::
        Проверить, что свойства :class:`shelf_life`, :class:`life_time` и :class:`guarantee_period` работают нормально
     """
+
+    barcodes = models.ForeignKey(to=Barcode, on_delete=models.CASCADE, verbose_name='Штрихкоды товара')
+    vendor = models.CharField(max_length=255, verbose_name='Бренд товара')
+    vendor_code = models.CharField(max_length=255, verbose_name='Артикул товара от производителя')
+    description = models.CharField(max_length=2000, verbose_name='Описание товара')
 
     @property
     def shelf_life(self):

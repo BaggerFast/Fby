@@ -6,13 +6,14 @@ from pygments import highlight, lexers, formatters
 
 from fby_market.settings import YA_MARKET_TOKEN, YA_MARKET_CLIENT_ID, YA_MARKET_SHOP_ID
 from main.models import Barcode
+from main.models.offer_save import Offer
 
 
 def catalogue_list(request):
     json_object = get_catalogue_from_file("data_file.json")
 
     # TODO: save data to DB
-    # save_to_db(json_object)
+    save_to_db(json_object)
 
     formatted_json = json.dumps(json_object, indent=2, ensure_ascii=False)
     colorful_json = highlight(formatted_json, lexers.JsonLexer(), formatters.HtmlFormatter())
@@ -59,10 +60,5 @@ def get_data_from_yandex(next_page_token=None):
 
 
 def save_to_db(data):
-    result_database_objects = {}
-    for item in data['result']['offerMappingEntries']:
-        offer = item['offer']
-        if 'barcodes' in offer.keys():
-            barcodes = offer['barcodes']
-            result_database_objects['barcodes'] = [Barcode.objects.create(barcode=barcode) for barcode in barcodes]
-            offer['barcodes'] = 'SAVED'
+    data = Offer(json=data['result']['offerMappingEntries'])
+    data.save()
