@@ -125,6 +125,6 @@ STATICFILES_DIRS = [
     'static'
 ]
 
-YA_MARKET_TOKEN = os.environ.get('YANDEX_MARKET_TOKEN', 'define me!')
-YA_MARKET_CLIENT_ID = os.environ.get('YANDEX_MARKET_CLIENT_ID', 'define me!')
+YA_MARKET_TOKEN = os.environ.get('YA_MARKET_TOKEN', 'define me!')
+YA_MARKET_CLIENT_ID = os.environ.get('YA_MARKET_CLIENT_ID', 'define me!')
 YA_MARKET_SHOP_ID = 21953534
