@@ -20,5 +20,7 @@ from main.views import catalogue_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('catalogue/list', catalogue_list, name='catalogue_list'),
+    # path('catalogue/list', catalogue_list, name='catalogue_list'),
+    path('', catalogue_list, name='catalogue_list'),
+
 ]
