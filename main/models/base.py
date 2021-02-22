@@ -1,70 +1,21 @@
 from django.db import models
-
-from main.models import ManufacturerCountry, WeightDimension, Barcode, Timing, CustomsCommodityCode, \
-    ProcessingState, MappingType, Mapping, Url
-from main.models.choices import TimingTypeChoices, AvailabilityChoices, SupplyScheduleDayChoices
+from main.models.choices import TimingTypeChoices, AvailabilityChoices, SupplyScheduleDayChoices, MappingType
 
 
 class Offer(models.Model):
-    shop_sku = models.CharField(max_length=255, verbose_name='SKU товара в нашем магазине')
-    name = models.CharField(max_length=255, verbose_name='Название товара')
-    category = models.CharField(max_length=255, verbose_name='Категория товара')
+    shop_sku = models.CharField(max_length=255, verbose_name='SKU товара в нашем магазине', null=True)
+    name = models.CharField(max_length=255, verbose_name='Название товара', null=True)
+    category = models.CharField(max_length=255, verbose_name='Категория товара', null=True)
     manufacturer = models.CharField(
         max_length=255,
         verbose_name='Изготовитель товара',
-        help_text='Компания, которая произвела товар, ее адрес и регистрационный номер (если есть)'
+        help_text='Компания, которая произвела товар, ее адрес и регистрационный номер (если есть)',
+        null=True
     )
-    manufacturer_countries = models.ManyToManyField(
-        to=ManufacturerCountry,
-        verbose_name='Список стран, в которых произведен товар',
-        help_text='Содержит от одной до 5 стран'
-    )
-    """
-    Список стран, в которых произведен товар
 
-    .. todo:: 
-       Добавить проверку на то, что в списке товаров может быть максимум 5 стран
-    """
-    weight_dimensions = models.ForeignKey(
-        to=WeightDimension,
-        on_delete=models.CASCADE,
-        related_name='weight_dimensions',
-        verbose_name='Габариты упаковки и вес товара'
-    )
-    urls = models.ForeignKey(
-        to=Url,
-        on_delete=models.CASCADE,
-        related_name='urls',
-        verbose_name='Список URL',
-        help_text='страниц с описанием товара на вашем сайте; '
-                  'фотографий товара в хорошем качестве. '
-                  'Содержит хотя бы один URL'
-    )
-    """
-    Список URL
-
-    .. todo:: 
-       Добавить проверку на то, что в списке URL'ов присутствует минимум одна запись
-    """
-    timings = models.ForeignKey(
-        to=Timing,
-        on_delete=models.CASCADE,
-        verbose_name='Тайминги товара',
-        help_text='Срок годности, срок службы, гарантийный срок'
-    )
-    """
-    Тайминги товара
-
-    .. todo::
-       Добавить проверку на существование минимум одного тайминга (подозреваю, что Яндекс всё равно их запросит)
-    .. todo::
-       Проверить, что свойства :class:`shelf_life`, :class:`life_time` и :class:`guarantee_period` работают нормально
-    """
-
-    barcodes = models.ForeignKey(to=Barcode, on_delete=models.CASCADE, verbose_name='Штрихкоды товара')
-    vendor = models.CharField(max_length=255, verbose_name='Бренд товара')
-    vendor_code = models.CharField(max_length=255, verbose_name='Артикул товара от производителя')
-    description = models.CharField(max_length=2000, verbose_name='Описание товара')
+    vendor = models.CharField(max_length=255, verbose_name='Бренд товара', null=True)
+    vendor_code = models.CharField(max_length=255, verbose_name='Артикул товара от производителя', null=True)
+    description = models.CharField(max_length=2000, verbose_name='Описание товара', null=True)
 
     @property
     def shelf_life(self):
@@ -110,38 +61,38 @@ class Offer(models.Model):
     )
     certificate = models.CharField(max_length=255,
                                    verbose_name='Номер документа на товар',
-                                   help_text='Документ по его номеру можно найти в личном кабинете магазина'
+                                   help_text='Документ по его номеру можно найти в личном кабинете магазина',
+                                   null=True
                                    )
     availability = models.CharField(
         max_length=8,
         choices=AvailabilityChoices.choices,
-        verbose_name='Планы по поставкам'
+        verbose_name='Планы по поставкам',
+        null=True
     )
     transport_unit_size = models.IntegerField(
         verbose_name='Количество единиц товара в одной упаковке, которую вы поставляете на склад',
-        help_text='Например, если вы поставляете детское питание коробками по 6 баночек, значение равно 6'
+        help_text='Например, если вы поставляете детское питание коробками по 6 баночек, значение равно 6',
+        null=True
     )
     min_shipment = models.IntegerField(
         verbose_name='Минимальное количество единиц товара, которое вы поставляете на склад',
         help_text='Например, если вы поставляете детское питание партиями минимум по 10 коробок, '
-                  'а в каждой коробке по 6 баночек, значение равно 60'
+                  'а в каждой коробке по 6 баночек, значение равно 60',
+        null=True
     )
     quantum_of_supply = models.IntegerField(
         verbose_name='Добавочная партия: по сколько единиц товара можно добавлять '
                      'к минимальному количеству min_shipment',
         help_text='Например, если вы поставляете детское питание партиями минимум по 10 коробок и хотите добавлять '
-                  'к минимальной партии по 2 коробки, а в каждой коробке по 6 баночек, значение равно 12.'
+                  'к минимальной партии по 2 коробки, а в каждой коробке по 6 баночек, значение равно 12.',
+        null=True
     )
-    supply_schedule_days = models.CharField(
-        max_length=9,
-        choices=SupplyScheduleDayChoices.choices,
-        verbose_name='День недели, в который вы поставляете товары на склад'
-    )
-    delivery_duration_days = models.IntegerField(verbose_name='Срок, за который вы поставляете товары на склад, в днях')
+    delivery_duration_days = models.IntegerField(verbose_name='Срок, за который вы поставляете товары на склад, в днях', null=True)
     box_count = models.IntegerField(
-        default=1,
         verbose_name='Сколько мест (если больше одного) занимает товар',
-        help_text='Например, кондиционер занимает два места: внешний и внутренний блоки в двух коробках'
+        help_text='Например, кондиционер занимает два места: внешний и внутренний блоки в двух коробках',
+        null=True
     )
 
     @property
@@ -180,12 +131,6 @@ class Offer(models.Model):
         """
         return self.guarantee_period.get_days()
 
-    processing_states = models.ForeignKey(
-        to=ProcessingState,
-        on_delete=models.CASCADE,
-        verbose_name='История статусов публикации товара на Маркете'
-    )
-
     @property
     def processing_state(self):
         """
@@ -197,8 +142,6 @@ class Offer(models.Model):
            Проверить, что свойство :class:`processing_state` работает нормально
         """
         return self.processing_states_set.last()
-
-    mappings = models.ForeignKey(to=Mapping, on_delete=models.CASCADE, verbose_name='Привязки карточек на Я.Маркете')
 
     @property
     def mapping(self):
@@ -229,3 +172,5 @@ class Offer(models.Model):
            Проверить, что свойство :class:`rejected_mapping` работает нормально
         """
         return self.mappings_set.get(mapping_type=MappingType.REJECTED)
+
+
