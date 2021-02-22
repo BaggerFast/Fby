@@ -143,10 +143,11 @@ class OfferPattern:
 
     def save(self):
         for item in self.json:
-            offer = Offer.objects.create()
+            #offer = Offer.objects.create()
             for key_class, data in item['offer'].items():
-                self.class_list[key_class](data=data, offer=offer).save()
-            offer.save()
+                pass
+                #self.class_list[key_class](data=data, offer=offer).save()
+           #offer.save()
 
 
 
