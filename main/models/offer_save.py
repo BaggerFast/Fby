@@ -1,10 +1,17 @@
+from main.models import Offer
+
+
 class OfferBase:
     class Base:
-        def __init__(self, data):
+        def __init__(self, data, offer):
             self.data = data
+            self.offer = offer  # использовать для foreign_key
 
         def save(self):
             raise NotImplementedError
+
+        def printor(self):
+            print(self.offer)
 
     class Name(Base):
         def save(self):
@@ -47,40 +54,40 @@ class OfferBase:
             pass
 
     class MinShipment(Base):
-        def __init__(self, data):
-            super().__init__(data)
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
             self.data = int(self.data)
 
         def save(self):
             pass
 
     class TransportUnitSize(Base):
-        def __init__(self, data):
-            super().__init__(data)
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
             self.data = int(self.data)
 
         def save(self):
             pass
 
     class QuantumOfSupply(Base):
-        def __init__(self, data):
-            super().__init__(data)
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
             self.data = int(self.data)
 
         def save(self):
             pass
 
     class DeliveryDurationDays(Base):
-        def __init__(self, data):
-            super().__init__(data)
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
             self.data = int(self.data)
 
         def save(self):
             pass
 
     class WeightDimensions(Base):
-        def __init__(self, data):
-            super().__init__(data)
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
             self.length = float(self.data['length'])
             self.width = float(self.data['width'])
             self.height = float(self.data['height'])
@@ -102,14 +109,14 @@ class OfferBase:
             pass
 
     class Mapping(Base):
-        def pre_init(self, data):
-            super().__init__(data)
+        def pre_init(self, data, offer):
+            super().__init__(data, offer)
             self.marketSku = int(self.data["marketSku"]),
             self.categoryId = int(self.data["categoryId"])
 
 
-class Offer:
-    save_list = {
+class OfferPattern:
+    class_list = {
         "name": OfferBase.Name,
         "shopSku": OfferBase.ShopSku,
         "category": OfferBase.Category,
@@ -136,8 +143,10 @@ class Offer:
 
     def save(self):
         for item in self.json:
+            offer = Offer.objects.create()
             for key_class, data in item['offer'].items():
-                self.save_list[key_class](data).save()
+                self.class_list[key_class](data=data, offer=offer).save()
+            offer.save()
 
 
 

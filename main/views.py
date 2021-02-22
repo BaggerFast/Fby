@@ -6,7 +6,7 @@ from pygments import highlight, lexers, formatters
 
 from fby_market.settings import YA_MARKET_TOKEN, YA_MARKET_CLIENT_ID, YA_MARKET_SHOP_ID
 from main.models import Barcode
-from main.models.offer_save import Offer
+from main.models.offer_save import OfferPattern
 
 
 def catalogue_list(request):
@@ -60,5 +60,5 @@ def get_data_from_yandex(next_page_token=None):
 
 
 def save_to_db(data):
-    data = Offer(json=data['result']['offerMappingEntries'])
+    data = OfferPattern(json=data['result']['offerMappingEntries'])
     data.save()
