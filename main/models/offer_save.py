@@ -1,4 +1,5 @@
 from main.models import Offer
+from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays
 
 
 class OfferBase:
@@ -14,44 +15,87 @@ class OfferBase:
             print(self.offer)
 
     class Name(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(name=self.data)
 
     class ShopSku(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(shop_sku=self.data)
 
     class Category(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(category=self.data)
 
     class Vendor(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(vendor=self.data)
 
     class VendorCode(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(vendor_code=self.data)
 
     class Description(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(description=self.data)
 
     class Barcodes(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = self.data
+
         def save(self):
-            pass
+            for item in self.data:
+                Barcode(offer=self.offer, barcode=item).save()
 
     class Urls(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            for item in self.data:
+                Url(offer=self.offer, url=item).save()
 
     class Manufacturer(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(manufacturer=self.data)
 
     class ManufacturerCountries(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            for item in self.data:
+                ManufacturerCountry(offer=self.offer, name=item).save()
 
     class MinShipment(Base):
         def __init__(self, data, offer):
@@ -59,7 +103,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(min_shipment=self.data)
 
     class TransportUnitSize(Base):
         def __init__(self, data, offer):
@@ -67,7 +111,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(transport_unit_size=self.data)
 
     class QuantumOfSupply(Base):
         def __init__(self, data, offer):
@@ -75,7 +119,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(quantum_of_supply=self.data)
 
     class DeliveryDurationDays(Base):
         def __init__(self, data, offer):
@@ -83,7 +127,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(delivery_duration_days=self.data)
 
     class WeightDimensions(Base):
         def __init__(self, data, offer):
@@ -94,25 +138,55 @@ class OfferBase:
             self.weight = float(self.data['weight'])
 
         def save(self):
-            pass
+            WeightDimension(
+                offer=self.offer,
+                length=self.length,
+                width=self.width,
+                height=self.height,
+                weight=self.weight
+            ).save()
 
     class SupplyScheduleDays(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            SupplyScheduleDays(offer=self.offer, supply_schedule_day=self.data).save()
 
     class ProcessingState(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            ProcessingState(offer=self.offer, status=self.data).save()
 
     class Availability(Base):
+        def __init__(self, data, offer):
+            super().__init__(data, offer)
+            self.data = str(self.data)
+
         def save(self):
-            pass
+            Offer.objects.filter(id=self.offer.id).update(availability=self.data)
 
     class Mapping(Base):
         def pre_init(self, data, offer):
             super().__init__(data, offer)
             self.marketSku = int(self.data["marketSku"]),
             self.categoryId = int(self.data["categoryId"])
+
+
+def ClearDB():
+    to_clear = [
+        Barcode,
+        Url,
+        ManufacturerCountry,
+        WeightDimension,
+        Offer
+    ]
+    for table in to_clear:
+        table.objects.all().delete()
 
 
 class OfferPattern:
@@ -140,15 +214,11 @@ class OfferPattern:
 
     def __init__(self, json):
         self.json = json
+        ClearDB()
 
     def save(self):
         for item in self.json:
-            #offer = Offer.objects.create()
+            offer = Offer.objects.create()
             for key_class, data in item['offer'].items():
-                pass
-                #self.class_list[key_class](data=data, offer=offer).save()
-           #offer.save()
-
-
-
-
+                self.class_list[key_class](data=data, offer=offer).save()
+        offer.save()

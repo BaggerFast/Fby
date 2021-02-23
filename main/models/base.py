@@ -50,20 +50,12 @@ class Offer(models.Model):
         """
         return self.timings_set.get(timing_type=TimingTypeChoices.GUARANTEE_PERIOD)
 
-    customs_commodity_codes = models.ForeignKey(
-        to=CustomsCommodityCode,
-        on_delete=models.CASCADE,
-        verbose_name='Список кодов товара в единой ТН ВЭД',
-        help_text='Список кодов товара в единой Товарной номенклатуре внешнеэкономической деятельности (ТН ВЭД), '
-                  'если товар подлежит особому учету (например, в системе "Меркурий" как продукция '
-                  'животного происхождения или в системе "Честный ЗНАК"). '
-                  'Может содержать только один вложенный код ТН ВЭД.'
+    certificate = models.CharField(
+        max_length=255,
+        verbose_name='Номер документа на товар',
+        help_text='Документ по его номеру можно найти в личном кабинете магазина',
+        null=True
     )
-    certificate = models.CharField(max_length=255,
-                                   verbose_name='Номер документа на товар',
-                                   help_text='Документ по его номеру можно найти в личном кабинете магазина',
-                                   null=True
-                                   )
     availability = models.CharField(
         max_length=8,
         choices=AvailabilityChoices.choices,
@@ -88,7 +80,8 @@ class Offer(models.Model):
                   'к минимальной партии по 2 коробки, а в каждой коробке по 6 баночек, значение равно 12.',
         null=True
     )
-    delivery_duration_days = models.IntegerField(verbose_name='Срок, за который вы поставляете товары на склад, в днях', null=True)
+    delivery_duration_days = models.IntegerField(verbose_name='Срок, за который вы поставляете товары на склад, в днях',
+                                                 null=True)
     box_count = models.IntegerField(
         verbose_name='Сколько мест (если больше одного) занимает товар',
         help_text='Например, кондиционер занимает два места: внешний и внутренний блоки в двух коробках',
@@ -172,5 +165,3 @@ class Offer(models.Model):
            Проверить, что свойство :class:`rejected_mapping` работает нормально
         """
         return self.mappings_set.get(mapping_type=MappingType.REJECTED)
-
-
