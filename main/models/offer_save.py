@@ -20,7 +20,7 @@ class OfferBase:
             self.data = str(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(name=self.data)
+            self.offer.name = self.data
 
     class ShopSku(Base):
         def __init__(self, data, offer):
@@ -28,7 +28,7 @@ class OfferBase:
             self.data = str(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(shop_sku=self.data)
+            self.offer.shop_sku = self.data
 
     class Category(Base):
         def __init__(self, data, offer):
@@ -36,7 +36,7 @@ class OfferBase:
             self.data = str(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(category=self.data)
+            self.offer.category = self.data
 
     class Vendor(Base):
         def __init__(self, data, offer):
@@ -44,7 +44,7 @@ class OfferBase:
             self.data = str(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(vendor=self.data)
+            self.offer.vendor = self.data
 
     class VendorCode(Base):
         def __init__(self, data, offer):
@@ -52,7 +52,7 @@ class OfferBase:
             self.data = str(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(vendor_code=self.data)
+            self.offer.vendor_code = self.data
 
     class Description(Base):
         def __init__(self, data, offer):
@@ -60,12 +60,11 @@ class OfferBase:
             self.data = str(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(description=self.data)
+            self.offer.description = self.data
 
     class Barcodes(Base):
         def __init__(self, data, offer):
             super().__init__(data, offer)
-            self.data = self.data
 
         def save(self):
             for item in self.data:
@@ -74,7 +73,6 @@ class OfferBase:
     class Urls(Base):
         def __init__(self, data, offer):
             super().__init__(data, offer)
-            self.data = str(self.data)
 
         def save(self):
             for item in self.data:
@@ -86,12 +84,11 @@ class OfferBase:
             self.data = str(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(manufacturer=self.data)
+            self.offer.manufacturer = self.data
 
     class ManufacturerCountries(Base):
         def __init__(self, data, offer):
             super().__init__(data, offer)
-            self.data = str(self.data)
 
         def save(self):
             for item in self.data:
@@ -103,7 +100,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(min_shipment=self.data)
+            self.offer.min_shipment = self.data
 
     class TransportUnitSize(Base):
         def __init__(self, data, offer):
@@ -111,7 +108,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(transport_unit_size=self.data)
+            self.offer.transport_unit_size = self.data
 
     class QuantumOfSupply(Base):
         def __init__(self, data, offer):
@@ -119,7 +116,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(quantum_of_supply=self.data)
+            self.offer.quantum_of_supply = self.data
 
     class DeliveryDurationDays(Base):
         def __init__(self, data, offer):
@@ -127,7 +124,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(delivery_duration_days=self.data)
+            self.offer.delivery_duration_days = self.data
 
     class WeightDimensions(Base):
         def __init__(self, data, offer):
@@ -157,10 +154,9 @@ class OfferBase:
     class ProcessingState(Base):
         def __init__(self, data, offer):
             super().__init__(data, offer)
-            self.data = str(self.data)
 
         def save(self):
-            ProcessingState(offer=self.offer, status=self.data).save()
+            ProcessingState(offer=self.offer, status=self.data['status']).save()
 
     class Availability(Base):
         def __init__(self, data, offer):
@@ -168,7 +164,7 @@ class OfferBase:
             self.data = str(self.data)
 
         def save(self):
-            Offer.objects.filter(id=self.offer.id).update(availability=self.data)
+            self.offer.availability = self.data
 
     class Mapping(Base):
         def pre_init(self, data, offer):
@@ -178,15 +174,7 @@ class OfferBase:
 
 
 def ClearDB():
-    to_clear = [
-        Barcode,
-        Url,
-        ManufacturerCountry,
-        WeightDimension,
-        Offer
-    ]
-    for table in to_clear:
-        table.objects.all().delete()
+    Offer.objects.all().delete()
 
 
 class OfferPattern:
@@ -221,4 +209,4 @@ class OfferPattern:
             offer = Offer.objects.create()
             for key_class, data in item['offer'].items():
                 self.class_list[key_class](data=data, offer=offer).save()
-        offer.save()
+            offer.save()
