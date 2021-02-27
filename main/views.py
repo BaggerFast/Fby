@@ -42,7 +42,7 @@ def get_catalogue_from_file(file):
     """
     Загрузка каталога из файла file
     """
-    with open(file, "r") as read_file:
+    with open(file, "r", encoding="utf-8") as read_file:
         json_object = json.load(read_file)
     return json_object
 
