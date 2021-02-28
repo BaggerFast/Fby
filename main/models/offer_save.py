@@ -6,13 +6,10 @@ class OfferBase:
     class Base:
         def __init__(self, data, offer):
             self.data = data
-            self.offer = offer  # использовать для foreign_key
+            self.offer = offer
 
         def save(self):
             raise NotImplementedError
-
-        def printor(self):
-            print(self.offer)
 
     class Name(Base):
         def __init__(self, data, offer):
@@ -172,9 +169,9 @@ class OfferBase:
             self.marketSku = int(self.data["marketSku"]),
             self.categoryId = int(self.data["categoryId"])
 
-
-def ClearDB():
-    Offer.objects.all().delete()
+    @staticmethod
+    def clear():
+        Offer.objects.all().delete()
 
 
 class OfferPattern:
@@ -202,7 +199,7 @@ class OfferPattern:
 
     def __init__(self, json):
         self.json = json
-        ClearDB()
+        OfferBase.clear()
 
     def save(self):
         for item in self.json:

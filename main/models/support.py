@@ -1,6 +1,4 @@
 from django.db import models
-
-# from main.models import TimingTypeChoices, ProcessingStateNoteType, ProcessingStateStatus, MappingType
 from main.models.base import Offer
 from main.models.choices import TimeUnitChoices, MappingType, TimingTypeChoices, ProcessingStateNoteType, \
     ProcessingStateStatus, SupplyScheduleDayChoices

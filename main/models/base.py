@@ -1,5 +1,5 @@
 from django.db import models
-from main.models.choices import TimingTypeChoices, AvailabilityChoices, SupplyScheduleDayChoices, MappingType
+from main.models.choices import TimingTypeChoices, AvailabilityChoices, MappingType
 
 
 class Offer(models.Model):
@@ -16,39 +16,6 @@ class Offer(models.Model):
     vendor = models.CharField(max_length=255, verbose_name='Бренд товара', null=True)
     vendor_code = models.CharField(max_length=255, verbose_name='Артикул товара от производителя', null=True)
     description = models.CharField(max_length=2000, verbose_name='Описание товара', null=True)
-
-    @property
-    def shelf_life(self):
-        """
-        Информация о сроке годности
-
-        Через какое время (в годах, месяцах, днях, неделях или часах)
-        товар станет непригоден для использования.
-        Например, срок годности есть у таких категорий, как продукты питания и медицинские препараты.
-        """
-        return self.timings_set.get(timing_type=TimingTypeChoices.SHELF_LIFE)
-
-    @property
-    def life_time(self):
-        """
-        Информация о сроке службы
-
-        В течение какого периода (в годах, месяцах, днях, неделях или часах)
-        товар будет исправно выполнять свою функцию,
-        а изготовитель — нести ответственность за его существенные недостатки.
-        """
-        return self.timings_set.get(timing_type=TimingTypeChoices.LIFE_TIME)
-
-    @property
-    def guarantee_period(self):
-        """
-        Информация о гарантийном сроке
-
-        В течение какого периода (в годах, месяцах, днях, неделях или часах)
-        возможны обслуживание и ремонт товара или возврат денег,
-        а изготовитель или продавец будет нести ответственность за недостатки товара.
-        """
-        return self.timings_set.get(timing_type=TimingTypeChoices.GUARANTEE_PERIOD)
 
     certificate = models.CharField(
         max_length=255,
@@ -87,6 +54,39 @@ class Offer(models.Model):
         help_text='Например, кондиционер занимает два места: внешний и внутренний блоки в двух коробках',
         null=True
     )
+
+    @property
+    def shelf_life(self):
+        """
+        Информация о сроке годности
+
+        Через какое время (в годах, месяцах, днях, неделях или часах)
+        товар станет непригоден для использования.
+        Например, срок годности есть у таких категорий, как продукты питания и медицинские препараты.
+        """
+        return self.timings_set.get(timing_type=TimingTypeChoices.SHELF_LIFE)
+
+    @property
+    def life_time(self):
+        """
+        Информация о сроке службы
+
+        В течение какого периода (в годах, месяцах, днях, неделях или часах)
+        товар будет исправно выполнять свою функцию,
+        а изготовитель — нести ответственность за его существенные недостатки.
+        """
+        return self.timings_set.get(timing_type=TimingTypeChoices.LIFE_TIME)
+
+    @property
+    def guarantee_period(self):
+        """
+        Информация о гарантийном сроке
+
+        В течение какого периода (в годах, месяцах, днях, неделях или часах)
+        возможны обслуживание и ремонт товара или возврат денег,
+        а изготовитель или продавец будет нести ответственность за недостатки товара.
+        """
+        return self.timings_set.get(timing_type=TimingTypeChoices.GUARANTEE_PERIOD)
 
     @property
     def shelf_life_days(self):
@@ -165,3 +165,5 @@ class Offer(models.Model):
            Проверить, что свойство :class:`rejected_mapping` работает нормально
         """
         return self.mappings_set.get(mapping_type=MappingType.REJECTED)
+
+
