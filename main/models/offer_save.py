@@ -2,6 +2,10 @@ from main.models import Offer
 from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays
 
 
+def camel_to_snake(string):
+    return ''.join(['_' + i.lower() if i.isupper() else i for i in string]).lstrip('_')
+
+
 class OfferBase:
     class Base:
         def __init__(self, data, offer, name=''):
@@ -56,20 +60,20 @@ class OfferBase:
 
 
 class OfferPattern:
-    simple = {
-        "name": 'name',
-        "shopSku": 'shop_sku',
-        "category": 'category',
-        "vendor": 'vendor',
-        "vendorCode": 'vendor_code',
-        "description": 'description',
-        "manufacturer": 'manufacturer',
-        "minShipment": 'min_shipment',
-        "transportUnitSize": 'transport_unit_size',
-        "quantumOfSupply": 'quantum_of_supply',
-        "deliveryDurationDays": 'delivery_duration_days',
-        "availability": 'availability',
-    }
+    simple = [
+        'name',
+        'shopSku',
+        'category',
+        'vendor',
+        'vendorCode',
+        'description',
+        'manufacturer',
+        'minShipment',
+        'transportUnitSize',
+        'quantumOfSupply',
+        'deliveryDurationDays',
+        'availability',
+    ]
 
     foreign = {
         "barcodes": OfferBase.Barcodes,
@@ -89,8 +93,8 @@ class OfferPattern:
         for item in self.json:
             offer = Offer.objects.create()
             for key, data in item['offer'].items():
-                if key in self.simple.keys():
-                    OfferBase.Base(data=data, offer=offer, name=self.simple[key]).save()
+                if key in self.simple:
+                    OfferBase.Base(data=data, offer=offer, name=camel_to_snake(key)).save()
                 elif key in self.foreign.keys():
                     self.foreign[key](data=data, offer=offer).save()
             offer.save()
