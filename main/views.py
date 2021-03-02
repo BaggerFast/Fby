@@ -8,7 +8,6 @@ from main.models.offer_save import OfferPattern
 
 def catalogue_list(request):
     json_object = get_catalogue_from_file("data_file.json")
-    # TODO: save data to DB
     save_to_db(json_object)
 
     formatted_json = json.dumps(json_object, indent=2, ensure_ascii=False)
