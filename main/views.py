@@ -4,6 +4,7 @@ from django.shortcuts import render
 from pygments import highlight, lexers, formatters
 from fby_market.settings import YA_MARKET_TOKEN, YA_MARKET_CLIENT_ID, YA_MARKET_SHOP_ID
 from main.models.offer_save import OfferPattern
+from main.models.base import Offer
 
 
 def catalogue_list(request):
@@ -17,6 +18,28 @@ def catalogue_list(request):
         'content': colorful_json,
     }
     return render(request, 'list.html', context)
+
+
+def offer_by_sku(request, sku):
+    data_object = Offer.objects.get(shop_sku=sku)
+    json_object = json.dumps(data_object, default=lambda o:o.__dict__, sort_keys=True, indent=2, ensure_ascii=False)
+
+    colorful_json = highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter())
+    context = {
+        'highlight_style': formatters.HtmlFormatter().get_style_defs('.highlight'),
+        'content': colorful_json,
+    }
+    return render(request, 'list.html', context)
+
+def account_login(request):
+    pass
+
+def account_register(request):
+    pass
+
+def offer_by_sku_edit(request):
+    pass
+
 
 
 def get_catalogue_from_ym():
@@ -57,4 +80,3 @@ def get_data_from_yandex(next_page_token=None):
 def save_to_db(data):
     data = OfferPattern(json=data['result']['offerMappingEntries'])
     data.save()
-
