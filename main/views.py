@@ -1,6 +1,7 @@
 import json
 import requests
 from django.core import serializers
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from pygments import highlight, lexers, formatters
 from fby_market.settings import YA_MARKET_TOKEN, YA_MARKET_CLIENT_ID, YA_MARKET_SHOP_ID
@@ -9,7 +10,9 @@ from main.models.base import Offer
 
 
 def catalogue_list(request):
-    data_objects = Offer.objects.all()
+    page = request.GET.get('page')
+    amount = 5 #Количество офферов на странице
+    data_objects = data_paginator(Offer.objects.all(), amount, page) #Если запарашивает несуществующую страницу, то вернет первую
     json_object = serializers.serialize('json', data_objects, sort_keys=True, indent=2, ensure_ascii=False)
 
     colorful_json = highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter())
@@ -40,7 +43,14 @@ def account_register(request):
 def offer_by_sku_edit(request):
     pass
 
-
+def data_paginator(data, ammount, page):
+    p = Paginator(data, ammount)
+    try:
+        return p.page(page)
+    except EmptyPage:
+        return p.page(1)
+    except PageNotAnInteger:
+        return p.page(1)
 
 def get_catalogue_from_ym():
     """
