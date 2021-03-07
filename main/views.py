@@ -24,15 +24,7 @@ def catalogue_list(request):
 
 
 def offer_by_sku(request, sku):
-    data_object = Offer.objects.get(shop_sku=sku)
-    json_object = json.dumps(data_object, default=lambda o:o.__dict__, sort_keys=True, indent=2, ensure_ascii=False)
-
-    colorful_json = highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter())
-    context = {
-        'highlight_style': formatters.HtmlFormatter().get_style_defs('.highlight'),
-        'content': colorful_json,
-    }
-    return render(request, 'list.html', context)
+    return render(request, 'list.html', make_json(Offer.objects.get(shop_sku=sku)))
 
 def account_login(request):
     pass
@@ -40,8 +32,11 @@ def account_login(request):
 def account_register(request):
     pass
 
-def offer_by_sku_edit(request):
-    pass
+def offer_by_sku_edit(request, sku):
+    json_object = request.GET.get('json')
+    #ToDo DB.2 (edit)
+
+    #json_object == make_json(Offer.objects.get(shop_sku=sku)) сравнить
 
 def data_paginator(data, ammount, page):
     p = Paginator(data, ammount)
@@ -51,6 +46,17 @@ def data_paginator(data, ammount, page):
         return p.page(1)
     except PageNotAnInteger:
         return p.page(1)
+
+def make_json(data_object): #Формирование json из DB
+    return json.dumps(data_object, default=lambda o: o.__dict__, sort_keys=True, indent=2, ensure_ascii=False)
+
+def make_context_json(data_object): #Формирование контекста из DB
+    colorful_json = highlight(make_json(data_object), lexers.JsonLexer(), formatters.HtmlFormatter())
+    context = {
+        'highlight_style': formatters.HtmlFormatter().get_style_defs('.highlight'),
+        'content': colorful_json,
+    }
+    return context
 
 def get_catalogue_from_ym():
     """
