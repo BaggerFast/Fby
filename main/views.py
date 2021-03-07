@@ -7,13 +7,15 @@ from pygments import highlight, lexers, formatters
 from fby_market.settings import YA_MARKET_TOKEN, YA_MARKET_CLIENT_ID, YA_MARKET_SHOP_ID
 from main.models.offer_save import OfferPattern
 from main.models.base import Offer
-import django.contrib.auth as django_auth
+import ast
+from django.views.decorators.csrf import csrf_exempt
 
 
 def catalogue_list(request):
     page = request.GET.get('page')
-    amount = 5 #Количество офферов на странице
-    data_objects = data_paginator(Offer.objects.all(), amount, page) #Если запарашивает несуществующую страницу, то вернет первую
+    amount = 5  # Количество офферов на странице
+    data_objects = data_paginator(Offer.objects.all(), amount,
+                                  page)  # Если запарашивает несуществующую страницу, то вернет первую
     json_object = serializers.serialize('json', data_objects, sort_keys=True, indent=2, ensure_ascii=False)
 
     colorful_json = highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter())
@@ -27,8 +29,10 @@ def catalogue_list(request):
 def offer_by_sku(request, sku):
     return render(request, 'list.html', make_context(make_json(Offer.objects.get(shop_sku=sku))))
 
+
 def make_json(data_object):
     return json.dumps(data_object, default=lambda o: o.__dict__, sort_keys=True, indent=2, ensure_ascii=False)
+
 
 def make_context(json_object):
     return {
@@ -36,19 +40,32 @@ def make_context(json_object):
         'content': highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter()),
     }
 
+
 def account_login(request):
     pass
     # ToDo login
 
+
+@csrf_exempt
 def account_register(request):
-    pass
+    input_object = request.body
+
+    dict_str = input_object.decode("UTF-8")
+    data_object = ast.literal_eval(dict_str)
+    print(data_object)
     # ToDo registration
 
+@csrf_exempt
 def offer_by_sku_edit(request, sku):
-    json_object = request.GET.get('json')
+    input_object = request.body
+
+    dict_str = input_object.decode("UTF-8")
+    data_object = ast.literal_eval(dict_str)
+    print(data_object)
     # ToDo DB.2 (edit)
 
-    #json_object == make_json(Offer.objects.get(shop_sku=sku)) сравнить
+    # json_object == make_json(Offer.objects.get(shop_sku=sku)) сравнить
+
 
 def data_paginator(data, ammount, page):
     p = Paginator(data, ammount)
@@ -58,6 +75,7 @@ def data_paginator(data, ammount, page):
         return p.page(1)
     except PageNotAnInteger:
         return p.page(1)
+
 
 def get_catalogue_from_ym():
     """
@@ -92,6 +110,7 @@ def get_data_from_yandex(next_page_token=None):
         url += f'?page_token={next_page_token}'
     data = requests.get(url, headers=headers)
     return data.content
+
 
 def save_to_db(data):
     data = OfferPattern(json=data['result']['offerMappingEntries'])
