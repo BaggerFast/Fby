@@ -1,5 +1,6 @@
 import json
 import requests
+from django.contrib.auth import authenticate, login
 from django.core import serializers
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
@@ -44,10 +45,21 @@ def make_context(json_object):
     }
 
 
+@csrf_exempt
 def account_login(request):
-    pass
-    # POST
-    # ToDo login
+    input_object = request.body
+    dict_str = input_object.decode("UTF-8")
+    data_object = ast.literal_eval(dict_str)
+    user = authenticate(request, username=data_object['username'], password=data_object['password'])
+    if user is not None:
+        login(request, user)
+        print('Success')
+    else:
+        print('Bad')
+
+
+
+
 
 
 @csrf_exempt
