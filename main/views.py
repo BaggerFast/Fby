@@ -11,8 +11,9 @@ from main.models.base import Offer
 
 def catalogue_list(request):
     page = request.GET.get('page')
-    amount = 5 #Количество офферов на странице
-    data_objects = data_paginator(Offer.objects.all(), amount, page) #Если запарашивает несуществующую страницу, то вернет первую
+    amount = 5  # Количество оферов на странице
+    data_objects = data_paginator(Offer.objects.all(), amount, page)
+    # Если запрашивает несуществующую страницу, то вернет первую
     json_object = serializers.serialize('json', data_objects, sort_keys=True, indent=2, ensure_ascii=False)
 
     colorful_json = highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter())
@@ -34,14 +35,18 @@ def offer_by_sku(request, sku):
     }
     return render(request, 'list.html', context)
 
+
 def account_login(request):
     pass
+
 
 def account_register(request):
     pass
 
+
 def offer_by_sku_edit(request):
     pass
+
 
 def data_paginator(data, ammount, page):
     p = Paginator(data, ammount)
@@ -51,6 +56,7 @@ def data_paginator(data, ammount, page):
         return p.page(1)
     except PageNotAnInteger:
         return p.page(1)
+
 
 def get_catalogue_from_ym():
     """
@@ -85,6 +91,7 @@ def get_data_from_yandex(next_page_token=None):
         url += f'?page_token={next_page_token}'
     data = requests.get(url, headers=headers)
     return data.content
+
 
 def save_to_db(data):
     data = OfferPattern(json=data['result']['offerMappingEntries'])

@@ -14,17 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-
-from main.views import catalogue_list, offer_by_sku, account_login, account_register, offer_by_sku_edit
+from django.urls import path, include
+from main.views import catalogue_list
+from fby_market.additional_url.api import api_url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', catalogue_list, name='catalogue_list'),
-
-    path('api/v1/catalogue/', catalogue_list, name='catalogue_list'),
-    path('api/v1/catalogue/<sku>/', offer_by_sku, name='offer_by_sku'),
-    path('api/v1/accounts/login/', account_login, name = 'account_login'),
-    path('api/v1/account/register/', account_register, name = 'account_register'),
-    path('api/v1/catalogue/<sku>/edit/', offer_by_sku_edit, name = 'offer_by_sku_edit')
+    path('api/v1/', include(api_url)),
 ]
