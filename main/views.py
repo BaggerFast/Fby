@@ -11,8 +11,9 @@ from main.models.base import Offer
 
 def catalogue_list(request):
     page = request.GET.get('page')
-    amount = 5 #Количество офферов на странице
-    data_objects = data_paginator(Offer.objects.all(), amount, page) #Если запарашивает несуществующую страницу, то вернет первую
+    amount = 5  # Количество оферов на странице
+    data_objects = data_paginator(Offer.objects.all(), amount, page)
+    # Если запрашивает несуществующую страницу, то вернет первую
     json_object = serializers.serialize('json', data_objects, sort_keys=True, indent=2, ensure_ascii=False)
 
     colorful_json = highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter())
@@ -24,19 +25,28 @@ def catalogue_list(request):
 
 
 def offer_by_sku(request, sku):
-    return render(request, 'list.html', make_json(Offer.objects.get(shop_sku=sku)))
+    data_object = Offer.objects.get(shop_sku=sku)
+    json_object = json.dumps(data_object, default=lambda o:o.__dict__, sort_keys=True, indent=2, ensure_ascii=False)
+
+    colorful_json = highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter())
+    context = {
+        'highlight_style': formatters.HtmlFormatter().get_style_defs('.highlight'),
+        'content': colorful_json,
+    }
+    return render(request, 'list.html', context)
+
 
 def account_login(request):
     pass
 
+
 def account_register(request):
     pass
 
-def offer_by_sku_edit(request, sku):
-    json_object = request.GET.get('json')
-    #ToDo DB.2 (edit)
 
-    #json_object == make_json(Offer.objects.get(shop_sku=sku)) сравнить
+def offer_by_sku_edit(request):
+    pass
+
 
 def data_paginator(data, ammount, page):
     p = Paginator(data, ammount)
@@ -47,16 +57,6 @@ def data_paginator(data, ammount, page):
     except PageNotAnInteger:
         return p.page(1)
 
-def make_json(data_object): #Формирование json из DB
-    return json.dumps(data_object, default=lambda o: o.__dict__, sort_keys=True, indent=2, ensure_ascii=False)
-
-def make_context_json(data_object): #Формирование контекста из DB
-    colorful_json = highlight(make_json(data_object), lexers.JsonLexer(), formatters.HtmlFormatter())
-    context = {
-        'highlight_style': formatters.HtmlFormatter().get_style_defs('.highlight'),
-        'content': colorful_json,
-    }
-    return context
 
 def get_catalogue_from_ym():
     """
@@ -91,6 +91,7 @@ def get_data_from_yandex(next_page_token=None):
         url += f'?page_token={next_page_token}'
     data = requests.get(url, headers=headers)
     return data.content
+
 
 def save_to_db(data):
     data = OfferPattern(json=data['result']['offerMappingEntries'])
