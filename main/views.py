@@ -9,6 +9,8 @@ from main.models.offer_save import OfferPattern
 from main.models.base import Offer
 import ast
 from django.views.decorators.csrf import csrf_exempt
+from django.forms.models import modelform_factory
+from django.contrib.auth.models import User
 
 
 def catalogue_list(request):
@@ -27,6 +29,7 @@ def catalogue_list(request):
 
 
 def offer_by_sku(request, sku):
+    # GET
     return render(request, 'list.html', make_context(make_json(Offer.objects.get(shop_sku=sku))))
 
 
@@ -43,17 +46,27 @@ def make_context(json_object):
 
 def account_login(request):
     pass
+    # POST
     # ToDo login
 
 
 @csrf_exempt
 def account_register(request):
+    # POST
     input_object = request.body
-
     dict_str = input_object.decode("UTF-8")
     data_object = ast.literal_eval(dict_str)
-    print(data_object)
-    # ToDo registration
+    keys = list(data_object.keys())
+
+    form = modelform_factory(User, fields=keys)
+    current_form = form(data=data_object)
+
+    if current_form.is_valid():
+        form.save()
+        print('OK')
+    else:
+        print('NO')
+
 
 @csrf_exempt
 def offer_by_sku_edit(request, sku):
