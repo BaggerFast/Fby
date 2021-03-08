@@ -1,10 +1,5 @@
-from main.models import Offer
-from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays, Price
-from django.core.exceptions import ObjectDoesNotExist
-
-
-def camel_to_snake(string):
-    return ''.join(['_' + i.lower() if i.isupper() else i for i in string]).lstrip('_')
+from main.models import Offer, Price
+from main.models.offer_save import camel_to_snake
 
 
 class PriceBase:
@@ -19,13 +14,13 @@ class PriceBase:
 
 
 class PricePattern:
-    simple = [
+    keys = [
         'shopSku',
         'marketSku',
         'value',
         'currencyId',
         'vat',
-        'updatedAt',
+        'updatedAt'
     ]
 
     def __init__(self, json):
@@ -40,9 +35,9 @@ class PricePattern:
             obj, created = Price.objects.get_or_create(offer_id=offer.id)
             price = obj
             for key, data in item.items():
-                if key in self.simple:
+                if key in self.keys:
                     PriceBase.Base(data=data, price=price, name=camel_to_snake(key)).save()
             for key, data in item['price'].items():
-                if key in self.simple:
+                if key in self.keys:
                     PriceBase.Base(data=data, price=price, name=camel_to_snake(key)).save()
             price.save()
