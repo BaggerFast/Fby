@@ -7,6 +7,7 @@ from main.models.offer_save import OfferPattern
 
 
 def catalogue_list(request):
+    get_prices_from_ym()
     json_object = get_catalogue_from_file("data_file.json")
     # TODO: save data to DB
     save_to_db(json_object)
@@ -36,6 +37,33 @@ def get_catalogue_from_ym():
     return json_object
 
 
+def get_prices_from_ym():
+    """
+    Загрузка цен из YandexMarket и сохранение в файл prices_file.json
+    """
+    data = get_data_from_yandex(json_name="offer-prices")
+    json_object = json.loads(data)
+    if "OK" in json_object['status']:
+        while 'nextPageToken' in json_object['result']['paging']:  # если страница не последняя, читаем следующую
+            next_page_token = json_object['result']['paging']['nextPageToken']
+            next_json_object = json.loads(get_data_from_yandex(next_page_token, json_name="offer-prices"))
+            json_object['result']['offers'] += next_json_object['result']['offers']
+            json_object['result']['paging'] = next_json_object['result']['paging']
+    with open("prices_file.json", "w") as write_file:
+        json.dump(json_object, write_file, indent=2, ensure_ascii=False)
+    return json_object
+
+
+def get_data_from_yandex(next_page_token=None, json_name="offer-mapping-entries"):
+    headers_str = f'OAuth oauth_token="{YA_MARKET_TOKEN}", oauth_client_id="{YA_MARKET_CLIENT_ID}"'
+    headers = {'Authorization': headers_str}
+    url = f'https://api.partner.market.yandex.ru/v2/campaigns/{YA_MARKET_SHOP_ID}/{json_name}.json'
+    if next_page_token:
+        url += f'?page_token={next_page_token}'
+    data = requests.get(url, headers=headers)
+    return data.content
+
+
 def get_catalogue_from_file(file):
     """
     Загрузка каталога из файла file
@@ -43,16 +71,6 @@ def get_catalogue_from_file(file):
     with open(file, "r", encoding="utf-8") as read_file:
         json_object = json.load(read_file)
     return json_object
-
-
-def get_data_from_yandex(next_page_token=None):
-    headers_str = f'OAuth oauth_token="{YA_MARKET_TOKEN}", oauth_client_id="{YA_MARKET_CLIENT_ID}"'
-    headers = {'Authorization': headers_str}
-    url = f'https://api.partner.market.yandex.ru/v2/campaigns/{YA_MARKET_SHOP_ID}/offer-mapping-entries.json'
-    if next_page_token:
-        url += f'?page_token={next_page_token}'
-    data = requests.get(url, headers=headers)
-    return data.content
 
 
 def save_to_db(data):

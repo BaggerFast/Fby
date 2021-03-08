@@ -1,0 +1,491 @@
+{
+  "status": "OK",
+  "result": {
+    "total": 52,
+    "paging": {},
+    "offers": [
+      {
+        "id": "1987301012",
+        "price": {
+          "value": 257,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "1987301012"
+      },
+      {
+        "id": "127998000KX2",
+        "price": {
+          "value": 1025,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 656593390,
+        "shopSku": "127998000KX2"
+      },
+      {
+        "id": "30011328746",
+        "price": {
+          "value": 1399,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "30011328746"
+      },
+      {
+        "id": "W610/3",
+        "price": {
+          "value": 370,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 520672345,
+        "shopSku": "W610/3"
+      },
+      {
+        "id": "28113H8100",
+        "price": {
+          "value": 594,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "28113H8100"
+      },
+      {
+        "id": "11961ULW4X2",
+        "price": {
+          "value": 555,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 651075744,
+        "shopSku": "11961ULW4X2"
+      },
+      {
+        "id": "15208-65F0A",
+        "price": {
+          "value": 578,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "15208-65F0A"
+      },
+      {
+        "id": "971334L000",
+        "price": {
+          "value": 550,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 647120562,
+        "shopSku": "971334L000"
+      },
+      {
+        "id": "21010-1012005-82",
+        "price": {
+          "value": 304,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "21010-1012005-82"
+      },
+      {
+        "id": "31184-1R000",
+        "price": {
+          "value": 576,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "31184-1R000"
+      },
+      {
+        "id": "7700274177",
+        "price": {
+          "value": 450,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 653347486,
+        "shopSku": "7700274177"
+      },
+      {
+        "id": "2630035505KIA",
+        "price": {
+          "value": 399,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "2630035505KIA"
+      },
+      {
+        "id": "2630035504",
+        "price": {
+          "value": 339,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 647041010,
+        "shopSku": "2630035504"
+      },
+      {
+        "id": "2101",
+        "price": {
+          "value": 241,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "2101"
+      },
+      {
+        "id": "12961NBVB2",
+        "price": {
+          "value": 263,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "12961NBVB2"
+      },
+      {
+        "id": "6105",
+        "price": {
+          "value": 319,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "6105"
+      },
+      {
+        "id": "21050-1012005-82",
+        "price": {
+          "value": 255,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 650536056,
+        "shopSku": "21050-1012005-82"
+      },
+      {
+        "id": "1987301026",
+        "price": {
+          "value": 171,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "1987301026"
+      },
+      {
+        "id": "12498VPB2",
+        "price": {
+          "value": 227,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "12498VPB2"
+      },
+      {
+        "id": "26300-02503",
+        "price": {
+          "value": 490,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "26300-02503"
+      },
+      {
+        "id": "11961ULWX2",
+        "price": {
+          "value": 565,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 649989798,
+        "shopSku": "11961ULWX2"
+      },
+      {
+        "id": "1987301107",
+        "price": {
+          "value": 1319,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "1987301107"
+      },
+      {
+        "id": "11180-8122010-82",
+        "price": {
+          "value": 361,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "11180-8122010-82"
+      },
+      {
+        "id": "1304",
+        "price": {
+          "value": 520,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "1304"
+      },
+      {
+        "id": "282502B",
+        "price": {
+          "value": 135,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "282502B"
+      },
+      {
+        "id": "1907",
+        "price": {
+          "value": 345,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "1907"
+      },
+      {
+        "id": "ABRO9-AB",
+        "price": {
+          "value": 450,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 100814366733,
+        "shopSku": "ABRO9-AB"
+      },
+      {
+        "id": "28113-1R100",
+        "price": {
+          "value": 965,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "28113-1R100"
+      },
+      {
+        "id": "1505",
+        "price": {
+          "value": 120,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "1505"
+      },
+      {
+        "id": "1883037",
+        "price": {
+          "value": 528,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 647123423,
+        "shopSku": "1883037"
+      },
+      {
+        "id": "12961B2",
+        "price": {
+          "value": 151,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "12961B2"
+      },
+      {
+        "id": "21120-1109080-82",
+        "price": {
+          "value": 328,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "21120-1109080-82"
+      },
+      {
+        "id": "311121R000",
+        "price": {
+          "value": 1293,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "311121R000"
+      },
+      {
+        "id": "2204",
+        "price": {
+          "value": 299,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "2204"
+      },
+      {
+        "id": "2201",
+        "price": {
+          "value": 1265,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "2201"
+      },
+      {
+        "id": "26300-35505",
+        "price": {
+          "value": 399,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "26300-35505"
+      },
+      {
+        "id": "4304",
+        "price": {
+          "value": 609,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "4304"
+      },
+      {
+        "id": "HU612/2X",
+        "price": {
+          "value": 475,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 586043299,
+        "shopSku": "HU612/2X"
+      },
+      {
+        "id": "1911",
+        "price": {
+          "value": 289,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "1911"
+      },
+      {
+        "id": "28113-M4000",
+        "price": {
+          "value": 1525,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "28113-M4000"
+      },
+      {
+        "id": "152089599R",
+        "price": {
+          "value": 799,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "152089599R"
+      },
+      {
+        "id": "W671",
+        "price": {
+          "value": 341,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 514787011,
+        "shopSku": "W671"
+      },
+      {
+        "id": "26300-35531",
+        "price": {
+          "value": 770,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "26300-35531"
+      },
+      {
+        "id": "2630035504KIA",
+        "price": {
+          "value": 339,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "2630035504KIA"
+      },
+      {
+        "id": "1003",
+        "price": {
+          "value": 210,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "1003"
+      },
+      {
+        "id": "W81180",
+        "price": {
+          "value": 350,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 515114314,
+        "shopSku": "W81180"
+      },
+      {
+        "id": "152566",
+        "price": {
+          "value": 1770,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "152566"
+      },
+      {
+        "id": "15208-9F60A",
+        "price": {
+          "value": 457,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "15208-9F60A"
+      },
+      {
+        "id": "04e115561h",
+        "price": {
+          "value": 582,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "04e115561h"
+      },
+      {
+        "id": "W75/3",
+        "price": {
+          "value": 380,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "marketSku": 586011000,
+        "shopSku": "W75/3"
+      },
+      {
+        "id": "12342XVS2",
+        "price": {
+          "value": 1052,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "12342XVS2"
+      },
+      {
+        "id": "1407",
+        "price": {
+          "value": 425,
+          "currencyId": "RUR",
+          "vat": 6
+        },
+        "shopSku": "1407"
+      }
+    ]
+  }
+}
