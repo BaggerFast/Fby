@@ -5,6 +5,8 @@ from main.models.choices import TimeUnitChoices, MappingType, TimingTypeChoices,
 
 
 class Price(models.Model):
+    shop_sku = models.CharField(max_length=255, null=True)
+    market_sku = models.IntegerField(null=True)
     updated_at = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
     discount_base = models.FloatField(verbose_name="Цена на товар без скидки.", null=True)
     value = models.FloatField(verbose_name="Цена на товар.", null=True)
@@ -20,7 +22,6 @@ class Price(models.Model):
     offer = models.OneToOneField(
             to=Offer,
             on_delete=models.CASCADE,
-            related_name="price",
             verbose_name='Информация о цене товара',
             null=True
         )

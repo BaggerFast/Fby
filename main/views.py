@@ -4,13 +4,16 @@ from django.shortcuts import render
 from pygments import highlight, lexers, formatters
 from fby_market.settings import YA_MARKET_TOKEN, YA_MARKET_CLIENT_ID, YA_MARKET_SHOP_ID
 from main.models.offer_save import OfferPattern
+from main.models.prices_save import PricePattern
 
 
 def catalogue_list(request):
-    get_prices_from_ym()
+    # get_prices_from_ym()
     json_object = get_catalogue_from_file("data_file.json")
-    # TODO: save data to DB
+    json_object_prices = get_catalogue_from_file("prices_file.json")
+
     save_to_db(json_object)
+    save_prices_to_db(json_object_prices)
 
     formatted_json = json.dumps(json_object, indent=2, ensure_ascii=False)
     colorful_json = highlight(formatted_json, lexers.JsonLexer(), formatters.HtmlFormatter())
@@ -71,6 +74,11 @@ def get_catalogue_from_file(file):
     with open(file, "r", encoding="utf-8") as read_file:
         json_object = json.load(read_file)
     return json_object
+
+
+def save_prices_to_db(data):
+    data = PricePattern(json=data['result']['offers'])
+    data.save()
 
 
 def save_to_db(data):
