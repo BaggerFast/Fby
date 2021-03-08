@@ -1,5 +1,6 @@
 from main.models import Offer
 from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def camel_to_snake(string):
@@ -19,7 +20,7 @@ class OfferBase:
     class Barcodes(Base):
         def save(self):
             for item in self.data:
-                Barcode(offer=self.offer, barcode=item).save()
+                Barcode.objects.update_or_create(offer=self.offer, barcode=item)
 
     class Urls(Base):
         def save(self):
@@ -29,30 +30,30 @@ class OfferBase:
     class ManufacturerCountries(Base):
         def save(self):
             for item in self.data:
-                ManufacturerCountry(offer=self.offer, name=item).save()
+                ManufacturerCountry.objects.update_or_create(offer=self.offer, name=item)
 
     class WeightDimensions(Base):
         def save(self):
-            WeightDimension(
+            WeightDimension.objects.update_or_create(
                 offer=self.offer,
                 length=float(self.data['length']),
                 width=float(self.data['width']),
                 height=float(self.data['height']),
                 weight=float(self.data['weight'])
-            ).save()
+            )
 
     class SupplyScheduleDays(Base):
         def save(self):
-            SupplyScheduleDays(offer=self.offer, supply_schedule_day=self.data).save()
+            SupplyScheduleDays.objects.update_or_create(offer=self.offer, supply_schedule_day=self.data)
 
     class ProcessingState(Base):
         def save(self):
-            ProcessingState(offer=self.offer, status=self.data['status']).save()
+            ProcessingState.objects.update_or_create(offer=self.offer, status=self.data['status'])
 
     class Mapping(Base):
         pass
-            # self.marketSku = int(self.data["marketSku"]),
-            # self.categoryId = int(self.data["categoryId"])
+        # self.marketSku = int(self.data["marketSku"]),
+        # self.categoryId = int(self.data["categoryId"])
 
     @staticmethod
     def clear():
@@ -87,14 +88,18 @@ class OfferPattern:
 
     def __init__(self, json):
         self.json = json
-        OfferBase.clear()
 
     def save(self):
         for item in self.json:
-            offer = Offer.objects.create()
+            try:
+                offer = Offer.objects.get(shop_sku=item['offer'].get('shopSku'))
+            except ObjectDoesNotExist:
+                offer = Offer.objects.create()
+
             for key, data in item['offer'].items():
                 if key in self.simple:
                     OfferBase.Base(data=data, offer=offer, name=camel_to_snake(key)).save()
                 elif key in self.foreign.keys():
                     self.foreign[key](data=data, offer=offer).save()
+
             offer.save()
