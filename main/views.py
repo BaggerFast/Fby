@@ -16,9 +16,9 @@ from django.contrib.auth.models import User
 
 def catalogue_list(request):
     page = request.GET.get('page')
-    amount = 5  # Количество офферов на странице
+    amount = 5  # Количество оферов на странице
     data_objects = data_paginator(Offer.objects.all(), amount,
-                                  page)  # Если запарашивает несуществующую страницу, то вернет первую
+                                  page)  # Если запрашивает несуществующую страницу, то вернет первую
     json_object = serializers.serialize('json', data_objects, sort_keys=True, indent=2, ensure_ascii=False)
 
     colorful_json = highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter())
@@ -50,16 +50,13 @@ def account_login(request):
     input_object = request.body
     dict_str = input_object.decode("UTF-8")
     data_object = ast.literal_eval(dict_str)
+    print(data_object)
     user = authenticate(request, username=data_object['username'], password=data_object['password'])
     if user is not None:
         login(request, user)
         print('Success')
     else:
         print('Bad')
-
-
-
-
 
 
 @csrf_exempt
@@ -69,12 +66,11 @@ def account_register(request):
     dict_str = input_object.decode("UTF-8")
     data_object = ast.literal_eval(dict_str)
     keys = list(data_object.keys())
-
+    print(keys)
     form = modelform_factory(User, fields=keys)
     current_form = form(data=data_object)
-
     if current_form.is_valid():
-        form.save()
+        current_form.save()
         print('OK')
     else:
         print('NO')
@@ -92,8 +88,8 @@ def offer_by_sku_edit(request, sku):
     # json_object == make_json(Offer.objects.get(shop_sku=sku)) сравнить
 
 
-def data_paginator(data, ammount, page):
-    p = Paginator(data, ammount)
+def data_paginator(data, amount, page):
+    p = Paginator(data, amount)
     try:
         return p.page(page)
     except EmptyPage:
