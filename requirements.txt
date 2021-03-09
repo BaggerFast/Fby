@@ -1,8 +1,8 @@
 # Engine
-Django==3.1.6
+Django==3.1.7
 
 # Documentation
-Sphinx==3.5.0
+Sphinx==3.5.2
 sphinx-rtd-theme==0.5.1
 
 # Documentations spelling
@@ -11,9 +11,6 @@ sphinxcontrib-spelling==7.1.0
 
 # Network
 requests==2.25.1
-
-# JsonFormatter
-Pygments==2.8.0
 
 # Api
 djangorestframework == 3.12.2

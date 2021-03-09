@@ -1,79 +1,40 @@
-import json
-import requests
-from django.contrib.auth import authenticate, login
-from django.core import serializers
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render
-from pygments import highlight, lexers, formatters
-from fby_market.settings import YA_MARKET_TOKEN, YA_MARKET_CLIENT_ID, YA_MARKET_SHOP_ID
-from main.models.offer_save import OfferPattern
-from main.models.base import Offer
 import ast
+import json
+
+import requests
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-from django.forms.models import modelform_factory
-from django.contrib.auth.models import User
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from fby_market.settings import YA_MARKET_TOKEN, YA_MARKET_CLIENT_ID, YA_MARKET_SHOP_ID
+from main.models.base import Offer
+from main.models.offer_save import OfferPattern
+from main.serializers import OfferSerializer
 
 
+@api_view(['GET'])
 def catalogue_list(request):
     page = request.GET.get('page')
-    amount = 5  # Количество оферов на странице
-    data_objects = data_paginator(Offer.objects.all(), amount,
-                                  page)  # Если запрашивает несуществующую страницу, то вернет первую
-    json_object = serializers.serialize('json', data_objects, sort_keys=True, indent=2, ensure_ascii=False)
-
-    colorful_json = highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter())
-    context = {
-        'highlight_style': formatters.HtmlFormatter().get_style_defs('.highlight'),
-        'content': colorful_json,
-    }
-    return render(request, 'list.html', context)
+    amount = 5
+    data_objects = data_paginator(Offer.objects.all(), amount, page)
+    serializer = OfferSerializer(data_objects, many=True)
+    return Response(serializer.data)
 
 
+@api_view(['GET', 'POST'])
 def offer_by_sku(request, sku):
-    # GET
-    return render(request, 'list.html', make_context(make_json(Offer.objects.get(shop_sku=sku))))
+    """
+    Обработчик получения данных об одном товаре
 
-
-def make_json(data_object):
-    return json.dumps(data_object, default=lambda o: o.__dict__, sort_keys=True, indent=2, ensure_ascii=False)
-
-
-def make_context(json_object):
-    return {
-        'highlight_style': formatters.HtmlFormatter().get_style_defs('.highlight'),
-        'content': highlight(json_object, lexers.JsonLexer(), formatters.HtmlFormatter()),
-    }
-
-
-@csrf_exempt
-def account_login(request):
-    input_object = request.body
-    dict_str = input_object.decode("UTF-8")
-    data_object = ast.literal_eval(dict_str)
-    print(data_object)
-    user = authenticate(request, username=data_object['username'], password=data_object['password'])
-    if user is not None:
-        login(request, user)
-        print('Success')
-    else:
-        print('Bad')
-
-
-@csrf_exempt
-def account_register(request):
-    # POST
-    input_object = request.body
-    dict_str = input_object.decode("UTF-8")
-    data_object = ast.literal_eval(dict_str)
-    keys = list(data_object.keys())
-    print(keys)
-    form = modelform_factory(User, fields=keys)
-    current_form = form(data=data_object)
-    if current_form.is_valid():
-        current_form.save()
-        print('OK')
-    else:
-        print('NO')
+    .. todo::
+       Написать обработку POST-запроса
+    """
+    if request.method == 'GET':
+        data = get_object_or_404(Offer, shop_sku=sku)
+        serializer = OfferSerializer(data)
+        return Response(serializer.data)
 
 
 @csrf_exempt
@@ -84,8 +45,6 @@ def offer_by_sku_edit(request, sku):
     data_object = ast.literal_eval(dict_str)
     print(data_object)
     # ToDo DB.2 (edit)
-
-    # json_object == make_json(Offer.objects.get(shop_sku=sku)) сравнить
 
 
 def data_paginator(data, amount, page):
