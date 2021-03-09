@@ -3,8 +3,8 @@ import requests
 from django.shortcuts import render
 from pygments import highlight, lexers, formatters
 from fby_market.settings import YA_MARKET_TOKEN, YA_MARKET_CLIENT_ID, YA_MARKET_SHOP_ID
-from main.models.offer_save import OfferPattern
-from main.models.prices_save import PricePattern
+from main.models.save_dir.offer import OfferPattern
+from main.models.save_dir.prices import PricePattern
 
 
 def catalogue_list(request):

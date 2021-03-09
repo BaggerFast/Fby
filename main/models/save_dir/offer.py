@@ -54,14 +54,9 @@ class OfferBase:
         def save(self):
             Mapping.objects.update_or_create(
                 offer=self.offer,
-                market_sku=int(self.data["marketSku"]),
-                category_id=int(self.data["categoryId"]),
+                market_sku=self.data["marketSku"],
+                category_id=self.data["categoryId"],
             )
-
-
-    @staticmethod
-    def clear():
-        Offer.objects.all().delete()
 
 
 class OfferPattern:

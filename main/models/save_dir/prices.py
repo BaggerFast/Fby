@@ -1,5 +1,5 @@
 from main.models import Offer, Price
-from main.models.offer_save import camel_to_snake
+from main.models.save_dir.offer import camel_to_snake
 
 
 class PriceBase:
