@@ -9,8 +9,8 @@ from main.models.prices_save import PricePattern
 
 def catalogue_list(request):
     # get_prices_from_ym()
-    json_object = get_catalogue_from_file("data_file.json")
-    json_object_prices = get_catalogue_from_file("prices_file.json")
+    json_object = get_json_data_from_file("data_file.json")
+    json_object_prices = get_json_data_from_file("prices_file.json")
 
     save_to_db(json_object)
     save_prices_to_db(json_object_prices)
@@ -67,7 +67,7 @@ def get_data_from_yandex(next_page_token=None, json_name="offer-mapping-entries"
     return data.content
 
 
-def get_catalogue_from_file(file):
+def get_json_data_from_file(file):
     """
     Загрузка каталога из файла file
     """
@@ -84,4 +84,3 @@ def save_prices_to_db(data):
 def save_to_db(data):
     data = OfferPattern(json=data['result']['offerMappingEntries'])
     data.save()
-

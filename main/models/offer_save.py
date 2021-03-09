@@ -1,5 +1,5 @@
 from main.models import Offer
-from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays
+from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays, Mapping
 from django.core.exceptions import ObjectDoesNotExist
 
 
@@ -51,9 +51,13 @@ class OfferBase:
             ProcessingState.objects.update_or_create(offer=self.offer, status=self.data['status'])
 
     class Mapping(Base):
-        pass
-        # self.marketSku = int(self.data["marketSku"]),
-        # self.categoryId = int(self.data["categoryId"])
+        def save(self):
+            Mapping.objects.update_or_create(
+                offer=self.offer,
+                market_sku=int(self.data["marketSku"]),
+                category_id=int(self.data["categoryId"]),
+            )
+
 
     @staticmethod
     def clear():
@@ -96,7 +100,11 @@ class OfferPattern:
             except ObjectDoesNotExist:
                 offer = Offer.objects.create()
 
-            for key, data in item['offer'].items():
+            json_offer = item['offer']
+            if 'mapping' in item:
+                json_offer['mapping'] = item['mapping']
+
+            for key, data in json_offer.items():
                 if key in self.simple:
                     OfferBase.Base(data=data, offer=offer, name=camel_to_snake(key)).save()
                 elif key in self.foreign.keys():
