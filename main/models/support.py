@@ -4,6 +4,29 @@ from main.models.choices import TimeUnitChoices, MappingType, TimingTypeChoices,
     ProcessingStateStatus, SupplyScheduleDayChoices
 
 
+class Price(models.Model):
+    shop_sku = models.CharField(max_length=255, null=True)
+    market_sku = models.IntegerField(null=True)
+    updated_at = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
+    discount_base = models.FloatField(verbose_name="Цена на товар без скидки.", null=True)
+    value = models.FloatField(verbose_name="Цена на товар.", null=True)
+    vat = models.IntegerField(verbose_name="""
+Идентификатор ставки НДС, применяемой для товара:
+2 — 10%.
+5 — 0%.
+6 — не облагается НДС.
+7 — 20%.
+Если параметр не указан, используется ставка НДС, установленная в личном кабинете магазина.
+""", null=True)
+
+    offer = models.OneToOneField(
+            to=Offer,
+            on_delete=models.CASCADE,
+            verbose_name='Информация о цене товара',
+            null=True
+        )
+
+
 class ManufacturerCountry(models.Model):
     """
         Список стран, в которых произведен товар
