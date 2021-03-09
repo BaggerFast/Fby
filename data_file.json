@@ -5,21 +5,21 @@
     "offerMappingEntries": [
       {
         "offer": {
-          "name": "РњР°СЃР»СЏРЅС‹Р№ С„РёР»СЊС‚СЂ VOLKSWAGEN 04e115561h",
+          "name": "Масляный фильтр VOLKSWAGEN 04e115561h",
           "shopSku": "04e115561h",
-          "category": "РњР°СЃР»СЏРЅС‹Рµ С„РёР»СЊС‚СЂС‹",
+          "category": "Масляные фильтры",
           "vendor": "VOLKSWAGEN",
           "vendorCode": "04e115561h",
-          "description": "РџСЂРёРјРµРЅРµРЅРёРµ: РґР»СЏ РјРѕС‚РѕСЂРЅС‹С… РјР°СЃРµР»\nРџРѕРґС…РѕРґРёС‚ РґР»СЏ: Audi A5, Audi A3, Audi A1, Audi Q3, Audi S5, Audi S3, Audi A4, Audi Q2, Audi S4, Seat Leon, Seat Ibiza, Seat Toledo, Seat Alhambra, Seat Ateca, Seat Mii, Skoda Kodiaq, Skoda Superb, Skoda Rapid, Skoda Octavia, Skoda Fabia, Skoda Yeti, Skoda Citigo, Volkswagen Caddy, Volkswagen Jetta, Volkswagen Golf, Volkswagen Beetle, Volkswagen CC, Volkswagen Touran, Volkswagen Polo, Volkswagen Up, Volkswagen Passat, Volkswagen Scirocco, Volkswagen Sharan, Volkswagen Tiguan",
+          "description": "Применение: для моторных масел\nПодходит для: Audi A5, Audi A3, Audi A1, Audi Q3, Audi S5, Audi S3, Audi A4, Audi Q2, Audi S4, Seat Leon, Seat Ibiza, Seat Toledo, Seat Alhambra, Seat Ateca, Seat Mii, Skoda Kodiaq, Skoda Superb, Skoda Rapid, Skoda Octavia, Skoda Fabia, Skoda Yeti, Skoda Citigo, Volkswagen Caddy, Volkswagen Jetta, Volkswagen Golf, Volkswagen Beetle, Volkswagen CC, Volkswagen Touran, Volkswagen Polo, Volkswagen Up, Volkswagen Passat, Volkswagen Scirocco, Volkswagen Sharan, Volkswagen Tiguan",
           "barcodes": [
             "04e115561h"
           ],
           "urls": [
             "https://yadi.sk/d/8SJpvTFn5wH7Vw"
           ],
-          "manufacturer": "Р¤РѕР»СЊС†РІР°РіРµРЅ",
+          "manufacturer": "Фольцваген",
           "manufacturerCountries": [
-            "Р“РµСЂРјР°РЅРёСЏ"
+            "Германия"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -32,13 +32,13 @@
             "weight": 0.3
           },
           "supplyScheduleDays": [
+            "TUESDAY",
             "FRIDAY",
-            "THURSDAY",
-            "SUNDAY",
-            "WEDNESDAY",
             "MONDAY",
+            "WEDNESDAY",
+            "THURSDAY",
             "SATURDAY",
-            "TUESDAY"
+            "SUNDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -52,21 +52,21 @@
       },
       {
         "offer": {
-          "name": "РЎРјР°Р·РєР° РґР»СЏ СЃР°РґРѕРІРѕР№ С‚РµС…РЅРёРєРё Р’РњРџРђР’РўРћ ULTRA-0 200 Рі",
+          "name": "Смазка для садовой техники ВМПАВТО ULTRA-0 200 г",
           "shopSku": "1003",
-          "category": "РњР°СЃР»Р° РґР»СЏ СЃР°РґРѕРІРѕР№ С‚РµС…РЅРёРєРё",
-          "vendor": "Р’РњРџРђР’РўРћ",
+          "category": "Масла для садовой техники",
+          "vendor": "ВМПАВТО",
           "vendorCode": "1003",
-          "description": "РћР±СЉРµРј СѓРїР°РєРѕРІРєРё 0.2 Р»\nР”РІРёРіР°С‚РµР»СЊ: РґРІСѓС…С‚Р°РєС‚РЅС‹Р№ Рё С‡РµС‚С‹СЂРµС…С‚Р°РєС‚РЅС‹Р№",
+          "description": "Объем упаковки 0.2 л\nДвигатель: двухтактный и четырехтактный",
           "barcodes": [
             "4607012404879"
           ],
           "urls": [
             "https://yadi.sk/d/TipaN1TOmS0STw"
           ],
-          "manufacturer": "Р’РњРџРђР’РўРћ",
+          "manufacturer": "ВМПАВТО",
           "manufacturerCountries": [
-            "Р РѕСЃСЃРёСЏ"
+            "Россия"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -80,8 +80,8 @@
           },
           "supplyScheduleDays": [
             "FRIDAY",
-            "WEDNESDAY",
-            "MONDAY"
+            "MONDAY",
+            "WEDNESDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -95,21 +95,21 @@
       },
       {
         "offer": {
-          "name": "Р¤РёР»СЊС‚СЂ LADA 11180-8122010-82",
+          "name": "Фильтр LADA 11180-8122010-82",
           "shopSku": "11180-8122010-82",
-          "category": "РЎР°Р»РѕРЅРЅС‹Рµ С„РёР»СЊС‚СЂС‹",
+          "category": "Салонные фильтры",
           "vendor": "LADA",
           "vendorCode": "11180-8122010-82",
-          "description": "РњР°СЂРєР° Р°РІС‚РѕРјРѕР±РёР»СЏ: LADA (Р’РђР—), Chevrolet\nР”Р»РёРЅР° 160 РјРј\nРЁРёСЂРёРЅР° 260 РјРј\nРўРѕР»С‰РёРЅР° 40 РјРј",
+          "description": "Марка автомобиля: LADA (ВАЗ), Chevrolet\nДлина 160 мм\nШирина 260 мм\nТолщина 40 мм",
           "barcodes": [
             "11180812201082"
           ],
           "urls": [
             "https://yadi.sk/d/05f12a7KVkx52A"
           ],
-          "manufacturer": "Р»Р°РґР°",
+          "manufacturer": "лада",
           "manufacturerCountries": [
-            "Р РѕСЃСЃРёСЏ"
+            "Россия"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -122,8 +122,8 @@
           },
           "supplyScheduleDays": [
             "FRIDAY",
-            "WEDNESDAY",
-            "MONDAY"
+            "MONDAY",
+            "WEDNESDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -137,21 +137,21 @@
       },
       {
         "offer": {
-          "name": "РџРµСЂС‡Р°С‚РєРё С…/Р± СЃ РџР’РҐ '4 РЅРёС‚РєРё' (СѓРї. 5 РїР°СЂ) С‡РµСЂРЅС‹Рµ",
+          "name": "Перчатки х/б с ПВХ '4 нитки' (уп. 5 пар) черные",
           "shopSku": "1137672",
-          "category": "Р—Р°С‰РёС‚Р° СЂСѓРє",
+          "category": "Защита рук",
           "vendor": "DolleX",
           "vendorCode": "5PVX-4B",
-          "description": "С…/Р± СЃ РџР’РҐ '4 РЅРёС‚РєРё' (СѓРї. 5 РїР°СЂ) С‡РµСЂРЅС‹Рµ",
+          "description": "х/б с ПВХ '4 нитки' (уп. 5 пар) черные",
           "barcodes": [
             "4630074550543"
           ],
           "urls": [
             "https://yadi.sk/d/L_0NBnTZbPWa8A"
           ],
-          "manufacturer": "Р”РѕР»РµРєСЃ",
+          "manufacturer": "Долекс",
           "manufacturerCountries": [
-            "Р РѕСЃСЃРёСЏ"
+            "Россия"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -164,37 +164,37 @@
             "weight": 0.3
           },
           "supplyScheduleDays": [
+            "TUESDAY",
             "FRIDAY",
-            "THURSDAY",
-            "SUNDAY",
-            "WEDNESDAY",
             "MONDAY",
+            "WEDNESDAY",
+            "THURSDAY",
             "SATURDAY",
-            "TUESDAY"
+            "SUNDAY"
           ],
           "processingState": {
-            "status": "IN_WORK"
+            "status": "NEED_CONTENT"
           },
           "availability": "ACTIVE"
         }
       },
       {
         "offer": {
-          "name": "РџРµСЂС‡Р°С‚РєРё Dollex, С…/Р± СЃ РџР’РҐ 5 РЅРёС‚РѕРє (СѓРї. 5 РїР°СЂ) С‡РµСЂРЅС‹Рµ",
+          "name": "Перчатки Dollex, х/б с ПВХ 5 ниток (уп. 5 пар) черные",
           "shopSku": "11376721",
-          "category": "РЎСЂРµРґСЃС‚РІР° РёРЅРґРёРІРёРґСѓР°Р»СЊРЅРѕР№ Р·Р°С‰РёС‚С‹ СЂСѓРє РґР»СЏ СЃС‚СЂРѕРёС‚РµР»СЊСЃС‚РІР° Рё СЂРµРјРѕРЅС‚Р°",
+          "category": "Средства индивидуальной защиты рук для строительства и ремонта",
           "vendor": "Dollex",
           "vendorCode": "5PVX-4B",
-          "description": "С…/Р± СЃ РџР’РҐ '4 РЅРёС‚РєРё' (СѓРї. 5 РїР°СЂ) С‡РµСЂРЅС‹Рµ",
+          "description": "х/б с ПВХ '4 нитки' (уп. 5 пар) черные",
           "barcodes": [
             "4630074550543"
           ],
           "urls": [
             "https://yadi.sk/d/L_0NBnTZbPWa8A"
           ],
-          "manufacturer": "Р”РѕР»РµРєСЃ",
+          "manufacturer": "Долекс",
           "manufacturerCountries": [
-            "Р РѕСЃСЃРёСЏ"
+            "Россия"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -206,32 +206,32 @@
             "weight": 0.1
           },
           "supplyScheduleDays": [
-            "THURSDAY",
-            "TUESDAY"
+            "TUESDAY",
+            "THURSDAY"
           ],
           "processingState": {
-            "status": "IN_WORK"
+            "status": "NEED_CONTENT"
           },
           "availability": "ACTIVE"
         }
       },
       {
         "offer": {
-          "name": "Р›Р°РјРїР° Р°РІС‚РѕРјРѕР±РёР»СЊРЅР°СЏ СЃРІРµС‚РѕРґРёРѕРґРЅР°СЏ Philips Ultinon LED 11961ULW4X2 W5W 1W 2 С€С‚.",
+          "name": "Лампа автомобильная светодиодная Philips Ultinon LED 11961ULW4X2 W5W 1W 2 шт.",
           "shopSku": "11961ULW4X2",
-          "category": "Р›Р°РјРїС‹ РґР»СЏ Р°РІС‚РѕРјРѕР±РёР»РµР№",
+          "category": "Лампы для автомобилей",
           "vendor": "Philips",
           "vendorCode": "11961ULW4X2",
-          "description": "РќР°Р·РЅР°С‡РµРЅРёРµ: РіР°Р±Р°СЂРёС‚РЅС‹Рµ С„РѕРЅР°СЂРё, СЃС‚РѕРї-СЃРёРіРЅР°Р»С‹, СЃР°Р»РѕРЅРЅРѕРµ РѕСЃРІРµС‰РµРЅРёРµ\nРўРёРїРѕСЂР°Р·РјРµСЂ: W5W\nР¦РІРµС‚РѕРІР°СЏ С‚РµРјРїРµСЂР°С‚СѓСЂР° 4000 K\nРњРѕС‰РЅРѕСЃС‚СЊ 1 Р’С‚\nРќР°РїСЂСЏР¶РµРЅРёРµ: 12 Р’",
+          "description": "Назначение: габаритные фонари, стоп-сигналы, салонное освещение\nТипоразмер: W5W\nЦветовая температура 4000 K\nМощность 1 Вт\nНапряжение: 12 В",
           "barcodes": [
             "8719018050830"
           ],
           "urls": [
             "https://yadi.sk/d/XF2fCy8rCh9MeA"
           ],
-          "manufacturer": "Р¤РёР»РёРїСЃ",
+          "manufacturer": "Филипс",
           "manufacturerCountries": [
-            "РќРёРґРµСЂР»Р°РЅРґС‹"
+            "Нидерланды"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -245,8 +245,8 @@
           },
           "supplyScheduleDays": [
             "FRIDAY",
-            "WEDNESDAY",
-            "MONDAY"
+            "MONDAY",
+            "WEDNESDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -260,21 +260,21 @@
       },
       {
         "offer": {
-          "name": "Р›Р°РјРїР° Р°РІС‚РѕРјРѕР±РёР»СЊРЅР°СЏ СЃРІРµС‚РѕРґРёРѕРґРЅР°СЏ Philips Ultinon LED 11961ULWX2 W5W 2 С€С‚.",
+          "name": "Лампа автомобильная светодиодная Philips Ultinon LED 11961ULWX2 W5W 2 шт.",
           "shopSku": "11961ULWX2",
-          "category": "Р›Р°РјРїС‹ РґР»СЏ Р°РІС‚РѕРјРѕР±РёР»РµР№",
+          "category": "Лампы для автомобилей",
           "vendor": "Philips",
           "vendorCode": "11961ULWX2",
-          "description": "РќР°Р·РЅР°С‡РµРЅРёРµ: РіР°Р±Р°СЂРёС‚РЅС‹Рµ С„РѕРЅР°СЂРё, СЃР°Р»РѕРЅРЅРѕРµ РѕСЃРІРµС‰РµРЅРёРµ\nРўРёРїРѕСЂР°Р·РјРµСЂ: W5W\nР¦РІРµС‚РѕРІР°СЏ С‚РµРјРїРµСЂР°С‚СѓСЂР° 6000 K\nРЎРІРµС‚РѕРІРѕР№ РїРѕС‚РѕРє 50 Р»Рј",
+          "description": "Назначение: габаритные фонари, салонное освещение\nТипоразмер: W5W\nЦветовая температура 6000 K\nСветовой поток 50 лм",
           "barcodes": [
             "8719018050311"
           ],
           "urls": [
             "https://yadi.sk/d/tvwdu84Uz72C-A"
           ],
-          "manufacturer": "Р¤РёР»РёРїСЃ",
+          "manufacturer": "Филипс",
           "manufacturerCountries": [
-            "РќРёРґРµСЂР»Р°РЅРґС‹"
+            "Нидерланды"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -288,8 +288,8 @@
           },
           "supplyScheduleDays": [
             "FRIDAY",
-            "WEDNESDAY",
-            "MONDAY"
+            "MONDAY",
+            "WEDNESDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -303,21 +303,21 @@
       },
       {
         "offer": {
-          "name": "Р›Р°РјРїР° Р°РІС‚РѕРјРѕР±РёР»СЊРЅР°СЏ РіР°Р»РѕРіРµРЅРЅР°СЏ Philips X-tremeVision +130% H4 3700K 60/55W 2 С€С‚.",
+          "name": "Лампа автомобильная галогенная Philips X-tremeVision +130% H4 3700K 60/55W 2 шт.",
           "shopSku": "12342XVS2",
-          "category": "Р›Р°РјРїС‹ РґР»СЏ Р°РІС‚РѕРјРѕР±РёР»РµР№",
+          "category": "Лампы для автомобилей",
           "vendor": "Philips",
           "vendorCode": "12342XVS2",
-          "description": "РќР°Р·РЅР°С‡РµРЅРёРµ: Р±Р»РёР¶РЅРёР№/РґР°Р»СЊРЅРёР№ СЃРІРµС‚\nРўРёРїРѕСЂР°Р·РјРµСЂ: H4\nР¦РІРµС‚РѕРІР°СЏ С‚РµРјРїРµСЂР°С‚СѓСЂР° 3700 K\nРЎРІРµС‚РѕРІРѕР№ РїРѕС‚РѕРє 1650 Р»Рј\nРќР°РїСЂСЏР¶РµРЅРёРµ: 12 Р’",
+          "description": "Назначение: ближний/дальний свет\nТипоразмер: H4\nЦветовая температура 3700 K\nСветовой поток 1650 лм\nНапряжение: 12 В",
           "barcodes": [
             "8711500221094"
           ],
           "urls": [
             "https://yadi.sk/d/BPhT8D2opec2tg"
           ],
-          "manufacturer": "С„РёР»РёРїСЃ",
+          "manufacturer": "филипс",
           "manufacturerCountries": [
-            "Р“РµСЂРјР°РЅРёСЏ"
+            "Германия"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -330,8 +330,8 @@
           },
           "supplyScheduleDays": [
             "FRIDAY",
-            "WEDNESDAY",
-            "MONDAY"
+            "MONDAY",
+            "WEDNESDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -345,21 +345,21 @@
       },
       {
         "offer": {
-          "name": "Р›Р°РјРїР° Р°РІС‚РѕРјРѕР±РёР»СЊРЅР°СЏ РЅР°РєР°Р»РёРІР°РЅРёСЏ Philips VisionPlus +60% 12498VPB2 P21W 2 С€С‚.",
+          "name": "Лампа автомобильная накаливания Philips VisionPlus +60% 12498VPB2 P21W 2 шт.",
           "shopSku": "12498VPB2",
-          "category": "Р›Р°РјРїС‹ РґР»СЏ Р°РІС‚РѕРјРѕР±РёР»РµР№",
+          "category": "Лампы для автомобилей",
           "vendor": "Philips",
           "vendorCode": "12498VPB2",
-          "description": "РќР°Р·РЅР°С‡РµРЅРёРµ: РїСЂРѕС‚РёРІРѕС‚СѓРјР°РЅРЅС‹Рµ С„Р°СЂС‹, СѓРєР°Р·Р°С‚РµР»Рё РїРѕРІРѕСЂРѕС‚Р° Р·Р°РґРЅРёРµ, СѓРєР°Р·Р°С‚РµР»Рё РїРѕРІРѕСЂРѕС‚Р° Р±РѕРєРѕРІС‹Рµ, РѕСЃРІРµС‰РµРЅРёРµ РЅРѕРјРµСЂРЅРѕРіРѕ Р·РЅР°РєР°, СѓРєР°Р·Р°С‚РµР»Рё РїРѕРІРѕСЂРѕС‚Р° РїРµСЂРµРґРЅРёРµ, СЃС‚РѕРї-СЃРёРіРЅР°Р»С‹, С„РѕРЅР°СЂРё Р·Р°РґРЅРµРіРѕ С…РѕРґР°, СЃР°Р»РѕРЅРЅРѕРµ РѕСЃРІРµС‰РµРЅРёРµ\nРўРёРїРѕСЂР°Р·РјРµСЂ: P21W\nРњРѕС‰РЅРѕСЃС‚СЊ 21 Р’С‚\nРќР°РїСЂСЏР¶РµРЅРёРµ: 12 Р’",
+          "description": "Назначение: противотуманные фары, указатели поворота задние, указатели поворота боковые, освещение номерного знака, указатели поворота передние, стоп-сигналы, фонари заднего хода, салонное освещение\nТипоразмер: P21W\nМощность 21 Вт\nНапряжение: 12 В",
           "barcodes": [
             "8727900363173"
           ],
           "urls": [
             "https://yadi.sk/d/ETJIhPUv1LCshQ"
           ],
-          "manufacturer": "Р¤РёР»РёРїРїСЃ",
+          "manufacturer": "Филиппс",
           "manufacturerCountries": [
-            "РќРёРґРµСЂР»Р°РЅРґС‹"
+            "Нидерланды"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -371,8 +371,8 @@
             "weight": 1
           },
           "supplyScheduleDays": [
-            "THURSDAY",
-            "TUESDAY"
+            "TUESDAY",
+            "THURSDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -386,21 +386,21 @@
       },
       {
         "offer": {
-          "name": "Р›Р°РјРїР° Р°РІС‚РѕРјРѕР±РёР»СЊРЅР°СЏ СЃРІРµС‚РѕРґРёРѕРґРЅР°СЏ Philips X-tremeUltinon LED 127998000KX2 Рў10 2 С€С‚.",
+          "name": "Лампа автомобильная светодиодная Philips X-tremeUltinon LED 127998000KX2 Т10 2 шт.",
           "shopSku": "127998000KX2",
-          "category": "Р›Р°РјРїС‹ РґР»СЏ Р°РІС‚РѕРјРѕР±РёР»РµР№",
+          "category": "Лампы для автомобилей",
           "vendor": "Philips",
           "vendorCode": "127998000KX2",
-          "description": "РќР°Р·РЅР°С‡РµРЅРёРµ: РіР°Р±Р°СЂРёС‚РЅС‹Рµ С„РѕРЅР°СЂРё, СЃР°Р»РѕРЅРЅРѕРµ РѕСЃРІРµС‰РµРЅРёРµ\nРўРёРїРѕСЂР°Р·РјРµСЂ: W5W\nРЎРІРµС‚: С…РѕР»РѕРґРЅС‹Р№ Р±РµР»С‹Р№\nР¦РІРµС‚РѕРІР°СЏ С‚РµРјРїРµСЂР°С‚СѓСЂР° 8000 K\nРќР°РїСЂСЏР¶РµРЅРёРµ: 12 Р’",
+          "description": "Назначение: габаритные фонари, салонное освещение\nТипоразмер: W5W\nСвет: холодный белый\nЦветовая температура 8000 K\nНапряжение: 12 В",
           "barcodes": [
             "8727900395983"
           ],
           "urls": [
             "https://yadi.sk/d/JPa1TXBM_KBY0Q"
           ],
-          "manufacturer": "Р¤РёР»РёРїСЃ",
+          "manufacturer": "Филипс",
           "manufacturerCountries": [
-            "РљРёС‚Р°Р№"
+            "Китай"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -412,8 +412,8 @@
             "weight": 0.1
           },
           "supplyScheduleDays": [
-            "THURSDAY",
-            "TUESDAY"
+            "TUESDAY",
+            "THURSDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -427,21 +427,21 @@
       },
       {
         "offer": {
-          "name": "Р›Р°РјРїР° Р°РІС‚РѕРјРѕР±РёР»СЊРЅР°СЏ РЅР°РєР°Р»РёРІР°РЅРёСЏ Philips Vision 12961B2 W5W 12V 5W 2 С€С‚.",
+          "name": "Лампа автомобильная накаливания Philips Vision 12961B2 W5W 12V 5W 2 шт.",
           "shopSku": "12961B2",
-          "category": "Р›Р°РјРїС‹ РґР»СЏ Р°РІС‚РѕРјРѕР±РёР»РµР№",
+          "category": "Лампы для автомобилей",
           "vendor": "Philips",
           "vendorCode": "12961B2",
-          "description": "РќР°Р·РЅР°С‡РµРЅРёРµ: РѕСЃРІРµС‰РµРЅРёРµ РЅРѕРјРµСЂРЅРѕРіРѕ Р·РЅР°РєР°, СЃС‚РѕРї-СЃРёРіРЅР°Р»С‹, СЃР°Р»РѕРЅРЅРѕРµ РѕСЃРІРµС‰РµРЅРёРµ\nРўРёРїРѕСЂР°Р·РјРµСЂ: W5W\nРЎРІРµС‚РѕРІРѕР№ РїРѕС‚РѕРє 50 Р»Рј\nРњРѕС‰РЅРѕСЃС‚СЊ 5 Р’С‚\nРќР°РїСЂСЏР¶РµРЅРёРµ: 12 Р’",
+          "description": "Назначение: освещение номерного знака, стоп-сигналы, салонное освещение\nТипоразмер: W5W\nСветовой поток 50 лм\nМощность 5 Вт\nНапряжение: 12 В",
           "barcodes": [
             "8711500404213"
           ],
           "urls": [
             "https://yadi.sk/d/ibk5Kfe15wpzXA"
           ],
-          "manufacturer": "С„РёР»РёРїСЃ",
+          "manufacturer": "филипс",
           "manufacturerCountries": [
-            "РќРёРґРµСЂР»Р°РЅРґС‹"
+            "Нидерланды"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -455,8 +455,8 @@
           },
           "supplyScheduleDays": [
             "FRIDAY",
-            "WEDNESDAY",
-            "MONDAY"
+            "MONDAY",
+            "WEDNESDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -470,21 +470,21 @@
       },
       {
         "offer": {
-          "name": "Р›Р°РјРїР° Р°РІС‚РѕРјРѕР±РёР»СЊРЅР°СЏ РіР°Р»РѕРіРµРЅРЅР°СЏ Philips White Vision 12961NBVB2 12V W5W 2 С€С‚.",
+          "name": "Лампа автомобильная галогенная Philips White Vision 12961NBVB2 12V W5W 2 шт.",
           "shopSku": "12961NBVB2",
-          "category": "Р›Р°РјРїС‹ РґР»СЏ Р°РІС‚РѕРјРѕР±РёР»РµР№",
+          "category": "Лампы для автомобилей",
           "vendor": "Philips",
           "vendorCode": "12961NBVB2",
-          "description": "РќР°Р·РЅР°С‡РµРЅРёРµ: СѓРєР°Р·Р°С‚РµР»Рё РїРѕРІРѕСЂРѕС‚Р° Р±РѕРєРѕРІС‹Рµ, СЃС‚РѕРї-СЃРёРіРЅР°Р»С‹, С„РѕРЅР°СЂРё Р·Р°РґРЅРµРіРѕ С…РѕРґР°, СЃР°Р»РѕРЅРЅРѕРµ РѕСЃРІРµС‰РµРЅРёРµ\nРўРёРїРѕСЂР°Р·РјРµСЂ: W5W\nР¦РІРµС‚РѕРІР°СЏ С‚РµРјРїРµСЂР°С‚СѓСЂР° 4500 K\nРњРѕС‰РЅРѕСЃС‚СЊ 5 Р’С‚\nРќР°РїСЂСЏР¶РµРЅРёРµ: 12 Р’",
+          "description": "Назначение: указатели поворота боковые, стоп-сигналы, фонари заднего хода, салонное освещение\nТипоразмер: W5W\nЦветовая температура 4500 K\nМощность 5 Вт\nНапряжение: 12 В",
           "barcodes": [
             "8727900392050"
           ],
           "urls": [
             "https://yadi.sk/d/OJ8YCJdZmJsOLQ"
           ],
-          "manufacturer": "Р¤РёР»РёРїСЃ",
+          "manufacturer": "Филипс",
           "manufacturerCountries": [
-            "РќРёРґРµСЂР»Р°РЅРґС‹"
+            "Нидерланды"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -496,8 +496,8 @@
             "weight": 0.3
           },
           "supplyScheduleDays": [
-            "THURSDAY",
-            "TUESDAY"
+            "TUESDAY",
+            "THURSDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -511,21 +511,21 @@
       },
       {
         "offer": {
-          "name": "РђРІС‚РѕРјРѕР±РёР»СЊРЅР°СЏ СЃРјР°Р·РєР° Р’РњРџРђР’РўРћ MC 1510 BLUE 0.42 Р»",
+          "name": "Автомобильная смазка ВМПАВТО MC 1510 BLUE 0.42 л",
           "shopSku": "1304",
-          "category": "РЎРјР°Р·РєРё",
-          "vendor": "Р’РњРџРђР’РўРћ",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
           "vendorCode": "1304",
-          "description": "РћР±Р»Р°СЃС‚СЊ РїСЂРёРјРµРЅРµРЅРёСЏ: РїРѕРґС€РёРїРЅРёРєРё\nРЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ: РїСЂРѕС‚РёРІРѕРєРѕСЂСЂРѕР·РёР№РЅР°СЏ\nРљРѕРЅСЃРёСЃС‚РµРЅС†РёСЏ: РїР»Р°СЃС‚РёС‡РЅР°СЏ\nРўРµРјРїРµСЂР°С‚СѓСЂРЅС‹Р№ СЂРµР¶РёРј: РІС‹СЃРѕРєРѕС‚РµРјРїРµСЂР°С‚СѓСЂРЅР°СЏ",
+          "description": "Область применения: подшипники\nСпециализация: противокоррозийная\nКонсистенция: пластичная\nТемпературный режим: высокотемпературная",
           "barcodes": [
             "4607012401977"
           ],
           "urls": [
             "https://yadi.sk/d/mlolSkvmmDHAAQ"
           ],
-          "manufacturer": "Р’РњРџРђР’РўРћ",
+          "manufacturer": "ВМПАВТО",
           "manufacturerCountries": [
-            "Р РѕСЃСЃРёСЏ"
+            "Россия"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -539,8 +539,8 @@
           },
           "supplyScheduleDays": [
             "FRIDAY",
-            "WEDNESDAY",
-            "MONDAY"
+            "MONDAY",
+            "WEDNESDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -554,21 +554,21 @@
       },
       {
         "offer": {
-          "name": "РЎРјР°Р·РєР° Р’РњРџРђР’РўРћ РњРЎ 1520 RUBIN 0.375 РєРі",
+          "name": "Смазка ВМПАВТО МС 1520 RUBIN 0.375 кг",
           "shopSku": "1407",
-          "category": "РЎРјР°Р·РєРё",
-          "vendor": "Р’РњРџРђР’РўРћ",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
           "vendorCode": " 1407",
-          "description": "РћР±Р»Р°СЃС‚СЊ РїСЂРёРјРµРЅРµРЅРёСЏ: РїРѕРґС€РёРїРЅРёРєРё, РєР°СЂРґР°РЅРЅС‹Р№ РІР°Р»\nРЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ: РІР»Р°РіРѕРІС‹С‚РµСЃРЅСЏСЋС‰Р°СЏ, Р°РЅС‚РёС„СЂРёРєС†РёРѕРЅРЅР°СЏ\nРљРѕРЅСЃРёСЃС‚РµРЅС†РёСЏ: РїР»Р°СЃС‚РёС‡РЅР°СЏ",
+          "description": "Область применения: подшипники, карданный вал\nСпециализация: влаговытесняющая, антифрикционная\nКонсистенция: пластичная",
           "barcodes": [
             "4607012403124"
           ],
           "urls": [
             "https://yadi.sk/d/aak5QNTtMe6VIg"
           ],
-          "manufacturer": "Р’РњРџР°РІС‚Рѕ",
+          "manufacturer": "ВМПавто",
           "manufacturerCountries": [
-            "Р РѕСЃСЃРёСЏ"
+            "Россия"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -580,8 +580,8 @@
             "weight": 0.5
           },
           "supplyScheduleDays": [
-            "THURSDAY",
-            "TUESDAY"
+            "TUESDAY",
+            "THURSDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -595,21 +595,21 @@
       },
       {
         "offer": {
-          "name": "РђРІС‚РѕРјРѕР±РёР»СЊРЅР°СЏ СЃРјР°Р·РєР° Р’РњРџРђР’РўРћ РњРЎ 1600 0.005 РєРі",
+          "name": "Автомобильная смазка ВМПАВТО МС 1600 0.005 кг",
           "shopSku": "1505",
-          "category": "РЎРјР°Р·РєРё",
-          "vendor": "Р’РњРџРђР’РўРћ",
+          "category": "Смазки",
+          "vendor": "ВМПАВТО",
           "vendorCode": " 1505",
-          "description": "РћР±Р»Р°СЃС‚СЊ РїСЂРёРјРµРЅРµРЅРёСЏ: СЃСѓРїРїРѕСЂС‚С‹, С‚РѕСЂРјРѕР·РЅР°СЏ СЃРёСЃС‚РµРјР°\nРЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ: РїСЂРѕС‚РёРІРѕРєРѕСЂСЂРѕР·РёР№РЅР°СЏ\nРљРѕРЅСЃРёСЃС‚РµРЅС†РёСЏ: РїР»Р°СЃС‚РёС‡РЅР°СЏ\nРўРµРјРїРµСЂР°С‚СѓСЂРЅС‹Р№ СЂРµР¶РёРј: РІС‹СЃРѕРєРѕС‚РµРјРїРµСЂР°С‚СѓСЂРЅР°СЏ",
+          "description": "Область применения: суппорты, тормозная система\nСпециализация: противокоррозийная\nКонсистенция: пластичная\nТемпературный режим: высокотемпературная",
           "barcodes": [
             "4607012403568"
           ],
           "urls": [
             "https://yadi.sk/d/l5PlBkhkUTrI3Q"
           ],
-          "manufacturer": "Р’РјРїРђРІС‚Рѕ",
+          "manufacturer": "ВмпАвто",
           "manufacturerCountries": [
-            "Р РѕСЃСЃРёСЏ"
+            "Россия"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -621,8 +621,8 @@
             "weight": 0.1
           },
           "supplyScheduleDays": [
-            "THURSDAY",
-            "TUESDAY"
+            "TUESDAY",
+            "THURSDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -636,21 +636,21 @@
       },
       {
         "offer": {
-          "name": "РњР°СЃР»СЏРЅС‹Р№ С„РёР»СЊС‚СЂ Nissan 15208-65F0A",
+          "name": "Масляный фильтр Nissan 15208-65F0A",
           "shopSku": "15208-65F0A",
-          "category": "РњР°СЃР»СЏРЅС‹Рµ С„РёР»СЊС‚СЂС‹",
+          "category": "Масляные фильтры",
           "vendor": "Nissan",
           "vendorCode": "15208-65F0A",
-          "description": "РџСЂРёРјРµРЅРµРЅРёРµ: РґР»СЏ РјРѕС‚РѕСЂРЅС‹С… РјР°СЃРµР»\nРџРѕРґС…РѕРґРёС‚ РґР»СЏ: Nissan Murano, Nissan XTerra, Nissan X-Trail, Infiniti FX45, Infiniti FX35",
+          "description": "Применение: для моторных масел\nПодходит для: Nissan Murano, Nissan XTerra, Nissan X-Trail, Infiniti FX45, Infiniti FX35",
           "barcodes": [
             "1520865F0A"
           ],
           "urls": [
             "https://yadi.sk/d/j-tzO7_K-gyWoQ"
           ],
-          "manufacturer": "РќРёСЃСЃР°РЅ",
+          "manufacturer": "Ниссан",
           "manufacturerCountries": [
-            "РЇРїРѕРЅРёСЏ"
+            "Япония"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -664,8 +664,8 @@
           },
           "supplyScheduleDays": [
             "FRIDAY",
-            "WEDNESDAY",
-            "MONDAY"
+            "MONDAY",
+            "WEDNESDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -679,21 +679,21 @@
       },
       {
         "offer": {
-          "name": "РњР°СЃР»СЏРЅС‹Р№ С„РёР»СЊС‚СЂ Nissan 15208-9F60A",
+          "name": "Масляный фильтр Nissan 15208-9F60A",
           "shopSku": "15208-9F60A",
-          "category": "РњР°СЃР»СЏРЅС‹Рµ С„РёР»СЊС‚СЂС‹",
+          "category": "Масляные фильтры",
           "vendor": "Nissan",
           "vendorCode": "15208-9F60A",
-          "description": "РџРѕРґС…РѕРґРёС‚ РґР»СЏ: Infiniti Q70, Infiniti QX50, Infiniti Q50, Infiniti QX70, Infiniti M, Infiniti G, Infiniti FX, Infiniti EX, Nissan Murano, Nissan X-Trail, Nissan Patrol, Nissan Pathfinder, Nissan 350Z, Nissan Almera, Nissan Maxima, Nissan Qashqai, Nissan Primera, Nissan Juke, Nissan Tiida, Nissan Qashqai+2, Nissan Note, Nissan Teana, Nissan Sentra, Infiniti M35\nРђРЅР°Р»РѕРі: W 67/1, OP 595, H97W06, LS892",
+          "description": "Подходит для: Infiniti Q70, Infiniti QX50, Infiniti Q50, Infiniti QX70, Infiniti M, Infiniti G, Infiniti FX, Infiniti EX, Nissan Murano, Nissan X-Trail, Nissan Patrol, Nissan Pathfinder, Nissan 350Z, Nissan Almera, Nissan Maxima, Nissan Qashqai, Nissan Primera, Nissan Juke, Nissan Tiida, Nissan Qashqai+2, Nissan Note, Nissan Teana, Nissan Sentra, Infiniti M35\nАналог: W 67/1, OP 595, H97W06, LS892",
           "barcodes": [
             "4994109007700"
           ],
           "urls": [
             "https://yadi.sk/d/5v1TKF1G8hhYSw"
           ],
-          "manufacturer": "РќРёСЃСЃР°РЅ",
+          "manufacturer": "Ниссан",
           "manufacturerCountries": [
-            "РЇРїРѕРЅРёСЏ"
+            "Япония"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -707,8 +707,8 @@
           },
           "supplyScheduleDays": [
             "FRIDAY",
-            "WEDNESDAY",
-            "MONDAY"
+            "MONDAY",
+            "WEDNESDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -722,21 +722,21 @@
       },
       {
         "offer": {
-          "name": "РњР°СЃР»СЏРЅС‹Р№ С„РёР»СЊС‚СЂ Renault 152089599R",
+          "name": "Масляный фильтр Renault 152089599R",
           "shopSku": "152089599R",
-          "category": "РњР°СЃР»СЏРЅС‹Рµ С„РёР»СЊС‚СЂС‹",
+          "category": "Масляные фильтры",
           "vendor": "Renault",
           "vendorCode": "152089599R",
-          "description": "РџСЂРёРјРµРЅРµРЅРёРµ: РґР»СЏ РјРѕС‚РѕСЂРЅС‹С… РјР°СЃРµР»\nРџРѕРґС…РѕРґРёС‚ РґР»СЏ: Hyundai H1, Hyundai Getz, Hyundai XG, Hyundai Accent, Hyundai Trajet, Hyundai Galloper, Hyundai Matrix, Hyundai Sonata, Hyundai Elantra, Hyundai Santa Fe, Infiniti Q30, Isuzu Trooper, Mazda 6, Mazda 323, Mazda Premacy, Mercedes-Benz CLA-class, Mercedes-Benz B-class, Mercedes-Benz A-class, Mercedes-Benz GLA-class, Mitsubishi Lancer, Mitsubishi Outlander, Mitsubishi Colt, Mitsubishi Pajero Sport, Mitsubishi Pajero, Mitsubishi Pajero Pinin, Mitsubishi Carisma, Mitsubishi Grandis, Mitsubishi Galant, Mitsubishi Space Runner, Mitsubishi 3000 GT, Nissan Qashqai, Nissan Juke, Nissan Note, Renault Clio, Renault Scenic, Renault Kangoo, Renault Megane, Renault Kadjar, Subaru Outback, Subaru Legacy, Dacia Dokker, Renault Grand Scenic, Dacia Duster, Dacia Lodgy, ASIA Rocsta, Hyundai H100, Opel Monterey, Mitsubishi Space Wagon, Opel Campo, Proton Persona, Proton Wira, Proton Satria, Renault Captur, Nissan Pulsar, Mercedes-Benz Citan, Dacia Sandero, Dacia Logan, Isuzu Gemini, Mitsubishi L300, Hyundai Excel, Hyundai Coupe, Hyundai Santamo, Hyundai Pony, Hyundai Scoupe, Hyundai Lantra, Lotus Elan, Isuzu Piazza, Isuzu Midi, Mitsubishi Santamo, Mitsubishi Sigma, Hyundai Starex",
+          "description": "Применение: для моторных масел\nПодходит для: Hyundai H1, Hyundai Getz, Hyundai XG, Hyundai Accent, Hyundai Trajet, Hyundai Galloper, Hyundai Matrix, Hyundai Sonata, Hyundai Elantra, Hyundai Santa Fe, Infiniti Q30, Isuzu Trooper, Mazda 6, Mazda 323, Mazda Premacy, Mercedes-Benz CLA-class, Mercedes-Benz B-class, Mercedes-Benz A-class, Mercedes-Benz GLA-class, Mitsubishi Lancer, Mitsubishi Outlander, Mitsubishi Colt, Mitsubishi Pajero Sport, Mitsubishi Pajero, Mitsubishi Pajero Pinin, Mitsubishi Carisma, Mitsubishi Grandis, Mitsubishi Galant, Mitsubishi Space Runner, Mitsubishi 3000 GT, Nissan Qashqai, Nissan Juke, Nissan Note, Renault Clio, Renault Scenic, Renault Kangoo, Renault Megane, Renault Kadjar, Subaru Outback, Subaru Legacy, Dacia Dokker, Renault Grand Scenic, Dacia Duster, Dacia Lodgy, ASIA Rocsta, Hyundai H100, Opel Monterey, Mitsubishi Space Wagon, Opel Campo, Proton Persona, Proton Wira, Proton Satria, Renault Captur, Nissan Pulsar, Mercedes-Benz Citan, Dacia Sandero, Dacia Logan, Isuzu Gemini, Mitsubishi L300, Hyundai Excel, Hyundai Coupe, Hyundai Santamo, Hyundai Pony, Hyundai Scoupe, Hyundai Lantra, Lotus Elan, Isuzu Piazza, Isuzu Midi, Mitsubishi Santamo, Mitsubishi Sigma, Hyundai Starex",
           "barcodes": [
             "152089599R"
           ],
           "urls": [
             "https://yadi.sk/d/Os1Ih68zlsqCnw"
           ],
-          "manufacturer": "Р РµРЅРѕ",
+          "manufacturer": "Рено",
           "manufacturerCountries": [
-            "Р¤СЂР°РЅС†РёСЏ"
+            "Франция"
           ],
           "minShipment": 1,
           "transportUnitSize": 1,
@@ -748,8 +748,8 @@
             "weight": 0.3
           },
           "supplyScheduleDays": [
-            "THURSDAY",
-            "TUESDAY"
+            "TUESDAY",
+            "THURSDAY"
           ],
           "processingState": {
             "status": "READY"
@@ -763,12 +763,9 @@
       },
       {
         "offer": {
-          "name": "РњРѕС‚РѕСЂРЅРѕРµ РјР°СЃР»Рѕ MOBIL Super 3000 X1 5W-40 4 Р»",
+          "name": "Моторное масло MOBIL Super 3000 X1 5W-40 4 л",
           "shopSku": "152566",
-          "category": "РњРѕС‚РѕСЂРЅС‹Рµ РјР°СЃР»Р°",
+          "category": "Моторные масла",
           "vendor": "MOBIL",
           "vendorCode": "152566",
-          "description": "РџСЂРёРІРµС‚"
-        }
-      }]
-  }}
+          "description": 

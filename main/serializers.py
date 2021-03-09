@@ -23,10 +23,6 @@ class ManufacturerCountrySerializer(serializers.ModelSerializer):
 
 
 class OfferSerializer(serializers.ModelSerializer):
-    shopSku = serializers.CharField(source='shop_sku')
-    weightDimensions = WeightDimensionSerializer(source='weight_dimensions')
-    manufacturerCountries = ManufacturerCountrySerializer(many=True, source='manufacturer_countries')
-
     class Meta:
         model = Offer
         fields = ['id', 'shopSku', 'name',
