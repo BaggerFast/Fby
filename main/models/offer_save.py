@@ -25,7 +25,7 @@ class OfferBase:
             self.data = str(self.data)
 
         def save(self):
-            self.offer.shop_sku = self.data
+            self.offer.shopSku = self.data
 
     class Category(Base):
         def __init__(self, data, offer):
@@ -49,7 +49,7 @@ class OfferBase:
             self.data = str(self.data)
 
         def save(self):
-            self.offer.vendor_code = self.data
+            self.offer.vendorCode = self.data
 
     class Description(Base):
         def __init__(self, data, offer):
@@ -97,7 +97,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            self.offer.min_shipment = self.data
+            self.offer.minShipment = self.data
 
     class TransportUnitSize(Base):
         def __init__(self, data, offer):
@@ -105,7 +105,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            self.offer.transport_unit_size = self.data
+            self.offer.transportUnitSize = self.data
 
     class QuantumOfSupply(Base):
         def __init__(self, data, offer):
@@ -113,7 +113,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            self.offer.quantum_of_supply = self.data
+            self.offer.quantumOfSupply = self.data
 
     class DeliveryDurationDays(Base):
         def __init__(self, data, offer):
@@ -121,7 +121,7 @@ class OfferBase:
             self.data = int(self.data)
 
         def save(self):
-            self.offer.delivery_duration_days = self.data
+            self.offer.deliveryDurationDays = self.data
 
     class WeightDimensions(Base):
         def __init__(self, data, offer):
