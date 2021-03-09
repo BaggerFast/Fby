@@ -75,15 +75,15 @@ class OfferPattern:
         'availability',
     ]
 
-    foreign = {
-        "barcodes": OfferBase.Barcodes,
-        "urls": OfferBase.Urls,
-        "weightDimensions": OfferBase.WeightDimensions,
-        "supplyScheduleDays": OfferBase.SupplyScheduleDays,
-        "processingState": OfferBase.ProcessingState,
-        "manufacturerCountries": OfferBase.ManufacturerCountries,
-        "mapping": OfferBase.Mapping,
-    }
+    foreign = [
+        "barcodes",
+        "urls",
+        "weightDimensions",
+        "supplyScheduleDays",
+        "processingState",
+        "manufacturerCountries",
+        "mapping",
+    ]
 
     def __init__(self, json):
         self.json = json
@@ -102,7 +102,7 @@ class OfferPattern:
             for key, data in json_offer.items():
                 if key in self.simple:
                     OfferBase.Base(data=data, offer=offer, name=camel_to_snake(key)).save()
-                elif key in self.foreign.keys():
-                    self.foreign[key](data=data, offer=offer).save()
+                elif key in self.foreign:
+                    getattr(OfferBase, key[0].title()+key[1::])(data=data, offer=offer).save()
 
             offer.save()
