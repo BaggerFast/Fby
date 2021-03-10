@@ -3,10 +3,6 @@ from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, Proc
 from django.core.exceptions import ObjectDoesNotExist
 
 
-def camel_to_snake(string):
-    return ''.join(['_' + i.lower() if i.isupper() else i for i in string]).lstrip('_')
-
-
 class OfferBase:
     class Base:
         def __init__(self, data, offer, name=''):
@@ -44,7 +40,7 @@ class OfferBase:
 
     class SupplyScheduleDays(Base):
         def save(self):
-            SupplyScheduleDays.objects.update_or_create(offer=self.offer, supply_schedule_day=self.data)
+            SupplyScheduleDays.objects.update_or_create(offer=self.offer, supplyScheduleDay=self.data)
 
     class ProcessingState(Base):
         def save(self):
@@ -54,8 +50,8 @@ class OfferBase:
         def save(self):
             Mapping.objects.update_or_create(
                 offer=self.offer,
-                market_sku=self.data["marketSku"],
-                category_id=self.data["categoryId"],
+                marketSku=self.data["marketSku"],
+                categoryId=self.data["categoryId"],
             )
 
 
@@ -91,7 +87,7 @@ class OfferPattern:
     def save(self):
         for item in self.json:
             try:
-                offer = Offer.objects.get(shop_sku=item['offer'].get('shopSku'))
+                offer = Offer.objects.get(shopSku=item['offer'].get('shopSku'))
             except ObjectDoesNotExist:
                 offer = Offer.objects.create()
 
@@ -101,8 +97,7 @@ class OfferPattern:
 
             for key, data in json_offer.items():
                 if key in self.simple:
-                    OfferBase.Base(data=data, offer=offer, name=camel_to_snake(key)).save()
+                    OfferBase.Base(data=data, offer=offer, name=key).save()
                 elif key in self.foreign:
                     getattr(OfferBase, key[0].title()+key[1::])(data=data, offer=offer).save()
-
             offer.save()

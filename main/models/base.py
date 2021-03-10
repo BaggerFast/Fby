@@ -13,6 +13,9 @@ class Offer(models.Model):
         null=True
     )
 
+    class Meta:
+        ordering = ['id']
+
     vendor = models.CharField(max_length=255, verbose_name='Бренд товара', null=True)
     vendorCode = models.CharField(max_length=255, verbose_name='Артикул товара от производителя', null=True)
     description = models.CharField(max_length=2000, verbose_name='Описание товара', null=True)

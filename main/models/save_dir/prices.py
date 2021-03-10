@@ -1,5 +1,4 @@
 from main.models import Offer, Price
-from main.models.save_dir.offer import camel_to_snake
 
 
 class PriceBase:
@@ -29,15 +28,15 @@ class PricePattern:
     def save(self):
         for item in self.json:
             try:
-                offer = Offer.objects.get(shop_sku=item.get('id'))
+                offer = Offer.objects.get(shopSku=item.get('id'))
             except Offer.DoesNotExist:
                 continue
             obj, created = Price.objects.get_or_create(offer_id=offer.id)
             price = obj
             for key, data in item.items():
                 if key in self.keys:
-                    PriceBase.Base(data=data, price=price, name=camel_to_snake(key)).save()
+                    PriceBase.Base(data=data, price=price, name=key).save()
             for key, data in item['price'].items():
                 if key in self.keys:
-                    PriceBase.Base(data=data, price=price, name=camel_to_snake(key)).save()
+                    PriceBase.Base(data=data, price=price, name=key).save()
             price.save()

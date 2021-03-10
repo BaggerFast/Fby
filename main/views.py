@@ -39,7 +39,7 @@ def get_data_from_yandex(next_page_token=None):
     return data.json()
 
 
-def get_catalogue_from_ym():
+def get_catalogue_from_ym(request):
     """Загрузка каталога из YandexMarket и сохранение в файл data_file.json"""
     json_object = get_data_from_yandex()
     while 'nextPageToken' in json_object['result']['paging']:  # если страница не последняя, читаем следующую
