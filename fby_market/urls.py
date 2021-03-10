@@ -15,11 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from main.views import catalogue_list
 from fby_market.additional_url.api import api_url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', catalogue_list, name='catalogue_list'),
     path('api/v1/', include(api_url)),
 ]

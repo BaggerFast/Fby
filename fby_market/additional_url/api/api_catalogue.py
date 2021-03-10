@@ -1,9 +1,8 @@
 from django.urls import path
-from main.views import catalogue_list, offer_by_sku, offer_by_sku_edit
-
+from main.views import OfferDetails, OfferEdit, OfferList
 
 urlpatterns = [
-    path('', catalogue_list, name='catalogue_list'),
-    path('<sku>/', offer_by_sku, name='offer_by_sku'),
-    path('<sku>/edit/', offer_by_sku_edit, name='offer_by_sku_edit')
+    path('', OfferList.as_view(), name='catalogue_list'),
+    path('<shopSku>/', OfferDetails.as_view(), name='offer_by_sku'),
+    path('<shopSku>/edit/', OfferEdit.as_view(), name='offer_by_sku_edit')
 ]
