@@ -23,3 +23,9 @@
 .. automodule:: main.models.choices
     :members:
 
+
+Представления проекта
+=====================
+.. automodule:: main.views
+    :members:
+
