@@ -21,6 +21,9 @@ class ManufacturerCountry(models.Model):
     )
     name = models.CharField(max_length=255, verbose_name='Страна производства товара', null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class WeightDimension(models.Model):
     offer = models.OneToOneField(
@@ -72,6 +75,9 @@ class Url(models.Model):
     )
     url = models.CharField(max_length=2000, verbose_name='URL изображения или страницы с описанием товара', null=True)
 
+    def __str__(self):
+        return self.url
+
 
 class Barcode(models.Model):
     offer = models.ForeignKey(
@@ -83,6 +89,9 @@ class Barcode(models.Model):
     )
     barcode = models.CharField(max_length=255, verbose_name='Штрихкод товара', null=True)
 
+    def __str__(self):
+        return self.barcode
+
 
 class Timing(models.Model):
     """
@@ -90,8 +99,6 @@ class Timing(models.Model):
 
         .. todo::
            Добавить проверку на существование минимум одного тайминга (подозреваю, что Яндекс всё равно их запросит)
-        .. todo::
-           Проверить, что свойства :class:`shelf_life`, :class:`life_time` и :class:`guarantee_period` работают нормально
         .. todo::
            Добавить проверку на существование максимум трёх таймингов
 
@@ -101,13 +108,15 @@ class Timing(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         verbose_name='Тайминги товара',
-        related_name='timing',
+        related_name='timings',
         help_text='Срок годности, срок службы, гарантийный срок',
         null=True
     )
 
-    timePeriod = models.BigIntegerField(verbose_name='Срок годности в единицах, указанных в параметре time_unit', null=True)
-    timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices, verbose_name='Единица измерения срока годности', null=True)
+    timePeriod = models.BigIntegerField(verbose_name='Срок годности в единицах, указанных в параметре time_unit',
+                                        null=True)
+    timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices,
+                                verbose_name='Единица измерения срока годности', null=True)
     comment = models.CharField(
         max_length=2000,
         verbose_name='Дополнительные условия использования в течение срока годности',
@@ -161,6 +170,9 @@ class CustomsCommodityCode(models.Model):
         null=True
     )
 
+    def __str__(self):
+        return self.code
+
 
 class SupplyScheduleDays(models.Model):
     offer = models.ForeignKey(
@@ -177,12 +189,15 @@ class SupplyScheduleDays(models.Model):
         null=True
     )
 
+    def __str__(self):
+        return self.supplyScheduleDay
+
 
 class ProcessingState(models.Model):
     offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
-        related_name='processingState',
+        related_name='processingState_set',
         verbose_name='История статусов публикации товара на Маркете',
         null=True
     )
@@ -198,11 +213,11 @@ class ProcessingStateNote(models.Model):
     processingState = models.ForeignKey(
         to=ProcessingState,
         on_delete=models.CASCADE,
-        related_name="notes",
+        related_name='notes',
         verbose_name='Причины, по которым товар не прошел модерацию',
         null=True
     )
-    noteType = models.CharField(
+    type = models.CharField(
         max_length=31,
         choices=ProcessingStateNoteType.choices,
         verbose_name='Тип причины, по которой товар не прошел модерацию',
@@ -221,7 +236,7 @@ class Mapping(models.Model):
     offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
-        related_name="mapping",
+        related_name="mapping_set",
         verbose_name='Привязки карточек на Я.Маркете',
         null=True
     )

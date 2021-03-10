@@ -32,7 +32,7 @@ def offer_by_sku(request, sku):
        Написать обработку POST-запроса
     """
     if request.method == 'GET':
-        data = get_object_or_404(Offer, shop_sku=sku)
+        data = get_object_or_404(Offer, shopSku=sku)
         serializer = OfferSerializer(data)
         return Response(serializer.data)
 
