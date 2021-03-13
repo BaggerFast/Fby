@@ -3,7 +3,8 @@ from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, Proc
 from django.core.exceptions import ObjectDoesNotExist
 
 
-class OfferBase:
+class Offer:
+
     class Base:
         def __init__(self, data, offer, name=''):
             self.data = data
@@ -21,7 +22,7 @@ class OfferBase:
     class Urls(Base):
         def save(self):
             for item in self.data:
-                Url(offer=self.offer, url=item).save()
+                Url.objects.update_or_create(offer=self.offer, url=item)
 
     class ManufacturerCountries(Base):
         def save(self):
@@ -40,7 +41,7 @@ class OfferBase:
 
     class SupplyScheduleDays(Base):
         def save(self):
-            SupplyScheduleDays.objects.update_or_create(offer=self.offer, supplyScheduleDay=self.data)
+            SupplyScheduleDays.objects.update_or_create(offer=self.offer, supply_schedule_day=self.data)
 
     class ProcessingState(Base):
         def save(self):
@@ -50,8 +51,8 @@ class OfferBase:
         def save(self):
             Mapping.objects.update_or_create(
                 offer=self.offer,
-                marketSku=self.data["marketSku"],
-                categoryId=self.data["categoryId"],
+                market_sku=self.data["marketSku"],
+                category_id=self.data["categoryId"],
             )
 
 
@@ -87,17 +88,16 @@ class OfferPattern:
     def save(self):
         for item in self.json:
             try:
-                offer = Offer.objects.get(shopSku=item['offer'].get('shopSku'))
+                offer = Offer.objects.get(shop_sku=item['offer'].get('shopSku'))
             except ObjectDoesNotExist:
                 offer = Offer.objects.create()
-
             json_offer = item['offer']
             if 'mapping' in item:
                 json_offer['mapping'] = item['mapping']
 
             for key, data in json_offer.items():
                 if key in self.simple:
-                    OfferBase.Base(data=data, offer=offer, name=key).save()
+                    Offer.Base(data=data, offer=offer, name=key).save()
                 elif key in self.foreign:
                     getattr(OfferBase, key[0].title()+key[1::])(data=data, offer=offer).save()
             offer.save()
