@@ -1,0 +1,67 @@
+{% extends 'app.html' %}
+{% block content %}
+<div class="row mt-5">
+    <div class="col">
+        <table class="table table-hover table-borderless">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col">
+                        <h6>Название</h6>
+                    </th>
+                    <th scope="col">
+                        <h6>Описание</h6>
+                    </th>
+                    <th scope="col">
+                        <h6>SKU</h6>
+                    </th>
+                    <th scope="col">
+                        <h6>Категория</h6>
+                    </th>
+                    <th scope="col">
+                        <h6>Продавец</h6>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ for offer in offers }}
+                <tr>
+                    <td>{{ offer.name }}</td>
+                    <td>{{ offer.description }}</td>
+                    <td>{{ offer.shopSku }}</td>
+                    <td>{{ offer.category }}</td>
+                    <td>{{ offer.vendor }}</td>
+                </tr>
+                {{ endfor }}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style scoped>
+    button {
+        padding: 4px 15px;
+        font-size: 15px;
+        background-color: #e7e7e7;
+        align-self: left;
+    }
+
+    h5 {
+        align-self: left;
+        display: block;
+        font-size: 0.8em;
+        color: #c0c0c0;
+        margin-top: 1.67em;
+        margin-bottom: 0.1em;
+        margin-left: 0;
+        margin-right: 0;
+        font-weight: bold;
+    }
+
+    input[type="text"] {
+        font-size: 15px;
+        height: 30px;
+        width: 700px;
+        box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    }
+</style>
+{% endblock %}
