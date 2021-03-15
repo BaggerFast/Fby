@@ -93,5 +93,6 @@ def serialize(page):
 
 
 class Page:
-    create_vote = serialize('create_vote')
-    main = serialize('index')
+    registration = serialize('registration')
+    login = serialize('login')
+

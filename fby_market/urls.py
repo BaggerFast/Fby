@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import fby_market.additional_url.api.api_catalogue as catalogue
+from main.modules.login import MyLoginFormView
 from main.modules.registration import MyRegisterFormView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('catalogue/', include(catalogue)),
-    path('accounts/register', MyRegisterFormView.as_view(), name="register"),
+    path('register/', MyRegisterFormView.as_view(), name="register"),
+    path('login/', MyLoginFormView.as_view(), name='login')
 ]
