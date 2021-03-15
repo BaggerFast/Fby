@@ -10,7 +10,7 @@ from main.models import Offer, WeightDimension, Timing, ProcessingState, Process
 class WeightDimensionSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeightDimension
-        fields = ['length', 'width', 'height', 'weight']
+        exclude = ('offer',)  # исключая offer
 
 
 class TimingSerializer(serializers.ModelSerializer):
@@ -22,7 +22,7 @@ class TimingSerializer(serializers.ModelSerializer):
 class ProcessingStateNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProcessingStateNote
-        fields = ['payload', 'type']
+        exclude = ('processingState',)
 
 
 class ProcessingStateSerializer(serializers.ModelSerializer):
@@ -36,7 +36,7 @@ class ProcessingStateSerializer(serializers.ModelSerializer):
 class MappingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mapping
-        fields = ['marketSku', 'modelId', 'categoryId']
+        exclude = ('offer', 'mappingType')
 
 
 class OfferSerializer(serializers.ModelSerializer):
@@ -61,6 +61,8 @@ class OfferSerializer(serializers.ModelSerializer):
             'shopSku',
             'name',
             'category',
+            'vendor',
+            'vendorCode'
             'manufacturer',
             'weightDimensions',
             'manufacturerCountries',

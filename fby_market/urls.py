@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from fby_market.additional_url.api import api_url
+import fby_market.additional_url.api.api_catalogue as catalogue
+from main.modules.registration import MyRegisterFormView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include(api_url)),
+    path('catalogue/', include(catalogue)),
+    path('accounts/register', MyRegisterFormView.as_view(), name="register"),
 ]

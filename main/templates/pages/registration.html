@@ -1,25 +1,6 @@
-{% extends 'app.html' %}
 {% block content %}
-<form method="post">
-    <div class="form-group">
-        <label>
-            Имя пользователя
-            <input type="text" class="form-control" id="usernameInput" aria-describedby="userHelp" />
-        </label>
-        <small id="userHelp" class="form-text text-muted">Как к вам обращаться</small>
-    </div>
-    <div class="form-group">
-        <label>
-            Номер телефона
-            <input type="tel" class="bfh-phone form-control" id="phoneInput" aria-describedby="phoneHelp" />
-        </label>
-    </div>
-    <div class="form-group">
-        <label>
-            Пароль
-            <input type="password" class="form-control" id="exampleInputPassword" />
-        </label>
-    </div>
-    <button type="submit" class="btn btn-primary" style="margin-bottom: 20px;">Зарегистрироваться</button>
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Зарегистрировать">
 </form>
 {% endblock %}

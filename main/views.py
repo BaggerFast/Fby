@@ -86,3 +86,12 @@ def save_prices_to_db(data):
 
 def save_to_db(data):
     OfferPattern(json=data['result']['offerMappingEntries']).save()
+
+
+def serialize(page):
+    return 'pages/' + page + '.html'
+
+
+class Page:
+    create_vote = serialize('create_vote')
+    main = serialize('index')
