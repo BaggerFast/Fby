@@ -23,15 +23,12 @@ def get_data_from_yandex(next_page_token=None):
 
 
 def get_catalogue_from_ym():
-    """Загрузка каталога из YandexMarket и сохранение в файл data_file.json"""
     json_object = get_data_from_yandex()
     while 'nextPageToken' in json_object['result']['paging']:  # если страница не последняя, читаем следующую
         next_page_token = json_object['result']['paging']['nextPageToken']
         next_json_object = json.loads(get_data_from_yandex(next_page_token))
         json_object['result']['offerMappingEntries'] += next_json_object['result']['offerMappingEntries']
         json_object['result']['paging'] = next_json_object['result']['paging']
-    with open("data_file.json", "w") as write_file:
-        json.dump(json_object, write_file, indent=2, ensure_ascii=False)
     return json_object
 
 
@@ -88,6 +85,7 @@ def save_prices_to_db(data):
 
 
 def save_to_db(data):
+    print(1)
     OfferPattern(json=data['result']['offerMappingEntries']).save()
 
 
