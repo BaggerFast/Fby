@@ -1,10 +1,9 @@
-from main.models import Offer
+from main.models import Offer as OfferModel
 from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays, Mapping
 from django.core.exceptions import ObjectDoesNotExist
 
 
 class Offer:
-
     class Base:
         def __init__(self, data, offer, name=''):
             self.data = data
@@ -41,7 +40,7 @@ class Offer:
 
     class SupplyScheduleDays(Base):
         def save(self):
-            SupplyScheduleDays.objects.update_or_create(offer=self.offer, supply_schedule_day=self.data)
+            SupplyScheduleDays.objects.update_or_create(offer=self.offer, supplyScheduleDay=self.data)
 
     class ProcessingState(Base):
         def save(self):
@@ -51,8 +50,8 @@ class Offer:
         def save(self):
             Mapping.objects.update_or_create(
                 offer=self.offer,
-                market_sku=self.data["marketSku"],
-                category_id=self.data["categoryId"],
+                marketSku=self.data["marketSku"],
+                categoryId=self.data["categoryId"],
             )
 
 
@@ -88,16 +87,17 @@ class OfferPattern:
     def save(self):
         for item in self.json:
             try:
-                offer = Offer.objects.get(shop_sku=item['offer'].get('shopSku'))
+                offer = OfferModel.objects.get(shopSku=item['offer'].get('shopSku'))
             except ObjectDoesNotExist:
-                offer = Offer.objects.create()
+                offer = OfferModel.objects.create()
             json_offer = item['offer']
             if 'mapping' in item:
                 json_offer['mapping'] = item['mapping']
 
             for key, data in json_offer.items():
                 if key in self.simple:
+                    print(key)
                     Offer.Base(data=data, offer=offer, name=key).save()
                 elif key in self.foreign:
-                    getattr(OfferBase, key[0].title()+key[1::])(data=data, offer=offer).save()
+                    getattr(Offer, key[0].title()+key[1::])(data=data, offer=offer).save()
             offer.save()

@@ -23,13 +23,7 @@ def get_data_from_yandex(next_page_token=None):
 
 
 def get_catalogue_from_ym():
-    json_object = get_data_from_yandex()
-    while 'nextPageToken' in json_object['result']['paging']:  # если страница не последняя, читаем следующую
-        next_page_token = json_object['result']['paging']['nextPageToken']
-        next_json_object = json.loads(get_data_from_yandex(next_page_token))
-        json_object['result']['offerMappingEntries'] += next_json_object['result']['offerMappingEntries']
-        json_object['result']['paging'] = next_json_object['result']['paging']
-    return json_object
+    return get_data_from_yandex()
 
 
 class OfferList(generics.ListCreateAPIView):
@@ -85,7 +79,6 @@ def save_prices_to_db(data):
 
 
 def save_to_db(data):
-    print(1)
     OfferPattern(json=data['result']['offerMappingEntries']).save()
 
 

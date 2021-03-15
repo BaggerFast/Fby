@@ -12,8 +12,6 @@ class MyRegisterFormView(FormView):
 
     def form_valid(self, form):
         form.save()
-        # data = get_catalogue_from_ym()
-        # save_to_db(data)
         user = authenticate(username=form.data.get('username'), password=form.data.get('password2'))
         login(self.request, user)
         return redirect(reverse('index'))

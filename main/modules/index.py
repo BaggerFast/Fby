@@ -9,4 +9,6 @@ class MainView(View):
         }
 
     def get(self, request):
+        data = get_catalogue_from_ym()
+        save_to_db(data)
         return render(request, Page.index, self.context)
