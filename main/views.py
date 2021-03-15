@@ -8,11 +8,11 @@ from main.models.save_dir.offer import OfferPattern
 from main.models.save_dir.prices import PricePattern
 
 
-def get_data_from_yandex(next_page_token=None):
+def get_data_from_yandex(next_page_token=None, json_name="offer-mapping-entries"):
     headers = {
         'Authorization': f'OAuth oauth_token="{YA_MARKET_TOKEN}", oauth_client_id="{YA_MARKET_CLIENT_ID}"'
     }
-    url = f'https://api.partner.market.yandex.ru/v2/campaigns/{YA_MARKET_SHOP_ID}/offer-mapping-entries.json'
+    url = f'https://api.partner.market.yandex.ru/v2/campaigns/{YA_MARKET_SHOP_ID}/{json_name}.json'
     if next_page_token:
         url += f'?page_token={next_page_token}'
     data = requests.get(url, headers=headers)
@@ -21,13 +21,30 @@ def get_data_from_yandex(next_page_token=None):
 
 def get_catalogue_from_ym():
     """Загрузка каталога из YandexMarket и сохранение в файл data_file.json"""
-    json_object = get_data_from_yandex()
-    while 'nextPageToken' in json_object['result']['paging']:  # если страница не последняя, читаем следующую
-        next_page_token = json_object['result']['paging']['nextPageToken']
-        next_json_object = json.loads(get_data_from_yandex(next_page_token))
-        json_object['result']['offerMappingEntries'] += next_json_object['result']['offerMappingEntries']
-        json_object['result']['paging'] = next_json_object['result']['paging']
+    json_object = get_data_from_yandex("offer-mapping-entries")
+    if "OK" in json_object['status']:
+        while 'nextPageToken' in json_object['result']['paging']:  # если страница не последняя, читаем следующую
+            next_page_token = json_object['result']['paging']['nextPageToken']
+            next_json_object = json.loads(get_data_from_yandex(next_page_token))
+            json_object['result']['offerMappingEntries'] += next_json_object['result']['offerMappingEntries']
+            json_object['result']['paging'] = next_json_object['result']['paging']
     with open("data_file.json", "w") as write_file:
+        json.dump(json_object, write_file, indent=2, ensure_ascii=False)
+    return json_object
+
+
+def get_prices_from_ym():
+    """
+    Загрузка цен из YandexMarket и сохранение в файл prices_file.json
+    """
+    json_object = get_data_from_yandex(json_name="offer-prices")
+    if "OK" in json_object['status']:
+        while 'nextPageToken' in json_object['result']['paging']:  # если страница не последняя, читаем следующую
+            next_page_token = json_object['result']['paging']['nextPageToken']
+            next_json_object = json.loads(get_data_from_yandex(next_page_token, json_name="offer-prices"))
+            json_object['result']['offers'] += next_json_object['result']['offers']
+            json_object['result']['paging'] = next_json_object['result']['paging']
+    with open("prices_file.json", "w") as write_file:
         json.dump(json_object, write_file, indent=2, ensure_ascii=False)
     return json_object
 
@@ -63,21 +80,6 @@ def get_json_data_from_file(file):
     return json_object
 
 
-def get_prices_from_ym():
-    """
-    Загрузка цен из YandexMarket и сохранение в файл prices_file.json
-    """
-    data = get_data_from_yandex(json_name="offer-prices")
-    json_object = json.loads(data)
-    if "OK" in json_object['status']:
-        while 'nextPageToken' in json_object['result']['paging']:  # если страница не последняя, читаем следующую
-            next_page_token = json_object['result']['paging']['nextPageToken']
-            next_json_object = json.loads(get_data_from_yandex(next_page_token, json_name="offer-prices"))
-            json_object['result']['offers'] += next_json_object['result']['offers']
-            json_object['result']['paging'] = next_json_object['result']['paging']
-    with open("prices_file.json", "w") as write_file:
-        json.dump(json_object, write_file, indent=2, ensure_ascii=False)
-    return json_object
 
 
 def save_prices_to_db(data):
