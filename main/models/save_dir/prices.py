@@ -13,13 +13,16 @@ class PriceBase:
 
 
 class PricePattern:
-    keys = [
+    priceKeys = [
         'shopSku',
         'marketSku',
-        'value',
+        'updatedAt',
+    ]
+
+    priceDataKeys = [
         'currencyId',
         'vat',
-        'updatedAt'
+        'value',
     ]
 
     def __init__(self, json):
@@ -34,9 +37,9 @@ class PricePattern:
             obj, created = Price.objects.get_or_create(offer_id=offer.id)
             price = obj
             for key, data in item.items():
-                if key in self.keys:
+                if key in self.priceKeys:
                     PriceBase.Base(data=data, price=price, name=key).save()
             for key, data in item['price'].items():
-                if key in self.keys:
-                    PriceBase.Base(data=data, price=price, name=key).save()
+                if key in self.priceDataKeys:
+                    PriceBase.Base(data=data, price=price.priceData, name=key).save()
             price.save()

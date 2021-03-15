@@ -8,25 +8,35 @@ class Price(models.Model):
     shopSku = models.CharField(max_length=255, null=True)
     marketSku = models.IntegerField(null=True)
     updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
-    discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True)
-    value = models.FloatField(verbose_name="Цена на товар.", null=True)
-    vat = models.IntegerField(
-        verbose_name="""
-            Идентификатор ставки НДС, применяемой для товара:
-            2 — 10%.
-            5 — 0%.
-            6 — не облагается НДС.
-            7 — 20%.
-            Если параметр не указан, используется ставка НДС, установленная в личном кабинете магазина.
-            """,
-        null=True
-    )
 
     offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='price',
         verbose_name='Информация о цене товара',
+        null=True
+    )
+
+
+class PriceData(models.Model):
+    discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True)
+    value = models.FloatField(verbose_name="Цена на товар.", null=True)
+    vat = models.IntegerField(
+        verbose_name="""
+               Идентификатор ставки НДС, применяемой для товара:
+               2 — 10%.
+               5 — 0%.
+               6 — не облагается НДС.
+               7 — 20%.
+               Если параметр не указан, используется ставка НДС, установленная в личном кабинете магазина.
+               """,
+        null=True
+    )
+    offer = models.OneToOneField(
+        to=Price,
+        on_delete=models.CASCADE,
+        related_name='priceData',
+        verbose_name='Данные о цене',
         null=True
     )
 
