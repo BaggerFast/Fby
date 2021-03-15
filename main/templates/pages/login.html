@@ -1,26 +1,28 @@
 {% extends 'app.html' %}
 {% block content %}
-<div class="card">
-    <div class="card-body">
-        {% if not user.is_authenticated %}
-        <div>
-            <label>
-                Имя пользователя:
-                {{form.username}}
-            </label>
+<form action="" method="post">{% csrf_token %}
+    <div class="card">
+        <div class="card-body">
+            {% if not user.is_authenticated %}
+            <div>
+                <label>
+                    Имя пользователя:
+                    {{form.username}}
+                </label>
+            </div>
+            <div>
+                <label>
+                    Пароль:
+                    {{form.password}}
+                </label>
+            </div>
+            <div>
+                <button class="btn btn-primary" @click="login">Войти</button>
+            </div>
+            {%else%}
+            <button class="btn btn-warning" @click="logout">Выйти</button>
+            {%endif%}
         </div>
-        <div>
-            <label>
-                Пароль:
-                {{form.password}}
-            </label>
-        </div>
-        <div>
-            <button class="btn btn-primary" @click="login">Войти</button>
-        </div>
-        {%else%}
-        <button class="btn btn-warning" @click="logout">Выйти</button>
-        {%endif%}
     </div>
-</div>
+</form>
 {% endblock %}

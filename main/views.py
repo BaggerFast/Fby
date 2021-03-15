@@ -1,6 +1,9 @@
 import json
 import requests
 from rest_framework import generics
+from django.views import View
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from fby_market.settings import YA_MARKET_TOKEN, YA_MARKET_CLIENT_ID, YA_MARKET_SHOP_ID
 from main.models.base import Offer
 from main.serializers import OfferSerializer
@@ -93,6 +96,6 @@ def serialize(page):
 
 
 class Page:
+    index = serialize('index')
     registration = serialize('registration')
     login = serialize('login')
-
