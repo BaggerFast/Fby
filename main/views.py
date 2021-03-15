@@ -90,3 +90,4 @@ class Page:
     index = serialize('index')
     registration = serialize('registration')
     login = serialize('login')
+    catalogue = serialize('catalogue')

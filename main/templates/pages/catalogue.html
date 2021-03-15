@@ -23,15 +23,15 @@
                 </tr>
             </thead>
             <tbody>
-                {{ for offer in offers }}
+                {% for offer in offers %}
                 <tr>
-                    <td>{{ offer.name }}</td>
+                    <td><a href="{% url 'offer_by_sku' offer.shopSku %}">{{ offer.name }}</a></td>
                     <td>{{ offer.description }}</td>
                     <td>{{ offer.shopSku }}</td>
                     <td>{{ offer.category }}</td>
                     <td>{{ offer.vendor }}</td>
                 </tr>
-                {{ endfor }}
+                {% endfor %}
             </tbody>
         </table>
     </div>

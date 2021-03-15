@@ -61,8 +61,6 @@ class OfferSerializer(serializers.ModelSerializer):
             'shopSku',
             'name',
             'category',
-            'vendor',
-            'vendorCode'
             'manufacturer',
             'weightDimensions',
             'manufacturerCountries',
