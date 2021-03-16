@@ -3,7 +3,7 @@ from django.views.generic.edit import FormView
 from main.models.user.registration import UserRegistrationForm
 from django.urls import reverse
 from django.shortcuts import redirect
-from main.views import Page, get_catalogue_from_ym, save_to_db
+from main.views import Page
 
 
 class MyRegisterFormView(FormView):

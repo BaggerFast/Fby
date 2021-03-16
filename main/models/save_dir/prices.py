@@ -31,8 +31,7 @@ class PricePattern:
                 offer = Offer.objects.get(shopSku=item.get('id'))
             except Offer.DoesNotExist:
                 continue
-            obj, created = Price.objects.get_or_create(offer_id=offer.id)
-            price = obj
+            price, created = Price.objects.get_or_create(offer_id=offer.id)
             for key, data in item.items():
                 if key in self.keys:
                     PriceBase.Base(data=data, price=price, name=key).save()
