@@ -4,7 +4,6 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 class Offer:
-
     class Base:
         def __init__(self, data, offer, name=''):
             self.data = data
@@ -99,5 +98,5 @@ class OfferPattern:
                 if key in self.simple:
                     Offer.Base(data=data, offer=offer, name=key).save()
                 elif key in self.foreign:
-                    getattr(OfferBase, key[0].title()+key[1::])(data=data, offer=offer).save()
+                    getattr(Offer, key[0].title()+key[1::])(data=data, offer=offer).save()
             offer.save()
