@@ -34,7 +34,6 @@ class Requests:
         Формирование запроса и получение очередной страницы данных
         (если next_page_token не задан, вернется первая страница)
         """
-
         url = self.url + f'?page_token={next_page_token}' if next_page_token else self.url
         if self.PARAMS:  # если есть входные параметры, формируем post-запрос
             data = requests.post(url, headers=self.headers, json=self.PARAMS)
@@ -46,7 +45,6 @@ class Requests:
         """
         Получение всех страниц данных
         """
-
         while 'nextPageToken' in json_data['result']['paging']:  # если страница не последняя, читаем следующую
             next_page_token = json_data['result']['paging']['nextPageToken']
             next_json_object = self.get_next_page(next_page_token)
@@ -58,7 +56,6 @@ class Requests:
         """
         Сохранение данных в соответствующую БД
         """
-
         raise NotImplementedError
 
 
@@ -66,7 +63,6 @@ class OfferList(Requests):
     """
     Класс для получения списка товаров и сохранения в БД Offer
     """
-
     def __init__(self):
         super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries')
 

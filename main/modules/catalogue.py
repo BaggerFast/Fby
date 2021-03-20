@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import View
-from main.RequestYd import OfferList
+from main.request_yandex import OfferList
 from main.views import Page
 from main.models.base import Offer
 
