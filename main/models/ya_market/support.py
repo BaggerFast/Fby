@@ -64,7 +64,7 @@ class ManufacturerCountry(models.Model):
 
 class WeightDimension(models.Model):
     offer = models.OneToOneField(
-        to=Price,
+        to=Offer,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
         verbose_name='Габариты упаковки и вес товара',
