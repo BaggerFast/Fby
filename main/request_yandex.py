@@ -11,7 +11,7 @@ class Requests:
     Базовый класс для получения данных и сохранения в БД
     """
 
-    PARAMS = None # параметры запроса в формате json (для post-запросов)
+    PARAMS = None  # параметры запроса в формате json (для post-запросов)
 
     def __init__(self, json_name: str, base_context_name: str):
         self.url = f'https://api.partner.market.yandex.ru/v2/campaigns/{YaMarket.SHOP_ID}/{json_name}.json'

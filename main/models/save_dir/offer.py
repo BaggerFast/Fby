@@ -2,6 +2,8 @@ from main.models import Offer as OfferModel
 from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays, Mapping
 from django.core.exceptions import ObjectDoesNotExist
 
+from main.models.save_dir.base import BasePattern
+
 
 class Offer:
     class Base:
@@ -55,7 +57,7 @@ class Offer:
             )
 
 
-class OfferPattern:
+class OfferPattern(BasePattern):
     simple = [
         'name',
         'shopSku',
@@ -81,9 +83,6 @@ class OfferPattern:
         "mapping",
     ]
 
-    def __init__(self, json):
-        self.json = json
-
     def save(self):
         for item in self.json:
             try:
@@ -96,7 +95,6 @@ class OfferPattern:
 
             for key, data in json_offer.items():
                 if key in self.simple:
-                    print(key)
                     Offer.Base(data=data, offer=offer, name=key).save()
                 elif key in self.foreign:
                     getattr(Offer, key[0].title()+key[1::])(data=data, offer=offer).save()

@@ -6,14 +6,14 @@ from main.models.base import Offer
 
 
 class CatalogueView(View):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.context = {
-            'offers': None
-        }
+    context = {
+        'offers': None
+    }
 
     def get(self, request):
-        # data = OfferList()
-        # data.save()
+        if int(request.GET.get('update_data', 0)):
+            data = OfferList()
+            data.save()
+            print('Update offer_db successful')
         self.context['offers'] = Offer.objects.all()
         return render(request, Page.catalogue, self.context)
