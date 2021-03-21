@@ -1,12 +1,15 @@
 from django.contrib.auth import login, authenticate
 from django.views.generic.edit import FormView
-from main.models.user.registration import UserRegistrationForm
 from django.urls import reverse
 from django.shortcuts import redirect
+
+from main.models.user import UserRegistrationForm
 from main.views import Page
 
 
 class MyRegisterFormView(FormView):
+    """отображение регистрации"""
+
     form_class = UserRegistrationForm
     template_name = Page.registration
 

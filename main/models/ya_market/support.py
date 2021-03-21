@@ -1,6 +1,6 @@
 from django.db import models
-from main.models.base import Offer
-from main.models.choices import TimeUnitChoices, MappingType, TimingTypeChoices, ProcessingStateNoteType, \
+from main.models.ya_market.base import Offer
+from main.models.ya_market.choices import TimeUnitChoices, MappingType, TimingTypeChoices, ProcessingStateNoteType, \
     ProcessingStateStatus, SupplyScheduleDayChoices
 
 
@@ -25,8 +25,8 @@ class Price(models.Model):
     offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
-        related_name='price',
-        verbose_name='Информация о цене товара',
+        related_name='priceData',
+        verbose_name='Данные о цене',
         null=True
     )
 
@@ -54,7 +54,7 @@ class ManufacturerCountry(models.Model):
 
 class WeightDimension(models.Model):
     offer = models.OneToOneField(
-        to=Offer,
+        to=Price,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
         verbose_name='Габариты упаковки и вес товара',

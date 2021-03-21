@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.views.generic.base import View
+from main.models.ya_market.base import Offer
 from main.request_yandex import OfferList
 from main.views import Page, get_navbar
-from main.models.base import Offer
 
 
 class CatalogueView(View):
+    """отображение каталога"""
     context = {}
 
     def get(self, request):

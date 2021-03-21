@@ -4,6 +4,8 @@ from main.views import Page, get_navbar
 
 
 class MainView(View):
+    """отображение гланой страницы"""
+
     context = {}
 
     def get(self, request):

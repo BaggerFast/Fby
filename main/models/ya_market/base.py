@@ -1,5 +1,5 @@
 from django.db import models
-from main.models.choices import TimingTypeChoices, AvailabilityChoices, MappingType
+from main.models.ya_market.choices import TimingTypeChoices, AvailabilityChoices, MappingType
 
 
 class Offer(models.Model):

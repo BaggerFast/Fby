@@ -2,11 +2,14 @@ from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from django.urls import reverse
 from django.shortcuts import redirect
-from main.models.user.login import UserLoginForm
+
+from main.models.user import UserLoginForm
 from main.views import Page
 
 
 class MyLoginFormView(FormView):
+    """отображение авторизации"""
+
     form_class = UserLoginForm
     template_name = Page.login
 

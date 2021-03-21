@@ -21,7 +21,10 @@ class OfferEdit(generics.UpdateAPIView):
     lookup_field = 'shopSku'
 
 
-def get_navbar(request):
+def get_navbar(request) -> list:
+    """
+    возвращает атрибутты для меню
+    """
     navbar = [
         {'url': 'index', 'label': 'Главная', 'list': False}
     ]
@@ -45,11 +48,14 @@ def get_navbar(request):
     return navbar
 
 
-def serialize(page):
+def serialize(page) -> str:
     return f'pages/{page}.html'
 
 
 class Page:
+    """
+    Для простого взаимодействия с путями файлов html
+    """
     index = serialize('index')
     registration = serialize('registration')
     login = serialize('login')

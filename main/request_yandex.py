@@ -20,7 +20,7 @@ class Requests:
         self.base_context_name = base_context_name  # название элемента во входном json, содержащего требуемые данные
         self.json_data = self.get_json()
 
-    def get_json(self):
+    def get_json(self) -> dict:
         """
         Получение данных от YM
         """
@@ -29,7 +29,7 @@ class Requests:
             json_data = self.get_all_pages(json_data=json_data)
         return json_data
 
-    def get_next_page(self, next_page_token=None):
+    def get_next_page(self, next_page_token=None) -> dict:
         """
         Формирование запроса и получение очередной страницы данных
         (если next_page_token не задан, вернется первая страница)
@@ -41,7 +41,7 @@ class Requests:
             data = requests.get(url, headers=self.headers)
         return data.json()
 
-    def get_all_pages(self, json_data):
+    def get_all_pages(self, json_data) -> dict:
         """
         Получение всех страниц данных
         """
@@ -52,7 +52,7 @@ class Requests:
             json_data['result']['paging'] = next_json_object['result']['paging']
         return json_data
 
-    def save(self):
+    def save(self) -> None:
         """
         Сохранение данных в соответствующую БД
         """
@@ -66,7 +66,7 @@ class OfferList(Requests):
     def __init__(self):
         super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries')
 
-    def save(self):
+    def save(self) -> None:
         OfferPattern(json=self.json_data['result'][self.base_context_name]).save()
 
 
@@ -78,5 +78,5 @@ class OfferPrice(Requests):
     def __init__(self):
         super().__init__(json_name='offer-prices', base_context_name='offers')
 
-    def save(self):
+    def save(self) -> None:
         PricePattern(json=self.json_data['result'][self.base_context_name]).save()

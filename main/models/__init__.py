@@ -15,6 +15,6 @@
    Добавить сериализаторы для каждой модели (с трансляцией имён в формат Яндекса и обратно)
 """
 
-from .choices import *
-from .support import *
-from .base import *
+from main.models.ya_market.choices import *
+from main.models.ya_market.support import *
+from main.models.ya_market.base import *
