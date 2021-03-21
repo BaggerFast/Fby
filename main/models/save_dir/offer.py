@@ -1,5 +1,6 @@
 from main.models import Offer as OfferModel
-from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays, Mapping
+from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays, \
+    Mapping, Price
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models.save_dir.base import BasePattern
@@ -18,6 +19,19 @@ class Offer:
             setattr(self.offer, self.name, self.data)
 
     """Все последующие классы для сложных данных"""
+    class Price(Base):
+        def exist(self, item):
+            return self.data.get(item, None)
+
+        def save(self) -> None:
+            Price.objects.update_or_create(
+                offer=self.offer,
+                defaults={
+                    "value": self.exist("value"),
+                    "vat": self.exist('vat'),
+                    "discountBase": self.exist('discountBase')
+                }
+            )
 
     class Barcodes(Base):
         def save(self) -> None:
