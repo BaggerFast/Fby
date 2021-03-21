@@ -1,6 +1,6 @@
-from django.urls import reverse
 from rest_framework import generics
-from main.models.base import Offer
+
+from main.models.ya_market.base import Offer
 from main.serializers import OfferSerializer
 
 
