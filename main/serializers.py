@@ -4,7 +4,13 @@ from rest_framework import serializers
 from rest_framework.serializers import ListSerializer
 
 from main.models import Offer, WeightDimension, Timing, ProcessingState, ProcessingStateNote, \
-    Mapping
+    Mapping, Price
+
+
+class PriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Price
+        exclude = ('offer',)  # исключая offer
 
 
 class WeightDimensionSerializer(serializers.ModelSerializer):
@@ -40,6 +46,7 @@ class MappingSerializer(serializers.ModelSerializer):
 
 
 class OfferSerializer(serializers.ModelSerializer):
+    price = PriceSerializer()
     weightDimensions = WeightDimensionSerializer()
     manufacturerCountries = ListSerializer(child=serializers.CharField())
     urls = ListSerializer(child=serializers.CharField())
@@ -58,10 +65,13 @@ class OfferSerializer(serializers.ModelSerializer):
         model = Offer
         fields = [
             'id',
+            'marketSku',
+            'updatedAt',
             'shopSku',
             'name',
             'category',
             'manufacturer',
+            'price',
             'weightDimensions',
             'manufacturerCountries',
             'urls',
