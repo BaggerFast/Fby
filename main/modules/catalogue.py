@@ -1,16 +1,15 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 from main.request_yandex import OfferList
-from main.views import Page
+from main.views import Page, get_navbar
 from main.models.base import Offer
 
 
 class CatalogueView(View):
-    context = {
-        'offers': None
-    }
+    context = {}
 
     def get(self, request):
+        self.context['navbar'] = get_navbar(request)
         if int(request.GET.get('update_data', 0)):
             data = OfferList()
             data.save()

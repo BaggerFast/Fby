@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.views.generic.base import View
-from main.views import Page
+from main.views import Page, get_navbar
 
 
 class MainView(View):
+    context = {}
+
     def get(self, request):
-        return render(request, Page.index, None)
+        self.context['navbar'] = get_navbar(request)
+        return render(request, Page.index, self.context)

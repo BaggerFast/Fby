@@ -15,6 +15,3 @@ class MyRegisterFormView(FormView):
         user = authenticate(username=form.data.get('username'), password=form.data.get('password2'))
         login(self.request, user)
         return redirect(reverse('index'))
-
-    def form_invalid(self, form):
-        return super(MyRegisterFormView, self).form_invalid(form)

@@ -14,6 +14,3 @@ class MyLoginFormView(FormView):
         user = authenticate(username=form.data.get('username'), password=form.data.get('password'))
         login(self.request, user)
         return redirect(reverse('index'))
-
-    def form_invalid(self, form):
-        return super(MyLoginFormView, self).form_invalid(form)

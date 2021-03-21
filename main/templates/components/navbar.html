@@ -7,20 +7,27 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+      {% for item in navbar %}
+      {% if not item.list %}
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'index' %}">
-          Главная
+        <a class="nav-link" href="{% url item.url %}">
+          {{item.label}}
         </a>
       </li>
+      {%else%}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          Товары
+          {{item.label}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="catalogue"> Каталог </a>
+           {% for path in item.list %}
+          <a class="dropdown-item" href="{% url path.url %}"> {{path.label}} </a>
+          {%endfor%}
         </div>
       </li>
+      {%endif%}
+      {%endfor%}
     </ul>
   </div>
 </nav>

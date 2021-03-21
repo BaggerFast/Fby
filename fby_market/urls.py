@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
 from django.contrib.auth.views import LogoutView
+from main.modules import *
 import fby_market.additional_url.api.api_catalogue as catalogue
-from main.modules import MainView, MyRegisterFormView, MyLoginFormView
 
 
 urlpatterns = [

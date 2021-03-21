@@ -1,3 +1,4 @@
+from django.urls import reverse
 from rest_framework import generics
 from main.models.base import Offer
 from main.serializers import OfferSerializer
@@ -18,6 +19,30 @@ class OfferEdit(generics.UpdateAPIView):
     serializer_class = OfferSerializer
     queryset = Offer.objects.all()
     lookup_field = 'shopSku'
+
+
+def get_navbar(request):
+    navbar = [
+        {'url': 'index', 'label': 'Главная', 'list': False}
+    ]
+
+    if request.user.is_authenticated:
+        navbar += [
+            {'label': 'Авторизация', 'list': [{'url': 'logout', 'label': "Выйти"}]},
+            {'label': 'Каталог', 'list': [{'url': 'catalogue_list', 'label': "Товары"}]}
+        ]
+    else:
+        navbar += [
+            {'label': 'Авторизация', 'list': [
+                {'url': 'login', 'label': 'Войти'},
+                {'url': 'register', 'label': 'Зарегистрироваться'}
+            ]}
+        ]
+
+    # for menu_item in navbar:
+    #     menu_item['active'] = request.path != reverse(menu_item['url'])
+
+    return navbar
 
 
 def serialize(page):
