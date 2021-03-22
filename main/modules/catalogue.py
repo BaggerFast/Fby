@@ -18,5 +18,15 @@ class CatalogueView(View):
             offer_price = OfferPrice()
             offer_price.save()
             print('Update offer_db successful')
-        self.context['offers'] = Offer.objects.all()
+        search = request.GET.get('input', '').lower()
+        fields = ['name', 'description', 'shopSku', 'category', 'vendor']
+        objects = []
+        for item in Offer.objects.all():
+            try:
+                for field in fields:
+                    if search in getattr(item, field).lower():
+                        objects.append(item)
+            except:
+                pass
+        self.context['offers'] = objects
         return render(request, Page.catalogue, self.context)
