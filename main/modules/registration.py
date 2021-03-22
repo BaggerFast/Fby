@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.views.generic.edit import FormView
 from django.urls import reverse
@@ -23,4 +24,5 @@ class MyRegisterFormView(FormView):
         form.save()
         user = authenticate(username=form.data.get('username'), password=form.data.get('password2'))
         login(self.request, user)
+        messages.success(self.request, 'Вы успешно зарегистрировались!')
         return redirect(reverse('index'))

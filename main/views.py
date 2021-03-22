@@ -1,3 +1,4 @@
+from django.urls import reverse
 from rest_framework import generics
 
 from main.models.ya_market.base import Offer
@@ -26,7 +27,7 @@ def get_navbar(request) -> list:
     возвращает атрибутты для меню
     """
     navbar = [
-        {'url': 'index', 'label': 'Главная', 'list': False}
+        {'url': 'index', 'label': 'Главная'}
     ]
 
     if request.user.is_authenticated:
@@ -42,8 +43,14 @@ def get_navbar(request) -> list:
             ]}
         ]
 
-    # for menu_item in navbar:
-    #     menu_item['active'] = request.path != reverse(menu_item['url'])
+    for menu_item in navbar:
+        if menu_item.get('list', False):
+            # для атрибута меню с выпадающим списком
+            for i in range(len(menu_item['list'])):
+                menu_item['list'][i]['active'] = request.path != reverse(menu_item['list'][i]['url'])
+        else:
+            # для обычных атрибутов
+            menu_item['active'] = request.path != reverse(menu_item['url'])
 
     return navbar
 
