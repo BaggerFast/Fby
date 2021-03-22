@@ -67,7 +67,10 @@ class OfferList(Requests):
         super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries')
 
     def save(self) -> None:
-        OfferPattern(json=self.json_data['result'][self.base_context_name]).save()
+        try:
+            OfferPattern(json=self.json_data['result'][self.base_context_name]).save()
+        except KeyError:
+            pass
 
 
 class OfferPrice(Requests):
@@ -79,4 +82,7 @@ class OfferPrice(Requests):
         super().__init__(json_name='offer-prices', base_context_name='offers')
 
     def save(self) -> None:
-        PricePattern(json=self.json_data['result'][self.base_context_name]).save()
+        try:
+            PricePattern(json=self.json_data['result'][self.base_context_name]).save()
+        except KeyError:
+            pass
