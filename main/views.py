@@ -32,7 +32,7 @@ def get_navbar(request) -> list:
     if request.user.is_authenticated:
         navbar += [
             {'label': 'Авторизация', 'list': [{'url': 'logout', 'label': "Выйти"}]},
-            {'label': 'Каталог', 'list': [{'url': 'catalogue_list', 'label': "Товары"}]}
+            {'label': 'Товары', 'list': [{'url': 'catalogue_list', 'label': "Каталог"}]}
         ]
     else:
         navbar += [
