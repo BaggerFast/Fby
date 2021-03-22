@@ -8,13 +8,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       {% for item in navbar %}
-      {% if not item.list %}
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url item.url %}">
-          {{item.label}}
-        </a>
-      </li>
-      {%else%}
+      {% if item.list %}
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -22,13 +16,24 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
            {% for path in item.list %}
-          <a class="dropdown-item" href="{% url path.url %}"> {{path.label}} </a>
+          <a class="dropdown-item {% if not path.active%}disabled{% endif %}" href="{% url path.url %}"> {{path.label}} </a>
           {%endfor%}
         </div>
+      </li>
+      {%else%}
+      <li class="nav-item active">
+        <a class="nav-link {% if not item.active%}disabled{% endif %}" href="{% url item.url %}">
+          {{item.label}}
+        </a>
       </li>
       {%endif%}
       {%endfor%}
     </ul>
   </div>
+  {% if user.is_authenticated %}
+    <span class="navbar-text" style="color: black; white-space: nowrap; margin-right: 20px;">
+      Вы: {{ user }}
+    </span>
+  {% endif %}
 </nav>
 {% endblock %}
