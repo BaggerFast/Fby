@@ -3,6 +3,8 @@ from main.models.save_dir.offer import OfferPattern
 
 
 class PricePattern(OfferPattern):
+    """Класс сохраняющий данные price из json в БД."""
+
     attrs = {
         'simple': [
             'marketSku',
@@ -14,6 +16,7 @@ class PricePattern(OfferPattern):
     }
 
     def save(self) -> None:
+        """Сохраняет данные в БД"""
         for item in self.json:
             try:
                 offer = OfferModel.objects.get(shopSku=item.get('id'))

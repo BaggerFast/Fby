@@ -7,6 +7,8 @@ from main.models.save_dir.base import BasePattern
 
 
 class Offer:
+    """Класс внутри которого находятся классы нужные для сохранения данных"""
+
     """Нужен для общей категории"""
     class Base:
         """ для простых данных"""
@@ -16,6 +18,9 @@ class Offer:
             self.name = name
 
         def save(self) -> None:
+            """
+            Сохранить данные
+            """
             setattr(self.offer, self.name, self.data)
 
     """Все последующие классы для сложных данных"""
@@ -76,6 +81,8 @@ class Offer:
 
 
 class OfferPattern(BasePattern):
+    """Класс сохраняющий данные offer из json в БД"""
+
     attrs = {
         'simple': [
             'name',
@@ -103,6 +110,7 @@ class OfferPattern(BasePattern):
     }
 
     def save(self) -> None:
+        """Сохраняет данные в БД"""
         for item in self.json:
             try:
                 offer = OfferModel.objects.get(shopSku=item['offer'].get('shopSku'))
@@ -115,7 +123,7 @@ class OfferPattern(BasePattern):
             offer.save()
 
     def parse_attrs(self, json_offer, offer) -> None:
-        """Парсит данные из json на простые и сложные """
+        """Парсит данные из json на простые и сложные"""
         for key, data in json_offer.items():
             if key in self.attrs['simple']:
                 Offer.Base(data=data, offer=offer, name=key).save()

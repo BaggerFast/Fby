@@ -7,9 +7,7 @@ from main.models.save_dir.prices import PricePattern
 
 
 class Requests:
-    """
-    Базовый класс для получения данных и сохранения в БД
-    """
+    """Базовый класс для получения данных и сохранения в БД"""
 
     PARAMS = None  # параметры запроса в формате json (для post-запросов)
 
@@ -21,9 +19,7 @@ class Requests:
         self.json_data = self.get_json()
 
     def get_json(self) -> dict:
-        """
-        Получение данных от YM
-        """
+        """Получение данных от YM"""
         json_data = self.get_next_page()
         if "OK" in json_data['status']:
             json_data = self.get_all_pages(json_data=json_data)
@@ -42,9 +38,7 @@ class Requests:
         return data.json()
 
     def get_all_pages(self, json_data) -> dict:
-        """
-        Получение всех страниц данных
-        """
+        """Получение всех страниц данных"""
         while 'nextPageToken' in json_data['result']['paging']:  # если страница не последняя, читаем следующую
             next_page_token = json_data['result']['paging']['nextPageToken']
             next_json_object = self.get_next_page(next_page_token)
@@ -53,16 +47,13 @@ class Requests:
         return json_data
 
     def save(self) -> None:
-        """
-        Сохранение данных в соответствующую БД
-        """
+        """Сохранение данных в соответствующую БД"""
         raise NotImplementedError
 
 
 class OfferList(Requests):
-    """
-    Класс для получения списка товаров и сохранения в БД Offer
-    """
+    """Класс для получения списка товаров и сохранения в БД Offer"""
+
     def __init__(self):
         super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries')
 
@@ -71,9 +62,7 @@ class OfferList(Requests):
 
 
 class OfferPrice(Requests):
-    """
-    Класс для получения списка цен на товары и сохранения в БД Price
-    """
+    """Класс для получения списка цен на товары и сохранения в БД Price"""
 
     def __init__(self):
         super().__init__(json_name='offer-prices', base_context_name='offers')

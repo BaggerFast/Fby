@@ -6,6 +6,7 @@ from django import forms
 
 class UserLoginForm(AuthenticationForm):
     """Модель юзера для авторизации"""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for key in self.fields.keys():
@@ -18,6 +19,7 @@ class UserLoginForm(AuthenticationForm):
 
 class UserRegistrationForm(UserCreationForm):
     """Модель юзера для регистрации"""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for key in self.fields.keys():
