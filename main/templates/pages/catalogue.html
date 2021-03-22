@@ -12,6 +12,9 @@
                 class="btn btn-outline-secondary" type="button" id="button-addon">Поиск</button>
       </div>
     </form>
+    {% if search %}
+    <a href="{% url 'catalogue_list' %}" class="btn-link" style="text-align: center; margin: 10px;">← Назад</a>
+    {% endif %}
     {% if offers %}
     <div class="col">
         <table class="table table-hover table-borderless">
