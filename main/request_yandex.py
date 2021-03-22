@@ -2,6 +2,7 @@
 
 from fby_market.settings import YaMarket
 import requests
+from main.models import Price
 from main.models.save_dir.offer import OfferPattern
 from main.models.save_dir.prices import PricePattern
 
@@ -80,3 +81,41 @@ class OfferPrice(Requests):
 
     def save(self):
         PricePattern(json=self.json_data['result'][self.base_context_name]).save()
+
+
+class OfferChangePrice(Requests):
+    """
+    Класс для изменения цены на товар на сервере яндекса
+    """
+    
+    # TODO: Refactoring
+
+    def __init__(self, id, price):
+        old_price = self.CreateParams(id, price)
+        super().__init__(json_name='offer-prices/updates', base_context_name='price')
+        (OfferPrice()).save()   # обновить данные БД
+        self.show(old_price, id, price)
+
+    def show(self, old_price, id, price) -> None:
+        new_price = Price.objects.get(id=id).value
+        print(f'Old price: {old_price}, New price: {new_price}, status: {"OK" if new_price == price else "ERROR"}')
+
+    def get_json(self):
+        return self.get_next_page()
+
+    def get_dict(self, offer, price) -> dict:
+        return {
+            'marketSku': offer.marketSku,
+            'price':
+                {
+                    'currencyId': 'RUR',
+                    'value': price,
+                    'vat': offer.vat,
+                }
+            }
+
+    def CreateParams(self, id, price) -> int:
+        offer = Price.objects.get(id=id)
+        self.PARAMS = {'offers': [self.get_dict(offer, price)]}
+        return offer.value  # Вернуть старую цену
+
