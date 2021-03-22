@@ -1,11 +1,12 @@
 {% extends 'app.html' %}
 {% block content %}
-<form action="." method="GET">
-    <input type="submit" name="update_data" value="1">
-</form>
 {% if offers %}
 <div class="row mt-5">
-    <div class="col">
+  <form action="." method="GET">
+      <input type="text" class="form-control d-none" name="update_data" value="1">
+      <button id="button_loader" type="submit" class="btn btn-primary">Обновить данные</button>
+  </form>
+    <div class="col" style="margin-top: 20px;">
         <table class="table table-hover table-borderless">
             <thead class="table-secondary">
                 <tr>
@@ -40,6 +41,48 @@
         </table>
     </div>
 </div>
+<!-- Preloader -->
+<style type="text/css">
+  #hellopreloader>p {
+    display: none;
+  }
+  #hellopreloader_preload {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 100px;
+    background: #00000080 url(http://hello-site.ru//main/images/preloads/puff.svg) center center no-repeat;
+    background-size: 300px;
+  }
+</style>
+<div id="hellopreloader">
+  <div id="hellopreloader_preload"></div>
+</div>
+<script type="text/javascript">
+  var hellopreloader = document.getElementById("hellopreloader");
+  var hellopreloader_preload = document.getElementById("hellopreloader_preload");
+  var button_loader = document.getElementById("button_loader");
+  function fadeOutnojquery(el) {
+    el.style.opacity = 1;
+    var interhellopreloader = setInterval(function () {
+      el.style.opacity = el.style.opacity - 0.05;
+      if (el.style.opacity <= 0.05) {
+        clearInterval(interhellopreloader);
+        hellopreloader_preload.style.display = "none";
+      }
+    }, 16);
+  }
+  button_loader.addEventListener("click", function() {
+    hellopreloader.style.opacity = 1;
+    hellopreloader_preload.style.opacity = 1;
+    hellopreloader.style.display = "block";
+    hellopreloader_preload.style.display = "block";
+  });
+</script>
 {% endif %}
 <style scoped>
     button {

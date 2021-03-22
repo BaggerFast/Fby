@@ -1,6 +1,13 @@
 {% extends 'app.html' %}
 {% block content %}
 <form action="" method="post">{% csrf_token %}
+    {% for field, errors in form.errors.items %}
+    {% for error in errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endfor %}
+    {% endfor %}
     {% if not user.is_authenticated %}
     <div class="mb-3">
         <label>
