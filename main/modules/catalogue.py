@@ -15,6 +15,7 @@ class CatalogueView(View):
             OfferList().save()
             OfferPrice().save()
             print('Update offer_db successful')
+            objects = self.offer_search(request)
         self.context['offers'] = self.del_sku_from_name(Offer.objects.all())
 
         return render(request, Page.catalogue, self.context)
@@ -29,3 +30,17 @@ class CatalogueView(View):
                 sku = offers[i].shopSku.lower()
                 offers[i].name = offers[i].name.replace(sku, '')
         return offers
+
+    def offer_search(self, request) -> list:
+        search = request.GET.get('input', '').lower()
+        self.context['search'] = True if len(search) else False
+        fields = ['name', 'description', 'shopSku', 'category', 'vendor']
+        objects = []
+        for item in Offer.objects.all():
+            try:
+                for field in fields:
+                    if search in getattr(item, field).lower():
+                        objects.append(item)
+            except:
+                pass
+        return objects
