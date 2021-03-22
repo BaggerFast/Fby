@@ -87,31 +87,31 @@ class OfferChangePrice(Requests):
     """
     Класс для изменения цены на товар на сервере яндекса
     """
-    
-    # TODO: Refactoring
 
-    def __init__(self, id, price):
-        old_price = self.CreateParams(id, price)
+    def __init__(self, id: int, price: int):
+        old_price: int = self.CreateParams(id, price)
         super().__init__(json_name='offer-prices/updates', base_context_name='price')
         (OfferPrice()).save()   # обновить данные БД
         self.show(old_price, id, price)
 
-    def show(self, old_price, id, price) -> None:
-        new_price = Price.objects.get(id=id).value
-        print(f'Old price: {old_price}, New price: {new_price}, status: {"OK" if new_price == price else "ERROR"}')
+    @staticmethod
+    def show(old_price, id, price) -> None:
+        offer = Price.objects.get(id=id)
+        new_price, sku = offer.value, offer.marketSku
+        print(f'Sku: {sku}, Old price: {old_price}, New price: {new_price}, Status: {"OK" if new_price == price else "ERROR"}')
 
-    def get_json(self):
+    def get_json(self) -> dict:
         return self.get_next_page()
 
-    def get_dict(self, offer, price) -> dict:
+    @staticmethod
+    def get_dict(offer, price) -> dict:
         return {
             'marketSku': offer.marketSku,
-            'price':
-                {
-                    'currencyId': 'RUR',
-                    'value': price,
-                    'vat': offer.vat,
-                }
+            'price': {
+                        'currencyId': 'RUR',
+                        'value': price,
+                        'vat': offer.vat,
+                    }
             }
 
     def CreateParams(self, id, price) -> int:
