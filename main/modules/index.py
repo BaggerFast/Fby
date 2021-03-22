@@ -5,8 +5,7 @@ from main.views import Page, get_navbar
 
 class MainView(View):
     """отображение гланой страницы"""
-
-    context = {}
+    context = {'title': 'Main'}
 
     def get(self, request):
         self.context['navbar'] = get_navbar(request)

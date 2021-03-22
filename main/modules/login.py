@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 
 from main.models.user import UserLoginForm
-from main.views import Page
+from main.views import Page, get_navbar
 
 
 class MyLoginFormView(FormView):
@@ -12,6 +12,12 @@ class MyLoginFormView(FormView):
 
     form_class = UserLoginForm
     template_name = Page.login
+    context = {'title': 'Login', 'page_name': 'Авторизация'}
+
+    def get(self, request, *args, **kwargs):
+        self.context['navbar'] = get_navbar(request)
+        self.context['form'] = self.get_context_data()['form']
+        return self.render_to_response(self.context)
 
     def form_valid(self, form):
         user = authenticate(username=form.data.get('username'), password=form.data.get('password'))

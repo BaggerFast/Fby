@@ -7,7 +7,7 @@ from main.views import Page, get_navbar
 
 class CatalogueView(View):
     """отображение каталога"""
-    context = {}
+    context = {'title': 'Catalogue', 'page_name': 'Каталог'}
 
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
