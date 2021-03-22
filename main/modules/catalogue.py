@@ -12,7 +12,6 @@ class CatalogueView(View):
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
         if int(request.GET.get('update_data', 0)):
-            print(1)
             offer_list = OfferList()
             offer_list.save()
             offer_price = OfferPrice()
