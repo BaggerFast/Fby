@@ -3,6 +3,8 @@ from main.models.ya_market.choices import TimingTypeChoices, AvailabilityChoices
 
 
 class Offer(models.Model):
+    marketSku = models.IntegerField(null=True)
+    updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
     shopSku = models.CharField(max_length=255, verbose_name='SKU товара в нашем магазине', null=True)
     name = models.CharField(max_length=255, verbose_name='Название товара', null=True)
     category = models.CharField(max_length=255, verbose_name='Категория товара', null=True)
