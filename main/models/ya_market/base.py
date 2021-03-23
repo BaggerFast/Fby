@@ -43,7 +43,6 @@ class Offer(models.Model):
                   ' а продаете поштучно. Например, вы продаете детское питание по 1 баночке, '
                   'а коробка содержит 6 баночек.',
         null=True,
-        min_value=0,
     )
     minShipment = models.IntegerField(
         verbose_name='Минимальная партия поставки',
