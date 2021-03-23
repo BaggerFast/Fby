@@ -1,8 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 from main.models.ya_market.choices import TimingTypeChoices, AvailabilityChoices, MappingType
 
 
 class Offer(models.Model):
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name="offer",
+        verbose_name="Пользователь",
+        null=True
+    )
+
     marketSku = models.IntegerField(null=True)
     updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
     shopSku = models.CharField(max_length=255, verbose_name='SKU товара в нашем магазине', null=True)

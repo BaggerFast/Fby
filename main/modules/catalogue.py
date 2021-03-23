@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from main.models.ya_market.base import Offer
 from main.request_yandex import OfferList, OfferPrice
@@ -10,15 +10,18 @@ class CatalogueView(View):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
 
     def get(self, request):
-        self.context['navbar'] = get_navbar(request)
-        if int(request.GET.get('update_data', 0)):
-            OfferList().save()
-            OfferPrice().save()
-            print('Update offer_db successful')
-            objects = self.offer_search(request)
-        self.context['offers'] = self.del_sku_from_name(Offer.objects.all())
+        if request.user.is_authenticated:
+            self.context['navbar'] = get_navbar(request)
+            if int(request.GET.get('update_data', 0)):
+                OfferList(request.user).save()
+                OfferPrice(request.user).save()
+                print('Update offer_db successful')
+                objects = self.offer_search(request)
+            self.context['offers'] = self.del_sku_from_name(Offer.objects.filter(user=request.user))
 
-        return render(request, Page.catalogue, self.context)
+            return render(request, Page.catalogue, self.context)
+        else:
+            return redirect('index')
 
     def del_sku_from_name(self, offers_list):
         offers = offers_list

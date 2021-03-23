@@ -109,13 +109,13 @@ class OfferPattern(BasePattern):
         ]
     }
 
-    def save(self) -> None:
+    def save(self, user) -> None:
         """Сохраняет данные в БД"""
         for item in self.json:
             try:
-                offer = OfferModel.objects.get(shopSku=item['offer'].get('shopSku'))
+                offer = OfferModel.objects.get(shopSku=item['offer'].get('shopSku'), user=user)
             except ObjectDoesNotExist:
-                offer = OfferModel.objects.create()
+                offer = OfferModel.objects.create(user=user)
             json_offer = item['offer']
             if 'mapping' in item:
                 json_offer['mapping'] = item['mapping']

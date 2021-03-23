@@ -54,18 +54,20 @@ class Requests:
 class OfferList(Requests):
     """Класс для получения списка товаров и сохранения в БД Offer"""
 
-    def __init__(self):
+    def __init__(self, user):
         super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries')
+        self.user = user
 
     def save(self) -> None:
-        OfferPattern(json=self.json_data['result'][self.base_context_name]).save()
+        OfferPattern(json=self.json_data['result'][self.base_context_name]).save(self.user)
 
 
 class OfferPrice(Requests):
     """Класс для получения списка цен на товары и сохранения в БД Price"""
 
-    def __init__(self):
+    def __init__(self, user):
         super().__init__(json_name='offer-prices', base_context_name='offers')
+        self.user = user
 
     def save(self) -> None:
-        PricePattern(json=self.json_data['result'][self.base_context_name]).save()
+        PricePattern(json=self.json_data['result'][self.base_context_name]).save(self.user)
