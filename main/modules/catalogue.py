@@ -17,8 +17,7 @@ class CatalogueView(View):
             OfferList().save()
             OfferPrice().save()
             messages.success(self.request, 'Данные offer обновились!')
-        self.context['offers'] = self.offer_search(request, self.del_sku_from_name(Offer.objects.all()))
-        self.context['urls'] = Url.objects.all()
+        self.context['offers'] = self.offer_search(request, self.append_images(self.del_sku_from_name(Offer.objects.all())))
         return render(request, Page.catalogue, self.context)
 
     def append_images(self, offers_list) -> list:
