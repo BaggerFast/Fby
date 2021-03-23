@@ -20,11 +20,13 @@ class ProductPageView(View):
         barcode = Barcode.objects.get(offer=id)
         # timings = Timing.objects.get(offer=id)
 
-        self.context['logistic_form'] = LogisticForm(instance=offer)
-        self.context['url_form'] = UrlForm(instance=url)
-        self.context['barcode_form'] = BarcodeForm(instance=barcode)
+        disable = False if int(request.GET.get('edit', 0)) else True
+
+        self.context['forms'] = {'Основная информация': [OfferForm(instance=offer, disable=disable),
+                                                         UrlForm(instance=url, disable=disable),
+                                                         BarcodeForm(instance=barcode, disable=disable)],
+                                'Габариты и вес в упаковке': [WeightDimensionForm(instance=weight, disable=disable)],
+                                'Особенности логистики': [LogisticForm(instance=offer, disable=disable)]}
         # self.context['timing_form'] = TimingForm(instance=timings)
-        self.context['offer_form'] = OfferForm(instance=offer)
-        self.context['weight_form'] = WeightDimensionForm(instance=weight)
 
         return render(request, Page.product_card, self.context)
