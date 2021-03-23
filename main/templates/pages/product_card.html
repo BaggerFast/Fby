@@ -1,0 +1,32 @@
+{% extends 'app.html' %}
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+    {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% for item in offer_form %}
+    <div class="mb-3">
+        <label>
+            {{item.label}}
+            {{item}}
+        </label>
+    </div>
+  {% endfor %}
+
+  <h2>Габариты и вес в упаковке</h2>
+
+  {% for item in weight_form %}
+    <div class="mb-3">
+        <label>
+            {{item.label}}
+            {{item}}
+        </label>
+    </div>
+  {% endfor %}
+</form>
+{% endblock %}

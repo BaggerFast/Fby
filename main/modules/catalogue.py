@@ -12,31 +12,28 @@ class CatalogueView(View):
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
         if int(request.GET.get('update_data', 0)):
-            OfferList().save()
+            errors = OfferList().save() if OfferList().save() else None
             OfferPrice().save()
             print('Update offer_db successful')
-            objects = self.offer_search(request)
-        self.context['offers'] = self.del_sku_from_name(Offer.objects.all())
-
+        self.context['offers'] = self.offer_search(request, self.del_sku_from_name(Offer.objects.all()))
         return render(request, Page.catalogue, self.context)
 
-    def del_sku_from_name(self, offers_list):
+    def del_sku_from_name(self, offers_list) -> list:
         offers = offers_list
+        data = ['upper', 'lower']
         for i in range(len(offers)):
             if offers[i].shopSku.lower() in offers[i].name.lower():
-                sku = offers[i].shopSku.upper()
-                offers[i].name = offers[i].name.replace(sku, '')
-
-                sku = offers[i].shopSku.lower()
-                offers[i].name = offers[i].name.replace(sku, '')
+                for dat in data:
+                    sku = getattr(offers[i].shopSku, dat)()
+                    offers[i].name = offers[i].name.replace(sku, '')
         return offers
 
-    def offer_search(self, request) -> list:
+    def offer_search(self, request, offers) -> list:
         search = request.GET.get('input', '').lower()
         self.context['search'] = True if len(search) else False
         fields = ['name', 'description', 'shopSku', 'category', 'vendor']
         objects = []
-        for item in Offer.objects.all():
+        for item in offers:
             try:
                 for field in fields:
                     if search in getattr(item, field).lower():

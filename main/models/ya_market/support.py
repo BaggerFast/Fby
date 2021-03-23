@@ -7,8 +7,8 @@ from main.models.ya_market.choices import TimeUnitChoices, MappingType, TimingTy
 class Price(models.Model):
     discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True)
     value = models.FloatField(verbose_name="Цена на товар.", null=True)
-    vat = models.IntegerField(
-        verbose_name="""
+    vat = models.IntegerField(verbose_name='Идентификатор ставки НДС',
+        help_text="""
                    Идентификатор ставки НДС, применяемой для товара:
                    2 — 10%.
                    5 — 0%.
@@ -22,15 +22,12 @@ class Price(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='price',
-        verbose_name='Информация о цене товара',
         null=True
     )
 
 
 class ManufacturerCountry(models.Model):
     """
-        Список стран, в которых произведен товар
-
         .. todo::
            Добавить проверку на то, что в списке товаров может быть максимум 5 стран
     """
@@ -38,8 +35,6 @@ class ManufacturerCountry(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name="manufacturerCountries",
-        verbose_name='Список стран, в которых произведен товар',
-        help_text='Содержит от одной до 5 стран',
         null=True
     )
     name = models.CharField(max_length=255, verbose_name='Страна производства товара', null=True)
@@ -53,26 +48,25 @@ class WeightDimension(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
-        verbose_name='Габариты упаковки и вес товара',
         null=True
     )
     length = models.FloatField(
-        verbose_name='Длина упаковки в сантиметрах',
+        verbose_name='Длина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
         null=True
     )
     width = models.FloatField(
-        verbose_name='Ширина упаковки в сантиметрах',
+        verbose_name='Ширина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 50.7',
         null=True
     )
     height = models.FloatField(
-        verbose_name='Высота упаковки в сантиметрах',
+        verbose_name='Высота, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 20.0',
         null=True
     )
     weight = models.FloatField(
-        verbose_name='Вес товара в килограммах',
+        verbose_name='Вес в упаковке (брутто), кг',
         help_text='С учетом упаковки (брутто). '
                   'Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 1.001',
         null=True
@@ -90,13 +84,9 @@ class Url(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='urls',
-        verbose_name='Список URL',
-        help_text='страниц с описанием товара на вашем сайте; '
-                  'фотографий товара в хорошем качестве. '
-                  'Содержит хотя бы один URL',
         null=True
     )
-    url = models.CharField(max_length=2000, verbose_name='URL изображения или страницы с описанием товара', null=True)
+    url = models.URLField(max_length=2000, verbose_name='Сслыка на фото', null=True)
 
     def __str__(self):
         return self.url
@@ -106,11 +96,15 @@ class Barcode(models.Model):
     offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
-        verbose_name='Штрихкоды товара',
         related_name='barcodes',
         null=True
     )
-    barcode = models.CharField(max_length=255, verbose_name='Штрихкод товара', null=True)
+    barcode = models.CharField(max_length=255, verbose_name='Штрихкод',
+                               help_text='Штрихкод обязателен при размещении товара по модели FBY и FBY+. '
+                                         'Допустимые форматы: EAN-13, EAN-8, UPC-A, UPC-E, Code 128. Для книг'
+                                         ' — ISBN-10 или ISBN-13. Для товаров определённых производителей передайте '
+                                         'только код GTIN. Если штрихкодов несколько, укажите их через запятую.',
+                               null=True)
 
     def __str__(self):
         return self.barcode
@@ -130,19 +124,18 @@ class Timing(models.Model):
     offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
-        verbose_name='Тайминги товара',
         related_name='timings',
         help_text='Срок годности, срок службы, гарантийный срок',
         null=True
     )
 
-    timePeriod = models.BigIntegerField(verbose_name='Срок годности в единицах, указанных в параметре time_unit',
+    timePeriod = models.BigIntegerField(verbose_name='Срок службы',
                                         null=True)
     timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices,
                                 verbose_name='Единица измерения срока годности', null=True)
     comment = models.CharField(
         max_length=2000,
-        verbose_name='Дополнительные условия использования в течение срока годности',
+        verbose_name='Комментарий к сроку службы',
         help_text='Например: Хранить в сухом помещении',
         null=True
     )
@@ -179,17 +172,12 @@ class CustomsCommodityCode(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='customsCommodityCodes',
-        verbose_name='Список кодов товара в единой ТН ВЭД',
-        help_text='Список кодов товара в единой Товарной номенклатуре внешнеэкономической деятельности (ТН ВЭД), '
-                  'если товар подлежит особому учету (например, в системе "Меркурий" как продукция '
-                  'животного происхождения или в системе "Честный ЗНАК"). '
-                  'Может содержать только один вложенный код ТН ВЭД.',
         null=True
     )
     code = models.CharField(
         max_length=10,
-        verbose_name='Код товара в единой Товарной номенклатуре внешнеэкономической деятельности (ТН ВЭД)',
-        help_text='Формат кода: 10 цифр без пробелов',
+        verbose_name='Код ТН ВЭД',
+        help_text='Укажите 10 или 14 цифр без пробелов.',
         null=True
     )
 
@@ -202,13 +190,14 @@ class SupplyScheduleDays(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name="supplyScheduleDays",
-        verbose_name="День недели, в который вы поставляете товары на склад",
         null=True
     )
     supplyScheduleDay = models.CharField(
         max_length=9,
         choices=SupplyScheduleDayChoices.choices,
-        verbose_name='День недели, в который вы поставляете товары на склад',
+        verbose_name='Дни поставки',
+        help_text='Дни недели, когда вы готовы поставлять товары на склад маркетплейса. '
+                  'Заполняйте поле, чтобы получать рекомендации о пополнении товаров на складе.',
         null=True
     )
 
@@ -221,13 +210,13 @@ class ProcessingState(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='processingState_set',
-        verbose_name='История статусов публикации товара на Маркете',
         null=True
     )
     status = models.CharField(
         max_length=12,
         choices=ProcessingStateStatus.choices,
-        verbose_name='Статус публикации товара',
+        verbose_name='Cтатус',
+        help_text="Можно продавать или нет",
         null=True
     )
 
@@ -260,7 +249,6 @@ class Mapping(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name="mapping_set",
-        verbose_name='Привязки карточек на Я.Маркете',
         null=True
     )
     marketSku = models.IntegerField(
