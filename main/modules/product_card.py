@@ -22,11 +22,11 @@ class ProductPageView(View):
 
         disable = False if int(request.GET.get('edit', 0)) else True
 
-        self.context['logistic_form'] = LogisticForm(instance=offer, disable=disable)
-        self.context['url_form'] = UrlForm(instance=url, disable=disable)
-        self.context['barcode_form'] = BarcodeForm(instance=barcode, disable=disable)
+        self.context['forms'] = {'Основная информация': [OfferForm(instance=offer, disable=disable),
+                                                         UrlForm(instance=url, disable=disable),
+                                                         BarcodeForm(instance=barcode, disable=disable)],
+                                'Габариты и вес в упаковке': [WeightDimensionForm(instance=weight, disable=disable)],
+                                'Особенности логистики': [LogisticForm(instance=offer, disable=disable)]}
         # self.context['timing_form'] = TimingForm(instance=timings)
-        self.context['offer_form'] = OfferForm(instance=offer, disable=disable)
-        self.context['weight_form'] = WeightDimensionForm(instance=weight, disable=disable)
 
         return render(request, Page.product_card, self.context)
