@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from main.models.ya_market.base import Offer
@@ -15,31 +16,28 @@ class CatalogueView(View):
             if int(request.GET.get('update_data', 0)):
                 OfferList(request.user).save()
                 OfferPrice(request.user).save()
-                print('Update offer_db successful')
-                objects = self.offer_search(request)
-            self.context['offers'] = self.del_sku_from_name(Offer.objects.filter(user=request.user))
-
+                messages.success(self.request, 'Данные offer обновились!')
+            self.context['offers'] = self.offer_search(request, self.del_sku_from_name(Offer.objects.filter(user=request.user)))
             return render(request, Page.catalogue, self.context)
         else:
             return redirect('index')
 
-    def del_sku_from_name(self, offers_list):
+    def del_sku_from_name(self, offers_list) -> list:
         offers = offers_list
+        data = ['upper', 'lower']
         for i in range(len(offers)):
             if offers[i].shopSku.lower() in offers[i].name.lower():
-                sku = offers[i].shopSku.upper()
-                offers[i].name = offers[i].name.replace(sku, '')
-
-                sku = offers[i].shopSku.lower()
-                offers[i].name = offers[i].name.replace(sku, '')
+                for dat in data:
+                    sku = getattr(offers[i].shopSku, dat)()
+                    offers[i].name = offers[i].name.replace(sku, '')
         return offers
 
-    def offer_search(self, request) -> list:
+    def offer_search(self, request, offers) -> list:
         search = request.GET.get('input', '').lower()
         self.context['search'] = True if len(search) else False
         fields = ['name', 'description', 'shopSku', 'category', 'vendor']
         objects = []
-        for item in Offer.objects.all():
+        for item in offers:
             try:
                 for field in fields:
                     if search in getattr(item, field).lower():

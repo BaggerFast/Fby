@@ -67,3 +67,4 @@ class Page:
     registration = serialize('registration')
     login = serialize('login')
     catalogue = serialize('catalogue')
+    product_card = serialize('product_card')

@@ -4,7 +4,7 @@ from django.views.generic.edit import FormView
 from django.urls import reverse
 from django.shortcuts import redirect
 
-from main.models.user import UserRegistrationForm
+from main.forms.user import UserRegistrationForm
 from main.views import Page, get_navbar
 
 

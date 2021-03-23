@@ -1,11 +1,12 @@
 from pprint import pprint
 
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import FormView
 from django.urls import reverse
 from django.shortcuts import redirect
 
-from main.models.user import UserLoginForm
+from main.forms.user import UserLoginForm
 from main.views import Page, get_navbar
 
 
@@ -28,4 +29,5 @@ class MyLoginFormView(FormView):
     def form_valid(self, form):
         user = authenticate(username=form.data.get('username'), password=form.data.get('password'))
         login(self.request, user)
+        messages.success(self.request, 'Авторизация прошла успешно')
         return redirect(reverse('index'))
