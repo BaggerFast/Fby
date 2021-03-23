@@ -42,6 +42,7 @@ class CatalogueView(View):
                 for field in fields:
                     if search in getattr(item, field).lower():
                         objects.append(item)
+                        break
             except:
                 pass
         return objects
