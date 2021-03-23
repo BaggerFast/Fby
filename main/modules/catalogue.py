@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 from main.models.ya_market.base import Offer
+from main.models.ya_market.support import Url
 from main.request_yandex import OfferList, OfferPrice
 from main.views import Page, get_navbar
 
@@ -15,8 +16,15 @@ class CatalogueView(View):
             errors = OfferList().save() if OfferList().save() else None
             OfferPrice().save()
             print('Update offer_db successful')
-        self.context['offers'] = self.offer_search(request, self.del_sku_from_name(Offer.objects.all()))
+        self.context['offers'] = self.offer_search(request, self.append_images(self.del_sku_from_name(Offer.objects.all())))
+        self.context['urls'] = Url.objects.all()
         return render(request, Page.catalogue, self.context)
+
+    def append_images(self, offers_list) -> list:
+        offers = offers_list
+        for i in range(len(offers)):
+            setattr(offers[i], 'image', Url.objects.filter(offer=offers[i])[0])
+        return offers
 
     def del_sku_from_name(self, offers_list) -> list:
         offers = offers_list

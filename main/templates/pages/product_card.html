@@ -1,6 +1,6 @@
 {% extends 'app.html' %}
 {% block content %}
-<form action="" method="post">{% csrf_token %}
+
     {% for field, errors in form.errors.items %}
         {% for error in errors %}
             <div class="alert alert-danger" role="alert">
@@ -9,55 +9,90 @@
         {% endfor %}
     {% endfor %}
 
-  <h2>Основная информация</h2>
-
-    {% for item in offer_form %}
-    <div class="mb-3">
-        <label>
-            {{item.label}}
-            {{item}}
-        </label>
+  <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 40px;">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          Основная информация
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          {% for item in offer_form %}
+          <div class="mb-3">
+              <label>
+                  <label{% if item.help_text %}
+                    data-bs-toggle="tooltip" data-bs-placement="right" title="{{ item.help_text }}"
+                  {% endif %}>{{item.label}}</label>
+                  {{item}}
+              </label>
+          </div>
+          {% endfor %}
+          {% for item in url_form %}
+          <div class="mb-3">
+              <label>
+                  <label{% if item.help_text %}
+                    data-bs-toggle="tooltip" data-bs-placement="right" title="{{ item.help_text }}"
+                  {% endif %}>{{item.label}}</label>
+                  {{item}}
+              </label>
+          </div>
+          {% endfor %}
+          {% for item in barcode_form %}
+          <div class="mb-3">
+              <label>
+                  <label{% if item.help_text %}
+                    data-bs-toggle="tooltip" data-bs-placement="right" title="{{ item.help_text }}"
+                  {% endif %}>{{item.label}}</label>
+                  {{item}}
+              </label>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-  {% endfor %}
-
-  {% for item in url_form %}
-    <div class="mb-3">
-        <label>
-            {{item.label}}
-            {{item}}
-        </label>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          Габариты и вес в упаковке
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          {% for item in weight_form %}
+            <div class="mb-3">
+                <label>
+                    {{item.label}}
+                    {{item}}
+                </label>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-  {% endfor %}
-
-  {% for item in barcode_form %}
-    <div class="mb-3">
-        <label>
-            {{item.label}}
-            {{item}}
-        </label>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingThree">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+          Особенности логистики
+        </button>
+      </h2>
+      <div id="flush-collapseThree" class="accordion-collapse collapse show" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          {% for item in logistic_form %}
+          <div class="mb-3">
+              <label>
+                  {{item.label}}
+                  {{item}}
+              </label>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-  {% endfor %}
+  </div>
+  <form action="." method="GET">
+      <input type="text" class="form-control d-none" name="edit" value="1">
+      <button id="button_loader" type="submit" class="btn btn-primary">Редактировать</button>
+  </form>
 
-  <h2>Габариты и вес в упаковке</h2>
-
-  {% for item in weight_form %}
-    <div class="mb-3">
-        <label>
-            {{item.label}}
-            {{item}}
-        </label>
-    </div>
-  {% endfor %}
-
-  <h2>Особенности логистики</h2>
-
-  {% for item in logistic_form %}
-    <div class="mb-3">
-        <label>
-            {{item.label}}
-            {{item}}
-        </label>
-    </div>
-  {% endfor %}
-</form>
 {% endblock %}
