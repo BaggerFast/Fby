@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.views.generic.base import View
 from main.models.ya_market.base import Offer
@@ -12,9 +13,9 @@ class CatalogueView(View):
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
         if int(request.GET.get('update_data', 0)):
-            errors = OfferList().save() if OfferList().save() else None
+            OfferList().save()
             OfferPrice().save()
-            print('Update offer_db successful')
+            messages.success(self.request, 'Данные offer обновились!')
         self.context['offers'] = self.offer_search(request, self.del_sku_from_name(Offer.objects.all()))
         return render(request, Page.catalogue, self.context)
 
