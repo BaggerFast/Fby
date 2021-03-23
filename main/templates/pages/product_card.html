@@ -20,6 +20,24 @@
     </div>
   {% endfor %}
 
+  {% for item in url_form %}
+    <div class="mb-3">
+        <label>
+            {{item.label}}
+            {{item}}
+        </label>
+    </div>
+  {% endfor %}
+
+  {% for item in barcode_form %}
+    <div class="mb-3">
+        <label>
+            {{item.label}}
+            {{item}}
+        </label>
+    </div>
+  {% endfor %}
+
   <h2>Габариты и вес в упаковке</h2>
 
   {% for item in weight_form %}
