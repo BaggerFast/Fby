@@ -3,8 +3,7 @@ from django.contrib import messages
 
 from fby_market.settings import YaMarket
 import requests
-from main.models.save_dir.offer import OfferPattern
-from main.models.save_dir.prices import PricePattern
+from main.models.save_dir import *
 
 
 class Requests:
@@ -91,9 +90,6 @@ class OfferList(Requests):
     def save(self, request) -> None:
         OfferPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
 
-    def __str__(self):
-        return 'OfferList'
-
 
 class OfferPrice(Requests):
     """Класс для получения списка цен на товары и сохранения в БД Price"""
@@ -104,5 +100,3 @@ class OfferPrice(Requests):
     def save(self, request) -> None:
         PricePattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
 
-    def __str__(self):
-        return 'OfferPrice'

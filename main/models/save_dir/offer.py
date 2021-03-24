@@ -1,8 +1,6 @@
 from main.models import Offer as OfferModel
-from main.models import Barcode, Url, ManufacturerCountry, WeightDimension, ProcessingState, SupplyScheduleDays, \
-    Mapping, Price
+from main.models import *
 from django.core.exceptions import ObjectDoesNotExist
-
 from main.models.save_dir.base import BasePattern
 
 
