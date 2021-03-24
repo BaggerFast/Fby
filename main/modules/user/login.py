@@ -1,13 +1,11 @@
-from pprint import pprint
-
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.views.generic.edit import FormView
 from django.urls import reverse
+from django.views.generic.edit import FormView
 from django.shortcuts import redirect
 
-from main.forms.user import UserLoginForm
-from main.views import Page, get_navbar
+from main.forms import *
+from main.view import *
 
 
 class MyLoginFormView(FormView):

@@ -2,9 +2,7 @@
 
 from rest_framework import serializers
 from rest_framework.serializers import ListSerializer
-
-from main.models import Offer, WeightDimension, Timing, ProcessingState, ProcessingStateNote, \
-    Mapping, Price
+from main.models import *
 
 
 class PriceSerializer(serializers.ModelSerializer):

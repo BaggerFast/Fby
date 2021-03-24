@@ -1,13 +1,12 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic.base import View
-
-from main.forms.from_db import OfferForm, WeightDimensionForm, LogisticForm, UrlForm, BarcodeForm, TimingForm
-from main.models.ya_market.base import Offer
-from main.models.ya_market.support import WeightDimension, Url, Barcode, Timing
-from main.views import Page, get_navbar
+from main.models import *
+from main.forms import *
+from main.view import *
 
 
-class ProductPageView(View):
+class ProductPageView(LoginRequiredMixin, View):
     """отображение каталога"""
     context = {'title': 'Product_card', 'page_name': 'Карточка товара'}
 
