@@ -1,13 +1,12 @@
 {% extends 'app.html' %}
 {% block content %}
-
-    {% for field, errors in form.errors.items %}
-        {% for error in errors %}
-            <div class="alert alert-danger" role="alert">
-                {{ error }}
-            </div>
-        {% endfor %}
+  {% for field, errors in form.errors.items %}
+    {% for error in errors %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
     {% endfor %}
+  {% endfor %}
   {% for title, forms_list in forms.items %}
   <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 40px;">
     <div class="accordion-item">
