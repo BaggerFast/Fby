@@ -5,7 +5,7 @@
         <input type="text" class="form-control d-none" name="update_data" value="1">
         <button id="button_loader" type="submit" class="btn btn-primary">Обновить данные</button>
     </form>
-    {% if offers or search %}
+    {% if offers %}
     <form ref="form" method="get" style="margin-top: 20px;">
       <div class="input-group mb-3">
         <input type="text" class="form-control" name="input" aria-describedby="button-addon">
@@ -55,7 +55,14 @@
         </table>
     </div>
     {% else %}
-    <p style="margin-top: 20px;">У вас нет данных, нажмите кнопку обновить</p>
+    <div style="margin-top: 20px;">
+      {% if search %}
+        <p>Ничего не найдено</p>
+        <a href="{% url 'catalogue_list' %}" class="btn-link" style="text-align: center; margin: 10px;">← Назад</a>
+      {% else %}
+        <p>У вас нет данных, нажмите кнопку обновить</p>
+      {% endif %}
+    </div>
     {% endif %}
 </div>
 <!-- Preloader -->
