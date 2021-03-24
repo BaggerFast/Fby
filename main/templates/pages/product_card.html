@@ -1,5 +1,6 @@
 {% extends 'app.html' %}
 {% block content %}
+<form action="" method="post">{% csrf_token %}
   {% for field, errors in form.errors.items %}
     {% for error in errors %}
     <div class="alert alert-danger" role="alert">
@@ -38,9 +39,14 @@
     </div>
   </div>
   {% endfor %}
-  <form action="." method="GET" style="margin: 40px 0;">
-      <input type="text" class="form-control d-none" name="edit" value="1">
-      <button id="button_loader" type="submit" class="btn btn-primary">Редактировать</button>
-  </form>
-
+  {% if not disable %}
+    <button id="button_save" type="submit" class="btn btn-primary" style="margin: 40px 0;">Сохранить</button>
+  {% endif %}
+</form>
+{% if disable %}
+<form action="." method="GET" style="margin: 40px 0;">
+  <input type="text" class="form-control d-none" name="edit" value="1">
+  <button id="button_loader" type="submit" class="btn btn-primary">Редактировать</button>
+</form>
+{% endif %}
 {% endblock %}
