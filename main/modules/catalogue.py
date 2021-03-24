@@ -13,7 +13,6 @@ class CatalogueView(View):
         self.context['navbar'] = get_navbar(request)
         if int(request.GET.get('update_data', 0)):
             data = OfferList()
-            data.save()
-            print('Update offer_db successful')
+            self.context['error'] = data.save_with_message()
         self.context['offers'] = Offer.objects.all()
         return render(request, Page.catalogue, self.context)

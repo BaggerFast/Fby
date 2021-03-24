@@ -52,6 +52,18 @@ class Requests:
             json_data['result']['paging'] = next_json_object['result']['paging']
         return json_data
 
+    def key_error(self) -> str:
+        if int(self.json_data["error"]["code"]) == 420:
+            return f'Ошибка № {420}. Превышенно кол-во запросов в сутки. Попробуйте позже'
+        return ''
+
+    def save_with_message(self) -> str:
+        try:
+            self.save()
+        except KeyError:
+            return self.key_error()
+        return ""
+
     def save(self) -> None:
         """
         Сохранение данных в соответствующую БД
@@ -67,10 +79,7 @@ class OfferList(Requests):
         super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries')
 
     def save(self) -> None:
-        try:
-            OfferPattern(json=self.json_data['result'][self.base_context_name]).save()
-        except KeyError:
-            pass
+        OfferPattern(json=self.json_data['result'][self.base_context_name]).save()
 
 
 class OfferPrice(Requests):
@@ -82,7 +91,4 @@ class OfferPrice(Requests):
         super().__init__(json_name='offer-prices', base_context_name='offers')
 
     def save(self) -> None:
-        try:
-            PricePattern(json=self.json_data['result'][self.base_context_name]).save()
-        except KeyError:
-            pass
+        PricePattern(json=self.json_data['result'][self.base_context_name]).save()
