@@ -10,14 +10,15 @@ from main.views import Page, get_navbar
 class CatalogueView(View):
     """отображение каталога"""
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
+    models_to_save = [OfferList, OfferPrice]
 
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
         if int(request.GET.get('update_data', 0)):
-            self.context['errors'] = [OfferList(request.user).save_with_message()]
-            self.context['errors'] += [OfferPrice(request.user).save_with_message()]
-            if not ('' in self.context['errors']):
-                messages.success(self.request, 'Данные offer обновились!')
+            for model in self.models_to_save:
+                flag = model().save_with_message(request=request)
+                if not flag:
+                    break
         offer = Offer.objects.filter(user=request.user)
         self.context['offers'] = self.offer_search(request, self.append_images(self.del_sku_from_name(offer)))
         self.context['urls'] = Url.objects.filter(offer=offer)
@@ -26,7 +27,6 @@ class CatalogueView(View):
     def append_images(self, offers_list) -> list:
         offers = offers_list
         for i in range(len(offers)):
-            print(offers[i])
             try:
                 setattr(offers[i], 'image', Url.objects.filter(offer=offers[i])[0])
             except IndexError:

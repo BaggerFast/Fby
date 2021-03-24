@@ -1,4 +1,5 @@
 """Формирование запросов в YM для получения данных и сохранения их в БД"""
+from django.contrib import messages
 
 from fby_market.settings import YaMarket
 import requests
@@ -11,11 +12,26 @@ class Requests:
 
     PARAMS = None  # параметры запроса в формате json (для post-запросов)
 
-    def __init__(self, json_name: str, base_context_name: str):
+    errors = {
+        206: "Запрос выполнен частично.",
+        400: "Запрос невалидный.",
+        401: "В запросе не указаны авторизационные данные.",
+        403: "Неверны авторизационные данные, указанные в запросе, или запрещен доступ к запрашиваемому ресурсу.",
+        404: "Запрашиваемый ресурс не найден.",
+        405: "Запрашиваемый метод для указанного ресурса не поддерживается.",
+        415: "Запрашиваемый тип контента не поддерживается методом.",
+        420: "Превышено ограничение на доступ к ресурсу.",
+        500: "Внутренняя ошибка сервера. Попробуйте вызвать метод через некоторое время. При повторении ошибки"
+             " обратитесь в службу технической поддержки Маркета.",
+        503: "Сервер временно недоступен из-за высокой загрузки. Попробуйте вызвать метод через некоторое время.",
+    }
+
+    def __init__(self, json_name: str, base_context_name: str, name: str):
         self.url = f'https://api.partner.market.yandex.ru/v2/campaigns/{YaMarket.SHOP_ID}/{json_name}.json'
         self.headers_str = f'OAuth oauth_token="{YaMarket.TOKEN}", oauth_client_id="{YaMarket.CLIENT_ID}"'
         self.headers = {'Authorization': self.headers_str, 'Content-type': 'application/json'}
         self.base_context_name = base_context_name  # название элемента во входном json, содержащего требуемые данные
+        self.name = name
         self.json_data = self.get_json()
 
     def get_json(self) -> dict:
@@ -47,18 +63,21 @@ class Requests:
         return json_data
 
     def key_error(self) -> str:
-        if int(self.json_data["error"]["code"]) == 420:
-            return f'Ошибка № {420}. Превышенно кол-во запросов в сутки. Попробуйте позже'
+        cur_error = int(self.json_data["error"]["code"])
+        if cur_error in self.errors:
+            return self.errors[cur_error]
         return ''
 
-    def save_with_message(self) -> str:
+    def save_with_message(self, request) -> bool:
         try:
-            self.save()
+            self.save(request)
+            messages.success(request, f"Модель {self.name} успешно сохранилась")
+            return True
         except KeyError:
-            return self.key_error()
-        return ""
+            messages.error(request, self.key_error() + f' В моделе {self.name}')
+            return False
 
-    def save(self) -> None:
+    def save(self, request) -> None:
         """Сохранение данных в соответствующую БД"""
         raise NotImplementedError
 
@@ -66,20 +85,24 @@ class Requests:
 class OfferList(Requests):
     """Класс для получения списка товаров и сохранения в БД Offer"""
 
-    def __init__(self, user):
-        super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries')
-        self.user = user
+    def __init__(self):
+        super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries', name="Offer")
 
-    def save(self) -> None:
-        OfferPattern(json=self.json_data['result'][self.base_context_name]).save(self.user)
+    def save(self, request) -> None:
+        OfferPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
+
+    def __str__(self):
+        return 'OfferList'
 
 
 class OfferPrice(Requests):
     """Класс для получения списка цен на товары и сохранения в БД Price"""
 
-    def __init__(self, user):
-        super().__init__(json_name='offer-prices', base_context_name='offers')
-        self.user = user
+    def __init__(self):
+        super().__init__(json_name='offer-prices', base_context_name='offers', name="OfferPrice")
 
-    def save(self) -> None:
-        PricePattern(json=self.json_data['result'][self.base_context_name]).save(self.user)
+    def save(self, request) -> None:
+        PricePattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
+
+    def __str__(self):
+        return 'OfferPrice'
