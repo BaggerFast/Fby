@@ -22,8 +22,11 @@ class CatalogueView(LoginRequiredMixin, View):
                 if not model().save_with_message(request=request):
                     break
         offer = Offer.objects.filter(user=request.user)
+
+        self.context['count'] = offer.count()
         self.context['offers'] = self.reformat_offer(offer)
         self.context['urls'] = Url.objects.filter(offer=offer)
+
         return render(request, Page.catalogue, self.context)
 
     def reformat_offer(self, offer) -> list:
