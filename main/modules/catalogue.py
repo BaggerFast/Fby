@@ -14,8 +14,8 @@ class CatalogueView(View):
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
         if int(request.GET.get('update_data', 0)):
-            OfferList().save()
-            OfferPrice().save()
+            OfferList(request.user).save()
+            OfferPrice(request.user).save()
             messages.success(self.request, 'Данные offer обновились!')
         self.context['offers'] = self.offer_search(request, self.append_images(self.del_sku_from_name(Offer.objects.all())))
         self.context['urls'] = Url.objects.all()
@@ -47,6 +47,7 @@ class CatalogueView(View):
                 for field in fields:
                     if search in getattr(item, field).lower():
                         objects.append(item)
+                        break
             except:
                 pass
         return objects
