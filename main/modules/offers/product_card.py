@@ -11,7 +11,7 @@ class ProductPageView(LoginRequiredMixin, View):
     """отображение каталога"""
     context = {'title': 'Product_card', 'page_name': 'Карточка товара'}
 
-    def post(self, request):
+    def post(self, request, id):
         self.context['navbar'] = get_navbar(request)
         self.context['disable'] = True
         offer_f = OfferForm(request.POST)
@@ -44,7 +44,13 @@ class ProductPageView(LoginRequiredMixin, View):
                                      'Особенности логистики': ['logistic_info',
                                                                [LogisticForm(instance=offer)]]}
         else:
+            print(offer_f.is_valid(), 'offer_f')
+            print(barcode_f.is_valid(), 'barcode_f')
+            print(url_f.is_valid(), 'url_f')
+            print(logistic_f.is_valid(), 'logistic_f')
+            print(weight_f.is_valid(), 'weight_f')
             messages.error(request, 'Document deleted.')
+            print(request.POST)
         return render(request, Page.product_card, self.context)
 
 
