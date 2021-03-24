@@ -22,7 +22,7 @@
           {% for item in form %}
           <div class="mb-3">
               <label>
-                  <label{% if item.help_text %}
+                  <label {% if item.help_text %}
                     data-bs-toggle="tooltip" data-bs-placement="right" title="{{ item.help_text }}"
                   {% endif %}>{{item.label}}</label>
                   {% if item.value or not disable %}

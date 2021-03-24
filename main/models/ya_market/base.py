@@ -46,21 +46,21 @@ class Offer(models.Model):
     )
 
     # done
-    transportUnitSize = models.IntegerField(
+    transportUnitSize = models.PositiveSmallIntegerField(
         verbose_name='Количество товаров в упаковке',
         help_text='Сколько товаров в упаковке. Поле используется, если вы поставляете товар упаковками,'
                   ' а продаете поштучно. Например, вы продаете детское питание по 1 баночке, '
                   'а коробка содержит 6 баночек.',
         null=True,
     )
-    minShipment = models.IntegerField(
+    minShipment = models.PositiveSmallIntegerField(
         verbose_name='Минимальная партия поставки',
         help_text='Минимальное количество товаров, которое вы готовы привозить на склад. '
                   'Например, если вы поставляете детское питание партиями минимум по 10 коробок,'
                   ' а в каждой коробке по 6 баночек, то ваша минимальная партия — 60 баночек.',
         null=True,
     )
-    quantumOfSupply = models.IntegerField(
+    quantumOfSupply = models.PositiveSmallIntegerField(
         verbose_name='Добавочная партия',
         help_text= "По сколько товаров можно добавлять к минимальной партии. Например, вы планируете поставлять"
                    " детское питание партиями, причем к минимальной партии хотите прибавлять минимум по 2 коробки, "
@@ -68,10 +68,10 @@ class Offer(models.Model):
                    "можно добавлять 12, 24, 36 баночек и т. д.",
         null=True
     )
-    deliveryDurationDays = models.IntegerField(verbose_name='Срок поставки',
+    deliveryDurationDays = models.PositiveSmallIntegerField(verbose_name='Срок поставки',
                                                help_text="За какое время вы поставите товар на склад.(в днях)",
                                                null=True)
-    boxCount = models.IntegerField(
+    boxCount = models.PositiveIntegerField(
         verbose_name='Товар занимает больше одного места',
         help_text='Если нет — оставьте поле пустым. Если да — укажите количество мест '
                   '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',

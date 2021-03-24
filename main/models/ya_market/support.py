@@ -2,7 +2,7 @@ from django.db import models
 from main.models.ya_market.base import Offer
 from main.models.ya_market.choices import TimeUnitChoices, MappingType, TimingTypeChoices, ProcessingStateNoteType, \
     ProcessingStateStatus, SupplyScheduleDayChoices
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Price(models.Model):
     discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True)
@@ -51,6 +51,7 @@ class WeightDimension(models.Model):
         null=True
     )
     length = models.FloatField(
+        validators=[MinValueValidator(0.9), MaxValueValidator(58)],
         verbose_name='Длина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
         null=True
@@ -129,7 +130,7 @@ class Timing(models.Model):
         null=True
     )
 
-    timePeriod = models.BigIntegerField(verbose_name='Срок службы',
+    timePeriod = models.PositiveSmallIntegerField(verbose_name='Срок службы',
                                         null=True)
     timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices,
                                 verbose_name='Единица измерения срока годности', null=True)
@@ -139,7 +140,7 @@ class Timing(models.Model):
         help_text='Например: Хранить в сухом помещении',
         null=True
     )
-    timingType = models.IntegerField(
+    timingType = models.PositiveSmallIntegerField(
         choices=TimingTypeChoices.choices,
         verbose_name='Тип таймингового поля',
         help_text='Определяет, где в каком свойстве модели будет находиться свойство',
@@ -251,17 +252,17 @@ class Mapping(models.Model):
         related_name="mapping_set",
         null=True
     )
-    marketSku = models.IntegerField(
+    marketSku = models.PositiveSmallIntegerField(
         verbose_name='SKU на Яндексе — идентификатор текущей карточки товара на Маркете',
         null=True
     )
-    modelId = models.IntegerField(
+    modelId = models.PositiveSmallIntegerField(
         verbose_name='Идентификатор модели для текущей карточки товара на Маркете',
         help_text='Например, две лопатки разных цветов имеют разные SKU на Яндексе (параметр market_sku), '
                   'но одинаковый идентификатор модели товара',
         null=True
     )
-    categoryId = models.IntegerField(
+    categoryId = models.PositiveSmallIntegerField(
         verbose_name='Идентификатор категории для текущей карточки товара на Маркете',
         null=True,
     )
