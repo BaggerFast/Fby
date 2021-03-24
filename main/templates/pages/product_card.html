@@ -11,21 +11,21 @@
   {% for title, forms_list in forms.items %}
   <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 40px;">
     <div class="accordion-item">
-      <h2 class="accordion-header" id="flush-headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+      <h2 class="accordion-header" id="{{forms_list.0}}Heading">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{forms_list.0}}Collapse" aria-expanded="false" aria-controls="flush-collapseOne">
           {{ title }}
         </button>
       </h2>
-      <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div id="{{forms_list.0}}Collapse" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
         <div class="accordion-body">
-          {% for form in forms_list %}
+          {% for form in forms_list.1 %}
           {% for item in form %}
           <div class="mb-3">
               <label>
                   <label{% if item.help_text %}
                     data-bs-toggle="tooltip" data-bs-placement="right" title="{{ item.help_text }}"
                   {% endif %}>{{item.label}}</label>
-                  {% if item.value %}
+                  {% if item.value or not disable %}
                     {{ item }}
                   {% else %}
                     <input class="form-control" value="Не задано" disabled style="color: red;">

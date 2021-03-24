@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.views.generic.base import View
 from main.models.ya_market.base import Offer
