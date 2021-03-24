@@ -14,8 +14,8 @@ class CatalogueView(View):
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
         if int(request.GET.get('update_data', 0)):
-            OfferList(request.user).save()
-            OfferPrice(request.user).save()
+            self.context['errors'] = [OfferList(request.user).save_with_message()]
+            self.context['errors'].append(OfferPrice(request.user).save_with_message())
             messages.success(self.request, 'Данные offer обновились!')
         self.context['offers'] = self.offer_search(request, self.append_images(self.del_sku_from_name(Offer.objects.all())))
         self.context['urls'] = Url.objects.all()

@@ -46,6 +46,18 @@ class Requests:
             json_data['result']['paging'] = next_json_object['result']['paging']
         return json_data
 
+    def key_error(self) -> str:
+        if int(self.json_data["error"]["code"]) == 420:
+            return f'Ошибка № {420}. Превышенно кол-во запросов в сутки. Попробуйте позже'
+        return ''
+
+    def save_with_message(self) -> str:
+        try:
+            self.save()
+        except KeyError:
+            return self.key_error()
+        return ""
+
     def save(self) -> None:
         """Сохранение данных в соответствующую БД"""
         raise NotImplementedError
