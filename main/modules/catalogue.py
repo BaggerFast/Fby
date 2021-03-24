@@ -15,26 +15,32 @@ class CatalogueView(View):
         self.context['navbar'] = get_navbar(request)
         if int(request.GET.get('update_data', 0)):
             self.context['errors'] = [OfferList(request.user).save_with_message()]
-            self.context['errors'].append(OfferPrice(request.user).save_with_message())
-            messages.success(self.request, 'Данные offer обновились!')
-        self.context['offers'] = self.offer_search(request, self.append_images(self.del_sku_from_name(Offer.objects.all())))
-        self.context['urls'] = Url.objects.all()
+            self.context['errors'] += [OfferPrice(request.user).save_with_message()]
+            if not ('' in self.context['errors']):
+                messages.success(self.request, 'Данные offer обновились!')
+        offer = Offer.objects.filter(user=request.user)
+        self.context['offers'] = self.offer_search(request, self.append_images(self.del_sku_from_name(offer)))
+        self.context['urls'] = Url.objects.filter(offer=offer)
         return render(request, Page.catalogue, self.context)
 
     def append_images(self, offers_list) -> list:
         offers = offers_list
         for i in range(len(offers)):
-            setattr(offers[i], 'image', Url.objects.filter(offer=offers[i])[0])
+            print(offers[i])
+            try:
+                setattr(offers[i], 'image', Url.objects.filter(offer=offers[i])[0])
+            except IndexError:
+                pass
         return offers
 
     def del_sku_from_name(self, offers_list) -> list:
         offers = offers_list
         data = ['upper', 'lower']
         for i in range(len(offers)):
-            if offers[i].shopSku.lower() in offers[i].name.lower():
+            if str(offers[i].shopSku).lower() in str(offers[i].name).lower():
                 for dat in data:
-                    sku = getattr(offers[i].shopSku, dat)()
-                    offers[i].name = offers[i].name.replace(sku, '')
+                    sku = getattr(str(offers[i].shopSku), dat)()
+                    offers[i].name = str(offers[i].name).replace(sku, '')
         return offers
 
     def offer_search(self, request, offers) -> list:

@@ -16,7 +16,7 @@ class Offer(models.Model):
     updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
     shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU', null=True)
     name = models.CharField(max_length=255,
-                            help_text= 'Составляйте по схеме: тип товара + бренд или производитель + модель + '
+                            help_text='Составляйте по схеме: тип товара + бренд или производитель + модель + '
                                        'отличительные характеристики.',
                             verbose_name='Название товара', null=True)
     category = models.CharField(max_length=255, verbose_name='Категория', null=True)
