@@ -30,6 +30,9 @@ class WeightDimensionForm(ModelForm, Func):
         model = WeightDimension
         exclude = ('offer', )
 
+    def __str__(self):
+        return 'weight'
+
 
 class ManufacturerCountryForm(ModelForm):
     class Meta:
@@ -46,6 +49,9 @@ class BarcodeForm(ModelForm, Func):
     class Meta:
         model = Barcode
         exclude = ('offer', )
+
+    def __str__(self):
+        return 'barcode'
 
 
 class TimingForm(ModelForm):
@@ -64,6 +70,9 @@ class UrlForm(ModelForm, Func):
         model = Url
         exclude = ('offer', )
 
+    def __str__(self):
+        return 'url'
+
 
 class OfferForm(ModelForm, Func):
     disabled = ['shopSku', 'marketSku']
@@ -75,7 +84,10 @@ class OfferForm(ModelForm, Func):
 
     class Meta:
         model = Offer
-        fields = ['shopSku', 'marketSku', 'name', 'category', 'vendor', 'vendorCode', 'manufacturer', 'description']
+        fields = ['name', 'category', 'vendor', 'vendorCode', 'manufacturer', 'description']
+
+    def __str__(self):
+        return 'offer'
 
 
 class LogisticForm(ModelForm, Func):
@@ -87,3 +99,6 @@ class LogisticForm(ModelForm, Func):
     class Meta:
         model = Offer
         fields = ['transportUnitSize', 'minShipment', 'quantumOfSupply', 'deliveryDurationDays', 'boxCount']
+
+    def __str__(self):
+        return 'logistic'

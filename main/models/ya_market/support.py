@@ -43,7 +43,7 @@ class ManufacturerCountry(models.Model):
 
 
 class WeightDimension(models.Model):
-    offer = models.OneToOneField(
+    offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
@@ -75,6 +75,9 @@ class WeightDimension(models.Model):
         blank=True,
     )
 
+    def __str__(self):
+        return 'weight'
+
 
 class Url(models.Model):
     """
@@ -91,7 +94,7 @@ class Url(models.Model):
     url = models.URLField(max_length=2000, verbose_name='Сслыка на фото')
 
     def __str__(self):
-        return self.url
+        return 'url'
 
 
 class Barcode(models.Model):
@@ -109,7 +112,7 @@ class Barcode(models.Model):
                                null=True)
 
     def __str__(self):
-        return self.barcode
+        return 'barcode'
 
 
 class Timing(models.Model):

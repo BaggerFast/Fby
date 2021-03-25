@@ -11,68 +11,64 @@ class ProductPageView(LoginRequiredMixin, View):
     """отображение каталога"""
     context = {'title': 'Product_card', 'page_name': 'Карточка товара'}
 
-    def post(self, request, id):
-        current_offer = Offer.objects.get(id=id)
-        current_barcode = Barcode.objects.get(offer=current_offer)
-        current_url = Url.objects.get(offer=current_offer)
-        current_weight = WeightDimension.objects.get(offer=current_offer)
+    def get_models(self, id) -> dict:
+        clear_model = [WeightDimension, Url, Barcode]
 
+        models = {
+            'offer': Offer.objects.get(id=id)
+        }
+        for model in clear_model:
+            models.update({str(model()): model.objects.get(offer=models['offer'])})
+            # timings = Timing.objects.get(offer=id)
+        return models
+
+    def get_form(self, disable, models: dict) -> dict:
+        return {'Основная информация': ['offer_info', [OfferForm(instance=models["offer"], disable=disable),
+                                                       UrlForm(instance=models['url'], disable=disable),
+                                                       BarcodeForm(instance=models['barcode'], disable=disable)]],
+                'Габариты и вес в упаковке': ['weight_info', [WeightDimensionForm(instance=models['weight'], disable=disable)]],
+                'Особенности логистики': ['logistic_info', [LogisticForm(instance=models["offer"], disable=disable)]]}
+
+
+    def get_form2(self, models:dict):
+        return {'Основная информация': ['offer_info', [models['offer'],
+                                                       models['url'],
+                                                       models['barcode']]],
+                'Габариты и вес в упаковке': ['weight_info',
+                                              [models['weight']]],
+                'Особенности логистики': ['logistic_info', models['logistic']]}
+
+    def post(self, request, id):
         disable = True
 
         self.context['navbar'] = get_navbar(request)
         self.context['disable'] = disable
 
-        offer_f = OfferForm(disable, request.POST, instance=current_offer)
-        print(offer_f.is_valid())
-        barcode_f = BarcodeForm(disable, request.POST, instance=current_barcode)
-        url_f = UrlForm(disable, request.POST, instance=current_url)
-        logistic_f = LogisticForm(disable, request.POST, instance=current_offer)
-        weight_f = WeightDimensionForm(disable, request.POST, instance=current_weight)
-        if offer_f.is_valid() and barcode_f.is_valid() and url_f.is_valid() and logistic_f.is_valid() and weight_f.is_valid():
+        models = self.get_models(id)
+        models.update({'logistic': models['offer']})
+        forms_list = [OfferForm, WeightDimensionForm, UrlForm, BarcodeForm, LogisticForm]
+        forms_dict = {}
+        for form in forms_list:
+            forms_dict.update({str(form()): form})
 
-            offer = offer_f.save(commit=False)
-            offer.save()
+        for key, value in models.items():
+            forms_dict[key] = forms_dict[key](disable, request.POST, instance=value)
+        valid = []
+        for key, form in forms_dict.items():
+            valid.append(form.is_valid())
 
-            barcode = barcode_f.save(commit=False)
-            barcode.save()
-
-            url = url_f.save(commit=False)
-            url.save()
-
-            logistic = logistic_f.save(commit=False)
-            logistic.save()
-
-            weight = weight_f.save(commit=False)
-            weight.save()
-
-            self.context['forms'] = {'Основная информация': ['offer_info', [OfferForm(instance=offer, disable=disable),
-                                                                            UrlForm(instance=url, disable=disable),
-                                                                            BarcodeForm(instance=barcode, disable=disable)]],
-                                     'Габариты и вес в упаковке': ['weight_info',
-                                                                   [WeightDimensionForm(instance=weight, disable=disable)]],
-                                     'Особенности логистики': ['logistic_info',
-                                                               [LogisticForm(instance=offer, disable=disable)]]}
+        if not(False in valid):
+            for key, form in forms_dict.items():
+                form.save()
+            self.context['forms'] = self.get_form2(forms_dict)
+            messages.success(request, 'Данные успешно сохранены!')
         else:
             messages.error(request, 'Произошла ошибка!')
         return render(request, Page.product_card, self.context)
 
     def get(self, request, id):
         self.context['navbar'] = get_navbar(request)
-
-        offer = Offer.objects.get(id=id)
-        weight = WeightDimension.objects.get(offer=id)
-        url = Url.objects.get(offer=id)
-        barcode = Barcode.objects.get(offer=id)
-        # timings = Timing.objects.get(offer=id)
-
         disable = False if int(request.GET.get('edit', 0)) else True
-
         self.context['disable'] = disable
-        self.context['forms'] = {'Основная информация': ['offer_info', [OfferForm(instance=offer, disable=disable),
-                                                         UrlForm(instance=url, disable=disable),
-                                                         BarcodeForm(instance=barcode, disable=disable)]],
-                                'Габариты и вес в упаковке': ['weight_info', [WeightDimensionForm(instance=weight, disable=disable)]],
-                                'Особенности логистики': ['logistic_info', [LogisticForm(instance=offer, disable=disable)]]}
-        # self.context['timing_form'] = TimingForm(instance=timings)
-
+        self.context['forms'] = self.get_form(disable=disable, models=self.get_models(id))
         return render(request, Page.product_card, self.context)
