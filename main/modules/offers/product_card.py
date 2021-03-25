@@ -13,7 +13,9 @@ class ProductPageView(LoginRequiredMixin, View):
 
     def post(self, request, id):
         self.context['navbar'] = get_navbar(request)
-        self.context['disable'] = True
+
+        disable = True
+        self.context['disable'] = disable
         offer_f = OfferForm(request.POST)
         barcode_f = BarcodeForm(request.POST)
         url_f = UrlForm(request.POST)
@@ -36,24 +38,16 @@ class ProductPageView(LoginRequiredMixin, View):
             weight = weight_f.save(commit=False)
             weight.save()
 
-            self.context['forms'] = {'Основная информация': ['offer_info', [OfferForm(instance=offer),
-                                                                            UrlForm(instance=url),
-                                                                            BarcodeForm(instance=barcode)]],
+            self.context['forms'] = {'Основная информация': ['offer_info', [OfferForm(instance=offer, disable=disable),
+                                                                            UrlForm(instance=url, disable=disable),
+                                                                            BarcodeForm(instance=barcode, disable=disable)]],
                                      'Габариты и вес в упаковке': ['weight_info',
-                                                                   [WeightDimensionForm(instance=weight)]],
+                                                                   [WeightDimensionForm(instance=weight, disable=disable)]],
                                      'Особенности логистики': ['logistic_info',
-                                                               [LogisticForm(instance=offer)]]}
+                                                               [LogisticForm(instance=offer, disable=disable)]]}
         else:
-            print(offer_f.is_valid(), 'offer_f')
-            print(barcode_f.is_valid(), 'barcode_f')
-            print(url_f.is_valid(), 'url_f')
-            print(logistic_f.is_valid(), 'logistic_f')
-            print(weight_f.is_valid(), 'weight_f')
-            messages.error(request, 'Document deleted.')
-            print(request.POST)
+            messages.error(request, 'Произошла ошибка!')
         return render(request, Page.product_card, self.context)
-
-
 
     def get(self, request, id):
         self.context['navbar'] = get_navbar(request)

@@ -13,3 +13,10 @@
   background: #00000080 url(http://hello-site.ru//main/images/preloads/puff.svg) center center no-repeat;
   background-size: 300px;
 }
+#hellopreloader_text {
+  text-align: center;
+  margin-top: calc(50vh + 170px);
+  color: white;
+  font-size: 22px;
+  text-shadow: 1px 1px 2px black;
+}

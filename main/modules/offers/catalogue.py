@@ -66,4 +66,5 @@ class CatalogueView(LoginRequiredMixin, View):
                         break
             except:
                 pass
+        self.context['count'] = len(objects)
         return objects
