@@ -72,7 +72,8 @@ class Offer(models.Model):
     )
     deliveryDurationDays = models.PositiveSmallIntegerField(verbose_name='Срок поставки',
                                                help_text="За какое время вы поставите товар на склад.(в днях)",
-                                               null=True)
+                                               null=True,
+                                               blank=True)
     boxCount = models.PositiveIntegerField(
         verbose_name='Товар занимает больше одного места',
         help_text='Если нет — оставьте поле пустым. Если да — укажите количество мест '
