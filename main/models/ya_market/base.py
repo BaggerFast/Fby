@@ -9,27 +9,25 @@ class Offer(models.Model):
         on_delete=models.CASCADE,
         related_name="offer",
         verbose_name="Пользователь",
-        null=True
     )
 
     marketSku = models.CharField(max_length=255, null=True, verbose_name="SKU на Яндексе")
     updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
-    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU', null=True)
+    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU')
     name = models.CharField(max_length=255,
                             help_text='Составляйте по схеме: тип товара + бренд или производитель + модель + '
                                        'отличительные характеристики.',
-                            verbose_name='Название товара', null=True)
-    category = models.CharField(max_length=255, verbose_name='Категория', null=True)
+                            verbose_name='Название товара')
+    category = models.CharField(max_length=255, verbose_name='Категория')
     manufacturer = models.CharField(
         max_length=255,
         verbose_name='Изготовитель',
         help_text='Компания, которая произвела товар, ее адрес и регистрационный номер (если есть)',
-        null=True
     )
 
-    vendor = models.CharField(max_length=255, verbose_name='Торговая марка', null=True)
-    vendorCode = models.CharField(max_length=255, verbose_name='Артикул производителя', null=True)
-    description = models.CharField(max_length=2000, verbose_name='Описание товара', null=True)
+    vendor = models.CharField(max_length=255, verbose_name='Торговая марка')
+    vendorCode = models.CharField(max_length=255, verbose_name='Артикул производителя', null=True, blank=True)
+    description = models.CharField(max_length=2000, verbose_name='Описание товара', null=True, blank=True)
 
     certificate = models.CharField(
         max_length=255,
@@ -42,6 +40,7 @@ class Offer(models.Model):
         max_length=8,
         choices=AvailabilityChoices.choices,
         verbose_name='Планы по поставкам',
+        blank=True,
         null=True
     )
 
@@ -51,14 +50,16 @@ class Offer(models.Model):
         help_text='Сколько товаров в упаковке. Поле используется, если вы поставляете товар упаковками,'
                   ' а продаете поштучно. Например, вы продаете детское питание по 1 баночке, '
                   'а коробка содержит 6 баночек.',
-        null=True,
+        blank=True,
+        null=True
     )
     minShipment = models.PositiveSmallIntegerField(
         verbose_name='Минимальная партия поставки',
         help_text='Минимальное количество товаров, которое вы готовы привозить на склад. '
                   'Например, если вы поставляете детское питание партиями минимум по 10 коробок,'
                   ' а в каждой коробке по 6 баночек, то ваша минимальная партия — 60 баночек.',
-        null=True,
+        blank=True,
+        null=True
     )
     quantumOfSupply = models.PositiveSmallIntegerField(
         verbose_name='Добавочная партия',
@@ -66,6 +67,7 @@ class Offer(models.Model):
                    " детское питание партиями, причем к минимальной партии хотите прибавлять минимум по 2 коробки, "
                    "а в каждой коробке по 6 баночек. Тогда добавочная партия — 12 баночек, а к минимальной партии "
                    "можно добавлять 12, 24, 36 баночек и т. д.",
+        blank=True,
         null=True
     )
     deliveryDurationDays = models.PositiveSmallIntegerField(verbose_name='Срок поставки',
@@ -75,6 +77,7 @@ class Offer(models.Model):
         verbose_name='Товар занимает больше одного места',
         help_text='Если нет — оставьте поле пустым. Если да — укажите количество мест '
                   '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',
+        blank=True,
         null=True
     )
 
