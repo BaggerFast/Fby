@@ -28,9 +28,6 @@
                   {% if item.value or not disable %}
                     {{ item }}
                   {% else %}
-                    <div style="display: none;">
-                      {{ item }}
-                    </div>
                     <input class="form-control" value="Не задано" disabled style="color: red;">
                   {% endif %}
               </label>

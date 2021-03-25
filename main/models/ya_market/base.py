@@ -11,7 +11,7 @@ class Offer(models.Model):
         verbose_name="Пользователь",
     )
 
-    marketSku = models.CharField(max_length=255, null=True, verbose_name="SKU на Яндексе")
+    marketSku = models.CharField(max_length=255, verbose_name="SKU на Яндексе", null=True, blank=True)
     updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
     shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU')
     name = models.CharField(max_length=255,

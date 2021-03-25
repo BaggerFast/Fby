@@ -39,6 +39,9 @@ class ProductPageView(LoginRequiredMixin, View):
                 'Особенности логистики': ['logistic_info', models['logistic']]}
 
     def post(self, request, id):
+        request_post = request.POST.dict()
+        request_post['shopSku'] = current_offer.shopSku
+        request_post['marketSku'] = current_offer.marketSku
         disable = True
 
         self.context['navbar'] = get_navbar(request)
