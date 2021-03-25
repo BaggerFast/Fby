@@ -12,15 +12,22 @@ class ProductPageView(LoginRequiredMixin, View):
     context = {'title': 'Product_card', 'page_name': 'Карточка товара'}
 
     def post(self, request, id):
-        self.context['navbar'] = get_navbar(request)
+        current_offer = Offer.objects.get(id=id)
+        current_barcode = Barcode.objects.get(offer=current_offer)
+        current_url = Url.objects.get(offer=current_offer)
+        current_weight = WeightDimension.objects.get(offer=current_offer)
 
         disable = True
+
+        self.context['navbar'] = get_navbar(request)
         self.context['disable'] = disable
-        offer_f = OfferForm(request.POST)
-        barcode_f = BarcodeForm(request.POST)
-        url_f = UrlForm(request.POST)
-        logistic_f = LogisticForm(request.POST)
-        weight_f = WeightDimensionForm(request.POST)
+
+        offer_f = OfferForm(disable, request.POST, instance=current_offer)
+        print(offer_f.is_valid())
+        barcode_f = BarcodeForm(disable, request.POST, instance=current_barcode)
+        url_f = UrlForm(disable, request.POST, instance=current_url)
+        logistic_f = LogisticForm(disable, request.POST, instance=current_offer)
+        weight_f = WeightDimensionForm(disable, request.POST, instance=current_weight)
         if offer_f.is_valid() and barcode_f.is_valid() and url_f.is_valid() and logistic_f.is_valid() and weight_f.is_valid():
 
             offer = offer_f.save(commit=False)

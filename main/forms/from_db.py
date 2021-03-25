@@ -20,7 +20,7 @@ class Func:
 
 
 class WeightDimensionForm(ModelForm, Func):
-    def __init__(self, disable=True, *args, **kwargs):
+    def __init__(self, disable: bool = True, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.disable = disable
         self.min_max_value()
@@ -38,7 +38,7 @@ class ManufacturerCountryForm(ModelForm):
 
 
 class BarcodeForm(ModelForm, Func):
-    def __init__(self, disable=True, *args, **kwargs):
+    def __init__(self, disable: bool = True, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.disable = disable
         self.execute()
@@ -55,7 +55,7 @@ class TimingForm(ModelForm):
 
 
 class UrlForm(ModelForm, Func):
-    def __init__(self, disable=True, *args, **kwargs):
+    def __init__(self, disable: bool = True, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.disable = disable
         self.execute()
@@ -68,7 +68,7 @@ class UrlForm(ModelForm, Func):
 class OfferForm(ModelForm, Func):
     disabled = ['shopSku', 'marketSku']
 
-    def __init__(self, disable=True, *args, **kwargs):
+    def __init__(self, disable: bool = True, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.disable = disable
         self.execute()
@@ -79,7 +79,7 @@ class OfferForm(ModelForm, Func):
 
 
 class LogisticForm(ModelForm, Func):
-    def __init__(self, disable=True, *args, **kwargs):
+    def __init__(self, disable: bool = True, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.disable = disable
         self.execute()
