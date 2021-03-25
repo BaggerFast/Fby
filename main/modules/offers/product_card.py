@@ -17,41 +17,36 @@ class ProductPageView(LoginRequiredMixin, View):
         current_url = Url.objects.get(offer=current_offer)
         current_weight = WeightDimension.objects.get(offer=current_offer)
 
+        request_post = request.POST.dict()
+        request_post['shopSku'] = current_offer.shopSku
+        request_post['marketSku'] = current_offer.marketSku
+
         disable = True
 
         self.context['navbar'] = get_navbar(request)
         self.context['disable'] = disable
 
-        offer_f = OfferForm(disable, request.POST, instance=current_offer)
-        print(offer_f.is_valid())
-        barcode_f = BarcodeForm(disable, request.POST, instance=current_barcode)
-        url_f = UrlForm(disable, request.POST, instance=current_url)
-        logistic_f = LogisticForm(disable, request.POST, instance=current_offer)
-        weight_f = WeightDimensionForm(disable, request.POST, instance=current_weight)
+        offer_f = OfferForm(disable, request_post, instance=current_offer)
+        print(offer_f.errors)
+        barcode_f = BarcodeForm(disable, request_post, instance=current_barcode)
+        url_f = UrlForm(disable, request_post, instance=current_url)
+        logistic_f = LogisticForm(disable, request_post, instance=current_offer)
+        weight_f = WeightDimensionForm(disable, request_post, instance=current_weight)
+
         if offer_f.is_valid() and barcode_f.is_valid() and url_f.is_valid() and logistic_f.is_valid() and weight_f.is_valid():
+            offer_f.save()
+            barcode_f.save()
+            url_f.save()
+            logistic_f.save()
+            weight_f.save()
 
-            offer = offer_f.save(commit=False)
-            offer.save()
-
-            barcode = barcode_f.save(commit=False)
-            barcode.save()
-
-            url = url_f.save(commit=False)
-            url.save()
-
-            logistic = logistic_f.save(commit=False)
-            logistic.save()
-
-            weight = weight_f.save(commit=False)
-            weight.save()
-
-            self.context['forms'] = {'Основная информация': ['offer_info', [OfferForm(instance=offer, disable=disable),
-                                                                            UrlForm(instance=url, disable=disable),
-                                                                            BarcodeForm(instance=barcode, disable=disable)]],
+            self.context['forms'] = {'Основная информация': ['offer_info', [OfferForm(instance=current_offer, disable=disable),
+                                                                            UrlForm(instance=current_url, disable=disable),
+                                                                            BarcodeForm(instance=current_barcode, disable=disable)]],
                                      'Габариты и вес в упаковке': ['weight_info',
-                                                                   [WeightDimensionForm(instance=weight, disable=disable)]],
+                                                                   [WeightDimensionForm(instance=current_weight, disable=disable)]],
                                      'Особенности логистики': ['logistic_info',
-                                                               [LogisticForm(instance=offer, disable=disable)]]}
+                                                               [LogisticForm(instance=current_offer, disable=disable)]]}
         else:
             messages.error(request, 'Произошла ошибка!')
         return render(request, Page.product_card, self.context)

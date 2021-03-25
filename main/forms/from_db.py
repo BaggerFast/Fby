@@ -10,6 +10,7 @@ class Func:
     def execute(self):
         for key in self.fields.keys():
             self.fields[key].widget.attrs['class'] = 'form-control'
+            self.fields[key].widget.attrs['placeholder'] = 'Не задано'
             if key in self.disabled or self.disable:
                 self.fields[key].widget.attrs['disabled'] = 'true'
 
