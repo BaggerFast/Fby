@@ -4,6 +4,7 @@ from main.models.ya_market.choices import TimeUnitChoices, MappingType, TimingTy
     ProcessingStateStatus, SupplyScheduleDayChoices
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+
 class Price(models.Model):
     discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True)
     value = models.FloatField(verbose_name="Цена на товар.", null=True)
@@ -22,7 +23,6 @@ class Price(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='price',
-        null=True
     )
 
 
@@ -35,9 +35,8 @@ class ManufacturerCountry(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name="manufacturerCountries",
-        null=True
     )
-    name = models.CharField(max_length=255, verbose_name='Страна производства товара', null=True)
+    name = models.CharField(max_length=255, verbose_name='Страна производства товара')
 
     def __str__(self):
         return self.name
@@ -48,29 +47,32 @@ class WeightDimension(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
-        null=True
     )
     length = models.FloatField(
         validators=[MinValueValidator(0.9), MaxValueValidator(58)],
         verbose_name='Длина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
-        null=True
+        null=True,
+        blank=True,
     )
     width = models.FloatField(
         verbose_name='Ширина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 50.7',
-        null=True
+        null=True,
+        blank=True,
     )
     height = models.FloatField(
         verbose_name='Высота, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 20.0',
-        null=True
+        null=True,
+        blank=True,
     )
     weight = models.FloatField(
         verbose_name='Вес в упаковке (брутто), кг',
         help_text='С учетом упаковки (брутто). '
                   'Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 1.001',
-        null=True
+        null=True,
+        blank=True,
     )
 
 
@@ -85,9 +87,8 @@ class Url(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='urls',
-        null=True
     )
-    url = models.URLField(max_length=2000, verbose_name='Сслыка на фото', null=True)
+    url = models.URLField(max_length=2000, verbose_name='Сслыка на фото')
 
     def __str__(self):
         return self.url
@@ -98,13 +99,13 @@ class Barcode(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='barcodes',
-        null=True
     )
     barcode = models.CharField(max_length=255, verbose_name='Штрихкод',
                                help_text='Штрихкод обязателен при размещении товара по модели FBY и FBY+. '
                                          'Допустимые форматы: EAN-13, EAN-8, UPC-A, UPC-E, Code 128. Для книг'
                                          ' — ISBN-10 или ISBN-13. Для товаров определённых производителей передайте '
                                          'только код GTIN. Если штрихкодов несколько, укажите их через запятую.',
+                               blank=True,
                                null=True)
 
     def __str__(self):
@@ -127,24 +128,25 @@ class Timing(models.Model):
         on_delete=models.CASCADE,
         related_name='timings',
         help_text='Срок годности, срок службы, гарантийный срок',
-        null=True
     )
 
     timePeriod = models.PositiveSmallIntegerField(verbose_name='Срок службы',
-                                        null=True)
+                                        null=True, blank=True)
     timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices,
-                                verbose_name='Единица измерения срока годности', null=True)
+                                verbose_name='Единица измерения срока годности', null=True, blank=True)
     comment = models.CharField(
         max_length=2000,
         verbose_name='Комментарий к сроку службы',
         help_text='Например: Хранить в сухом помещении',
-        null=True
+        null=True,
+        blank=True,
     )
     timingType = models.PositiveSmallIntegerField(
         choices=TimingTypeChoices.choices,
         verbose_name='Тип таймингового поля',
         help_text='Определяет, где в каком свойстве модели будет находиться свойство',
-        null=True
+        null=True,
+        blank=True,
     )
     """
     Тип таймингового поля
@@ -173,12 +175,11 @@ class CustomsCommodityCode(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='customsCommodityCodes',
-        null=True
     )
     code = models.CharField(
         max_length=10,
         verbose_name='Код ТН ВЭД',
-        help_text='Укажите 10 или 14 цифр без пробелов.',
+        help_text='Укажите 10 или 14 цифр без пробелов.', blank=True,
         null=True
     )
 
@@ -191,7 +192,6 @@ class SupplyScheduleDays(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name="supplyScheduleDays",
-        null=True
     )
     supplyScheduleDay = models.CharField(
         max_length=9,
@@ -211,7 +211,6 @@ class ProcessingState(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name='processingState_set',
-        null=True
     )
     status = models.CharField(
         max_length=12,
@@ -250,7 +249,6 @@ class Mapping(models.Model):
         to=Offer,
         on_delete=models.CASCADE,
         related_name="mapping_set",
-        null=True
     )
     marketSku = models.PositiveSmallIntegerField(
         verbose_name='SKU на Яндексе — идентификатор текущей карточки товара на Маркете',
