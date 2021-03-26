@@ -37,7 +37,7 @@ class CatalogueView(LoginRequiredMixin, View):
         offers = offers_list
         for i in range(len(offers)):
             try:
-                setattr(offers[i], 'image', Url.objects.filter(offer=offers[i])[0])
+                setattr(offers[i], 'image', Url.objects.filter(offer=offers[i])[0].url)
             except IndexError:
                 pass
         return offers
