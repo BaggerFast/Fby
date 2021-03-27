@@ -21,11 +21,11 @@ class Offer:
             """
             setattr(self.offer, self.name, self.data)
 
-    """Все последующие классы для сложных данных"""
-    class Price(Base):
         def exist(self, item):
             return self.data.get(item, None)
 
+    """Все последующие классы для сложных данных"""
+    class Price(Base):
         def save(self) -> None:
             Price.objects.update_or_create(
                 offer=self.offer,
@@ -77,6 +77,35 @@ class Offer:
                 categoryId=self.data["categoryId"],
             )
 
+    class LifeTime(Base):
+        def save(self):
+            print(self.data)
+            LifeTime.objects.update_or_create(
+                offer=self.offer,
+                timePeriod=self.exist("timePeriod"),
+                timeUnit=self.exist('timeUnit'),
+                comment=self.exist("comment"),
+            )
+
+    class ShelfLife(Base):
+        def save(self):
+            print(self.data)
+            ShelfLife.objects.update_or_create(
+                offer=self.offer,
+                timePeriod=self.exist("timePeriod"),
+                timeUnit=self.exist('timeUnit'),
+                comment=self.exist("comment"),
+            )
+
+    class GuaranteePeriod(Base):
+        def save(self):
+            GuaranteePeriod.objects.update_or_create(
+                offer=self.offer,
+                timePeriod=self.exist("timePeriod"),
+                timeUnit=self.exist('timeUnit'),
+                comment=self.exist("comment"),
+            )
+
 
 class OfferPattern(BasePattern):
     """Класс сохраняющий данные offer из json в БД"""
@@ -104,6 +133,9 @@ class OfferPattern(BasePattern):
             "processingState",
             "manufacturerCountries",
             "mapping",
+            "lifeTime",
+            "guaranteePeriod",
+            "shelfLife"
         ]
     }
 

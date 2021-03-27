@@ -12,13 +12,18 @@ class Offer(models.Model):
     )
 
     marketSku = models.CharField(max_length=255, verbose_name="SKU на Яндексе", null=True, blank=True)
+
     updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
+
     shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU')
+
     name = models.CharField(max_length=255,
                             help_text='Составляйте по схеме: тип товара + бренд или производитель + модель + '
-                                       'отличительные характеристики.',
+                                      'отличительные характеристики.',
                             verbose_name='Название товара')
+
     category = models.CharField(max_length=255, verbose_name='Категория')
+
     manufacturer = models.CharField(
         max_length=255,
         verbose_name='Изготовитель',
@@ -26,7 +31,9 @@ class Offer(models.Model):
     )
 
     vendor = models.CharField(max_length=255, verbose_name='Торговая марка')
+
     vendorCode = models.CharField(max_length=255, verbose_name='Артикул производителя', null=True, blank=True)
+
     description = models.CharField(max_length=2000, verbose_name='Описание товара', null=True, blank=True)
 
     certificate = models.CharField(
@@ -53,6 +60,7 @@ class Offer(models.Model):
         blank=True,
         null=True
     )
+
     minShipment = models.PositiveSmallIntegerField(
         verbose_name='Минимальная партия поставки',
         help_text='Минимальное количество товаров, которое вы готовы привозить на склад. '
@@ -61,30 +69,31 @@ class Offer(models.Model):
         blank=True,
         null=True
     )
+
     quantumOfSupply = models.PositiveSmallIntegerField(
         verbose_name='Добавочная партия',
-        help_text= "По сколько товаров можно добавлять к минимальной партии. Например, вы планируете поставлять"
-                   " детское питание партиями, причем к минимальной партии хотите прибавлять минимум по 2 коробки, "
-                   "а в каждой коробке по 6 баночек. Тогда добавочная партия — 12 баночек, а к минимальной партии "
-                   "можно добавлять 12, 24, 36 баночек и т. д.",
+        help_text="По сколько товаров можно добавлять к минимальной партии. Например, вы планируете поставлять"
+                  " детское питание партиями, причем к минимальной партии хотите прибавлять минимум по 2 коробки, "
+                  "а в каждой коробке по 6 баночек. Тогда добавочная партия — 12 баночек, а к минимальной партии "
+                  "можно добавлять 12, 24, 36 баночек и т. д.",
         blank=True,
         null=True
     )
+
     deliveryDurationDays = models.PositiveSmallIntegerField(verbose_name='Срок поставки',
-                                               help_text="За какое время вы поставите товар на склад.(в днях)",
-                                               null=True,
-                                               blank=True)
-    boxCount = models.PositiveIntegerField(
-        verbose_name='Товар занимает больше одного места',
-        help_text='Если нет — оставьте поле пустым. Если да — укажите количество мест '
-                  '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',
-        blank=True,
-        null=True
-    )
+                                                            help_text="За какое время вы поставите товар на склад.(в днях)",
+                                                            null=True,
+                                                            blank=True)
+
+    boxCount = models.PositiveIntegerField(verbose_name='Товар занимает больше одного места',
+                                           help_text='Если нет — оставьте поле пустым. Если да — укажите количество мест '
+                                                     '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',
+                                           blank=True,
+                                           null=True
+                                           )
 
     class Meta:
         ordering = ['id']
-
 
     @property
     def shelfLife(self):

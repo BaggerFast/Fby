@@ -5,6 +5,52 @@ from main.models.ya_market.choices import TimeUnitChoices, MappingType, TimingTy
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
+class Timing(models.Model):
+    class Meta:
+        abstract = True
+
+    offer = models.OneToOneField(
+        to=Offer,
+        on_delete=models.CASCADE,
+    )
+
+    timePeriod = models.PositiveSmallIntegerField(null=True, blank=True)
+
+    timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices,
+                                verbose_name='', null=True, blank=True)
+
+    comment = models.CharField(
+        max_length=2000,
+        null=True,
+        blank=True,
+    )
+
+    def get_days(self):
+        if self.timeUnit == TimeUnitChoices.HOUR:
+            return self.timePeriod / 24
+        elif self.timeUnit == TimeUnitChoices.DAY:
+            return self.timePeriod
+        elif self.timeUnit == TimeUnitChoices.WEEK:
+            return self.timePeriod * 7
+        elif self.timeUnit == TimeUnitChoices.MONTH:
+            return self.timePeriod * 31
+        elif self.timeUnit == TimeUnitChoices.YEAR:
+            return self.timePeriod * 365
+
+
+class ShelfLife(Timing):
+    # Тут все сделано и работает
+    pass
+
+
+class LifeTime(Timing):
+    pass
+
+
+class GuaranteePeriod(Timing):
+    pass
+
+
 class Price(models.Model):
     discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True)
     value = models.FloatField(verbose_name="Цена на товар.", null=True)
@@ -38,12 +84,9 @@ class ManufacturerCountry(models.Model):
     )
     name = models.CharField(max_length=255, verbose_name='Страна производства товара')
 
-    def __str__(self):
-        return self.name
-
 
 class WeightDimension(models.Model):
-    offer = models.ForeignKey(
+    offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
@@ -75,10 +118,6 @@ class WeightDimension(models.Model):
         blank=True,
     )
 
-    def __str__(self):
-        return 'weight'
-
-
 class Url(models.Model):
     """
         Список URL
@@ -93,15 +132,11 @@ class Url(models.Model):
     )
     url = models.URLField(max_length=2000, verbose_name='Сслыка на фото')
 
-    def __str__(self):
-        return 'url'
-
 
 class Barcode(models.Model):
     offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
-        related_name='barcodes',
     )
     barcode = models.CharField(max_length=255, verbose_name='Штрихкод',
                                help_text='Штрихкод обязателен при размещении товара по модели FBY и FBY+. '
@@ -111,46 +146,8 @@ class Barcode(models.Model):
                                blank=True,
                                null=True)
 
-    def __str__(self):
-        return 'barcode'
 
 
-class Timing(models.Model):
-    """
-        Тайминги товара
-
-        .. todo::
-           Добавить проверку на существование минимум одного тайминга (подозреваю, что Яндекс всё равно их запросит)
-        .. todo::
-           Добавить проверку на существование максимум трёх таймингов
-
-    """
-
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='timings',
-        help_text='Срок годности, срок службы, гарантийный срок',
-    )
-
-    timePeriod = models.PositiveSmallIntegerField(verbose_name='Срок службы',
-                                        null=True, blank=True)
-    timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices,
-                                verbose_name='Единица измерения срока годности', null=True, blank=True)
-    comment = models.CharField(
-        max_length=2000,
-        verbose_name='Комментарий к сроку службы',
-        help_text='Например: Хранить в сухом помещении',
-        null=True,
-        blank=True,
-    )
-    timingType = models.PositiveSmallIntegerField(
-        choices=TimingTypeChoices.choices,
-        verbose_name='Тип таймингового поля',
-        help_text='Определяет, где в каком свойстве модели будет находиться свойство',
-        null=True,
-        blank=True,
-    )
     """
     Тип таймингового поля
     
@@ -160,17 +157,7 @@ class Timing(models.Model):
        Например, чтобы у товара не было двух сроков годности.
     """
 
-    def get_days(self):
-        if self.timeUnit == TimeUnitChoices.HOUR:
-            return self.timePeriod / 24
-        elif self.timeUnit == TimeUnitChoices.DAY:
-            return self.timePeriod
-        elif self.timeUnit == TimeUnitChoices.WEEK:
-            return self.timePeriod * 7
-        elif self.timeUnit == TimeUnitChoices.MONTH:
-            return self.timePeriod * 31
-        elif self.timeUnit == TimeUnitChoices.YEAR:
-            return self.timePeriod * 365
+
 
 
 class CustomsCommodityCode(models.Model):
@@ -210,7 +197,7 @@ class SupplyScheduleDays(models.Model):
 
 
 class ProcessingState(models.Model):
-    offer = models.ForeignKey(
+    offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='processingState_set',
@@ -248,14 +235,14 @@ class ProcessingStateNote(models.Model):
 
 
 class Mapping(models.Model):
-    offer = models.ForeignKey(
+    offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
         related_name="mapping_set",
     )
     marketSku = models.PositiveSmallIntegerField(
         verbose_name='SKU на Яндексе — идентификатор текущей карточки товара на Маркете',
-        null=True
+        null=True,
     )
     modelId = models.PositiveSmallIntegerField(
         verbose_name='Идентификатор модели для текущей карточки товара на Маркете',

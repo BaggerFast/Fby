@@ -1,6 +1,5 @@
-from django.forms import ModelForm, forms
-from main.models.ya_market.base import Offer
-from main.models.ya_market.support import WeightDimension, ManufacturerCountry, Url, Barcode, Timing
+from django.forms import ModelForm
+from main.models.ya_market.support import *
 
 
 class Func:
@@ -18,6 +17,65 @@ class Func:
         for key in self.fields.keys():
             self.fields[key].widget.attrs['min'] = 0
             self.fields[key].widget.attrs['max'] = 100000
+
+
+class ShelfLifeForm(ModelForm, Func):
+    def __init__(self, disable: bool = True, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.disable = disable
+        self.execute()
+
+    class Meta:
+        model = ShelfLife
+        exclude = ('offer',)
+        help_texts = {
+            'comment': 'Дополнительные условия хранения.',
+            'timePeriod': 'Через сколько дней товар станет непригоден для использования. '
+                       'Например, срок годности есть у таких категорий, как продукты питания и медицинские препараты.',
+        }
+        labels = {
+            'timePeriod': 'Срок годности',
+            'comment': 'Комментарий к сроку годности',
+        }
+
+    def __str__(self):
+        return 'shelfLife'
+
+
+class LifeTimeForm(ShelfLifeForm):
+    class Meta:
+        model = ShelfLife
+        exclude = ('offer',)
+        help_texts = {
+            'timePeriod': 'В течение этого периода возможны обслуживание и ремонт товара, возврат денег.'
+                          ' Изготовитель или продавец несет ответственность за недостатки товара.',
+            'comment': 'Дополнительные условия гарантии.',
+        }
+        labels = {
+            'timePeriod': 'Гарантийный срок',
+            'comment': 'Комментарий к гарантийному сроку',
+        }
+
+    def __str__(self):
+        return 'lifeTime'
+
+
+class GuaranteePeriodForm(ShelfLifeForm):
+    class Meta:
+        model = ShelfLife
+        exclude = ('offer',)
+        help_texts = {
+            'comment': 'Дополнительные условия хранения.',
+            'timePeriod': 'Через сколько дней товар станет непригоден для использования. '
+                          'Например, срок годности есть у таких категорий, как продукты питания и медицинские препараты.',
+        }
+        labels = {
+            'timePeriod': 'Срок годности',
+            'comment': 'Комментарий к сроку годности',
+        }
+
+    def __str__(self):
+        return 'guarantee'
 
 
 class WeightDimensionForm(ModelForm, Func):
