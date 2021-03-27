@@ -25,7 +25,7 @@
                   <label {% if item.help_text %}
                     data-bs-toggle="tooltip" data-bs-placement="right" title="{{ item.help_text }}"
                   {% endif %}>{{item.label}}{% if item.field.required %}*{% endif %}</label>
-                  {% if item.value or not disable %}
+                  {% if item.value or not disable or create %}
                     {{ item }}
                   {% else %}
                     <input class="form-control" value="Не задано" disabled style="color: red;">
@@ -40,7 +40,9 @@
   </div>
   {% endfor %}
   {% if not disable %}
-    <button id="button_save" type="submit" class="btn btn-primary" style="margin: 40px 0;">Сохранить</button>
+    <button id="button_save" type="submit" class="btn btn-primary" style="margin: 40px 0;">
+      {% if not create %}Сохранить{% else %}Создать{% endif %}
+    </button>
   {% endif %}
 </form>
 {% if disable %}
