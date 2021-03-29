@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic.base import View
 from main.models import *
-from main.forms import *
+from main.modules.offers.product_card import Form
 from main.view import *
 
 
@@ -11,16 +11,33 @@ class CreateOfferView(LoginRequiredMixin, View):
     """отображение каталога"""
     context = {'title': 'Create_offer', 'page_name': 'Создать товар'}
 
-    def get_form(self, disable) -> dict:
-        return {'Основная информация': ['offer_info', [OfferForm(instance=Offer(), disable=disable),
-                                                       UrlForm(instance=Url(), disable=disable),
-                                                       BarcodeForm(instance=Barcode(), disable=disable)]],
-                'Габариты и вес в упаковке': ['weight_info', [WeightDimensionForm(instance=WeightDimension(), disable=disable)]],
-                'Особенности логистики': ['logistic_info', [LogisticForm(instance=Offer(), disable=disable)]]}
+    def post(self, request):
+        self.context['navbar'] = get_navbar(request)
+        # request_post = request.POST.dict()
+        # request_post['shopSku'] = offer.shopSku
+        # request_post['marketSku'] = offer.marketSku
+        offer = Offer.objects.create(user=request.user)
+        form = Form()
+        form.get_models_classes(key1={'id': offer.id}, key2={'offer': offer})
+        form.get_post_form(disable=True, request=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Товар добавлен')
+            self.context['disable'] = True
+        else:
+            form.get_clear_form(disable=False)
+            Offer.objects.get(user=request.user).delete()
+            self.context['disable'] = False
+            self.context['create'] = True
+            messages.error(request, 'Произошла ошибка!')
+        self.context['forms'] = form.get_form_for_context()
+        return render(request, Page.product_card, self.context)
 
     def get(self, request):
         self.context['navbar'] = get_navbar(request)
-        disable = False if int(request.GET.get('edit', 0)) else True
         self.context['create'] = True
-        self.context['forms'] = self.get_form(disable=False)
+        form = Form()
+        form.get_models_classes()
+        form.get_clear_form(disable=False)
+        self.context['forms'] = form.get_form_for_context()
         return render(request, Page.product_card, self.context)

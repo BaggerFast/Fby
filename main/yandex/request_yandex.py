@@ -9,7 +9,7 @@ from main.models.save_dir import *
 class Requests:
     """Базовый класс для получения данных и сохранения в БД"""
 
-    PARAMS = None  # параметры запроса в формате json (для post-запросов)
+    PARAMS: dict = None  # параметры запроса в формате json (для post-запросов)
 
     errors = {
         206: "Запрос выполнен частично.",

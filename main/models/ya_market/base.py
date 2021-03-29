@@ -15,22 +15,22 @@ class Offer(models.Model):
 
     updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
 
-    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU')
+    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU', null=True)
 
     name = models.CharField(max_length=255,
                             help_text='Составляйте по схеме: тип товара + бренд или производитель + модель + '
                                       'отличительные характеристики.',
-                            verbose_name='Название товара')
+                            verbose_name='Название товара', null=True)
 
-    category = models.CharField(max_length=255, verbose_name='Категория')
+    category = models.CharField(max_length=255, verbose_name='Категория', null=True)
 
     manufacturer = models.CharField(
         max_length=255,
         verbose_name='Изготовитель',
-        help_text='Компания, которая произвела товар, ее адрес и регистрационный номер (если есть)',
+        help_text='Компания, которая произвела товар, ее адрес и регистрационный номер (если есть)', null=True
     )
 
-    vendor = models.CharField(max_length=255, verbose_name='Торговая марка')
+    vendor = models.CharField(max_length=255, verbose_name='Торговая марка', null=True)
 
     vendorCode = models.CharField(max_length=255, verbose_name='Артикул производителя', null=True, blank=True)
 

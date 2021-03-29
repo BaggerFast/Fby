@@ -69,3 +69,78 @@ class Page:
     catalogue = serialize('catalogue')
     product_card = serialize('product_card')
     create_offer = serialize('create_offer')
+
+
+class FormParser:
+    def __init__(self, base_form):
+        self.form_base = base_form
+        self.form = None
+
+    @staticmethod
+    def check_model(model, attrs_for_filter):
+        try:
+            model = model.objects.filter(**attrs_for_filter)[0]
+        except IndexError:
+            return model.objects.create(**attrs_for_filter)
+        return model
+
+    def get_with_fill(self, model, attrs_for_filter, disabled) -> None:
+        model = FormParser.check_model(model=model, attrs_for_filter=attrs_for_filter)
+        self.form = self.form_base(instance=model)
+        self.form.turn_off(disable=disabled)
+
+    def get_without_fill(self, disabled) -> None:
+        self.form = self.form_base()
+        self.form.turn_off(disable=disabled)
+
+    def post(self, request, model, attrs_for_filter, disabled) -> None:
+        model = FormParser.check_model(model=model, attrs_for_filter=attrs_for_filter)
+        self.form = self.form_base(request, instance=model)
+        self.form.turn_off(disable=disabled)
+
+
+class Multiform:
+    def __init__(self):
+        self.model_list = None
+        self.models_json = {}
+
+    def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
+        # примеры смотрите в коде
+        raise NotImplementedError
+
+    def get_post_form(self, disable: bool, request) -> None:
+        self.models_json.clear()
+        for model in self.model_list:
+            form = FormParser(base_form=model[2])
+            form.post(request=request, model=model[0], attrs_for_filter=model[1], disabled=disable)
+            self.models_json.update({str(model[2]()): form})
+
+    def get_fill_form(self, disable) -> None:
+        self.models_json.clear()
+        for model in self.model_list:
+            form = FormParser(base_form=model[2])
+            form.get_with_fill(model=model[0], attrs_for_filter=model[1], disabled=disable)
+            self.models_json.update(
+                {str(model[2]()): form})
+
+    def get_clear_form(self, disable) -> None:
+        self.models_json.clear()
+        for model in self.model_list:
+            form = FormParser(base_form=model[2])
+            form.get_without_fill(disabled=disable)
+            self.models_json.update(
+                {str(model[2]()): form})
+
+    def get_form_for_context(self) -> dict:
+        # примеры смотрите в коде
+        raise NotImplementedError
+
+    def is_valid(self) -> bool:
+        for key, model in self.models_json.items():
+            if not model.form.is_valid():
+                return False
+        return True
+
+    def save(self) -> None:
+        for key, model in self.models_json.items():
+            model.form.save()

@@ -86,13 +86,12 @@ class ManufacturerCountry(models.Model):
 
 
 class WeightDimension(models.Model):
-    offer = models.OneToOneField(
+    offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
     )
     length = models.FloatField(
-        validators=[MinValueValidator(0.9), MaxValueValidator(58)],
         verbose_name='Длина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
         null=True,
@@ -117,6 +116,7 @@ class WeightDimension(models.Model):
         null=True,
         blank=True,
     )
+
 
 class Url(models.Model):
     """
@@ -158,10 +158,8 @@ class Barcode(models.Model):
     """
 
 
-
-
 class CustomsCommodityCode(models.Model):
-    offer = models.ForeignKey(
+    offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='customsCommodityCodes',
@@ -197,7 +195,7 @@ class SupplyScheduleDays(models.Model):
 
 
 class ProcessingState(models.Model):
-    offer = models.OneToOneField(
+    offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='processingState_set',
@@ -235,7 +233,7 @@ class ProcessingStateNote(models.Model):
 
 
 class Mapping(models.Model):
-    offer = models.OneToOneField(
+    offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
         related_name="mapping_set",

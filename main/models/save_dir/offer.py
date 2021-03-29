@@ -79,7 +79,6 @@ class Offer:
 
     class LifeTime(Base):
         def save(self):
-            print(self.data)
             LifeTime.objects.update_or_create(
                 offer=self.offer,
                 timePeriod=self.exist("timePeriod"),
@@ -89,7 +88,6 @@ class Offer:
 
     class ShelfLife(Base):
         def save(self):
-            print(self.data)
             ShelfLife.objects.update_or_create(
                 offer=self.offer,
                 timePeriod=self.exist("timePeriod"),

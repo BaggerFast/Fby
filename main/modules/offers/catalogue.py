@@ -30,7 +30,7 @@ class CatalogueView(LoginRequiredMixin, View):
         return render(request, Page.catalogue, self.context)
 
     def reformat_offer(self, offer) -> list:
-        return self.offer_search(CatalogueView.append_images(CatalogueView.del_sku_from_name(offer)))
+        return self.offer_search(CatalogueView.append_images(offer))
 
     @staticmethod
     def append_images(offers_list) -> list:
@@ -40,17 +40,6 @@ class CatalogueView(LoginRequiredMixin, View):
                 setattr(offers[i], 'image', Url.objects.filter(offer=offers[i])[0].url)
             except IndexError:
                 pass
-        return offers
-
-    @staticmethod
-    def del_sku_from_name(offers_list) -> list:
-        offers = offers_list
-        data = ['upper', 'lower']
-        for i in range(len(offers)):
-            if str(offers[i].shopSku).lower() in str(offers[i].name).lower():
-                for dat in data:
-                    sku = getattr(str(offers[i].shopSku), dat)()
-                    offers[i].name = str(offers[i].name).replace(sku, '')
         return offers
 
     def offer_search(self, offers) -> list:
