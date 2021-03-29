@@ -87,18 +87,23 @@ class OfferChangePrice(Requests):
     """
     Класс для изменения цены на товар на сервере яндекса
     """
-
-    def __init__(self, id: int, price: int):
-        old_price: int = self.CreateParams(id, price)
+    def __init__(self, data: dict):
+        for sku in data.keys():
+            data[sku]['old_price'] = self.AddParams(sku, data[sku]['price'])
         super().__init__(json_name='offer-prices/updates', base_context_name='price')
-        (OfferPrice()).save()   # обновить данные БД
-        self.show(old_price, id, price)
+        self.update(data)
+        for sku in sorted(data.keys()):
+            self.show(sku, data[sku]['price'], data[sku]['old_price'], data[sku]['new_price'])
 
     @staticmethod
-    def show(old_price, id, price) -> None:
-        offer = Price.objects.get(id=id)
-        new_price, sku = offer.value, offer.marketSku
-        print(f'Sku: {sku}, Old price: {old_price}, New price: {new_price}, Status: {"OK" if new_price == price else "ERROR"}')
+    def update(data) -> None:
+        (OfferPrice()).save()  # обновить данные БД
+        for sku in data.keys():
+            data[sku]['new_price'] = Price.objects.get(marketSku=sku).value
+
+    @staticmethod
+    def show(sku, price, old_price, new_price) -> None:
+        print(f'marketSku: {sku}, Old price: {old_price}, New price: {new_price}, Status: {"OK" if new_price == price else "ERROR"}')
 
     def get_json(self) -> dict:
         return self.get_next_page()
@@ -114,8 +119,7 @@ class OfferChangePrice(Requests):
                     }
             }
 
-    def CreateParams(self, id, price) -> int:
-        offer = Price.objects.get(id=id)
+    def AddParams(self, sku, price) -> int:
+        offer = Price.objects.get(marketSku=sku)
         self.PARAMS = {'offers': [self.get_dict(offer, price)]}
         return offer.value  # Вернуть старую цену
-
