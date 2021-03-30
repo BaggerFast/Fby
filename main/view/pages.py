@@ -12,3 +12,5 @@ class Page:
     catalogue = serialize('offer/catalogue')
     create_offer = product_card = serialize('offer/product_card')
 
+
+

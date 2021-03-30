@@ -11,9 +11,6 @@ class CatalogueView(LoginRequiredMixin, View):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
     models_to_save = [OfferList, OfferPrice]
 
-    def post(self, request):
-        pass
-
     def get(self, request):
         self.request = request
         self.context['navbar'] = get_navbar(request)

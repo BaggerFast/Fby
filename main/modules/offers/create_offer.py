@@ -13,9 +13,6 @@ class CreateOfferView(LoginRequiredMixin, View):
 
     def post(self, request):
         self.context['navbar'] = get_navbar(request)
-        # request_post = request.POST.dict()
-        # request_post['shopSku'] = offer.shopSku
-        # request_post['marketSku'] = offer.marketSku
         offer = Offer.objects.create(user=request.user)
         form = Form()
         form.get_models_classes(key1={'id': offer.id}, key2={'offer': offer})

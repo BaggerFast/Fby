@@ -57,7 +57,6 @@ class ProductPageView(LoginRequiredMixin, View):
         form = Form()
         form.get_models_classes(key1={'id': id}, key2={'offer': Offer.objects.get(id=id)})
         form.get_fill_form(disable=disable)
-
         self.context['disable'] = disable
         self.context['forms'] = form.get_form_for_context()
 
