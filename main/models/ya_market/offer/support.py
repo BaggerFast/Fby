@@ -8,11 +8,6 @@ class Timing(models.Model):
     class Meta:
         abstract = True
 
-    offer = models.OneToOneField(
-        to=Offer,
-        on_delete=models.CASCADE,
-    )
-
     timePeriod = models.PositiveSmallIntegerField(null=True, blank=True)
 
     timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices, verbose_name='Единица измерения'
@@ -39,15 +34,27 @@ class Timing(models.Model):
 
 class ShelfLife(Timing):
     # Тут все сделано и работает
-    pass
+    offer = models.OneToOneField(
+        to=Offer,
+        on_delete=models.CASCADE,
+        related_name='shelfLife'
+    )
 
 
 class LifeTime(Timing):
-    pass
+    offer = models.OneToOneField(
+        to=Offer,
+        on_delete=models.CASCADE,
+        related_name='lifeTime'
+    )
 
 
 class GuaranteePeriod(Timing):
-    pass
+    offer = models.OneToOneField(
+        to=Offer,
+        on_delete=models.CASCADE,
+        related_name='guaranteePeriod'
+    )
 
 
 class Price(models.Model):
@@ -79,9 +86,12 @@ class ManufacturerCountry(models.Model):
     )
     name = models.CharField(max_length=255, verbose_name='Страна производства товара')
 
+    def __str__(self):
+        return self.name
+
 
 class WeightDimension(models.Model):
-    offer = models.ForeignKey(
+    offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
@@ -126,11 +136,15 @@ class Url(models.Model):
     )
     url = models.URLField(max_length=2000, verbose_name='Ссылка на фото')
 
+    def __str__(self):
+        return self.url
+
 
 class Barcode(models.Model):
     offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
+        related_name='barcodes'
     )
     barcode = models.CharField(max_length=255, verbose_name='Штрихкод',
                                help_text='Штрихкод обязателен при размещении товара по модели FBY и FBY+. '
@@ -139,6 +153,9 @@ class Barcode(models.Model):
                                          'только код GTIN. Если штрихкодов несколько, укажите их через запятую.',
                                blank=True,
                                null=True)
+
+    def __str__(self):
+        return self.barcode
 
 
 class CustomsCommodityCode(models.Model):

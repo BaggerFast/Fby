@@ -14,7 +14,7 @@ class PriceSerializer(serializers.ModelSerializer):
 class WeightDimensionSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeightDimension
-        exclude = ('offer',)  # исключая offer
+        exclude = ()  # исключая offer
 
 
 class TimingSerializer(serializers.ModelSerializer):
