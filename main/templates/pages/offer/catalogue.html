@@ -44,7 +44,7 @@
             <tbody>
                 {% for offer in offers %}
                 <tr>
-                    <td><a href="{% url 'offer_by_sku' offer.id %}">{{ offer.name }}</a></td>
+                    <td><a target="_blank" href="{% url 'offer_by_sku' offer.id %}">{{ offer.name }}</a></td>
                     <td>{{ offer.description }}</td>
                     <td>{{ offer.shopSku }}</td>
                     <td>{{ offer.category }}</td>

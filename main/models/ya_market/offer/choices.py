@@ -9,12 +9,6 @@ class TimeUnitChoices(models.TextChoices):
     YEAR = 'YEAR', 'годы'
 
 
-class TimingTypeChoices(models.IntegerChoices):
-    SHELF_LIFE = 0, 'shelf_life'
-    LIFE_TIME = 1, 'life_time'
-    GUARANTEE_PERIOD = 2, 'guarantee_period'
-
-
 class AvailabilityChoices(models.TextChoices):
     ACTIVE = 'ACTIVE', 'поставки будут'
     INACTIVE = 'INACTIVE', 'поставок не будет: товар есть на складе, но вы больше не планируете его поставлять. ' \
@@ -92,3 +86,11 @@ class MappingType(models.TextChoices):
                                                  'проходящей модерацию для данного товара'
     REJECTED = 'REJECTED', 'Информация о последней карточке товара на Маркете, ' \
                            'отклоненной на модерации для данного товара'
+
+
+class VatType(models.IntegerChoices):
+    two = 2, '10 %'
+    five = 5, '0 %'
+    six = 6, 'не облагается'
+    seven = 7, '20 %'
+

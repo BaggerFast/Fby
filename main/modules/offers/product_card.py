@@ -2,6 +2,8 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic.base import View
+
+from main.forms.offer import CommodityCodeForm
 from main.models import *
 from main.forms import *
 from main.view import *
@@ -9,20 +11,22 @@ from main.view import *
 
 class Form(Multiform):
     def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
-        self.model_list = [(Offer, key1, OfferForm), (WeightDimension, key2, WeightDimensionForm),
-                           (Url, key2, UrlForm), (Barcode, key2, BarcodeForm),
-                           (ShelfLife, key2, ShelfLifeForm), (LifeTime, key2, LifeTimeForm),
-                           (GuaranteePeriod, key2, GuaranteePeriodForm)]
+        self.model_list = [{'attrs': key1, 'form': OfferForm}]
+        forms = [WeightDimensionForm, UrlForm, BarcodeForm,  WeightDimensionForm, ShelfLifeForm, LifeTimeForm,
+                 GuaranteePeriodForm, CommodityCodeForm]
+        for form in forms:
+            self.model_list.append({'attrs': key2, 'form': form})
 
     def get_form_for_context(self) -> dict:
         return {'Основная информация': ['offer_info', [list(self.models_json[str(OfferForm())].form)[:6],
                                                        self.models_json[str(UrlForm())].form,
-                                                       self.models_json[str(BarcodeForm())].form]],
+                                                       self.models_json[str(BarcodeForm())].form,
+                                        self.models_json[str(CommodityCodeForm())].form]],
                 'Сроки': ['timing_info', [self.models_json[str(ShelfLifeForm())].form,
                                           self.models_json[str(LifeTimeForm())].form,
                                           self.models_json[str(GuaranteePeriodForm())].form]],
                 'Габариты и вес в упаковке': ['weight_info', [self.models_json[str(WeightDimensionForm())].form]],
-                'Особенности логистики': ['logistic_info', [list(self.models_json[str(OfferForm())].form)[7::]]]}
+                'Особенности логистики': ['logistic_info', [list(self.models_json[str(OfferForm())].form)[6::]]]}
 
 
 class ProductPageView(LoginRequiredMixin, View):

@@ -21,7 +21,7 @@ class FormParser:
         self.form.turn_off(disable=disabled)
 
     def post(self, request, model, attrs_for_filter, disabled) -> None:
-        model = FormParser.check_model(model=model, attrs_for_filter=attrs_for_filter)
+        model = FormParser.get_or_create(model=model, attrs_for_filter=attrs_for_filter)
         self.form = self.form_base(request, instance=model)
         self.form.turn_off(disable=disabled)
 
@@ -39,27 +39,27 @@ class Multiform:
         # вызывать для пост запроса (для изменений данных)
         self.models_json.clear()
         for model in self.model_list:
-            form = FormParser(base_form=model[2])
-            form.post(request=request, model=model[0], attrs_for_filter=model[1], disabled=disable)
-            self.models_json.update({str(model[2]()): form})
+            form = FormParser(base_form=model['form'])
+            form.post(request=request, model=model['form'].Meta.model, attrs_for_filter=model['attrs'], disabled=disable)
+            self.models_json.update({str(model['form']()): form})
 
     def get_fill_form(self, disable) -> None:
         # вызывать для get запроса с учетом заполнения формы из модели
         self.models_json.clear()
         for model in self.model_list:
-            form = FormParser(base_form=model[2])
-            form.fill(model=model[0], attrs_for_filter=model[1], disabled=disable)
+            form = FormParser(base_form=model['form'])
+            form.fill(model=model['form'].Meta.model, attrs_for_filter=model['attrs'], disabled=disable)
             self.models_json.update(
-                {str(model[2]()): form})
+                {str(model['form']()): form})
 
     def get_clear_form(self, disable) -> None:
         # вызывать для get запроса без заполнения данными из модели (возвращает пустые поля)
         self.models_json.clear()
         for model in self.model_list:
-            form = FormParser(base_form=model[2])
+            form = FormParser(base_form=model['form'])
             form.clear(disabled=disable)
             self.models_json.update(
-                {str(model[2]()): form})
+                {str(model['form']()): form})
 
     def get_form_for_context(self) -> dict:
         # примеры смотрите в коде

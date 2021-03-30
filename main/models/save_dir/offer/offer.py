@@ -4,38 +4,26 @@ from django.core.exceptions import ObjectDoesNotExist
 from main.models.save_dir.base import BasePattern
 
 
+class Base:
+    """ для простых данных"""
+
+    def __init__(self, data, offer, name=''):
+        self.data = data
+        self.offer = offer
+        self.name = name
+
+    def save(self) -> None:
+        """
+        Сохранить данные
+        """
+        setattr(self.offer, self.name, self.data)
+
+    def exist(self, item):
+        return self.data.get(item, None)
+
+
 class Offer:
     """Класс внутри которого находятся классы нужные для сохранения данных"""
-
-    """Нужен для общей категории"""
-    class Base:
-        """ для простых данных"""
-        def __init__(self, data, offer, name=''):
-            self.data = data
-            self.offer = offer
-            self.name = name
-
-        def save(self) -> None:
-            """
-            Сохранить данные
-            """
-            setattr(self.offer, self.name, self.data)
-
-        def exist(self, item):
-            return self.data.get(item, None)
-
-    """Все последующие классы для сложных данных"""
-    class Price(Base):
-        def save(self) -> None:
-            Price.objects.update_or_create(
-                offer=self.offer,
-                defaults={
-                    "value": self.exist("value"),
-                    "vat": self.exist('vat'),
-                    "discountBase": self.exist('discountBase')
-                }
-            )
-
     class Barcodes(Base):
         def save(self) -> None:
             for item in self.data:
@@ -125,6 +113,7 @@ class OfferPattern(BasePattern):
         ],
         'diff': [
             "barcodes",
+            "customsCommodityCode",
             "urls",
             "weightDimensions",
             "supplyScheduleDays",
@@ -147,13 +136,13 @@ class OfferPattern(BasePattern):
             json_offer = item['offer']
             if 'mapping' in item:
                 json_offer['mapping'] = item['mapping']
-            self.parse_attrs(json_offer, offer)
+            self.parse_attrs(json=json_offer, attr=offer, diff_class=Offer)
             offer.save()
 
-    def parse_attrs(self, json_offer, offer) -> None:
+    def parse_attrs(self, json, attr, diff_class) -> None:
         """Парсит данные из json на простые и сложные"""
-        for key, data in json_offer.items():
+        for key, data in json.items():
             if key in self.attrs['simple']:
-                Offer.Base(data=data, offer=offer, name=key).save()
+                Base(data=data, offer=attr, name=key).save()
             elif key in self.attrs['diff']:
-                getattr(Offer, key[0].title() + key[1::])(data=data, offer=offer).save()
+                getattr(diff_class, key[0].title() + key[1::])(data=data, offer=attr).save()

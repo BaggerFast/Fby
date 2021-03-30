@@ -1,7 +1,7 @@
 from django.db import models
 from main.models.ya_market.offer.base import Offer
 from main.models.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
-    ProcessingStateStatus, SupplyScheduleDayChoices
+    ProcessingStateStatus, SupplyScheduleDayChoices, VatType
 
 
 class Timing(models.Model):
@@ -51,19 +51,15 @@ class GuaranteePeriod(Timing):
 
 
 class Price(models.Model):
-    discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True)
-    value = models.FloatField(verbose_name="Цена на товар.", null=True)
+    discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True, blank=True)
+    value = models.FloatField(verbose_name="Цена на товар.", null=True, blank=True)
     vat = models.IntegerField(verbose_name='Идентификатор ставки НДС',
-        help_text="""
-                   Идентификатор ставки НДС, применяемой для товара:
-                   2 — 10%.
-                   5 — 0%.
-                   6 — не облагается НДС.
-                   7 — 20%.
-                   Если параметр не указан, используется ставка НДС, установленная в личном кабинете магазина.
-                   """,
-        null=True
-    )
+                              help_text="Если параметр не указан, используется ставка НДС, установленная в личном "
+                                        "кабинете магазина.",
+                              null=True,
+                              blank=True,
+                              choices=VatType.choices
+                              )
     offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
@@ -120,7 +116,6 @@ class WeightDimension(models.Model):
 class Url(models.Model):
     """
         Список URL
-
         .. todo::
            Добавить проверку на то, что в списке URL'ов присутствует минимум одна запись
     """
@@ -129,7 +124,7 @@ class Url(models.Model):
         on_delete=models.CASCADE,
         related_name='urls',
     )
-    url = models.URLField(max_length=2000, verbose_name='Сслыка на фото')
+    url = models.URLField(max_length=2000, verbose_name='Ссылка на фото')
 
 
 class Barcode(models.Model):
@@ -144,17 +139,6 @@ class Barcode(models.Model):
                                          'только код GTIN. Если штрихкодов несколько, укажите их через запятую.',
                                blank=True,
                                null=True)
-
-
-
-    """
-    Тип таймингового поля
-    
-    .. todo::
-       Добавить проверку на то, что в списке таймингов нет элементов 
-       с повторяющимся полем :class:`timing_type` для одного товара
-       Например, чтобы у товара не было двух сроков годности.
-    """
 
 
 class CustomsCommodityCode(models.Model):
