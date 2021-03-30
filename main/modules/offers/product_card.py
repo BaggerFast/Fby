@@ -4,7 +4,6 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from main.models import *
 from main.forms import *
-from main.view.views import Multiform
 from main.view import *
 
 
@@ -41,12 +40,10 @@ class ProductPageView(LoginRequiredMixin, View):
         form.get_post_form(disable=True, request=request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Изменено')
+            messages.success(request, 'Редактирование прошло успешно!')
             self.context['disable'] = True
         else:
-            form.get_fill_form(disable=False)
             self.context['disable'] = False
-            messages.error(request, 'Произошла ошибка!')
         self.context['forms'] = form.get_form_for_context()
         return render(request, Page.product_card, self.context)
 

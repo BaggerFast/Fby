@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from main.models.ya_market.choices import TimingTypeChoices, AvailabilityChoices, MappingType
+from main.models.ya_market.offer.choices import TimingTypeChoices, AvailabilityChoices, MappingType
 
 
 class Offer(models.Model):

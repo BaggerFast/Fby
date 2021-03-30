@@ -1,5 +1,5 @@
 from main.models import Offer as OfferModel
-from main.models.save_dir.offer import OfferPattern
+from main.models.save_dir.offer.offer import OfferPattern
 
 
 class PricePattern(OfferPattern):

@@ -25,11 +25,10 @@ class CreateOfferView(LoginRequiredMixin, View):
             messages.success(request, 'Товар добавлен')
             self.context['disable'] = True
         else:
-            form.get_clear_form(disable=False)
-            Offer.objects.get(user=request.user).delete()
+            form.get_post_form(disable=False, request=request.POST)
+            offer.delete()
             self.context['disable'] = False
             self.context['create'] = True
-            messages.error(request, 'Произошла ошибка!')
         self.context['forms'] = form.get_form_for_context()
         return render(request, Page.product_card, self.context)
 

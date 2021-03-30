@@ -1,8 +1,7 @@
 from django.db import models
-from main.models.ya_market.base import Offer
-from main.models.ya_market.choices import TimeUnitChoices, MappingType, TimingTypeChoices, ProcessingStateNoteType, \
+from main.models.ya_market.offer.base import Offer
+from main.models.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
     ProcessingStateStatus, SupplyScheduleDayChoices
-from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Timing(models.Model):
@@ -16,8 +15,8 @@ class Timing(models.Model):
 
     timePeriod = models.PositiveSmallIntegerField(null=True, blank=True)
 
-    timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices,
-                                verbose_name='', null=True, blank=True)
+    timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices, verbose_name='Единица измерения'
+                                , null=True, blank=True)
 
     comment = models.CharField(
         max_length=2000,

@@ -1,1 +1,3 @@
-from main.view.views import get_navbar, Page
+from main.view.pages import Page
+from main.view.multi_form import Multiform
+from main.view.menu import get_navbar

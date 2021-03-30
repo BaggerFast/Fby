@@ -4,23 +4,20 @@
     {% for field, errors in form.errors.items %}
     {% for error in errors %}
     <div class="alert alert-danger" role="alert">
-        {{ error }}
+         {{field}} : {{ error }}
     </div>
     {% endfor %}
     {% endfor %}
-    {% if not user.is_authenticated %}
+
+  {% if not user.is_authenticated %}
+    {% for form in forms%}
     <div class="mb-3">
         <label>
-            Имя пользователя:
-            {{form.username}}
+            {{form.label}}
+            {{form}}
         </label>
     </div>
-    <div class="mb-3">
-        <label>
-            Пароль:
-            {{form.password}}
-        </label>
-    </div>
+    {%endfor%}
     <div>
         <button class="btn btn-primary" @click="login">Войти</button>
     </div>

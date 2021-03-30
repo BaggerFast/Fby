@@ -1,3 +1,3 @@
-from main.forms.from_db import WeightDimensionForm, BarcodeForm, UrlForm,\
+from main.forms.offer import WeightDimensionForm, BarcodeForm, UrlForm,\
     OfferForm, ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm
 from main.forms.user import UserLoginForm, UserRegistrationForm

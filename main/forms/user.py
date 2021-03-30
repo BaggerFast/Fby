@@ -20,6 +20,9 @@ class UserLoginForm(AuthenticationForm, Func):
     class Meta:
         model = User
         fields = ('username', 'password')
+        labels = {
+            'username': 'Логин'
+        }
 
 
 class UserRegistrationForm(UserCreationForm, Func):
@@ -31,4 +34,7 @@ class UserRegistrationForm(UserCreationForm, Func):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'email', 'password1', 'password2')
+        fields = ('first_name', 'username', 'email', 'password1', 'password2')
+        labels = {
+            'username': 'Логин'
+        }

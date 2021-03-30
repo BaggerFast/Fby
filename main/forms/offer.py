@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from main.models.ya_market.support import *
+from main.models.ya_market.offer.support import *
 
 
 class Func:
