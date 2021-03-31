@@ -10,7 +10,6 @@ from main.view import *
 
 class MyLoginFormView(FormView):
     """отображение авторизации"""
-
     form_class = UserLoginForm
     template_name = Page.login
     context = {'title': 'Login', 'page_name': 'Авторизация'}

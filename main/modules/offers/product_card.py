@@ -17,7 +17,7 @@ class Form(Multiform):
         for form in forms:
             self.model_list.append({'attrs': key2, 'form': form})
 
-    def get_form_for_context(self) -> dict:
+    def get_for_context(self) -> dict:
         return {'Основная информация': ['offer_info', [list(self.models_json[str(OfferForm())].form)[:6],
                                                        self.models_json[str(UrlForm())].form,
                                                        self.models_json[str(BarcodeForm())].form,
@@ -41,15 +41,15 @@ class ProductPageView(LoginRequiredMixin, View):
 
         form = Form()
         form.get_models_classes(key1={'id': id}, key2={'offer': Offer.objects.get(id=id)})
-        form.get_post_form(disable=True, request=request.POST)
+        form.get_post(disable=True, request=request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Редактирование прошло успешно!')
             self.context['disable'] = True
         else:
             self.context['disable'] = False
-            form.get_post_form(disable=False, request=request.POST)
-        self.context['forms'] = form.get_form_for_context()
+            form.get_post(disable=False, request=request.POST)
+        self.context['forms'] = form.get_for_context()
         return render(request, Page.product_card, self.context)
 
     def get(self, request, id):
@@ -57,8 +57,8 @@ class ProductPageView(LoginRequiredMixin, View):
         disable = False if int(request.GET.get('edit', 0)) else True
         form = Form()
         form.get_models_classes(key1={'id': id}, key2={'offer': Offer.objects.get(id=id)})
-        form.get_fill_form(disable=disable)
+        form.get_fill(disable=disable)
         self.context['disable'] = disable
-        self.context['forms'] = form.get_form_for_context()
+        self.context['forms'] = form.get_for_context()
 
         return render(request, Page.product_card, self.context)

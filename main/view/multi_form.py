@@ -11,19 +11,22 @@ class FormParser:
             return model.objects.create(**attrs_for_filter)
         return model
 
-    def fill(self, model, attrs_for_filter, disabled) -> None:
-        model = FormParser.get_or_create(model=model, attrs_for_filter=attrs_for_filter)
-        self.form = self.form_base(instance=model)
-        self.form.turn_off(disable=disabled)
+    def __template_request(self, disable: bool, model=None, attrs_for_filter=None, request=None):
+        if model and attrs_for_filter:
+            model = FormParser.get_or_create(model=model, attrs_for_filter=attrs_for_filter)
+            self.form = self.form_base(request, instance=model) if request else self.form_base(instance=model)
+        else:
+            self.form = self.form_base()
+        self.form.turn_off(disable=disable)
 
-    def clear(self, disabled) -> None:
-        self.form = self.form_base()
-        self.form.turn_off(disable=disabled)
+    def fill(self, model, attrs_for_filter, disable) -> None:
+        self.__template_request(disable=disable, model=model, attrs_for_filter=attrs_for_filter)
 
-    def post(self, request, model, attrs_for_filter, disabled) -> None:
-        model = FormParser.get_or_create(model=model, attrs_for_filter=attrs_for_filter)
-        self.form = self.form_base(request, instance=model)
-        self.form.turn_off(disable=disabled)
+    def clear(self, disable) -> None:
+        self.__template_request(disable=disable)
+
+    def post(self, request, model, attrs_for_filter, disable) -> None:
+        self.__template_request(disable=disable, model=model, attrs_for_filter=attrs_for_filter, request=request)
 
     def __bool__(self):
         return self.form.is_valid()
@@ -34,37 +37,39 @@ class Multiform:
         self.model_list = None
         self.models_json = {}
 
+    def __template_request(self, disable: bool, request=None, method=None, attrs_for_filter=None, model: str = None):
+        self.models_json.clear()
+        for cur_model in self.model_list:
+            form = FormParser(base_form=cur_model['form'])
+            json = {}
+            if request:
+                json.update({'request': request})
+            if model:
+                json.update({'model': cur_model['form'].Meta.model})
+            if attrs_for_filter:
+                json.update({'attrs_for_filter': cur_model['attrs']})
+            getattr(form, method)(**json, disable=disable)
+            self.models_json.update({str(cur_model['form']()): form})
+
     def get_models_classes(self) -> None:
         # примеры смотрите в коде
         raise NotImplementedError
 
-    def get_post_form(self, disable: bool, request) -> None:
-        # вызывать для пост запроса (для изменений данных)
-        self.models_json.clear()
-        for model in self.model_list:
-            form = FormParser(base_form=model['form'])
-            form.post(request=request, model=model['form'].Meta.model, attrs_for_filter=model['attrs'], disabled=disable)
-            self.models_json.update({str(model['form']()): form})
+    def get_post(self, disable: bool, request) -> None:
+        json = {'model': True, 'attrs_for_filter': True, 'request': request, 'method': 'post', 'disable': disable}
+        self.__template_request(**json)
 
-    def get_fill_form(self, disable) -> None:
+    def get_fill(self, disable: bool) -> None:
         # вызывать для get запроса с учетом заполнения формы из модели
-        self.models_json.clear()
-        for model in self.model_list:
-            form = FormParser(base_form=model['form'])
-            form.fill(model=model['form'].Meta.model, attrs_for_filter=model['attrs'], disabled=disable)
-            self.models_json.update(
-                {str(model['form']()): form})
+        json = {'model': True, 'attrs_for_filter': True, 'method': 'fill', 'disable': disable}
+        self.__template_request(**json)
 
-    def get_clear_form(self, disable) -> None:
+    def get_clear(self, disable: bool) -> None:
         # вызывать для get запроса без заполнения данными из модели (возвращает пустые поля)
-        self.models_json.clear()
-        for model in self.model_list:
-            form = FormParser(base_form=model['form'])
-            form.clear(disabled=disable)
-            self.models_json.update(
-                {str(model['form']()): form})
+        json = {'method': 'clear', 'disable': disable}
+        self.__template_request(**json)
 
-    def get_form_for_context(self) -> dict:
+    def get_for_context(self) -> dict:
         # примеры смотрите в коде
         raise NotImplementedError
 

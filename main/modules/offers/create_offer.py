@@ -16,17 +16,17 @@ class CreateOfferView(LoginRequiredMixin, View):
         offer = Offer.objects.create(user=request.user)
         form = Form()
         form.get_models_classes(key1={'id': offer.id}, key2={'offer': offer})
-        form.get_post_form(disable=True, request=request.POST)
+        form.get_post(disable=True, request=request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Товар добавлен')
             self.context['disable'] = True
         else:
-            form.get_post_form(disable=False, request=request.POST)
+            form.get_post(disable=False, request=request.POST)
             offer.delete()
             self.context['disable'] = False
             self.context['create'] = True
-        self.context['forms'] = form.get_form_for_context()
+        self.context['forms'] = form.get_for_context()
         return render(request, Page.product_card, self.context)
 
     def get(self, request):
@@ -34,6 +34,6 @@ class CreateOfferView(LoginRequiredMixin, View):
         self.context['create'] = True
         form = Form()
         form.get_models_classes()
-        form.get_clear_form(disable=False)
-        self.context['forms'] = form.get_form_for_context()
+        form.get_clear(disable=False)
+        self.context['forms'] = form.get_for_context()
         return render(request, Page.product_card, self.context)
