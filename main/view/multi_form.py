@@ -32,7 +32,6 @@ class FormParser:
         return self.form.is_valid()
 
 
-
 class Multiform:
     def __init__(self):
         self.model_list = None
