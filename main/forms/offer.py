@@ -127,15 +127,18 @@ class CommodityCodeForm(ModelForm, Func):
 
 
 class PriceForm(ModelForm, Func):
+    def __str__(self):
+        return 'priceForm'
+
     class Meta:
         model = Price
         exclude = ('offer',)
 
 
 class AvailabilityForm(ModelForm, Func):
+    def __str__(self):
+        return 'availabilityForm'
+
     class Meta:
         model = Offer
         fields = ['availability', ]
-
-
-

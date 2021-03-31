@@ -5,10 +5,15 @@
     <input id="content" type="text" class="form-control d-none" name="content" value="button_info">
     <button id="info" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Данные о товаре</button>
     <button id="accommodation" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Управление размещением</button>
-    <button id="leftovers" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Остатки на складах</button>
-    <button id="tariffs" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Тарифы</button>
   </div>
 </form>
+<a href="{% url 'catalogue_list' %}"  role="button" class="btn btn-outline-danger btn-sm" style="margin-top: 20px;">
+  {% if create %}
+    Отмена
+  {% else %}
+    В каталог
+  {% endif %}
+</a>
 <form action="" method="post">{% csrf_token %}
     {% for title, forms_list in forms.items %}
         {% for form in forms_list.1 %}
@@ -24,7 +29,7 @@
         {% endfor %}
   {% endfor %}
   {% for title, forms_list in forms.items %}
-  <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 40px;">
+  <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 20px;">
     <div class="accordion-item">
       <h2 class="accordion-header" id="{{ forms_list.0 }}Heading">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{forms_list.0}}Collapse" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -63,7 +68,8 @@
 {% if disable %}
 <form action="." method="GET" style="margin: 40px 0;">
   <input type="text" class="form-control d-none" name="edit" value="1">
-  <button id="button_loader" type="submit" class="btn btn-primary">Редактировать</button>
+  <input type="text" id="content_load" class="form-control d-none" name="content" value="{{ content }}">
+  <button id="button_loader" type="submit" class="btn btn-primary" onclick="inputLoad(this.id)">Редактировать</button>
 </form>
 {% endif %}
 <script>

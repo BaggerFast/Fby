@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic.base import View
 from main.models import *
-from main.modules.offers.product_card import Form
+from main.modules.offers.product_card import Form, TempForm
 from main.view import *
 
 
@@ -11,8 +11,18 @@ class CreateOfferView(LoginRequiredMixin, View):
     """отображение каталога"""
     context = {'title': 'Create_offer', 'page_name': 'Создать товар'}
 
-    def post(self, request):
+    def preinit(self, request):
         self.context['navbar'] = get_navbar(request)
+        self.context['content'] = request.GET.get('content', 'info')
+        self.form = Form() if self.context['content'] == 'info' else TempForm() \
+            if self.context['content'] == 'accommodation' else None
+        self.form.get_models_classes()
+
+    def endit(self):
+        self.context['forms'] = self.form.get_for_context()
+
+    def post(self, request):
+        self.preinit(request=request)
         offer = Offer.objects.create(user=request.user)
         form = Form()
         form.get_models_classes(key1={'id': offer.id}, key2={'offer': offer})
@@ -30,10 +40,9 @@ class CreateOfferView(LoginRequiredMixin, View):
         return render(request, Page.product_card, self.context)
 
     def get(self, request):
-        self.context['navbar'] = get_navbar(request)
+        self.preinit(request=request)
         self.context['create'] = True
-        form = Form()
-        form.get_models_classes()
-        form.get_clear(disable=False)
-        self.context['forms'] = form.get_for_context()
+        self.form.get_models_classes()
+        self.form.get_clear(disable=False)
+        self.endit()
         return render(request, Page.product_card, self.context)
