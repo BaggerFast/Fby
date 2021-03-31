@@ -19,6 +19,9 @@ class MyRegisterFormView(FormView):
         self.context['forms'] = self.get_context_data()['form']
         return self.render_to_response(self.context)
 
+    def form_invalid(self, form):
+        return self.get(self.request)
+
     def form_valid(self, form):
         form.save()
         user = authenticate(username=form.data.get('username'), password=form.data.get('password2'))

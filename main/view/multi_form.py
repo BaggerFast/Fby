@@ -25,13 +25,16 @@ class FormParser:
         self.form = self.form_base(request, instance=model)
         self.form.turn_off(disable=disabled)
 
+    def __bool__(self):
+        return self.form.is_valid()
+
 
 class Multiform:
     def __init__(self):
         self.model_list = None
         self.models_json = {}
 
-    def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
+    def get_models_classes(self) -> None:
         # примеры смотрите в коде
         raise NotImplementedError
 
@@ -68,7 +71,7 @@ class Multiform:
     def is_valid(self) -> bool:
         # проверяет формы на валидность
         for key, model in self.models_json.items():
-            if not model.form.is_valid():
+            if not model:
                 return False
         return True
 

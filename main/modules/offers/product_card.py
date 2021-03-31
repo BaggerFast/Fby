@@ -48,6 +48,7 @@ class ProductPageView(LoginRequiredMixin, View):
             self.context['disable'] = True
         else:
             self.context['disable'] = False
+            form.get_post_form(disable=False, request=request.POST)
         self.context['forms'] = form.get_form_for_context()
         return render(request, Page.product_card, self.context)
 
