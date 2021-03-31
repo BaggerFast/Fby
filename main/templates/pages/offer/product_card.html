@@ -1,5 +1,14 @@
 {% extends 'app.html' %}
 {% block content %}
+<form action="" method="GET" style="margin-top: 20px;">
+  <div class="buttons-group">
+    <input id="content" type="text" class="form-control d-none" name="content" value="button_info">
+    <button id="info" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Данные о товаре</button>
+    <button id="accommodation" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Управление размещением</button>
+    <button id="leftovers" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Остатки на складах</button>
+    <button id="tariffs" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Тарифы</button>
+  </div>
+</form>
 <form action="" method="post">{% csrf_token %}
     {% for title, forms_list in forms.items %}
         {% for form in forms_list.1 %}
@@ -57,4 +66,9 @@
   <button id="button_loader" type="submit" class="btn btn-primary">Редактировать</button>
 </form>
 {% endif %}
+<script>
+  function inputEdit(id) {
+    document.getElementById("content").value = id;
+  }
+</script>
 {% endblock %}
