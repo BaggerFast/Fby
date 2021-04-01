@@ -3,8 +3,8 @@ from django.contrib.auth import login, authenticate
 from django.views.generic.edit import FormView
 from django.urls import reverse
 from django.shortcuts import redirect
-from main.forms import *
-from main.view import *
+from main.forms.user import UserRegistrationForm
+from main.view import get_navbar, Page
 
 
 class MyRegisterFormView(FormView):

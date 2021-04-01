@@ -1,8 +1,7 @@
 {% extends 'app.html' %}
 {% block content %}
 <div class="row mt-5">
-    <form action="." method="GET">
-        <input type="text" class="form-control d-none" name="update_data" value="1">
+    <form action="" method="post">{% csrf_token %}
         <button id="button_loader" type="submit" class="btn btn-primary">Обновить данные</button>
     </form>
     {% if offers %}

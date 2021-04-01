@@ -33,7 +33,6 @@ class PricePattern(OfferPattern):
     def save(self, user) -> None:
         """Сохраняет данные в БД"""
         for item in self.json:
-            print(self.json)
             try:
                 offer = OfferModel.objects.get(shopSku=item.get('id'), user=user)
             except ObjectDoesNotExist:
