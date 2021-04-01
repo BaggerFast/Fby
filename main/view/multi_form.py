@@ -77,6 +77,7 @@ class Multiform:
         # проверяет формы на валидность
         for key, model in self.models_json.items():
             if not model:
+                print(model.form.errors)
                 return False
         return True
 

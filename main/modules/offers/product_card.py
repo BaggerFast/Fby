@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 from django.shortcuts import render
 from django.views.generic.base import View
 
@@ -48,9 +49,13 @@ class ProductPageView(LoginRequiredMixin, View):
     def preinit(self, id, request):
         self.context['navbar'] = get_navbar(request)
         self.context['content'] = request.GET.get('content', 'info')
-        self.form = Form() if self.context['content'] == 'info' else TempForm() \
-            if self.context['content'] == 'accommodation' else None
-        self.form.get_models_classes(key1={'id': id}, key2={'offer': Offer.objects.get(id=id)})
+        correct_content = ['info', 'accommodation']
+        if self.context['content'] in correct_content:
+            self.form = Form() if self.context['content'] == 'info' else TempForm() \
+                if self.context['content'] == 'accommodation' else None
+            self.form.get_models_classes(key1={'id': id}, key2={'offer': Offer.objects.get(id=id)})
+        else:
+            raise Http404()
 
     def endit(self, disable):
         self.context['forms'] = self.form.get_for_context()
