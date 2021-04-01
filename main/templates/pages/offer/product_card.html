@@ -1,5 +1,6 @@
 {% extends 'app.html' %}
 {% block content %}
+{% if not content_disable %}
 <form action="" method="GET" style="margin-top: 20px;">
   <div class="buttons-group">
     <input id="content" type="text" class="form-control d-none" name="content" value="info">
@@ -8,6 +9,7 @@
     <button id="accommodation" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Управление размещением</button>
   </div>
 </form>
+{% endif %}
 <a href="{% url 'catalogue_list' %}"  role="button" class="btn btn-outline-danger btn-sm" style="margin-top: 20px;">
   {% if create %}
     Отмена
@@ -62,7 +64,15 @@
   {% endfor %}
   {% if not disable %}
     <button id="button_save" type="submit" class="btn btn-primary" style="margin: 40px 0;">
-      {% if not create %}Сохранить{% else %}Создать{% endif %}
+      {% if not create %}
+      Сохранить
+      {% else %}
+        {% if not stage_next %}
+        Создать
+        {% else %}
+        Далее
+        {% endif %}
+      {% endif %}
     </button>
   {% endif %}
 </form>

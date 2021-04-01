@@ -15,6 +15,7 @@ class CreateOfferView(LoginRequiredMixin, View):
 
     def pre_init(self, request):
         self.context['navbar'] = get_navbar(request)
+        self.context['content_disable'] = True
         self.context['content'] = request.GET.get('content', 'info')
         correct_content = ['info', 'accommodation']
         if self.context['content'] in correct_content:
@@ -36,12 +37,15 @@ class CreateOfferView(LoginRequiredMixin, View):
             self.context['id'] = id
         else:
             offer = Offer.objects.get(id=id)
-        self.form.get_post(disable=True, request=request.POST)
         self.form.get_models_classes(key1={'id': offer.id}, key2={'offer': offer})
+        self.form.get_post(disable=True, request=request.POST)
         if self.form.is_valid():
-            print('VALID')
-            messages.success(request, 'Товар добавлен')
-            self.context['disable'] = True
+            if self.context['content'] == 'accommodation':
+                messages.success(request, 'Товар добавлен')
+                return redirect(reverse('catalogue_list'))
+            else:
+                messages.success(request, 'Первая часть модели сохранена')
+            self.context['disable'] = False
             self.form.save()
         else:
             self.form.get_post(disable=False, request=request.POST)
@@ -58,6 +62,7 @@ class CreateOfferView(LoginRequiredMixin, View):
     def get(self, request):
         self.pre_init(request=request)
         self.context['create'] = True
+        self.context['stage_next'] = True if self.context['content'] == 'info' else False
         self.form.get_models_classes()
         self.form.get_clear(disable=False)
         self.end_it()
