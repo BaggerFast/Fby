@@ -3,6 +3,8 @@ from django.contrib import messages
 
 from fby_market.settings import YaMarket
 import requests
+
+from main.models import Price
 from main.models.save_dir import *
 
 
@@ -99,4 +101,47 @@ class OfferPrice(Requests):
 
     def save(self, request) -> None:
         PricePattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
+
+
+class OfferChangePrice(Requests):
+    """
+    Класс для изменения цены на товар на сервере яндекса
+    """
+    # OfferChangePrice(request, {'656593390': {'price': 1000}})
+    def __init__(self, request, data: dict):
+        for sku in data.keys():
+            data[sku]['old_price'] = self.add_params(sku, data[sku]['price'])
+        super().__init__(json_name='offer-prices/updates', base_context_name='price', name='ChangePrices')
+        self.update(data, request)
+        for sku in sorted(data.keys()):
+            self.show(sku, data[sku]['price'], data[sku]['old_price'], data[sku]['new_price'])
+
+    @staticmethod
+    def update(data, request) -> None:
+        OfferPrice().save(request.user)  # обновить данные БД
+        for sku in data.keys():
+            data[sku]['new_price'] = Price.objects.get(marketSku=sku).value
+
+    @staticmethod
+    def show(sku, price, old_price, new_price) -> None:
+        print(f'marketSku: {sku}, Old price: {old_price}, New price: {new_price}, Status: {"OK" if new_price == price else "ERROR"}')
+
+    def get_json(self) -> dict:
+        return self.get_next_page()
+
+    @staticmethod
+    def get_dict(offer, price) -> dict:
+        return {
+            'marketSku': offer.marketSku,
+            'price': {
+                        'currencyId': 'RUR',
+                        'value': price,
+                        'vat': offer.vat,
+                    }
+            }
+
+    def add_params(self, sku, price) -> int:
+        offer = Price.objects.get(marketSku=sku)
+        self.PARAMS = {'offers': [self.get_dict(offer, price)]}
+        return offer.value  # Вернуть старую цену
 
