@@ -1,37 +1,24 @@
 {% extends 'app.html' %}
 {% block content %}
 <form action="" method="post">{% csrf_token %}
-    {% for field, errors in form.errors.items %}
+    {% for field, errors in forms.errors.items %}
     {% for error in errors %}
     <div class="alert alert-danger" role="alert">
-        {{ error }}
+         {{field}} : {{ error }}
     </div>
     {% endfor %}
     {% endfor %}
-    <div class="form-group mb-3">
+
+  <div>
+  {% for form in forms%}
+    <div class="mb-3">
         <label>
-            Имя пользователя
-            {{form.username}}
+            {{form.label}}
+            {{form}}
         </label>
     </div>
-    <div class="form-group mb-3">
-        <label>
-            Почта
-            {{form.email}}
-        </label>
-    </div>
-    <div class="form-group mb-3">
-        <label>
-            Пароль
-            {{form.password1}}
-        </label>
-    </div>
-  <div class="form-group mb-3">
-        <label>
-            Повтор пароля
-            {{form.password2}}
-        </label>
-    </div>
+    {%endfor%}
     <button type="submit" class="btn btn-primary" style="margin-bottom: 20px;">Зарегистрироваться</button>
+  </div>
 </form>
 {% endblock %}

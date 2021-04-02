@@ -1,24 +1,40 @@
 from django.db import models
-from main.models.choices import TimingTypeChoices, AvailabilityChoices, MappingType
+from django.contrib.auth.models import User
+from main.models.ya_market.offer.choices import AvailabilityChoices, MappingType
 
 
 class Offer(models.Model):
-    shopSku = models.CharField(max_length=255, verbose_name='SKU товара в нашем магазине', null=True)
-    name = models.CharField(max_length=255, verbose_name='Название товара', null=True)
-    category = models.CharField(max_length=255, verbose_name='Категория товара', null=True)
-    manufacturer = models.CharField(
-        max_length=255,
-        verbose_name='Изготовитель товара',
-        help_text='Компания, которая произвела товар, ее адрес и регистрационный номер (если есть)',
-        null=True
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name="offer",
+        verbose_name="Пользователь",
     )
 
-    class Meta:
-        ordering = ['id']
+    marketSku = models.CharField(max_length=255, verbose_name="SKU на Яндексе", null=True, blank=True)
 
-    vendor = models.CharField(max_length=255, verbose_name='Бренд товара', null=True)
-    vendorCode = models.CharField(max_length=255, verbose_name='Артикул товара от производителя', null=True)
-    description = models.CharField(max_length=2000, verbose_name='Описание товара', null=True)
+    updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
+
+    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU', null=True)
+
+    name = models.CharField(max_length=255,
+                            help_text='Составляйте по схеме: тип товара + бренд или производитель + модель + '
+                                      'отличительные характеристики.',
+                            verbose_name='Название товара', null=True)
+
+    category = models.CharField(max_length=255, verbose_name='Категория', null=True)
+
+    manufacturer = models.CharField(
+        max_length=255,
+        verbose_name='Изготовитель',
+        help_text='Компания, которая произвела товар, ее адрес и регистрационный номер (если есть)', null=True
+    )
+
+    vendor = models.CharField(max_length=255, verbose_name='Торговая марка', null=True)
+
+    vendorCode = models.CharField(max_length=255, verbose_name='Артикул производителя', null=True, blank=True)
+
+    description = models.CharField(max_length=2000, verbose_name='Описание товара', null=True, blank=True)
 
     certificate = models.CharField(
         max_length=255,
@@ -26,37 +42,58 @@ class Offer(models.Model):
         help_text='Документ по его номеру можно найти в личном кабинете магазина',
         null=True
     )
+
     availability = models.CharField(
         max_length=8,
         choices=AvailabilityChoices.choices,
         verbose_name='Планы по поставкам',
+        blank=True,
         null=True
     )
-    transportUnitSize = models.IntegerField(
-        verbose_name='Количество единиц товара в одной упаковке, которую вы поставляете на склад',
-        help_text='Например, если вы поставляете детское питание коробками по 6 баночек, значение равно 6',
+
+    # done
+    transportUnitSize = models.PositiveSmallIntegerField(
+        verbose_name='Количество товаров в упаковке',
+        help_text='Сколько товаров в упаковке. Поле используется, если вы поставляете товар упаковками,'
+                  ' а продаете поштучно. Например, вы продаете детское питание по 1 баночке, '
+                  'а коробка содержит 6 баночек.',
+        blank=True,
         null=True
     )
-    minShipment = models.IntegerField(
-        verbose_name='Минимальное количество единиц товара, которое вы поставляете на склад',
-        help_text='Например, если вы поставляете детское питание партиями минимум по 10 коробок, '
-                  'а в каждой коробке по 6 баночек, значение равно 60',
+
+    minShipment = models.PositiveSmallIntegerField(
+        verbose_name='Минимальная партия поставки',
+        help_text='Минимальное количество товаров, которое вы готовы привозить на склад. '
+                  'Например, если вы поставляете детское питание партиями минимум по 10 коробок,'
+                  ' а в каждой коробке по 6 баночек, то ваша минимальная партия — 60 баночек.',
+        blank=True,
         null=True
     )
-    quantumOfSupply = models.IntegerField(
-        verbose_name='Добавочная партия: по сколько единиц товара можно добавлять '
-                     'к минимальному количеству min_shipment',
-        help_text='Например, если вы поставляете детское питание партиями минимум по 10 коробок и хотите добавлять '
-                  'к минимальной партии по 2 коробки, а в каждой коробке по 6 баночек, значение равно 12.',
+
+    quantumOfSupply = models.PositiveSmallIntegerField(
+        verbose_name='Добавочная партия',
+        help_text="По сколько товаров можно добавлять к минимальной партии. Например, вы планируете поставлять"
+                  " детское питание партиями, причем к минимальной партии хотите прибавлять минимум по 2 коробки, "
+                  "а в каждой коробке по 6 баночек. Тогда добавочная партия — 12 баночек, а к минимальной партии "
+                  "можно добавлять 12, 24, 36 баночек и т. д.",
+        blank=True,
         null=True
     )
-    deliveryDurationDays = models.IntegerField(verbose_name='Срок, за который вы поставляете товары на склад, в днях',
-                                               null=True)
-    boxCount = models.IntegerField(
-        verbose_name='Сколько мест (если больше одного) занимает товар',
-        help_text='Например, кондиционер занимает два места: внешний и внутренний блоки в двух коробках',
-        null=True
-    )
+
+    deliveryDurationDays = models.PositiveSmallIntegerField(verbose_name='Срок поставки',
+                                                            help_text="За какое время вы поставите товар на склад.(в днях)",
+                                                            null=True,
+                                                            blank=True)
+
+    boxCount = models.PositiveIntegerField(verbose_name='Товар занимает больше одного места',
+                                           help_text='Если нет — оставьте поле пустым. Если да — укажите количество мест '
+                                                     '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',
+                                           blank=True,
+                                           null=True
+                                           )
+
+    class Meta:
+        ordering = ['id']
 
     @property
     def shelfLife(self):
