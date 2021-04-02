@@ -4,6 +4,7 @@ from django.views.generic.base import View
 from main.models import *
 from main.view import *
 from main.yandex import *
+from main.yandex.request_yandex import OfferChangePrice
 
 
 class CatalogueView(LoginRequiredMixin, View):

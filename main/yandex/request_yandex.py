@@ -109,8 +109,8 @@ class OfferChangePrice(Requests):
     """
     Класс для изменения цены на товар на сервере яндекса
     """
-    # OfferChangePrice(request, {'656593390': {'price': 1000}})
     def __init__(self, request, data: dict):
+        print(data.keys())
         for sku in data.keys():
             data[sku]['old_price'] = self.add_params(sku, data[sku]['price'])
         super().__init__(json_name='offer-prices/updates', base_context_name='price', name='ChangePrices')
@@ -145,8 +145,7 @@ class OfferChangePrice(Requests):
             }
 
     def add_params(self, sku, price) -> int:
-        offer_id = Offer.objects.get(marketSku=sku).id
-        offer = Price.objects.get(offer_id=offer_id)
-        self.PARAMS = {'offers': [self.get_dict(offer, price, sku)]}
-        return offer.value  # Вернуть старую цену
+        offer_price = Price.objects.get(offer_id=Offer.objects.get(marketSku=sku).id)
+        self.PARAMS = {'offers': [self.get_dict(offer_price, price, sku)]}
+        return offer_price.value  # Вернуть старую цену
 
