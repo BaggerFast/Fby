@@ -7,6 +7,10 @@
     <input id="id" type="text" class="form-control d-none" name="id" value="{{ id }}">
     <button id="info" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Данные о товаре</button>
     <button id="accommodation" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Управление размещением</button>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModalCenter">
+      Удалить
+    </button>
   </div>
 </form>
 {% endif %}
@@ -17,6 +21,23 @@
     В каталог
   {% endif %}
 </a>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Удаление</h5>
+      </div>
+      <div class="modal-body">
+        Вы уверены, что хотите <em>безвозвратно</em> удалить этот товар?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-danger">Удалить</button>
+      </div>
+    </div>
+  </div>
+</div>
 <form action="" method="post">{% csrf_token %}
     {% for title, forms_list in forms.items %}
         {% for form in forms_list.1 %}
