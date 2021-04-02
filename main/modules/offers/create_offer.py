@@ -49,7 +49,7 @@ class CreateOfferView(LoginRequiredMixin, View):
             offer = Offer.objects.create(user=request.user)
             self.offer_id = offer.id
         else:
-            offer = Offer.objects.get(id=self.offer_id)
+            offer = Offer.objects.get(pk=self.offer_id)
         self.form.get_models_classes(key1={'id': self.offer_id}, key2={'offer': offer})
         self.form.get_post(disable=True, request=request.POST)
         if self.form.is_valid():

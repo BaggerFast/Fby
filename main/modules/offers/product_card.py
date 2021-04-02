@@ -51,14 +51,14 @@ class ProductPageView(LoginRequiredMixin, View):
     context = {'title': 'Product_card', 'page_name': 'Карточка товара'}
     form = None
 
-    def pre_init(self, id, request):
+    def pre_init(self, pk, request):
         self.context['navbar'] = get_navbar(request)
         self.context['content'] = request.GET.get('content', 'info')
         correct_content = ['info', 'accommodation']
         if self.context['content'] in correct_content:
             self.form = Form() if self.context['content'] == 'info' else TempForm() \
                 if self.context['content'] == 'accommodation' else None
-            self.form.get_models_classes(key1={'id': id}, key2={'offer': Offer.objects.get(id=id)})
+            self.form.get_models_classes(key1={'id': pk}, key2={'offer': Offer.objects.get(id=pk)})
         else:
             raise Http404()
 
@@ -66,11 +66,11 @@ class ProductPageView(LoginRequiredMixin, View):
         self.context['forms'] = self.form.get_for_context()
         self.context['disable'] = disable
 
-    def post(self, request, id):
+    def post(self, request, pk):
         # request_post = request.POST.dict()
         # request_post['shopSku'] = offer.shopSku
         # request_post['marketSku'] = offer.marketSku
-        self.pre_init(id=id, request=request)
+        self.pre_init(pk=pk, request=request)
         self.form.get_post(disable=True, request=request.POST)
         if self.form.is_valid():
             self.form.save()
@@ -82,8 +82,8 @@ class ProductPageView(LoginRequiredMixin, View):
         self.end_it(disable=disable)
         return render(request, Page.product_card, self.context)
 
-    def get(self, request, id):
-        self.pre_init(id=id, request=request)
+    def get(self, request, pk):
+        self.pre_init(pk=pk, request=request)
         disable = False if int(request.GET.get('edit', 0)) else True
         self.form.get_fill(disable=disable)
         self.end_it(disable=disable)
