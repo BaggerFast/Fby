@@ -40,7 +40,7 @@
         </button>
       </h2>
       <div id="{{forms_list.0}}Collapse" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">
+        <div class="accordion-body row">
           {% for form in forms_list.1 %}
           {% for item in form %}
           <div class="mb-3">
@@ -83,6 +83,10 @@
   <button id="button_loader" type="submit" class="btn btn-primary" onclick="inputLoad(this.id)">Редактировать</button>
 </form>
 {% endif %}
+<style>
+  .unit {
+  }
+</style>
 <script>
   function inputEdit(id) {
     document.getElementById("content").value = id;

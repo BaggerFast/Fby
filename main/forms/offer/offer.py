@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm
 from main.models.ya_market.offer.support import *
 
@@ -111,6 +112,9 @@ class OfferForm(ModelForm, Func):
         model = Offer
         fields = ['name', 'category', 'vendor', 'vendorCode', 'manufacturer', 'description', 'transportUnitSize',
                   'minShipment', 'quantumOfSupply', 'deliveryDurationDays', 'boxCount']
+        widgets = {
+            'description': forms.Textarea(),
+        }
 
     def __str__(self):
         return 'offer'
