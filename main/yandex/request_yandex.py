@@ -148,4 +148,3 @@ class OfferChangePrice(Requests):
         offer_price = Price.objects.get(offer_id=Offer.objects.get(marketSku=sku).id)
         self.PARAMS = {'offers': [self.get_dict(offer_price, price, sku)]}
         return offer_price.value  # Вернуть старую цену
-
