@@ -89,7 +89,7 @@ class OfferChangePrice(Requests):
     """
     def __init__(self, data: dict):
         for sku in data.keys():
-            data[sku]['old_price'] = self.AddParams(sku, data[sku]['price'])
+            data[sku]['old_price'] = self.add_params(sku, data[sku]['price'])
         super().__init__(json_name='offer-prices/updates', base_context_name='price')
         self.update(data)
         for sku in sorted(data.keys()):
@@ -97,7 +97,7 @@ class OfferChangePrice(Requests):
 
     @staticmethod
     def update(data) -> None:
-        (OfferPrice()).save()  # обновить данные БД
+        OfferPrice().save()  # обновить данные БД
         for sku in data.keys():
             data[sku]['new_price'] = Price.objects.get(marketSku=sku).value
 
@@ -119,7 +119,7 @@ class OfferChangePrice(Requests):
                     }
             }
 
-    def AddParams(self, sku, price) -> int:
+    def add_params(self, sku, price) -> int:
         offer = Price.objects.get(marketSku=sku)
         self.PARAMS = {'offers': [self.get_dict(offer, price)]}
         return offer.value  # Вернуть старую цену
