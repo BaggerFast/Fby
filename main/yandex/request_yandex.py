@@ -4,7 +4,7 @@ from django.contrib import messages
 from fby_market.settings import YaMarket
 import requests
 
-from main.models import Price
+from main.models import Price, Offer
 from main.models.save_dir import *
 
 
@@ -118,9 +118,9 @@ class OfferChangePrice(Requests):
 
     @staticmethod
     def update(data, request) -> None:
-        OfferPrice().save(request.user)  # обновить данные БД
+        OfferPrice().save(request)  # обновить данные БД
         for sku in data.keys():
-            data[sku]['new_price'] = Price.objects.get(marketSku=sku).value
+            data[sku]['new_price'] = Price.objects.get(offer_id=Offer.objects.get(marketSku=sku).id).value
 
     @staticmethod
     def show(sku, price, old_price, new_price) -> None:
@@ -130,9 +130,9 @@ class OfferChangePrice(Requests):
         return self.get_next_page()
 
     @staticmethod
-    def get_dict(offer, price) -> dict:
+    def get_dict(offer, price, sku) -> dict:
         return {
-            'marketSku': offer.marketSku,
+            'marketSku': sku,
             'price': {
                         'currencyId': 'RUR',
                         'value': price,
@@ -141,7 +141,8 @@ class OfferChangePrice(Requests):
             }
 
     def add_params(self, sku, price) -> int:
-        offer = Price.objects.get(marketSku=sku)
-        self.PARAMS = {'offers': [self.get_dict(offer, price)]}
+        offer_id = Offer.objects.get(marketSku=sku).id
+        offer = Price.objects.get(offer_id=offer_id)
+        self.PARAMS = {'offers': [self.get_dict(offer, price, sku)]}
         return offer.value  # Вернуть старую цену
 
