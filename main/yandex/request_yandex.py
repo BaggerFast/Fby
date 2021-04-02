@@ -1,4 +1,6 @@
 """Формирование запросов в YM для получения данных и сохранения их в БД"""
+import time
+
 from django.contrib import messages
 
 from fby_market.settings import YaMarket
@@ -118,9 +120,11 @@ class OfferChangePrice(Requests):
 
     @staticmethod
     def update(data, request) -> None:
+        time.sleep(0.4)     # яндекс медленно обновляет данные у себя
         OfferPrice().save(request)  # обновить данные БД
         for sku in data.keys():
-            data[sku]['new_price'] = Price.objects.get(offer_id=Offer.objects.get(marketSku=sku).id).value
+            data[sku]['new_price'] = Price.objects.get(
+                offer_id=Offer.objects.get(marketSku=sku).id).value
 
     @staticmethod
     def show(sku, price, old_price, new_price) -> None:
