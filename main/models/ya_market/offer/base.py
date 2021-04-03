@@ -4,6 +4,9 @@ from main.models.ya_market.offer.choices import AvailabilityChoices, MappingType
 
 
 class Offer(models.Model):
+    """
+    Модель хранящая товар.
+    """
     user = models.ForeignKey(
         to=User,
         on_delete=models.CASCADE,
