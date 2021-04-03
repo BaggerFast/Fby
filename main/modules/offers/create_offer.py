@@ -8,7 +8,6 @@ from main.models import Offer
 from main.modules.offers.product_card import Form, TempForm
 from main.view import get_navbar, Page
 
-
 def convert_url(offer_id) -> HttpResponse:
     return redirect(reverse('create_offer') + '?content=accommodation&id=' + str(offer_id))
 
@@ -58,6 +57,7 @@ class CreateOfferView(LoginRequiredMixin, View):
             if message:
                 return message
         else:
+            print('da')
             self.form.get_post(disable=False, request=request.POST)
             offer.delete()
             self.context['create'] = True

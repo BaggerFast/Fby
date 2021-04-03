@@ -1,13 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
-from django.views.generic.edit import FormView
 from django.urls import reverse
 from django.shortcuts import redirect
 from main.forms.user import UserRegistrationForm
+from main.modules.user.base import BaseView
 from main.view import Page
 
 
-class MyRegisterFormView(FormView):
+class MyRegisterFormView(BaseView):
     """отображение регистрации"""
 
     form_class = UserRegistrationForm

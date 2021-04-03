@@ -8,6 +8,7 @@ import requests
 
 from main.models import Price, Offer
 from main.models.save_dir import *
+from main.serializers import PriceSerializer
 
 
 class Requests:
@@ -109,42 +110,26 @@ class OfferChangePrice(Requests):
     """
     Класс для изменения цены на товар на сервере яндекса
     """
-    def __init__(self, request, data: dict):
-        print(data.keys())
-        for sku in data.keys():
-            data[sku]['old_price'] = self.add_params(sku, data[sku]['price'])
+    temp_params = []
+
+    def __init__(self, offer_list: list):
+        for offer in offer_list:
+            self.add_params(offer.shopSku)
+        self.PARAMS = {'offers': self.temp_params}
         super().__init__(json_name='offer-prices/updates', base_context_name='price', name='ChangePrices')
-        self.update(data, request)
-        for sku in sorted(data.keys()):
-            self.show(sku, data[sku]['price'], data[sku]['old_price'], data[sku]['new_price'])
+        print(self.PARAMS)
+        print(self.json_data)
 
     @staticmethod
-    def update(data, request) -> None:
-        time.sleep(0.4)     # яндекс медленно обновляет данные у себя
-        OfferPrice().save(request)  # обновить данные БД
-        for sku in data.keys():
-            data[sku]['new_price'] = Price.objects.get(
-                offer_id=Offer.objects.get(marketSku=sku).id).value
-
-    @staticmethod
-    def show(sku, price, old_price, new_price) -> None:
-        print(f'marketSku: {sku}, Old price: {old_price}, New price: {new_price}, Status: {"OK" if new_price == price else "ERROR"}')
+    def get_dict(offer_price) -> dict:
+        js = {'currencyId': 'RUR'}
+        js.update(PriceSerializer(offer_price).data)
+        json = {'shopSku': offer_price.offer.shopSku, 'price': js}
+        return json
 
     def get_json(self) -> dict:
         return self.get_next_page()
 
-    @staticmethod
-    def get_dict(offer, price, sku) -> dict:
-        return {
-            'marketSku': sku,
-            'price': {
-                        'currencyId': 'RUR',
-                        'value': price,
-                        'vat': offer.vat,
-                    }
-            }
-
-    def add_params(self, sku, price) -> int:
-        offer_price = Price.objects.get(offer_id=Offer.objects.get(marketSku=sku).id)
-        self.PARAMS = {'offers': [self.get_dict(offer_price, price, sku)]}
-        return offer_price.value  # Вернуть старую цену
+    def add_params(self, sku) -> int:
+        offer_price = Price.objects.get(offer=Offer.objects.get(shopSku=sku))
+        self.temp_params += [self.get_dict(offer_price)]

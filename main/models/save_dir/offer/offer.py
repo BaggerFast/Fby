@@ -138,6 +138,8 @@ class OfferPattern(BasePattern):
                 json_offer['mapping'] = item['mapping']
             self.parse_attrs(json=json_offer, attr=offer, diff_class=Offer)
             offer.save()
+            Price.objects.create(offer=offer)
+
 
     def parse_attrs(self, json, attr, diff_class) -> None:
         """Парсит данные из json на простые и сложные"""

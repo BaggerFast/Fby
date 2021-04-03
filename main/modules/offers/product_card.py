@@ -6,6 +6,7 @@ from django.views.generic.base import View
 from main.forms.offer import *
 from main.models import Offer
 from main.view import Page, get_navbar, Multiform
+from main.yandex.request_yandex import OfferChangePrice
 
 
 class Form(Multiform):
@@ -75,6 +76,7 @@ class ProductPageView(LoginRequiredMixin, View):
         if self.form.is_valid():
             self.form.save()
             messages.success(request, 'Редактирование прошло успешно!')
+            OfferChangePrice(offer_list=list(Offer.objects.filter(user=request.user)))
             disable = True
         else:
             disable = False
