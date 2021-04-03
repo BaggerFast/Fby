@@ -90,7 +90,9 @@ class Offer(models.Model):
                                                      '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',
                                            blank=True,
                                            null=True
+
                                            )
+
 
     class Meta:
         ordering = ['id']

@@ -110,9 +110,9 @@ class OfferChangePrice(Requests):
     """
     Класс для изменения цены на товар на сервере яндекса
     """
-    temp_params = []
-
     def __init__(self, offer_list: list):
+        print(offer_list)
+        self.temp_params = []
         for offer in offer_list:
             self.add_params(offer.shopSku)
         self.PARAMS = {'offers': self.temp_params}
@@ -130,6 +130,7 @@ class OfferChangePrice(Requests):
     def get_json(self) -> dict:
         return self.get_next_page()
 
-    def add_params(self, sku) -> int:
+    def add_params(self, sku) -> None:
         offer_price = Price.objects.get(offer=Offer.objects.get(shopSku=sku))
-        self.temp_params += [self.get_dict(offer_price)]
+        if offer_price.value:
+            self.temp_params += [self.get_dict(offer_price)]

@@ -4,9 +4,10 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.base import View
-from main.models import Offer
+from main.models import Offer, Price
 from main.modules.offers.product_card import Form, TempForm
 from main.view import get_navbar, Page
+
 
 def convert_url(offer_id) -> HttpResponse:
     return redirect(reverse('create_offer') + '?content=accommodation&id=' + str(offer_id))

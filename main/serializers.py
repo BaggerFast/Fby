@@ -8,7 +8,7 @@ from main.models import *
 class PriceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Price
-        exclude = ('offer', 'id')  # исключая offer
+        exclude = ('offer', 'id', 'vat')  # исключая offer
 
 
 class WeightDimensionSerializer(serializers.ModelSerializer):

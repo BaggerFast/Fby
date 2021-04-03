@@ -76,7 +76,7 @@ class ProductPageView(LoginRequiredMixin, View):
         if self.form.is_valid():
             self.form.save()
             messages.success(request, 'Редактирование прошло успешно!')
-            OfferChangePrice(offer_list=list(Offer.objects.filter(user=request.user)))
+            OfferChangePrice(offer_list=list(Offer.objects.filter(id=pk)))
             disable = True
         else:
             disable = False
