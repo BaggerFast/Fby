@@ -4,7 +4,7 @@ from django.http import Http404
 from django.shortcuts import render
 from django.views.generic.base import View
 from main.forms.offer import *
-from main.models import Offer
+from main.models import Offer, Price
 from main.view import Page, get_navbar, Multiform
 from main.yandex.request_yandex import OfferChangePrice
 
@@ -76,7 +76,9 @@ class ProductPageView(LoginRequiredMixin, View):
         if self.form.is_valid():
             self.form.save()
             messages.success(request, 'Редактирование прошло успешно!')
-            OfferChangePrice(offer_list=list(Offer.objects.filter(id=pk)))
+
+            # todo save on button
+            OfferChangePrice(price_list=list(Price.objects.filter(offer_id=pk)))
             disable = True
         else:
             disable = False

@@ -110,27 +110,25 @@ class OfferChangePrice(Requests):
     """
     Класс для изменения цены на товар на сервере яндекса
     """
-    def __init__(self, offer_list: list):
-        print(offer_list)
+    def __init__(self, price_list: list):
         self.temp_params = []
-        for offer in offer_list:
-            self.add_params(offer.shopSku)
+        for price in price_list:
+            self.add_params(price)
         self.PARAMS = {'offers': self.temp_params}
         super().__init__(json_name='offer-prices/updates', base_context_name='price', name='ChangePrices')
         print(self.PARAMS)
         print(self.json_data)
 
     @staticmethod
-    def get_dict(offer_price) -> dict:
+    def get_dict(price) -> dict:
         js = {'currencyId': 'RUR'}
-        js.update(PriceSerializer(offer_price).data)
-        json = {'shopSku': offer_price.offer.shopSku, 'price': js}
+        js.update(PriceSerializer(price).data)
+        json = {'shopSku': price.offer.shopSku, 'price': js}
         return json
 
     def get_json(self) -> dict:
         return self.get_next_page()
 
-    def add_params(self, sku) -> None:
-        offer_price = Price.objects.get(offer=Offer.objects.get(shopSku=sku))
-        if offer_price.value:
-            self.temp_params += [self.get_dict(offer_price)]
+    def add_params(self, price) -> None:
+        if price.value:
+            self.temp_params += [self.get_dict(price)]

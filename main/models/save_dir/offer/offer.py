@@ -4,13 +4,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from main.models.save_dir.base import BasePattern
 
 
-def model_save(offer):
-    offer.save()
-    model_list = [Price]
-    for model in model_list:
-        model.objects.update_or_create(offer=offer)
-
-
 class Base:
     """ для простых данных"""
 
@@ -144,7 +137,7 @@ class OfferPattern(BasePattern):
             if 'mapping' in item:
                 json_offer['mapping'] = item['mapping']
             self.parse_attrs(json=json_offer, attr=offer, diff_class=Offer)
-            model_save(offer=offer)
+            offer.save()
 
 
 
