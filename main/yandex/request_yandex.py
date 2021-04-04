@@ -3,7 +3,8 @@ from django.contrib import messages
 from fby_market.settings import YaMarket
 import requests
 from main.models.save_dir import *
-from main.serializers import PriceSerializer
+from main.models.save_dir.order import OrderPattern
+from main.serializers.offer_price import PriceSerializer
 
 class Requests:
     """Базовый класс для получения данных и сохранения в БД"""
@@ -72,7 +73,7 @@ class Requests:
             messages.success(request, f"Модель {self.name} успешно сохранилась")
             return True
         except KeyError:
-            messages.error(request, self.key_error() + f' В моделе {self.name}')
+            messages.error(request, self.key_error() + f' В модели {self.name}')
             return False
 
     def save(self, request) -> None:
@@ -123,3 +124,20 @@ class OfferChangePrice(Requests):
     def add_params(self, price) -> None:
         if price.value:
             self.temp_params += [self.get_dict(price)]
+
+
+class OrderList(Requests):
+    """Класс для получения списка заказов и сохранения в БД Price"""
+
+    PARAMS = {                      # параметры надо предварительно запросить
+        "dateFrom": "2021-01-01",
+        "dateTo": "2021-04-04"
+    }
+
+    def __init__(self, params: dict = None):
+        super().__init__(json_name='/stats/orders', base_context_name='orders', name="Order")
+        if params is not None:
+            self.PARAMS = params
+
+    def save(self, request=None) -> None:
+        OrderPattern(json=self.json_data['result'][self.base_context_name]).save()

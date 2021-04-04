@@ -19,11 +19,13 @@ from django.urls import path, include
 from django.contrib.auth.views import LogoutView
 from main.modules import *
 import fby_market.additional_url.api.api_catalogue as catalogue
+import fby_market.additional_url.api.api_orders as orders
 
 urlpatterns = [
     path('', MainView.as_view(), name="index"),
     path('admin/', admin.site.urls),
     path('catalogue/', include(catalogue)),
+    path('orders/', include(orders)),
     path('register/', MyRegisterFormView.as_view(), name="register"),
     path('login/', MyLoginFormView.as_view(), name='login'),
     path('logout/', login_required(LogoutView.as_view()), name='logout')
