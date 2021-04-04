@@ -1,15 +1,9 @@
 """Формирование запросов в YM для получения данных и сохранения их в БД"""
-import time
-
 from django.contrib import messages
-
 from fby_market.settings import YaMarket
 import requests
-
-from main.models import Price, Offer
 from main.models.save_dir import *
 from main.serializers import PriceSerializer
-
 
 class Requests:
     """Базовый класс для получения данных и сохранения в БД"""
@@ -121,10 +115,7 @@ class OfferChangePrice(Requests):
 
     @staticmethod
     def get_dict(price) -> dict:
-        js = {'currencyId': 'RUR'}
-        js.update(PriceSerializer(price).data)
-        json = {'shopSku': price.offer.shopSku, 'price': js}
-        return json
+        return {'shopSku': price.offer.shopSku, 'price': PriceSerializer(price).get_data()}
 
     def get_json(self) -> dict:
         return self.get_next_page()

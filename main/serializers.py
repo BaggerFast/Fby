@@ -6,15 +6,18 @@ from main.models import *
 
 
 class PriceSerializer(serializers.ModelSerializer):
+    def get_data(self) -> dict:
+        return {**self.data, 'currencyId': 'RUR'}
+
     class Meta:
         model = Price
-        exclude = ('offer', 'id', 'vat')  # исключая offer
+        exclude = ('offer', 'id', 'vat', 'discountBase')  # исключая offer
 
 
 class WeightDimensionSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeightDimension
-        exclude = ('offer',)  # исключая offer
+        exclude = ('offer', 'id',)  # исключая offer
 
 
 class TimingSerializer(serializers.ModelSerializer):
@@ -26,7 +29,7 @@ class TimingSerializer(serializers.ModelSerializer):
 class ProcessingStateNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProcessingStateNote
-        exclude = ('processingState',)
+        exclude = ('processingState', 'id')
 
 
 class ProcessingStateSerializer(serializers.ModelSerializer):
@@ -40,7 +43,7 @@ class ProcessingStateSerializer(serializers.ModelSerializer):
 class MappingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mapping
-        exclude = ('offer', 'mappingType')
+        exclude = ('offer', 'mappingType', 'id')
 
 
 class OfferSerializer(serializers.ModelSerializer):
@@ -62,7 +65,6 @@ class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
         fields = [
-            'id',
             'marketSku',
             'updatedAt',
             'shopSku',

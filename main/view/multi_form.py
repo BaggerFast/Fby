@@ -1,3 +1,6 @@
+from django.forms import ModelForm
+
+
 class FormParser:
     def __init__(self, base_form):
         self.form_base = base_form
@@ -13,7 +16,7 @@ class FormParser:
 
     def __template_request(self, disable: bool, model=None, attrs_for_filter=None, request=None):
         if model and attrs_for_filter:
-            model = FormParser.get_or_create(model=model, attrs_for_filter=attrs_for_filter)
+            model = self.get_or_create(model=model, attrs_for_filter=attrs_for_filter)
             self.form = self.form_base(request, instance=model) if request else self.form_base(instance=model)
         else:
             self.form = self.form_base()
