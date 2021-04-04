@@ -106,8 +106,7 @@ class OfferChangePrice(Requests):
     """
     def __init__(self, price_list: list):
         self.temp_params = []
-        for price in price_list:
-            self.add_params(price)
+        [self.add_params(price) for price in price_list]
         self.PARAMS = {'offers': self.temp_params}
         super().__init__(json_name='offer-prices/updates', base_context_name='price', name='ChangePrices')
         print(self.PARAMS)

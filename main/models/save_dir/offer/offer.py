@@ -51,7 +51,8 @@ class Offer:
 
     class SupplyScheduleDays(Base):
         def save(self) -> None:
-            SupplyScheduleDays.objects.update_or_create(offer=self.offer, supplyScheduleDay=self.data)
+            for item in self.data:
+                SupplyScheduleDays.objects.update_or_create(offer=self.offer, supplyScheduleDay=item)
 
     class ProcessingState(Base):
         def save(self) -> None:
@@ -138,8 +139,6 @@ class OfferPattern(BasePattern):
                 json_offer['mapping'] = item['mapping']
             self.parse_attrs(json=json_offer, attr=offer, diff_class=Offer)
             offer.save()
-
-
 
     def parse_attrs(self, json, attr, diff_class) -> None:
         """Парсит данные из json на простые и сложные"""

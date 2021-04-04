@@ -1,4 +1,5 @@
-from django.forms import ModelForm
+import random
+import string
 
 
 class FormParser:
@@ -7,7 +8,7 @@ class FormParser:
         self.form = None
 
     @staticmethod
-    def get_or_create(model, attrs_for_filter):
+    def __get_or_create(model, attrs_for_filter):
         try:
             model = model.objects.filter(**attrs_for_filter)[0]
         except IndexError:
@@ -16,7 +17,7 @@ class FormParser:
 
     def __template_request(self, disable: bool, model=None, attrs_for_filter=None, request=None):
         if model and attrs_for_filter:
-            model = self.get_or_create(model=model, attrs_for_filter=attrs_for_filter)
+            model = self.__get_or_create(model=model, attrs_for_filter=attrs_for_filter)
             self.form = self.form_base(request, instance=model) if request else self.form_base(instance=model)
         else:
             self.form = self.form_base()
@@ -39,6 +40,13 @@ class Multiform:
     def __init__(self):
         self.model_list = None
         self.models_json = {}
+
+    @staticmethod
+    def random_id():
+        return ''.join(random.choice(string.ascii_lowercase) for _ in range(5))
+
+    def context(self, names, forms) -> dict:
+        return dict(zip(names, [[self.random_id(), forms[i]] for i in range(len(forms))]))
 
     def __template_request(self, disable: bool, request=None, method=None, attrs_for_filter=None, model: str = None):
         self.models_json.clear()
@@ -72,6 +80,9 @@ class Multiform:
         json = {'method': 'clear', 'disable': disable}
         self.__template_request(**json)
 
+    def get_form_list(self, forms: list) -> list:
+        return [self.models_json[str(form())].form for form in forms]
+
     def get_for_context(self) -> dict:
         # примеры смотрите в коде
         raise NotImplementedError
@@ -88,3 +99,5 @@ class Multiform:
         # сохраняет все формы
         for key, model in self.models_json.items():
             model.form.save()
+            print(model.form)
+

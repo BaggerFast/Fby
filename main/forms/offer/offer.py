@@ -40,7 +40,7 @@ class ShelfLifeForm(ModelForm, Func):
 
 class LifeTimeForm(ShelfLifeForm):
     class Meta:
-        model = ShelfLife
+        model = LifeTime
         exclude = ('offer',)
         help_texts = {
             'timePeriod': 'В течение этого периода возможны обслуживание и ремонт товара, возврат денег.'
@@ -58,7 +58,8 @@ class LifeTimeForm(ShelfLifeForm):
 
 class GuaranteePeriodForm(ShelfLifeForm):
     class Meta:
-        model = ShelfLife
+        model = GuaranteePeriod
+
         exclude = ('offer',)
         help_texts = {
             'comment': 'Дополнительные условия хранения.',

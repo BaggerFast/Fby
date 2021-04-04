@@ -4,7 +4,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.base import View
-from main.models import Offer, Price
+from main.models import Offer
 from main.modules.offers.product_card import Form, TempForm
 from main.view import get_navbar, Page
 
@@ -18,8 +18,10 @@ class CreateOfferView(LoginRequiredMixin, View):
     context = {'title': 'Create_offer', 'page_name': 'Создать товар'}
     form = None
     offer_id = None
+    request = None
 
     def pre_init(self, request):
+        self.request = request
         self.context['navbar'] = get_navbar(request)
         self.context['content_disable'] = True
         self.context['content'] = request.GET.get('content', 'info')
@@ -33,6 +35,7 @@ class CreateOfferView(LoginRequiredMixin, View):
     def end_it(self):
         self.context['id'] = self.offer_id
         self.context['forms'] = self.form.get_for_context()
+        return render(self.request, Page.product_card, self.context)
 
     def save_message(self, request):
         data = None
@@ -58,14 +61,12 @@ class CreateOfferView(LoginRequiredMixin, View):
             if message:
                 return message
         else:
-            print('da')
             self.form.get_post(disable=False, request=request.POST)
             offer.delete()
             self.context['create'] = True
-        self.end_it()
         if self.offer_id >= 0 and self.context['content'] == 'info':
             return convert_url(offer_id=self.offer_id)
-        return render(request, Page.product_card, self.context)
+        return self.end_it()
 
     def get(self, request) -> HttpResponse:
         self.pre_init(request=request)
@@ -73,7 +74,6 @@ class CreateOfferView(LoginRequiredMixin, View):
         self.context['stage_next'] = True if self.context['content'] == 'info' else False
         self.form.get_models_classes()
         self.form.get_clear(disable=False)
-        self.end_it()
         if self.offer_id >= 0 and self.context['content'] != 'accommodation':
             return convert_url(offer_id=self.offer_id)
-        return render(request, Page.product_card, self.context)
+        return self.end_it()
