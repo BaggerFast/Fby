@@ -68,8 +68,10 @@ class Price(models.Model):
     )
 
     def clean(self):
-        if self.discountBase > self.value:
-            raise ValidationError({'discountBase': 'Больше чем цена на товар'})
+        if self.discountBase < self.value:
+            raise ValidationError({'discountBase': 'Меньше чем цена на товар'})
+        if self.value <= 0:
+            raise ValidationError({'value': 'Должно быть больше нуля'})
 
 
 class ManufacturerCountry(models.Model):
@@ -117,6 +119,16 @@ class WeightDimension(models.Model):
         blank=True,
     )
 
+    def clean(self):
+        if self.length <= 0:
+            raise ValidationError({'length': 'Меньше 0'})
+        if self.width <= 0:
+            raise ValidationError({'width': 'Меньше 0'})
+        if self.height <= 0:
+            raise ValidationError({'height': 'Меньше 0'})
+        if self.width <= 0:
+            raise ValidationError({'width': 'Меньше 0'})
+
 
 class Url(models.Model):
     """
@@ -130,6 +142,11 @@ class Url(models.Model):
         related_name='urls',
     )
     url = models.URLField(max_length=2000, verbose_name='Ссылка на фото')
+
+    # def clean(self):
+    #     if self.url == None:
+    #         price = Url.objects.filter(offer=self.offer)
+    #         print(price)
 
 
 class Barcode(models.Model):
@@ -158,6 +175,10 @@ class CustomsCommodityCode(models.Model):
         help_text='Укажите 10 или 14 цифр без пробелов.', blank=True,
         null=True
     )
+
+    def clean(self):
+        if len(self.code) != 10:
+            raise ValidationError({'code': f'Код ТН ВЭД должен содержать 10. У вас {len(self.code)}'})
 
     def __str__(self):
         return self.code

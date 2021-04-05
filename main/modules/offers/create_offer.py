@@ -38,13 +38,12 @@ class CreateOfferView(LoginRequiredMixin, View):
         return render(self.request, Page.product_card, self.context)
 
     def save_message(self, request):
-        data = None
         if self.context['content'] == 'accommodation':
             messages.success(request, f'Товар добавлен. id = {self.offer_id}')
-            data = redirect(reverse('catalogue_list'))
+            return redirect(reverse('catalogue_list'))
         else:
             messages.success(request, 'Первая часть модели сохранена')
-        return data
+        return False
 
     def post(self, request) -> HttpResponse:
         self.pre_init(request=request)
