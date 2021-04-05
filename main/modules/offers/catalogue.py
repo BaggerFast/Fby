@@ -24,6 +24,7 @@ class CatalogueView(LoginRequiredMixin, View):
         self.context['count'] = offer.count()
         self.context['offers'] = self.reformat_offer(offer)
         self.context['urls'] = Url.objects.filter(offer=offer)
+        self.context['tabel'] = ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
 
         return render(request, Page.catalogue, self.context)
 

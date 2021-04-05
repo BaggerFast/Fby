@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from main.models.ya_market.offer.base import Offer
 from main.models.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
@@ -65,6 +66,10 @@ class Price(models.Model):
         on_delete=models.CASCADE,
         related_name='price',
     )
+
+    def clean(self):
+        if self.discountBase > self.value:
+            raise ValidationError({'discountBase': 'Больше чем цена на товар'})
 
 
 class ManufacturerCountry(models.Model):

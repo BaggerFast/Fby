@@ -1,5 +1,6 @@
 import random
 import string
+from pprint import pprint
 
 
 class FormParser:
@@ -12,7 +13,7 @@ class FormParser:
         try:
             model = model.objects.filter(**attrs_for_filter)[0]
         except IndexError:
-            return model.objects.create(**attrs_for_filter)
+            model = model.objects.create(**attrs_for_filter)
         return model
 
     def __template_request(self, disable: bool, model=None, attrs_for_filter=None, request=None):
@@ -45,8 +46,8 @@ class Multiform:
     def random_id():
         return ''.join(random.choice(string.ascii_lowercase) for _ in range(5))
 
-    def context(self, names, forms) -> dict:
-        return dict(zip(names, [[self.random_id(), forms[i]] for i in range(len(forms))]))
+    def context(self, names: list, forms: list[list]) -> dict:
+        return dict(zip(names, [[self.random_id(), form] for form in forms]))
 
     def __template_request(self, disable: bool, request=None, method=None, attrs_for_filter=None, model: str = None):
         self.models_json.clear()
@@ -89,9 +90,9 @@ class Multiform:
 
     def is_valid(self) -> bool:
         # проверяет формы на валидность
+        print(len(self.models_json))
         for key, model in self.models_json.items():
             if not model:
-                print(model.form.errors)
                 return False
         return True
 
@@ -99,5 +100,4 @@ class Multiform:
         # сохраняет все формы
         for key, model in self.models_json.items():
             model.form.save()
-            print(model.form)
 

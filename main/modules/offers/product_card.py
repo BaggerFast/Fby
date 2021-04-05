@@ -11,29 +11,32 @@ from main.yandex.request_yandex import OfferChangePrice
 
 class Form(Multiform):
     def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
-        forms = [WeightDimensionForm, UrlForm, BarcodeForm, WeightDimensionForm, ShelfLifeForm,
-                 LifeTimeForm, GuaranteePeriodForm, CommodityCodeForm]
-        self.model_list = [{'attrs': key1, 'form': OfferForm}] + [{'attrs': key2, 'form': form} for form in forms]
+        forms: list = [WeightDimensionForm, UrlForm, BarcodeForm, WeightDimensionForm, ShelfLifeForm, LifeTimeForm,
+                       GuaranteePeriodForm, CommodityCodeForm]
+        self.model_list: list[dict] = [{'attrs': key1, 'form': OfferForm}] + [{'attrs': key2, 'form': form} for form in
+                                                                              forms]
 
     def get_for_context(self) -> dict:
-        base = [list(self.models_json[str(OfferForm())].form)[:6],
-                *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])]
-        timing = self.get_form_list([ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm])
-        weight = self.get_form_list([WeightDimensionForm])
-        logistic = [list(self.models_json[str(OfferForm())].form)[6::]]
-        forms = [base, timing, weight, logistic]
-        names = ['Основная информация', 'Сроки', 'Габариты и вес в упаковке', 'Особенности логистики']
+        forms: list[list] = [
+            [list(self.models_json[str(OfferForm())].form)[:6],
+             *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])],
+            self.get_form_list([ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm]),
+            self.get_form_list([WeightDimensionForm]),
+            [list(self.models_json[str(OfferForm())].form)[6::]]
+        ]
+        names: list = ['Основная информация', 'Сроки', 'Габариты и вес в упаковке', 'Особенности логистики']
         return self.context(forms=forms, names=names)
 
 
 class TempForm(Multiform):
     def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
-        forms = [PriceForm]
-        self.model_list = [{'attrs': key1, 'form': AvailabilityForm}] + [{'attrs': key2, 'form': form} for form in forms]
+        forms: list = [PriceForm]
+        self.model_list: list[dict] = [{'attrs': key1, 'form': AvailabilityForm}] + [{'attrs': key2, 'form': form} for
+                                                                                     form in forms]
 
     def get_for_context(self) -> dict:
-        names = ['Управление ценой', 'Управление поставками']
-        forms = [self.get_form_list([PriceForm]), self.get_form_list([AvailabilityForm])]
+        names: list = ['Управление ценой', 'Управление поставками']
+        forms: list[list] = [self.get_form_list([PriceForm]), self.get_form_list([AvailabilityForm])]
         return self.context(forms=forms, names=names)
 
 

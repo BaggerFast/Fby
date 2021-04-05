@@ -41,15 +41,13 @@
 <form action="" method="post">{% csrf_token %}
     {% for title, forms_list in forms.items %}
         {% for form in forms_list.1 %}
-              {% for item in form %}
                   {% for field, errors in form.errors.items %}
-                            {% for error in errors %}
-                            <div class="alert alert-danger" role="alert">
+                      {% for error in errors%}
+                        <div class="alert alert-danger" role="alert">
                            {{field}} : {{ error }}
-                            </div>
-                        {% endfor %}
+                        </div>
+                      {% endfor %}
                   {% endfor %}
-              {% endfor %}
         {% endfor %}
   {% endfor %}
   {% for title, forms_list in forms.items %}
