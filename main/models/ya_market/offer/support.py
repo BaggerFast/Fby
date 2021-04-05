@@ -80,12 +80,7 @@ class ManufacturerCountry(models.Model):
     name = models.CharField(max_length=255, verbose_name='Страна производства товара')
 
 
-class WeightDimension(models.Model):
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='weightDimensions',
-    )
+class BaseWeightDimension(models.Model):
     length = models.FloatField(
         verbose_name='Длина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
@@ -110,6 +105,17 @@ class WeightDimension(models.Model):
                   'Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 1.001',
         null=True,
         blank=True,
+    )
+
+    class Meta:
+        abstract = True
+
+
+class WeightDimension(BaseWeightDimension):
+    offer = models.ForeignKey(
+        to=Offer,
+        on_delete=models.CASCADE,
+        related_name='weightDimensions',
     )
 
 

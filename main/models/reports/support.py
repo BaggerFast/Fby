@@ -1,41 +1,14 @@
 from django.db import models
 from main.models.reports.choices import StockTypeChoices, StorageTypeChoices, InclusionTypeChoices, TariffTypeChoices
 from main.models.reports.report_offer import Sku
+from main.models.ya_market.offer.support import BaseWeightDimension
 
 
-# Небольшое пояснение - здесь копипаста ya_market/offer/support с изменением Foreign Keys, т.к. класс оффера для
-# отчёта немного отличается от настоящего, поэтому тут нельзя исользовать обычный оффер. Также может быть возможно в
-# теории использование полиморфизма на те доп. классы(ну типо изменить одно лишь Foreign Key поле.
-class WeightDimensions(models.Model):
+class WeightDimensions(BaseWeightDimension):
     report = models.ForeignKey(
         to=Sku,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
-    )
-    length = models.FloatField(
-        verbose_name='Длина, см',
-        help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
-        null=True,
-        blank=True,
-    )
-    width = models.FloatField(
-        verbose_name='Ширина, см',
-        help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 50.7',
-        null=True,
-        blank=True,
-    )
-    height = models.FloatField(
-        verbose_name='Высота, см',
-        help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 20.0',
-        null=True,
-        blank=True,
-    )
-    weight = models.FloatField(
-        verbose_name='Вес в упаковке (брутто), кг',
-        help_text='С учетом упаковки (брутто). '
-                  'Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 1.001',
-        null=True,
-        blank=True,
     )
 
 
