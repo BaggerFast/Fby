@@ -14,6 +14,17 @@ WEB приложение для поставщиков на Яндекс.Мар�
 
 ## Quickstart
 
+Если у вас Ubuntu 18.04 (виртуалка или старая система), то нужно установить python3.8
+
+```bash
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.8
+python3.8 --version
+```
+
+После этого устанавливаем зависимости в Virtualenv
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
