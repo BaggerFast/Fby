@@ -6,7 +6,7 @@ from django.views.generic.base import View
 from main.forms.offer import *
 from main.models import Offer, Price
 from main.view import Page, get_navbar, Multiform
-from main.yandex.request_yandex import OfferChangePrice
+from main.yandex.request_yandex import ChangePrices
 
 
 class Form(Multiform):

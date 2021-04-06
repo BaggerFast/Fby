@@ -2,6 +2,8 @@
 from django.contrib import messages
 from fby_market.settings import YaMarket
 import requests
+
+from main.models import Price
 from main.models.save_dir import *
 from main.serializers import PriceSerializer
 
@@ -100,7 +102,26 @@ class OfferPrice(Requests):
         PricePattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
 
 
-class OfferChangePrice(Requests):
+class ChangePrices:
+    def __init__(self, key, price_list: list):
+        if key == 'yandex':
+            YandexChangePrices(price_list)
+        if key == 'local':
+            LocalChangePrices(price_list)
+
+
+class LocalChangePrices:
+    def __init__(self, price_list: list):
+        [self.change_price(price) for price in price_list]
+
+    @staticmethod
+    def change_price(price) -> None:
+        price_object = Price.objects.get(offer=price.offer)
+        price_object.value = price.value
+        price_object.save()
+
+
+class YandexChangePrices(Requests):
     """
     Класс для изменения цены на товар на сервере яндекса
     """
