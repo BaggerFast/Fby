@@ -103,11 +103,13 @@ class OfferPrice(Requests):
 
 
 class ChangePrices:
-    def __init__(self, key, price_list: list):
+    def __init__(self, key, price_list: list = None, request = None):
         if key == 'yandex':
             YandexChangePrices(price_list)
         if key == 'local':
             LocalChangePrices(price_list)
+        if key == 'update':
+            OfferPrice().save(request)
 
 
 class LocalChangePrices:

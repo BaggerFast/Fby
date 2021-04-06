@@ -1,3 +1,5 @@
+from typing import List
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404, HttpResponse
@@ -6,7 +8,7 @@ from django.views.generic.base import View
 from main.forms.offer import *
 from main.models import Offer, Price
 from main.view import Page, get_navbar, Multiform
-from main.yandex.request_yandex import ChangePrices
+from main.yandex.request import ChangePrices, YandexChangePrices
 
 
 class Form(Multiform):
@@ -70,7 +72,7 @@ class ProductPageView(LoginRequiredMixin, View):
             self.form.save()
             messages.success(request, 'Редактирование прошло успешно!')
             # todo save on button
-            # OfferChangePrice(price_list=list(Price.objects.filter(offer_id=pk)))
+            # YandexChangePrices(price_list=list(Price.objects.filter(offer_id=pk)))
             disable = True
         else:
             disable = False
