@@ -110,6 +110,15 @@ class ChangePrices:
             LocalChangePrices(price_list)
         if key == 'update':
             OfferPrice().save(request)
+        if key == 'check':
+            self.check_prices(price_list)
+
+    @staticmethod
+    def check_prices(price_list: list):
+        for price in price_list:
+            db_price = Price.objects.get(offer=price.offer).value
+            if db_price != price.value:
+                print(f'db price: {db_price}    list price: {price.value}')
 
 
 class LocalChangePrices:
