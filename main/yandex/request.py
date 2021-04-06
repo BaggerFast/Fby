@@ -107,6 +107,8 @@ class ChangePrices:
     """
     Клас для обработки, проверки и изменения цен
     """
+    errors = []
+
     def __init__(self, key, price_list: list = None, request=None):
         if key == 'yandex':
             YandexChangePrices(price_list)
@@ -117,12 +119,12 @@ class ChangePrices:
         if key == 'check':
             self.check_prices(price_list)
 
-    @staticmethod
-    def check_prices(price_list: list):
+    def check_prices(self, price_list: list):
         for price in price_list:
-            db_price = Price.objects.get(offer=price.offer).value
-            if db_price != price.value:
-                print(f'db price: {db_price}    list price: {price.value}')
+            db_price = Price.objects.get(offer=price.offer)
+            if db_price.value != price.value:
+                print(f'sku: {db_price.offer.shopSku}, db price: {db_price.value}, list price: {price.value}')
+                self.errors.append(price)
 
 
 class LocalChangePrices:
@@ -130,13 +132,14 @@ class LocalChangePrices:
     Класс для изменения цены только в БД
     """
     def __init__(self, price_list: list):
-        [self.change_price(price) for price in price_list]
+        print(*[self.change_price(price) for price in price_list])
 
     @staticmethod
-    def change_price(price) -> None:
+    def change_price(price) -> dict:
         price_object = Price.objects.get(offer=price.offer)
         price_object.value = price.value
         price_object.save()
+        return {'shopSku': price_object.offer.shopSku, 'price': PriceSerializer(price_object).get_data()}
 
 
 class YandexChangePrices(Requests):
