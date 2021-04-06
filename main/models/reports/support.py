@@ -5,6 +5,9 @@ from main.models.ya_market.offer.support import BaseWeightDimension
 
 
 class WeightDimensions(BaseWeightDimension):
+    """
+    Модель хранящая размеры товара (используется для reports/sku).
+    """
     report = models.ForeignKey(
         to=Sku,
         on_delete=models.CASCADE,
@@ -13,6 +16,9 @@ class WeightDimensions(BaseWeightDimension):
 
 
 class Hiding(models.Model):
+    """
+    Модель хранящая информацию о скрытии предложения.
+    """
     report = models.ForeignKey(
         to=Sku,
         on_delete=models.CASCADE
@@ -40,6 +46,9 @@ class Hiding(models.Model):
 
 
 class Warehouse(models.Model):
+    """
+    Модель хранящая информацию о складе.
+    """
     report = models.ForeignKey(
         to=Sku,
         on_delete=models.CASCADE
@@ -56,6 +65,9 @@ class Warehouse(models.Model):
 
 
 class Stock(models.Model):
+    """
+    Модель хранящая информацию о остатке товара на складе.
+    """
     warehouse = models.ForeignKey(
         to=Warehouse,
         on_delete=models.CASCADE
@@ -73,6 +85,9 @@ class Stock(models.Model):
 
 
 class Storage(models.Model):
+    """
+    Модель хранящая информацию о количестве товара для типа условий хранения.
+    """
     report = models.ForeignKey(
         to=Sku,
         on_delete=models.CASCADE
@@ -90,6 +105,9 @@ class Storage(models.Model):
 
 
 class Inclusion(models.Model):
+    """
+    Модель хранящая информацию о количестве товара для типа условий хранения.
+    """
     storage = models.ForeignKey(
         to=Storage,
         on_delete=models.CASCADE
@@ -107,6 +125,9 @@ class Inclusion(models.Model):
 
 
 class Tariff(models.Model):
+    """
+    Модель хранящая информацию о тарифе остатков товаров на складе.
+    """
     report = models.ForeignKey(
         to=Sku,
         on_delete=models.CASCADE

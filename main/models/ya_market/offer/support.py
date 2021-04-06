@@ -123,6 +123,9 @@ class BaseWeightDimension(models.Model):
 
 
 class WeightDimension(BaseWeightDimension):
+    """
+    Модель хранящая размеры товара (используется для offer).
+    """
     offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
