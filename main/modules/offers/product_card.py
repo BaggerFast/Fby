@@ -13,20 +13,37 @@ from main.yandex.request import ChangePrices, YandexChangePrices
 
 class Form(Multiform):
     def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
-        forms: list = [WeightDimensionForm, UrlForm, BarcodeForm, WeightDimensionForm, ShelfLifeForm, LifeTimeForm,
-                       GuaranteePeriodForm, CommodityCodeForm]
+        forms: list = [
+            WeightDimensionForm,
+            UrlForm,
+            BarcodeForm,
+            WeightDimensionForm,
+            ShelfLifeForm,
+            LifeTimeForm,
+            GuaranteePeriodForm,
+            CommodityCodeForm
+        ]
         self.model_list: List[dict] = [{'attrs': key1, 'form': OfferForm}] + [{'attrs': key2, 'form': form} for form in
                                                                               forms]
 
     def get_for_context(self) -> dict:
         forms: List[List] = [
-            [list(self.models_json[str(OfferForm())].form)[:6],
-             *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])],
+            [
+                list(self.models_json[str(OfferForm())].form)[:6],
+                *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])
+            ],
             self.get_form_list([ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm]),
             self.get_form_list([WeightDimensionForm]),
-            [list(self.models_json[str(OfferForm())].form)[6::]]
+            [
+                list(self.models_json[str(OfferForm())].form)[6::]
+            ]
         ]
-        names: list = ['Основная информация', 'Сроки', 'Габариты и вес в упаковке', 'Особенности логистики']
+        names: list = [
+            'Основная информация',
+            'Сроки',
+            'Габариты и вес в упаковке',
+            'Особенности логистики'
+        ]
         return self.context(forms=forms, names=names)
 
 

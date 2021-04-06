@@ -1,23 +1,25 @@
 import random
 import string
-from pprint import pprint
 from typing import List
+
+from django.db.models import Model
+from django.forms import Form
 
 
 class FormParser:
-    def __init__(self, base_form):
+    def __init__(self, base_form: type):
         self.form_base = base_form
         self.form = None
 
     @staticmethod
-    def __get_or_create(model, attrs_for_filter):
+    def __get_or_create(model, attrs_for_filter: dict) -> Model:
         try:
-            model = model.objects.filter(**attrs_for_filter)[0]
+            model = model.objects.filter(**attrs_for_filter).first()
         except IndexError:
             model = model.objects.create(**attrs_for_filter)
         return model
 
-    def __template_request(self, disable: bool, model=None, attrs_for_filter=None, request=None):
+    def __template_request(self, disable: bool, model=None, attrs_for_filter:dict=None, request=None):
         if model and attrs_for_filter:
             model = self.__get_or_create(model=model, attrs_for_filter=attrs_for_filter)
             self.form = self.form_base(request, instance=model) if request else self.form_base(instance=model)
@@ -40,8 +42,8 @@ class FormParser:
 
 class Multiform:
     def __init__(self):
-        self.model_list = None
-        self.models_json = {}
+        self.model_list: List = []
+        self.models_json: dict = {}
 
     @staticmethod
     def random_id():
@@ -90,7 +92,9 @@ class Multiform:
         raise NotImplementedError
 
     def is_valid(self) -> bool:
-        # проверяет формы на валидность
+        """
+        Проверка валидности всех вложенных моделей
+        """
         for key, model in self.models_json.items():
             if not model:
                 return False
