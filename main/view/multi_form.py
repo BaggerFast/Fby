@@ -90,7 +90,6 @@ class Multiform:
 
     def is_valid(self) -> bool:
         # проверяет формы на валидность
-        print(len(self.models_json))
         for key, model in self.models_json.items():
             if not model:
                 return False

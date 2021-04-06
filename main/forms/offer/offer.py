@@ -14,6 +14,11 @@ class Func:
             if key in self.disabled or disable:
                 self.fields[key].widget.attrs['disabled'] = 'true'
 
+    def min_max_value(self):
+        for key in self.fields.keys():
+            self.fields[key].widget.attrs['min'] = 0
+            self.fields[key].widget.attrs['max'] = 100000
+
 
 class ShelfLifeForm(ModelForm, Func):
     class Meta:
@@ -73,6 +78,7 @@ class GuaranteePeriodForm(ShelfLifeForm):
 class WeightDimensionForm(ModelForm, Func):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.min_max_value()
 
     class Meta:
         model = WeightDimension
