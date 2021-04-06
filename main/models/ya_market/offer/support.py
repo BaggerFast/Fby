@@ -69,7 +69,7 @@ class Price(models.Model):
 
     def clean(self):
         if self.discountBase < self.value:
-            raise ValidationError({'discountBase': 'Меньше чем цена на товар'})
+            raise ValidationError({'discountBase': 'Цена на товар без скидки < цены на товар'})
         if self.value <= 0:
             raise ValidationError({'value': 'Должно быть больше нуля'})
 
@@ -118,16 +118,6 @@ class WeightDimension(models.Model):
         null=True,
         blank=True,
     )
-
-    def clean(self):
-        if self.length <= 0:
-            raise ValidationError({'length': 'Меньше 0'})
-        if self.width <= 0:
-            raise ValidationError({'width': 'Меньше 0'})
-        if self.height <= 0:
-            raise ValidationError({'height': 'Меньше 0'})
-        if self.width <= 0:
-            raise ValidationError({'width': 'Меньше 0'})
 
 
 class Url(models.Model):

@@ -1,6 +1,7 @@
 import random
 import string
 from pprint import pprint
+from typing import List
 
 
 class FormParser:
@@ -46,7 +47,7 @@ class Multiform:
     def random_id():
         return ''.join(random.choice(string.ascii_lowercase) for _ in range(5))
 
-    def context(self, names: list, forms: list[list]) -> dict:
+    def context(self, names: list, forms: List[List]) -> dict:
         return dict(zip(names, [[self.random_id(), form] for form in forms]))
 
     def __template_request(self, disable: bool, request=None, method=None, attrs_for_filter=None, model: str = None):
@@ -90,7 +91,6 @@ class Multiform:
 
     def is_valid(self) -> bool:
         # проверяет формы на валидность
-        print(len(self.models_json))
         for key, model in self.models_json.items():
             if not model:
                 return False
