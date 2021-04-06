@@ -7,6 +7,7 @@ from main.models import Price
 from main.models.save_dir import *
 from main.serializers import PriceSerializer
 
+
 class Requests:
     """Базовый класс для получения данных и сохранения в БД"""
 
@@ -103,7 +104,10 @@ class OfferPrice(Requests):
 
 
 class ChangePrices:
-    def __init__(self, key, price_list: list = None, request = None):
+    """
+    Клас для обработки, проверки и изменения цен
+    """
+    def __init__(self, key, price_list: list = None, request=None):
         if key == 'yandex':
             YandexChangePrices(price_list)
         if key == 'local':
@@ -122,6 +126,9 @@ class ChangePrices:
 
 
 class LocalChangePrices:
+    """
+    Класс для изменения цены только в БД
+    """
     def __init__(self, price_list: list):
         [self.change_price(price) for price in price_list]
 
@@ -136,6 +143,7 @@ class YandexChangePrices(Requests):
     """
     Класс для изменения цены на товар на сервере яндекса
     """
+
     def __init__(self, price_list: list):
         self.temp_params = []
         [self.add_params(price) for price in price_list]
