@@ -1,3 +1,5 @@
+from typing import List
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404, HttpResponse
@@ -13,11 +15,11 @@ class Form(Multiform):
     def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
         forms: list = [WeightDimensionForm, UrlForm, BarcodeForm, WeightDimensionForm, ShelfLifeForm, LifeTimeForm,
                        GuaranteePeriodForm, CommodityCodeForm]
-        self.model_list: list[dict] = [{'attrs': key1, 'form': OfferForm}] + [{'attrs': key2, 'form': form} for form in
+        self.model_list: List[dict] = [{'attrs': key1, 'form': OfferForm}] + [{'attrs': key2, 'form': form} for form in
                                                                               forms]
 
     def get_for_context(self) -> dict:
-        forms: list[list] = [
+        forms: List[List] = [
             [list(self.models_json[str(OfferForm())].form)[:6],
              *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])],
             self.get_form_list([ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm]),
@@ -30,13 +32,13 @@ class Form(Multiform):
 
 class TempForm(Multiform):
     def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
-        forms: list = [PriceForm]
-        self.model_list: list[dict] = [{'attrs': key1, 'form': AvailabilityForm}] + [{'attrs': key2, 'form': form} for
+        forms: List = [PriceForm]
+        self.model_list: List[dict] = [{'attrs': key1, 'form': AvailabilityForm}] + [{'attrs': key2, 'form': form} for
                                                                                      form in forms]
 
     def get_for_context(self) -> dict:
-        names: list = ['Управление ценой', 'Управление поставками']
-        forms: list[list] = [self.get_form_list([PriceForm]), self.get_form_list([AvailabilityForm])]
+        names: List = ['Управление ценой', 'Управление поставками']
+        forms: List[List] = [self.get_form_list([PriceForm]), self.get_form_list([AvailabilityForm])]
         return self.context(forms=forms, names=names)
 
 
@@ -64,9 +66,6 @@ class ProductPageView(LoginRequiredMixin, View):
         return render(self.request, Page.product_card, self.context)
 
     def post(self, request, pk) -> HttpResponse:
-        # request_post = request.POST.dict()
-        # request_post['shopSku'] = offer.shopSku
-        # request_post['marketSku'] = offer.marketSku
         self.pre_init(pk=pk, request=request)
         self.form.get_post(disable=True, request=request.POST)
         if self.form.is_valid():
