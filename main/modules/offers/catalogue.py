@@ -14,7 +14,7 @@ class CatalogueView(LoginRequiredMixin, View):
 
     def post(self, request) -> HttpResponse:
         for model in self.models_to_save:
-            if not model().save_with_message(request=request):
+            if not model().save(request=request):
                 break
         return self.get(request=request)
 

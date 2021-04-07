@@ -2,8 +2,9 @@
 from django.contrib import messages
 from fby_market.settings import YaMarket
 import requests
-from main.models.save_dir import *
+from main.models.save_dir import OfferPattern, PricePattern
 from main.serializers import PriceSerializer
+
 
 class Requests:
     """Базовый класс для получения данных и сохранения в БД"""
@@ -66,18 +67,22 @@ class Requests:
             return self.errors[cur_error]
         return ''
 
-    def save_with_message(self, request) -> bool:
+    def save(self, request) -> bool:
+        """
+        возвращет True, когда модель успешно сохранилась,
+        инача False
+        """
         try:
-            self.save(request)
+            self.pattern_save(request)
             messages.success(request, f"Модель {self.name} успешно сохранилась")
             return True
         except KeyError:
             messages.error(request, self.key_error() + f' В моделе {self.name}')
             return False
 
-    def save(self, request) -> None:
-        """Сохранение данных в соответствующую БД"""
-        raise NotImplementedError
+    def pattern_save(self, request) -> None:
+        """Сохранение данных в соответствующую БД, используется при GET запрос"""
+        pass
 
 
 class OfferList(Requests):
@@ -86,7 +91,7 @@ class OfferList(Requests):
     def __init__(self):
         super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries', name="Offer")
 
-    def save(self, request) -> None:
+    def pattern_save(self, request) -> None:
         OfferPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
 
 
@@ -96,7 +101,7 @@ class OfferPrice(Requests):
     def __init__(self):
         super().__init__(json_name='offer-prices', base_context_name='offers', name="OfferPrice")
 
-    def save(self, request) -> None:
+    def pattern_save(self, request) -> None:
         PricePattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
 
 

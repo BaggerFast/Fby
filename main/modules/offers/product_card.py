@@ -10,34 +10,34 @@ from main.yandex.request import OfferChangePrice
 
 
 class Form(Multiform):
-    def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
+    def set_forms(self, key1: dict = None, key2: dict = None) -> None:
         forms: list = [WeightDimensionForm, UrlForm, BarcodeForm, WeightDimensionForm, ShelfLifeForm, LifeTimeForm,
                        GuaranteePeriodForm, CommodityCodeForm]
-        self.model_list: list[dict] = [{'attrs': key1, 'form': OfferForm}] + [{'attrs': key2, 'form': form} for form in
-                                                                              forms]
+        self.forms_model_list: list[dict] = \
+            [{'attrs': key1, 'form': OfferForm}] + [{'attrs': key2, 'form': form} for form in forms]
 
     def get_for_context(self) -> dict:
         forms: list[list] = [
-            [list(self.models_json[str(OfferForm())].form)[:6],
+            [list(self.forms_dict[str(OfferForm())].form)[:6],
              *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])],
             self.get_form_list([ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm]),
             self.get_form_list([WeightDimensionForm]),
-            [list(self.models_json[str(OfferForm())].form)[6::]]
+            [list(self.forms_dict[str(OfferForm())].form)[6::]]
         ]
-        names: list = ['Основная информация', 'Сроки', 'Габариты и вес в упаковке', 'Особенности логистики']
-        return self.context(forms=forms, names=names)
+        accordions: list = ['Основная информация', 'Сроки', 'Габариты и вес в упаковке', 'Особенности логистики']
+        return self.context(forms=forms, accordions=accordions)
 
 
-class TempForm(Multiform):
-    def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
+class PriceF(Multiform):
+    def set_forms(self, key1: dict = None, key2: dict = None) -> None:
         forms: list = [PriceForm]
-        self.model_list: list[dict] = [{'attrs': key1, 'form': AvailabilityForm}] + [{'attrs': key2, 'form': form} for
-                                                                                     form in forms]
+        self.forms_model_list: list[dict] = \
+            [{'attrs': key1, 'form': AvailabilityForm}] + [{'attrs': key2, 'form': form} for form in forms]
 
     def get_for_context(self) -> dict:
-        names: list = ['Управление ценой', 'Управление поставками']
+        accordions: list = ['Управление ценой', 'Управление поставками']
         forms: list[list] = [self.get_form_list([PriceForm]), self.get_form_list([AvailabilityForm])]
-        return self.context(forms=forms, names=names)
+        return self.context(forms=forms, accordions=accordions)
 
 
 class ProductPageView(LoginRequiredMixin, View):
@@ -52,9 +52,9 @@ class ProductPageView(LoginRequiredMixin, View):
         self.context['content'] = request.GET.get('content', 'info')
         correct_content = ['info', 'accommodation']
         if self.context['content'] in correct_content:
-            self.form = Form() if self.context['content'] == 'info' else TempForm() \
+            self.form = Form() if self.context['content'] == 'info' else PriceF() \
                 if self.context['content'] == 'accommodation' else None
-            self.form.get_models_classes(key1={'id': pk}, key2={'offer': Offer.objects.get(id=pk)})
+            self.form.set_forms(key1={'id': pk}, key2={'offer': Offer.objects.get(id=pk)})
         else:
             raise Http404()
 
@@ -64,11 +64,8 @@ class ProductPageView(LoginRequiredMixin, View):
         return render(self.request, Page.product_card, self.context)
 
     def post(self, request, pk) -> HttpResponse:
-        # request_post = request.POST.dict()
-        # request_post['shopSku'] = offer.shopSku
-        # request_post['marketSku'] = offer.marketSku
         self.pre_init(pk=pk, request=request)
-        self.form.get_post(disable=True, request=request.POST)
+        self.form.set_post(disable=True, request=request.POST)
         if self.form.is_valid():
             self.form.save()
             messages.success(request, 'Редактирование прошло успешно!')
@@ -77,11 +74,11 @@ class ProductPageView(LoginRequiredMixin, View):
             disable = True
         else:
             disable = False
-            self.form.get_post(disable=False, request=request.POST)
+            self.form.set_post(disable=False, request=request.POST)
         return self.end_it(disable=disable)
 
     def get(self, request, pk) -> HttpResponse:
         self.pre_init(pk=pk, request=request)
         disable = False if int(request.GET.get('edit', 0)) else True
-        self.form.get_fill(disable=disable)
+        self.form.set_fill(disable=disable)
         return self.end_it(disable=disable)
