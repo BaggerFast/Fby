@@ -88,7 +88,7 @@ class ManufacturerCountry(models.Model):
 
 
 class WeightDimension(models.Model):
-    offer = models.ForeignKey(
+    offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
@@ -133,11 +133,6 @@ class Url(models.Model):
     )
     url = models.URLField(max_length=2000, verbose_name='Ссылка на фото')
 
-    # def clean(self):
-    #     if self.url == None:
-    #         price = Url.objects.filter(offer=self.offer)
-    #         print(price)
-
 
 class Barcode(models.Model):
     offer = models.ForeignKey(
@@ -167,8 +162,9 @@ class CustomsCommodityCode(models.Model):
     )
 
     def clean(self):
-        if len(self.code) != 10:
-            raise ValidationError({'code': f'Код ТН ВЭД должен содержать 10. У вас {len(self.code)}'})
+        if self.code:
+            if len(self.code) != 10:
+                raise ValidationError({'code': f'Код ТН ВЭД должен содержать 10. У вас {len(self.code)}'})
 
     def __str__(self):
         return self.code

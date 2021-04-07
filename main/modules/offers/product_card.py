@@ -21,13 +21,13 @@ class Form(Multiform):
     def get_for_context(self) -> dict:
         forms: List[List] = [
             [
-                list(self.models_json[str(OfferForm())].form)[:6],
+                list(self.forms_dict[str(OfferForm())].form)[:6],
                 *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])
             ],
             self.get_form_list([ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm]),
             self.get_form_list([WeightDimensionForm]),
             [
-                list(self.models_json[str(OfferForm())].form)[6::]
+                list(self.forms_dict[str(OfferForm())].form)[6::]
             ]
         ]
         accordions: list = ['Основная информация', 'Сроки', 'Габариты и вес в упаковке', 'Особенности логистики']
@@ -36,8 +36,8 @@ class Form(Multiform):
 
 class PriceF(Multiform):
     def set_forms(self, key1: dict = None, key2: dict = None) -> None:
-        forms: list = [PriceForm]
-        self.forms_model_list: list[dict] = \
+        forms: List = [PriceForm]
+        self.forms_model_list: List[dict] = \
             [{'attrs': key1, 'form': AvailabilityForm}] + [{'attrs': key2, 'form': form} for form in forms]
 
     def get_for_context(self) -> dict:
@@ -60,7 +60,7 @@ class ProductPageView(LoginRequiredMixin, View):
         if self.context['content'] in correct_content:
             self.form = Form() if self.context['content'] == 'info' else PriceF() \
                 if self.context['content'] == 'accommodation' else None
-            self.form.get_models_classes(key1={'id': pk}, key2={'offer': Offer.objects.get(id=pk)})
+            self.form.set_forms(key1={'id': pk}, key2={'offer': Offer.objects.get(id=pk)})
         else:
             raise Http404()
 
