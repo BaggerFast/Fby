@@ -1,3 +1,5 @@
+from typing import List
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404, HttpResponse
@@ -17,12 +19,16 @@ class Form(Multiform):
             [{'attrs': key1, 'form': OfferForm}] + [{'attrs': key2, 'form': form} for form in forms]
 
     def get_for_context(self) -> dict:
-        forms: list[list] = [
-            [list(self.forms_dict[str(OfferForm())].form)[:6],
-             *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])],
+        forms: List[List] = [
+            [
+                list(self.models_json[str(OfferForm())].form)[:6],
+                *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])
+            ],
             self.get_form_list([ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm]),
             self.get_form_list([WeightDimensionForm]),
-            [list(self.forms_dict[str(OfferForm())].form)[6::]]
+            [
+                list(self.models_json[str(OfferForm())].form)[6::]
+            ]
         ]
         accordions: list = ['Основная информация', 'Сроки', 'Габариты и вес в упаковке', 'Особенности логистики']
         return self.context(forms=forms, accordions=accordions)
@@ -54,7 +60,7 @@ class ProductPageView(LoginRequiredMixin, View):
         if self.context['content'] in correct_content:
             self.form = Form() if self.context['content'] == 'info' else PriceF() \
                 if self.context['content'] == 'accommodation' else None
-            self.form.set_forms(key1={'id': pk}, key2={'offer': Offer.objects.get(id=pk)})
+            self.form.get_models_classes(key1={'id': pk}, key2={'offer': Offer.objects.get(id=pk)})
         else:
             raise Http404()
 

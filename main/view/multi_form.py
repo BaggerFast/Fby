@@ -1,8 +1,8 @@
 import random
 import string
+from typing import List
 from django.db import models
 from django.forms import ModelForm
-from pprint import pprint
 
 
 class FormParser:
@@ -11,7 +11,7 @@ class FormParser:
         self.form: ModelForm
 
     @staticmethod
-    def __get_or_create(model: models.Model, attrs_for_filter: dict):
+    def __get_or_create(model: models.Model, attrs_for_filter: dict) -> models.Model:
         try:
             model = model.objects.filter(**attrs_for_filter).first()
         except IndexError:
@@ -34,9 +34,9 @@ class FormParser:
         # передает аргументы для формы без заполнения
         self.__template_request(disable=disable)
 
-    def post(self, request, model: models.Model, attrs_for_filter: dict, disable: bool) -> None:
+    def post(self, post, model: models.Model, attrs_for_filter: dict, disable: bool) -> None:
         # передает аргументы для формы с Post запросом
-        self.__template_request(disable=disable, model=model, attrs_for_filter=attrs_for_filter, post=request)
+        self.__template_request(disable=disable, model=model, attrs_for_filter=attrs_for_filter, post=post)
 
     def __bool__(self):
         return self.form.is_valid()
@@ -44,23 +44,22 @@ class FormParser:
 
 class Multiform:
     def __init__(self):
-        self.forms_model_list = []
-        self.forms_dict = {}
+        self.model_list: List = []
+        self.models_json: dict = {}
 
     @staticmethod
     def __random_id():
         return ''.join(random.choice(string.ascii_lowercase) for _ in range(5))
 
-    def context(self, accordions: list, forms: list[list]) -> dict:
-        # возвращает словарь из 2х списков
-        return dict(zip(accordions, [[self.__random_id(), form] for form in forms]))
+    def context(self, names: list, forms: List[List]) -> dict:
+        return dict(zip(names, [[self.__random_id(), form] for form in forms]))
 
     def __template_request(self, disable: bool, post=None, method: str = None, attrs: bool = None, model: bool = None):
         for cur_model in self.forms_model_list:
             form = FormParser(base_form=cur_model['form'])
             attributes = {}
             if post:
-                attributes.update({'request': post})
+                attributes.update({'post': post})
             if model:
                 attributes.update({'model': cur_model['form'].Meta.model})
             if attrs:
@@ -93,8 +92,11 @@ class Multiform:
         raise NotImplementedError
 
     def is_valid(self) -> bool:
-        for key, form_parser in self.forms_dict.items():
-            if not form_parser:
+        """
+        Проверка валидности всех вложенных моделей
+        """
+        for key, model in self.models_json.items():
+            if not model:
                 return False
         return True
 
