@@ -8,6 +8,7 @@ from main.models.save_dir import *
 from main.models.save_dir.order import OrderPattern
 from main.serializers.offer_price import PriceSerializer
 
+
 class Requests:
     """Базовый класс для получения данных и сохранения в БД"""
 
@@ -69,18 +70,22 @@ class Requests:
             return self.errors[cur_error]
         return ''
 
-    def save_with_message(self, request) -> bool:
+    def save(self, request) -> bool:
+        """
+        возвращет True, когда модель успешно сохранилась,
+        инача False
+        """
         try:
-            self.save(request)
+            self.pattern_save(request)
             messages.success(request, f"Модель {self.name} успешно сохранилась")
             return True
         except KeyError:
             messages.error(request, self.key_error() + f' В модели {self.name}')
             return False
 
-    def save(self, request) -> None:
-        """Сохранение данных в соответствующую БД"""
-        raise NotImplementedError
+    def pattern_save(self, request) -> None:
+        """Сохранение данных в соответствующую БД, используется при GET запрос"""
+        pass
 
     def save_json_to_file(self, file):
         with open(file, "w") as write_file:
@@ -93,7 +98,7 @@ class OfferList(Requests):
     def __init__(self):
         super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries', name="Offer")
 
-    def save(self, request) -> None:
+    def pattern_save(self, request) -> None:
         OfferPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
 
 
@@ -103,7 +108,7 @@ class OfferPrice(Requests):
     def __init__(self):
         super().__init__(json_name='offer-prices', base_context_name='offers', name="OfferPrice")
 
-    def save(self, request) -> None:
+    def pattern_save(self, request) -> None:
         PricePattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
 
 
@@ -113,12 +118,9 @@ class OfferChangePrice(Requests):
     """
     def __init__(self, price_list: list):
         self.temp_params = []
-        for price in price_list:
-            self.add_params(price)
+        [self.add_params(price) for price in price_list]
         self.PARAMS = {'offers': self.temp_params}
         super().__init__(json_name='offer-prices/updates', base_context_name='price', name='ChangePrices')
-        # print(self.PARAMS)
-        # print(self.json_data)
 
     @staticmethod
     def get_dict(price) -> dict:

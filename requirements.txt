@@ -12,7 +12,12 @@ sphinxcontrib-spelling==7.1.0
 # Network
 requests==2.25.1
 
-# Api
+# API
 djangorestframework == 3.12.2
 markdown == 3.3.4
 django-filter == 2.4.0
+
+# Code style
+pycodestyle==2.7.0
+pylint==2.7.4
+pylint-django==2.4.2

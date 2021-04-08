@@ -14,7 +14,7 @@ class CatalogueView(LoginRequiredMixin, View):
 
     def post(self, request) -> HttpResponse:
         for model in self.models_to_save:
-            if not model().save_with_message(request=request):
+            if not model().save(request=request):
                 break
         return self.get(request=request)
 
@@ -24,6 +24,7 @@ class CatalogueView(LoginRequiredMixin, View):
         self.context['count'] = offer.count()
         self.context['offers'] = self.reformat_offer(offer)
         self.context['urls'] = Url.objects.filter(offer=offer)
+        self.context['tabel'] = ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
 
         return render(request, Page.catalogue, self.context)
 

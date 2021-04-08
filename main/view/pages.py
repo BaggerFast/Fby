@@ -1,4 +1,4 @@
-def serialize(page) -> str:
+def serialize(page: str) -> str:
     return f'pages/{page}.html'
 
 

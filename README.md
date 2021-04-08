@@ -34,3 +34,10 @@ mv source/coverage/python.txt source/coverage.rst
 rm -rf source/coverage/
 make html
 ```
+
+
+## Codestyle
+```bash
+DJANGO_SETTINGS_MODULE=fby_market.settings pylint fby_market main manage.py
+pycodestyle --ignore=E501 fby_market main manage.py
+```
