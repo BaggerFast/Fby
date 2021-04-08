@@ -3,6 +3,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ListSerializer
 from main.models import *
+from main.serializers.base import BaseListSerializer, BaseModelSerializer
 
 
 class PriceSerializer(serializers.ModelSerializer):
@@ -20,20 +21,41 @@ class WeightDimensionSerializer(serializers.ModelSerializer):
         exclude = ('offer', 'id',)  # исключая offer
 
 
-class TimingSerializer(serializers.ModelSerializer):
+class ShelfLifeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Timing
+        model = ShelfLife
         fields = ['timePeriod', 'timeUnit', 'comment']
+
+
+class LifeTimeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LifeTime
+        fields = ['timePeriod', 'timeUnit', 'comment']
+
+
+class GuaranteePeriodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GuaranteePeriod
+        fields = ['timePeriod', 'timeUnit', 'comment']
+
+
+class ProcessingStateNoteListSerializer(BaseListSerializer):
+    key_fields = ['type']
 
 
 class ProcessingStateNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProcessingStateNote
         exclude = ('processingState', 'id')
+        list_serializer_class = ProcessingStateNoteListSerializer
 
 
-class ProcessingStateSerializer(serializers.ModelSerializer):
-    notes = ProcessingStateNoteSerializer()
+class ProcessingStateSerializer(BaseModelSerializer):
+    notes = ProcessingStateNoteSerializer(many=True, required=False)
+
+    @staticmethod
+    def forward_name():
+        return 'processingState'
 
     class Meta:
         model = ProcessingState
@@ -46,21 +68,110 @@ class MappingSerializer(serializers.ModelSerializer):
         exclude = ('offer', 'mappingType', 'id')
 
 
-class OfferSerializer(serializers.ModelSerializer):
-    price = PriceSerializer()
-    weightDimensions = WeightDimensionSerializer()
-    manufacturerCountries = ListSerializer(child=serializers.CharField())
-    urls = ListSerializer(child=serializers.CharField())
-    barcodes = ListSerializer(child=serializers.CharField())
-    shelfLife = TimingSerializer()
-    lifeTime = TimingSerializer()
-    guaranteePeriod = TimingSerializer()
-    customsCommodityCodes = ListSerializer(child=serializers.CharField())
-    supplyScheduleDays = ListSerializer(child=serializers.CharField())
-    processingState = ProcessingStateSerializer()
-    mapping = MappingSerializer()
-    awaitingModerationMapping = MappingSerializer()
-    rejectedMapping = MappingSerializer()
+class ManufacturerCountryListSerializer(BaseListSerializer):
+    key_fields = ['name']
+
+
+class ManufacturerCountrySerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        return instance.name
+
+    def to_internal_value(self, data):
+        return{'name': data}
+
+    class Meta:
+        model = ManufacturerCountry
+        fields = ['name']
+        list_serializer_class = ManufacturerCountryListSerializer
+
+
+class UrlListSerializer(BaseListSerializer):
+    key_fields = ['url']
+
+
+class UrlSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        return instance.url
+
+    def to_internal_value(self, data):
+        return{'url': data}
+
+    class Meta:
+        model = Url
+        fields = ['url']
+        list_serializer_class = UrlListSerializer
+
+
+class BarcodeListSerializer(BaseListSerializer):
+    key_fields = ['barcode']
+
+
+class BarcodeSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        return instance.barcode
+
+    def to_internal_value(self, data):
+        return{'barcode': data}
+
+    class Meta:
+        model = Barcode
+        fields = ['barcode']
+        list_serializer_class = BarcodeListSerializer
+
+
+class CustomsCommodityCodeListSerializer(BaseListSerializer):
+    key_fields = ['code']
+
+
+class CustomsCommodityCodeSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        return instance.code
+
+    def to_internal_value(self, data):
+        return{'code': data}
+
+    class Meta:
+        model = CustomsCommodityCode
+        fields = ['code']
+        list_serializer_class = CustomsCommodityCodeListSerializer
+
+
+class SupplyScheduleDaysListSerializer(BaseListSerializer):
+    key_fields = ['supplyScheduleDay']
+
+
+class SupplyScheduleDaysSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        return instance.supplyScheduleDay
+
+    def to_internal_value(self, data):
+        return{'supplyScheduleDay': data}
+
+    class Meta:
+        model = SupplyScheduleDays
+        fields = ['supplyScheduleDay']
+        list_serializer_class = SupplyScheduleDaysListSerializer
+
+
+class OfferSerializer(BaseModelSerializer):
+    # price = PriceSerializer()
+    weightDimensions = WeightDimensionSerializer(required=False)
+    manufacturerCountries = ManufacturerCountrySerializer(many=True, required=False)
+    urls = UrlSerializer(many=True, required=False)
+    barcodes = BarcodeSerializer(many=True, required=False)
+    shelfLife = ShelfLifeSerializer(required=False)
+    lifeTime = LifeTimeSerializer(required=False)
+    guaranteePeriod = GuaranteePeriodSerializer(required=False)
+    customsCommodityCodes = CustomsCommodityCodeSerializer(many=True, required=False)
+    supplyScheduleDays = SupplyScheduleDaysSerializer(many=True, required=False)
+    processingState = ProcessingStateSerializer(required=False)
+    #  = MappingSerializer()
+    # awaitingModerationMapping = MappingSerializer()
+    # rejectedMapping = MappingSerializer()
+
+    @staticmethod
+    def forward_name():
+        return 'offer'
 
     class Meta:
         model = Offer
@@ -71,7 +182,7 @@ class OfferSerializer(serializers.ModelSerializer):
             'name',
             'category',
             'manufacturer',
-            'price',
+            # 'price',
             'weightDimensions',
             'manufacturerCountries',
             'urls',
@@ -93,7 +204,7 @@ class OfferSerializer(serializers.ModelSerializer):
             'lifeTimeDays',
             'guaranteePeriodDays',
             'processingState',
-            'mapping',
-            'awaitingModerationMapping',
-            'rejectedMapping'
+            # 'mapping',
+            # 'awaitingModerationMapping',
+            # 'rejectedMapping'
         ]

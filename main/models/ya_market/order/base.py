@@ -6,7 +6,7 @@ from main.models.ya_market.order.choices import StatusChoices, PaymentTypeChoice
 
 class DeliveryRegion(models.Model):
     """
-        Регионы доставки
+    Регионы доставки
     """
     region_id = models.PositiveIntegerField(verbose_name='Идентификатор региона доставки', null=True)
     name = models.CharField(max_length=255, verbose_name='Название региона доставки', null=True)
@@ -40,7 +40,10 @@ class Order(models.Model):
         verbose_name='Тип оплаты заказа',
         null=True
     )
-    partnerOrderId = models.PositiveIntegerField(verbose_name='Идентификатор заказа партнера')
+    partnerOrderId = models.PositiveIntegerField(
+        verbose_name='Идентификатор заказа партнера',
+        null=True
+    )
     deliveryRegion = models.ForeignKey(
         to=DeliveryRegion,
         on_delete=models.SET_NULL,
@@ -51,7 +54,7 @@ class Order(models.Model):
 
 class Warehouse(models.Model):
     """
-        Cклады, на которых хранится товар
+    Cклады, на которых хранится товар
     """
     warehouse_id = models.PositiveIntegerField(verbose_name='Идентификатор склада', null=True)
     name = models.CharField(max_length=255, verbose_name='Название склада', null=True)
@@ -272,5 +275,3 @@ class Commission(models.Model):
                      'если бы заказ был создан в момент формирования отчета по заказам',
         help_text='Точность — два знака после запятой',
         null=True)
-
-

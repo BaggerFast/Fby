@@ -8,11 +8,6 @@ class Timing(models.Model):
     class Meta:
         abstract = True
 
-    offer = models.OneToOneField(
-        to=Offer,
-        on_delete=models.CASCADE,
-    )
-
     timePeriod = models.PositiveSmallIntegerField(null=True, blank=True)
 
     timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices, verbose_name='Единица измерения'
@@ -39,15 +34,27 @@ class Timing(models.Model):
 
 class ShelfLife(Timing):
     # Тут все сделано и работает
-    pass
+    offer = models.OneToOneField(
+        to=Offer,
+        on_delete=models.CASCADE,
+        related_name='shelfLife'
+    )
 
 
 class LifeTime(Timing):
-    pass
+    offer = models.OneToOneField(
+        to=Offer,
+        on_delete=models.CASCADE,
+        related_name='lifeTime'
+    )
 
 
 class GuaranteePeriod(Timing):
-    pass
+    offer = models.OneToOneField(
+        to=Offer,
+        on_delete=models.CASCADE,
+        related_name='guaranteePeriod'
+    )
 
 
 class Price(models.Model):
@@ -81,7 +88,7 @@ class ManufacturerCountry(models.Model):
 
 
 class WeightDimension(models.Model):
-    offer = models.ForeignKey(
+    offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='weightDimensions',
@@ -131,6 +138,7 @@ class Barcode(models.Model):
     offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
+        related_name='barcodes'
     )
     barcode = models.CharField(max_length=255, verbose_name='Штрихкод',
                                help_text='Штрихкод обязателен при размещении товара по модели FBY и FBY+. '
@@ -178,10 +186,10 @@ class SupplyScheduleDays(models.Model):
 
 
 class ProcessingState(models.Model):
-    offer = models.ForeignKey(
+    offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
-        related_name='processingState_set',
+        related_name='processingState',
     )
     status = models.CharField(
         max_length=12,

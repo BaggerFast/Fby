@@ -1,4 +1,6 @@
 """Формирование запросов в YM для получения данных и сохранения их в БД"""
+import json
+
 from django.contrib import messages
 from fby_market.settings import YaMarket
 import requests
@@ -80,6 +82,10 @@ class Requests:
         """Сохранение данных в соответствующую БД"""
         raise NotImplementedError
 
+    def save_json_to_file(self, file):
+        with open(file, "w") as write_file:
+            json.dump(self.json_data, write_file, indent=2, ensure_ascii=False)
+
 
 class OfferList(Requests):
     """Класс для получения списка товаров и сохранения в БД Offer"""
@@ -111,8 +117,8 @@ class OfferChangePrice(Requests):
             self.add_params(price)
         self.PARAMS = {'offers': self.temp_params}
         super().__init__(json_name='offer-prices/updates', base_context_name='price', name='ChangePrices')
-        print(self.PARAMS)
-        print(self.json_data)
+        # print(self.PARAMS)
+        # print(self.json_data)
 
     @staticmethod
     def get_dict(price) -> dict:
@@ -127,7 +133,7 @@ class OfferChangePrice(Requests):
 
 
 class OrderList(Requests):
-    """Класс для получения списка заказов и сохранения в БД Price"""
+    """Класс для получения списка заказов и сохранения в БД Order"""
 
     PARAMS = {                      # параметры надо предварительно запросить
         "dateFrom": "2021-01-01",

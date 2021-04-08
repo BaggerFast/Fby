@@ -44,8 +44,8 @@ def orders_list(request):
         'content': colorful_json,
     }
 
-    # OrderPattern(json=json_object['result']['orders']).save()
-    OrderList().save()
+    # OrderPattern(json=json_object['result']['orders']).save()  # из файла
+    OrderList().save()  # из Яндекса
 
     return render(request, 'orders.html', context)
 
