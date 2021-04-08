@@ -1,5 +1,4 @@
 from django.db import models
-
 from main.models.ya_market.order.choices import StatusChoices, PaymentTypeChoices, PriceTypeChoices, \
     ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourseChoices, CommissionTypeChoices
 
@@ -40,10 +39,7 @@ class Order(models.Model):
         verbose_name='Тип оплаты заказа',
         null=True
     )
-    partnerOrderId = models.PositiveIntegerField(
-        verbose_name='Идентификатор заказа партнера',
-        null=True
-    )
+    partnerOrderId = models.PositiveIntegerField(verbose_name='Идентификатор заказа партнера', null=True)
     deliveryRegion = models.ForeignKey(
         to=DeliveryRegion,
         on_delete=models.SET_NULL,

@@ -20,11 +20,14 @@ class CreateOfferView(LoginRequiredMixin, View):
     offer_id = None
     request = None
 
+    def context_update(self, data: dict):
+        self.context = {**self.context, **data}
+
     def pre_init(self, request):
         self.request = request
-        self.context['navbar'] = get_navbar(request)
-        self.context['content_disable'] = True
-        self.context['content'] = request.GET.get('content', 'info')
+        local_context = {'navbar': get_navbar(request), 'content_disable': True,
+                         'content': request.GET.get('content', 'info')}
+        self.context_update(local_context)
         if self.context['content'] in ['info', 'accommodation']:
             self.form = Form() if self.context['content'] == 'info' else PriceF() \
                 if self.context['content'] == 'accommodation' else None
@@ -33,8 +36,7 @@ class CreateOfferView(LoginRequiredMixin, View):
             raise Http404()
 
     def end_it(self):
-        self.context['id'] = self.offer_id
-        self.context['forms'] = self.form.get_for_context()
+        self.context_update({'id': self.offer_id, 'forms': self.form.get_for_context()})
         return render(self.request, Page.product_card, self.context)
 
     def save_message(self, request):
@@ -69,8 +71,7 @@ class CreateOfferView(LoginRequiredMixin, View):
 
     def get(self, request) -> HttpResponse:
         self.pre_init(request=request)
-        self.context['create'] = True
-        self.context['stage_next'] = True if self.context['content'] == 'info' else False
+        self.context_update({'create': True, 'stage_next': True if self.context['content'] == 'info' else False})
         self.form.set_forms()
         self.form.set_clear(disable=False)
         if self.offer_id >= 0 and self.context['content'] != 'accommodation':

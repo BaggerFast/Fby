@@ -53,6 +53,7 @@ class OfferPattern:
             else:
                 print(serializer.errors)
 
+
 class Base:
     """ для простых данных"""
 

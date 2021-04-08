@@ -5,7 +5,7 @@ from rest_framework import generics
 
 from main.models import Offer
 from main.serializers.offer_price import OfferSerializer
-from main.yandex.request_yandex import OrderList
+from main.yandex.request import OrderList
 
 
 class OfferList(generics.ListCreateAPIView):

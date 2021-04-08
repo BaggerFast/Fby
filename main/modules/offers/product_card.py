@@ -52,9 +52,11 @@ class ProductPageView(LoginRequiredMixin, View):
     request = None
     disable: bool = False
 
+    def context_update(self, data: dict):
+        self.context = {**self.context, **data}
+
     def pre_init(self, pk, request):
-        self.context['navbar'] = get_navbar(request)
-        self.context['content'] = request.GET.get('content', 'info')
+        self.context_update({'navbar': get_navbar(request), 'content': request.GET.get('content', 'info')})
         correct_content = ['info', 'accommodation']
         if self.context['content'] in correct_content:
             self.form = Form() if self.context['content'] == 'info' else PriceF() \
@@ -64,8 +66,7 @@ class ProductPageView(LoginRequiredMixin, View):
             raise Http404()
 
     def end_it(self, disable) -> HttpResponse:
-        self.context['forms'] = self.form.get_for_context()
-        self.context['disable'] = disable
+        self.context_update({'forms': self.form.get_for_context(), 'disable': disable})
         return render(self.request, Page.product_card, self.context)
 
     def post(self, request, pk) -> HttpResponse:

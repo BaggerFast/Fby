@@ -124,14 +124,14 @@ class OrderSerializer(BaseModelSerializer):
     class Meta:
         model = Order
         fields = ['id',
-            'creationDate',
-            'status',
-            'statusUpdateDate',
-            'partnerOrderId',
-            'paymentType',
-            'deliveryRegion',
-            'items',
-            'initialItems',
-            'payments',
-            'commissions'
-        ]
+                  'creationDate',
+                  'status',
+                  'statusUpdateDate',
+                  'partnerOrderId',
+                  'paymentType',
+                  'deliveryRegion',
+                  'items',
+                  'initialItems',
+                  'payments',
+                  'commissions'
+                  ]
