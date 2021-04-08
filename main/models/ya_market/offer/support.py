@@ -86,6 +86,9 @@ class ManufacturerCountry(models.Model):
     )
     name = models.CharField(max_length=255, verbose_name='Страна производства товара')
 
+    def __str__(self):
+        return self.name
+
 
 class WeightDimension(models.Model):
     offer = models.OneToOneField(
@@ -133,6 +136,9 @@ class Url(models.Model):
     )
     url = models.URLField(max_length=2000, verbose_name='Ссылка на фото')
 
+    def __str__(self):
+        return self.url
+
 
 class Barcode(models.Model):
     offer = models.ForeignKey(
@@ -147,6 +153,9 @@ class Barcode(models.Model):
                                          'только код GTIN. Если штрихкодов несколько, укажите их через запятую.',
                                blank=True,
                                null=True)
+
+    def __str__(self):
+        return self.barcode
 
 
 class CustomsCommodityCode(models.Model):
