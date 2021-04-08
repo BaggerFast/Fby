@@ -52,15 +52,15 @@ class CreateOfferView(LoginRequiredMixin, View):
             self.offer_id = offer.id
         else:
             offer = Offer.objects.get(pk=self.offer_id)
-        self.form.set_forms(key1={'id': self.offer_id}, key2={'offer': offer})
-        self.form.set_post(disable=True, request=request.POST)
+        self.form.set_forms(self.offer_id)
+        self.form.set_post(disable=True, post=request.POST)
         if self.form.is_valid():
             self.form.save()
             message = self.save_message(request)
             if message:
                 return message
         else:
-            self.form.set_post(disable=False, request=request.POST)
+            self.form.set_post(disable=False, post=request.POST)
             offer.delete()
             self.context['create'] = True
         if self.offer_id >= 0 and self.context['content'] == 'info':

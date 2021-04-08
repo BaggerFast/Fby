@@ -9,21 +9,12 @@ class Timing(models.Model):
     class Meta:
         abstract = True
 
-    offer = models.OneToOneField(
-        to=Offer,
-        on_delete=models.CASCADE,
-    )
-
     timePeriod = models.PositiveSmallIntegerField(null=True, blank=True)
 
-    timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices, verbose_name='Единица измерения'
-                                , null=True, blank=True)
+    timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices, verbose_name='Единица измерения',
+                                null=True, blank=True)
 
-    comment = models.CharField(
-        max_length=2000,
-        null=True,
-        blank=True,
-    )
+    comment = models.CharField(max_length=2000, null=True, blank=True, )
 
     def get_days(self):
         if self.timeUnit == TimeUnitChoices.HOUR:
@@ -40,15 +31,15 @@ class Timing(models.Model):
 
 class ShelfLife(Timing):
     # Тут все сделано и работает
-    pass
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='shelfLife')
 
 
 class LifeTime(Timing):
-    pass
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='lifeTime')
 
 
 class GuaranteePeriod(Timing):
-    pass
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='guaranteePeriod')
 
 
 class Price(models.Model):
@@ -61,11 +52,7 @@ class Price(models.Model):
                               blank=True,
                               choices=VatType.choices
                               )
-    offer = models.OneToOneField(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='price',
-    )
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='price')
 
     def clean(self):
         if self.discountBase < self.value:
@@ -88,11 +75,7 @@ class ManufacturerCountry(models.Model):
 
 
 class WeightDimension(models.Model):
-    offer = models.OneToOneField(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='weightDimensions',
-    )
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='weightDimensions')
     length = models.FloatField(
         verbose_name='Длина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
@@ -126,19 +109,12 @@ class Url(models.Model):
         .. todo::
            Добавить проверку на то, что в списке URL'ов присутствует минимум одна запись
     """
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='urls',
-    )
+    offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name='urls')
     url = models.URLField(max_length=2000, verbose_name='Ссылка на фото')
 
 
 class Barcode(models.Model):
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-    )
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE)
     barcode = models.CharField(max_length=255, verbose_name='Штрихкод',
                                help_text='Штрихкод обязателен при размещении товара по модели FBY и FBY+. '
                                          'Допустимые форматы: EAN-13, EAN-8, UPC-A, UPC-E, Code 128. Для книг'
@@ -149,11 +125,7 @@ class Barcode(models.Model):
 
 
 class CustomsCommodityCode(models.Model):
-    offer = models.OneToOneField(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='customsCommodityCodes',
-    )
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='customsCommodityCodes')
     code = models.CharField(
         max_length=10,
         verbose_name='Код ТН ВЭД',
@@ -171,11 +143,7 @@ class CustomsCommodityCode(models.Model):
 
 
 class SupplyScheduleDays(models.Model):
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name="supplyScheduleDays",
-    )
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name="supplyScheduleDays")
     supplyScheduleDay = models.CharField(
         max_length=9,
         choices=SupplyScheduleDayChoices.choices,
@@ -190,11 +158,7 @@ class SupplyScheduleDays(models.Model):
 
 
 class ProcessingState(models.Model):
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='processingState_set',
-    )
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='processingState_set')
     status = models.CharField(
         max_length=12,
         choices=ProcessingStateStatus.choices,
@@ -205,7 +169,7 @@ class ProcessingState(models.Model):
 
 
 class ProcessingStateNote(models.Model):
-    processingState = models.ForeignKey(
+    processingState = models.OneToOneField(
         to=ProcessingState,
         on_delete=models.CASCADE,
         related_name='notes',

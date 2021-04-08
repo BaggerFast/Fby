@@ -4,12 +4,7 @@ from main.models.ya_market.offer.choices import AvailabilityChoices, MappingType
 
 
 class Offer(models.Model):
-    user = models.ForeignKey(
-        to=User,
-        on_delete=models.CASCADE,
-        related_name="offer",
-        verbose_name="Пользователь",
-    )
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="offer", verbose_name="Пользователь")
 
     marketSku = models.CharField(max_length=255, verbose_name="SKU на Яндексе", null=True, blank=True)
 
@@ -81,16 +76,18 @@ class Offer(models.Model):
     )
 
     deliveryDurationDays = models.PositiveSmallIntegerField(verbose_name='Срок поставки',
-                                                            help_text="За какое время вы поставите товар на склад.(в днях)",
+                                                            help_text="За какое время вы поставите товар "
+                                                                      "на склад.(в днях)",
                                                             null=True,
-                                                            blank=True)
+                                                            blank=True
+                                                            )
 
     boxCount = models.PositiveIntegerField(verbose_name='Товар занимает больше одного места',
-                                           help_text='Если нет — оставьте поле пустым. Если да — укажите количество мест '
-                                                     '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',
+                                           help_text='Если нет — оставьте поле пустым. Если да — '
+                                                     'укажите количество мест (например, кондиционер занимает 2 '
+                                                     'грузовых места — внешний и внутренний блоки в двух коробках).',
                                            blank=True,
                                            null=True
-
                                            )
 
     class Meta:
@@ -128,63 +125,63 @@ class Offer(models.Model):
     #     а изготовитель или продавец будет нести ответственность за недостатки товара.
     #     """
     #     return self.timings.get(timingType=TimingTypeChoices.GUARANTEE_PERIOD)
-
-    @property
-    def shelfLifeDays(self):
-        """
-        Срок годности товара: через сколько дней товар станет непригоден для использования.
-
-        Рассчитывается на основе поля :class:`shelfLife`
-
-        .. todo::
-           Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
-        """
-        return self.shelfLife.get_days()
-
-    @property
-    def lifeTimeDays(self):
-        """
-        Срок службы товара: течение какого периода товар будет исправно выполнять свою функцию,
-
-        Рассчитывается на основе поля :class:`lifeTime`
-
-        .. todo::
-           Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
-        """
-        return self.lifeTime.get_days()
-
-    @property
-    def guaranteePeriodDays(self):
-        """
-        Гарантийный срок товара: в течение какого периода возможны обслуживание и ремонт товара или возврат денег
-
-        Рассчитывается на основе поля :class:`guaranteePeriod`
-
-        .. todo::
-           Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
-        """
-        return self.guaranteePeriod.get_days()
-
-    @property
-    def processingState(self):
-        """
-        Информация о статусе публикации товара на Маркете
-
-        Рассчитывается на основе поля :class:`processingState_set`. Берётся последнее значение.
-        """
-        return self.processingState_set.last()
-
-    @property
-    def mapping(self):
-        """Информация о текущей карточке товара на Маркете"""
-        return self.mapping_set.get(mappingType=MappingType.BASE)
-
-    @property
-    def awaitingModerationMapping(self):
-        """Информация о карточке товара на Маркете, проходящей модерацию для данного товара"""
-        return self.mapping_set.get(mappingType=MappingType.AWAITING_MODERATION)
-
-    @property
-    def rejectedMapping(self):
-        """Информация о последней карточке товара на Маркете, отклоненной на модерации для данного товара"""
-        return self.mapping_set.get(mappingType=MappingType.REJECTED)
+    #
+    # @property
+    # def shelfLifeDays(self):
+    #     """
+    #     Срок годности товара: через сколько дней товар станет непригоден для использования.
+    #
+    #     Рассчитывается на основе поля :class:`shelfLife`
+    #
+    #     .. todo::
+    #        Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
+    #     """
+    #     return self.shelfLife.get_days()
+    #
+    # @property
+    # def lifeTimeDays(self):
+    #     """
+    #     Срок службы товара: течение какого периода товар будет исправно выполнять свою функцию,
+    #
+    #     Рассчитывается на основе поля :class:`lifeTime`
+    #
+    #     .. todo::
+    #        Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
+    #     """
+    #     return self.lifeTime.get_days()
+    #
+    # @property
+    # def guaranteePeriodDays(self):
+    #     """
+    #     Гарантийный срок товара: в течение какого периода возможны обслуживание и ремонт товара или возврат денег
+    #
+    #     Рассчитывается на основе поля :class:`guaranteePeriod`
+    #
+    #     .. todo::
+    #        Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
+    #     """
+    #     return self.guaranteePeriod.get_days()
+    #
+    # @property
+    # def processingState(self):
+    #     """
+    #     Информация о статусе публикации товара на Маркете
+    #
+    #     Рассчитывается на основе поля :class:`processingState_set`. Берётся последнее значение.
+    #     """
+    #     return self.processingState_set.last()
+    #
+    # @property
+    # def mapping(self):
+    #     """Информация о текущей карточке товара на Маркете"""
+    #     return self.mapping_set.get(mappingType=MappingType.BASE)
+    #
+    # @property
+    # def awaitingModerationMapping(self):
+    #     """Информация о карточке товара на Маркете, проходящей модерацию для данного товара"""
+    #     return self.mapping_set.get(mappingType=MappingType.AWAITING_MODERATION)
+    #
+    # @property
+    # def rejectedMapping(self):
+    #     """Информация о последней карточке товара на Маркете, отклоненной на модерации для данного товара"""
+    #     return self.mapping_set.get(mappingType=MappingType.REJECTED)

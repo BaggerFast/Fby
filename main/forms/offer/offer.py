@@ -21,6 +21,8 @@ class Func:
 
 
 class ShelfLifeForm(ModelForm, Func):
+    prefix = 'ShelfLife'
+
     class Meta:
         model = ShelfLife
         exclude = ('offer',)
@@ -38,7 +40,9 @@ class ShelfLifeForm(ModelForm, Func):
         return 'shelfLife'
 
 
-class LifeTimeForm(ShelfLifeForm):
+class LifeTimeForm(ModelForm, Func):
+    prefix = 'LifeTime'
+
     class Meta:
         model = LifeTime
         exclude = ('offer',)
@@ -56,7 +60,9 @@ class LifeTimeForm(ShelfLifeForm):
         return 'lifeTime'
 
 
-class GuaranteePeriodForm(ShelfLifeForm):
+class GuaranteePeriodForm(ModelForm, Func):
+    prefix = 'GuaranteePeriod'
+
     class Meta:
         model = GuaranteePeriod
 
@@ -64,7 +70,8 @@ class GuaranteePeriodForm(ShelfLifeForm):
         help_texts = {
             'comment': 'Дополнительные условия хранения.',
             'timePeriod': 'Через сколько дней товар станет непригоден для использования. '
-                          'Например, срок годности есть у таких категорий, как продукты питания и медицинские препараты.',
+                          'Например, срок годности есть у таких категорий, как продукты питания и '
+                          'медицинские препараты.',
         }
         labels = {
             'timePeriod': 'Срок годности',

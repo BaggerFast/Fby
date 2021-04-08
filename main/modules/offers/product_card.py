@@ -1,5 +1,5 @@
+from pprint import pprint
 from typing import List
-
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404, HttpResponse
@@ -12,11 +12,11 @@ from main.yandex.request import OfferChangePrice
 
 
 class Form(Multiform):
-    def set_forms(self, key1: dict = None, key2: dict = None) -> None:
-        forms: list = [WeightDimensionForm, UrlForm, BarcodeForm, WeightDimensionForm, ShelfLifeForm, LifeTimeForm,
+    def set_forms(self, pk=None) -> None:
+        forms: list = [WeightDimensionForm, UrlForm, BarcodeForm, ShelfLifeForm, LifeTimeForm,
                        GuaranteePeriodForm, CommodityCodeForm]
         self.forms_model_list: list[dict] = \
-            [{'attrs': key1, 'form': OfferForm}] + [{'attrs': key2, 'form': form} for form in forms]
+            [{'attrs': {'id': pk}, 'form': OfferForm}] + [{'attrs': {'offer_id': pk}, 'form': form} for form in forms]
 
     def get_for_context(self) -> dict:
         forms: List[List] = [
@@ -35,10 +35,9 @@ class Form(Multiform):
 
 
 class PriceF(Multiform):
-    def set_forms(self, key1: dict = None, key2: dict = None) -> None:
-        forms: List = [PriceForm]
-        self.forms_model_list: List[dict] = \
-            [{'attrs': key1, 'form': AvailabilityForm}] + [{'attrs': key2, 'form': form} for form in forms]
+    def set_forms(self, pk=None) -> None:
+        self.forms_model_list: List[dict] = [{'attrs': {'offer_id': pk}, 'form': PriceForm},
+                                             {'attrs': {'id': pk}, 'form': AvailabilityForm}]
 
     def get_for_context(self) -> dict:
         accordions: list = ['Управление ценой', 'Управление поставками']
@@ -51,16 +50,16 @@ class ProductPageView(LoginRequiredMixin, View):
     context = {'title': 'Product_card', 'page_name': 'Карточка товара'}
     form = None
     request = None
+    disable: bool = False
 
     def pre_init(self, pk, request):
-        self.request = request
         self.context['navbar'] = get_navbar(request)
         self.context['content'] = request.GET.get('content', 'info')
         correct_content = ['info', 'accommodation']
         if self.context['content'] in correct_content:
             self.form = Form() if self.context['content'] == 'info' else PriceF() \
                 if self.context['content'] == 'accommodation' else None
-            self.form.set_forms(key1={'id': pk}, key2={'offer': Offer.objects.get(id=pk)})
+            self.form.set_forms(pk=pk)
         else:
             raise Http404()
 
@@ -70,21 +69,22 @@ class ProductPageView(LoginRequiredMixin, View):
         return render(self.request, Page.product_card, self.context)
 
     def post(self, request, pk) -> HttpResponse:
-        self.pre_init(pk=pk, request=request)
-        self.form.set_post(disable=True, request=request.POST)
+        self.pre_init(request=request, pk=pk)
+        pprint(request.POST)
+        self.form.set_post(disable=True, post=self.request.POST)
         if self.form.is_valid():
             self.form.save()
-            messages.success(request, 'Редактирование прошло успешно!')
+            messages.success(self.request, 'Редактирование прошло успешно!')
             # todo save on button
             # OfferChangePrice(price_list=list(Price.objects.filter(offer_id=pk)))
-            disable = True
+            self.disable = True
         else:
-            disable = False
-            self.form.set_post(disable=False, request=request.POST)
-        return self.end_it(disable=disable)
+            self.disable = False
+            self.form.set_post(disable=self.disable, post=self.request.POST)
+        return self.end_it(disable=self.disable)
 
     def get(self, request, pk) -> HttpResponse:
-        self.pre_init(pk=pk, request=request)
-        disable = False if int(request.GET.get('edit', 0)) else True
-        self.form.set_fill(disable=disable)
-        return self.end_it(disable=disable)
+        self.pre_init(request=request, pk=pk)
+        self.disable = False if int(self.request.GET.get('edit', 0)) else True
+        self.form.set_fill(disable=self.disable)
+        return self.end_it(disable=self.disable)

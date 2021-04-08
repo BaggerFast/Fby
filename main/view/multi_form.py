@@ -11,32 +11,32 @@ class FormParser:
         self.form: ModelForm
 
     @staticmethod
-    def __get_or_create(model: models.Model, attrs_for_filter: dict) -> models.Model:
+    def __get_or_create(model: models.Model, attrs: dict) -> models.Model:
         try:
-            return model.objects.filter(**attrs_for_filter).first()
+            mod = model.objects.filter(**attrs)[0]
         except IndexError:
-            return model.objects.create(**attrs_for_filter)
+            mod = model.objects.create(**attrs)
+        return mod
 
-    def __template_request(self, disable: bool, model=None, attrs_for_filter: dict = None, post=None):
-        if model and attrs_for_filter:
-            model = self.__get_or_create(model=model, attrs_for_filter=attrs_for_filter)
-            print(model)
-            self.form = self.base_form(post, instance=model) if post else self.base_form(instance=model)
+    def __template_request(self, disable: bool, model=None, attrs: dict = None, post=None):
+        if model and attrs:
+            cur_model = self.__get_or_create(model=model, attrs=attrs)
+            self.form = self.base_form(post, instance=cur_model) if post else self.base_form(instance=cur_model)
         else:
             self.form = self.base_form()
         self.form.turn_off(disable=disable)
 
-    def fill(self, model: models.Model, attrs_for_filter: dict, disable: bool) -> None:
+    def fill(self, model: models.Model, attrs: dict, disable: bool) -> None:
         # передает аргументы для формы с заполнением
-        self.__template_request(disable=disable, model=model, attrs_for_filter=attrs_for_filter)
+        self.__template_request(disable=disable, model=model, attrs=attrs)
 
     def clear(self, disable: bool) -> None:
         # передает аргументы для формы без заполнения
         self.__template_request(disable=disable)
 
-    def post(self, post, model: models.Model, attrs_for_filter: dict, disable: bool) -> None:
+    def post(self, post, model: models.Model, attrs: dict, disable: bool) -> None:
         # передает аргументы для формы с Post запросом
-        self.__template_request(disable=disable, model=model, attrs_for_filter=attrs_for_filter, post=post)
+        self.__template_request(disable=disable, model=model, attrs=attrs, post=post)
 
     def __bool__(self):
         return self.form.is_valid()
@@ -55,25 +55,25 @@ class Multiform:
         return dict(zip(accordions, [[self.__random_id(), form] for form in forms]))
 
     def __template_request(self, disable: bool, post=None, method: str = None, attrs: bool = None, model: bool = None):
-        for cur_model in self.forms_model_list:
-            form = FormParser(base_form=cur_model['form'])
+        for data in self.forms_model_list:
+            form = FormParser(base_form=data['form'])
             attributes = {}
             if post:
                 attributes.update({'post': post})
             if model:
-                attributes.update({'model': cur_model['form'].Meta.model})
+                attributes.update({'model': data['form'].Meta.model})
             if attrs:
-                attributes.update({'attrs_for_filter': cur_model['attrs']})
+                attributes.update({'attrs': data['attrs']})
             getattr(form, method)(**attributes, disable=disable)
-            self.forms_dict.update({str(cur_model['form']()): form})
+            self.forms_dict.update({str(data['form']()): form})
 
-    def set_forms(self) -> None:
+    def set_forms(self, pk) -> None:
         # примеры смотрите в коде
         raise NotImplementedError
 
-    def set_post(self, disable: bool, request) -> None:
+    def set_post(self, disable: bool, post) -> None:
         # вызывать для формы с POST запросом
-        self.__template_request(model=True, attrs=True, post=request, method='post', disable=disable)
+        self.__template_request(model=True, attrs=True, post=post, method='post', disable=disable)
 
     def set_fill(self, disable: bool) -> None:
         # вызывать для get запроса с учетом заполнения формы из модели
@@ -95,8 +95,8 @@ class Multiform:
         """
         Проверка валидности всех вложенных моделей
         """
-        for key, model in self.forms_dict.items():
-            if not model:
+        for key, form in self.forms_dict.items():
+            if not form:
                 return False
         return True
 
