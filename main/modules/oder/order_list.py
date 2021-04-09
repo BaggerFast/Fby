@@ -7,7 +7,7 @@ from main.view import get_navbar, Page
 from main.yandex import OrderList
 
 
-class CatalogueView(LoginRequiredMixin, View):
+class OrderListView(LoginRequiredMixin, View):
     """отображение каталога"""
     context = {'title': 'Order', 'page_name': 'Заказы'}
     models_to_save = [OrderList]
