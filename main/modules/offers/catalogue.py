@@ -28,7 +28,7 @@ class CatalogueView(LoginRequiredMixin, View):
             'count': offer.count(),
             'offers': self.reformat_offer(offer),
             'urls': Url.objects.filter(offer=offer),
-            'tabel': ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
+            'table': ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
         }
         self.context_update(local_context)
 

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from main.models.ya_market.order.choices import StatusChoices, PaymentTypeChoices, PriceTypeChoices, \
     ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourseChoices, CommissionTypeChoices
@@ -15,6 +16,8 @@ class Order(models.Model):
     """
     Заказы
     """
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name="Пользователь")
+
     order_id = models.PositiveIntegerField(verbose_name='Идентификатор заказа')
     creationDate = models.DateField(
         verbose_name='Дата создания заказа',

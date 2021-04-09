@@ -180,6 +180,8 @@ class OfferSerializer(BaseModelSerializer):
             'updatedAt',
             'shopSku',
             'name',
+            'vendor',
+            'vendorCode',
             'category',
             'manufacturer',
             # 'price',
