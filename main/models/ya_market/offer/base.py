@@ -4,12 +4,7 @@ from main.models.ya_market.offer.choices import AvailabilityChoices, MappingType
 
 
 class Offer(models.Model):
-    user = models.ForeignKey(
-        to=User,
-        on_delete=models.CASCADE,
-        related_name="offer",
-        verbose_name="Пользователь",
-    )
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="offer", verbose_name="Пользователь")
 
     marketSku = models.CharField(max_length=255, verbose_name="SKU на Яндексе", null=True, blank=True)
 
@@ -81,54 +76,22 @@ class Offer(models.Model):
     )
 
     deliveryDurationDays = models.PositiveSmallIntegerField(verbose_name='Срок поставки',
-                                                            help_text="За какое время вы поставите товар на склад.(в днях)",
+                                                            help_text="За какое время вы поставите товар "
+                                                                      "на склад.(в днях)",
                                                             null=True,
-                                                            blank=True)
+                                                            blank=True
+                                                            )
 
     boxCount = models.PositiveIntegerField(verbose_name='Товар занимает больше одного места',
-                                           help_text='Если нет — оставьте поле пустым. Если да — укажите количество мест '
-                                                     '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',
+                                           help_text='Если нет — оставьте поле пустым. Если да — '
+                                                     'укажите количество мест (например, кондиционер занимает 2 '
+                                                     'грузовых места — внешний и внутренний блоки в двух коробках).',
                                            blank=True,
                                            null=True
-
                                            )
-
 
     class Meta:
         ordering = ['id']
-
-    @property
-    def shelfLife(self):
-        """
-        Информация о сроке годности
-
-        Через какое время (в годах, месяцах, днях, неделях или часах)
-        товар станет непригоден для использования.
-        Например, срок годности есть у таких категорий, как продукты питания и медицинские препараты.
-        """
-        return self.timings.get(timingType=TimingTypeChoices.SHELF_LIFE)
-
-    @property
-    def lifeTime(self):
-        """
-        Информация о сроке службы
-
-        В течение какого периода (в годах, месяцах, днях, неделях или часах)
-        товар будет исправно выполнять свою функцию,
-        а изготовитель — нести ответственность за его существенные недостатки.
-        """
-        return self.timings.get(timingType=TimingTypeChoices.LIFE_TIME)
-
-    @property
-    def guaranteePeriod(self):
-        """
-        Информация о гарантийном сроке
-
-        В течение какого периода (в годах, месяцах, днях, неделях или часах)
-        возможны обслуживание и ремонт товара или возврат денег,
-        а изготовитель или продавец будет нести ответственность за недостатки товара.
-        """
-        return self.timings.get(timingType=TimingTypeChoices.GUARANTEE_PERIOD)
 
     @property
     def shelfLifeDays(self):
@@ -166,14 +129,14 @@ class Offer(models.Model):
         """
         return self.guaranteePeriod.get_days()
 
-    @property
-    def processingState(self):
-        """
-        Информация о статусе публикации товара на Маркете
-
-        Рассчитывается на основе поля :class:`processingState_set`. Берётся последнее значение.
-        """
-        return self.processingState_set.last()
+    # @property
+    # def processingState(self):
+    #     """
+    #     Информация о статусе публикации товара на Маркете
+    #
+    #     Рассчитывается на основе поля :class:`processingState_set`. Берётся последнее значение.
+    #     """
+    #     return self.processingState_set.last()
 
     @property
     def mapping(self):

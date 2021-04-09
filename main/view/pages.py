@@ -1,4 +1,4 @@
-def serialize(page) -> str:
+def serialize(page: str) -> str:
     return f'pages/{page}.html'
 
 
@@ -11,6 +11,6 @@ class Page:
     login = serialize('login')
     catalogue = serialize('offer/catalogue')
     create_offer = product_card = serialize('offer/product_card')
-
+    order = serialize('orders')
 
 

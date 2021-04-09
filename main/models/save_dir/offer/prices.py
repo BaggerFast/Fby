@@ -2,6 +2,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import Offer as OfferModel, Price
 from main.models.save_dir.offer.offer import OfferPattern, Base
+from main.models.save_dir.base import BasePattern
 
 
 class Prices:
@@ -17,7 +18,7 @@ class Prices:
             )
 
 
-class PricePattern(OfferPattern):
+class PricePattern(BasePattern):
     """Класс сохраняющий данные price из json в БД."""
     attrs = {
         'simple': [
@@ -39,3 +40,11 @@ class PricePattern(OfferPattern):
                 continue
             self.parse_attrs(json=item, attr=offer, diff_class=Prices)
             offer.save()
+
+    def parse_attrs(self, json, attr, diff_class) -> None:
+        """Парсит данные из json на простые и сложные"""
+        for key, data in json.items():
+            if key in self.attrs['simple']:
+                Base(data=data, offer=attr, name=key).save()
+            elif key in self.attrs['diff']:
+                getattr(diff_class, key[0].title() + key[1::])(data=data, offer=attr).save()

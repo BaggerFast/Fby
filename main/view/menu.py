@@ -1,19 +1,18 @@
 from django.urls import reverse
 
 
-def off_current(navbar: list, request):
-    for menu_item in navbar:
-        if menu_item.get('list', False):
-            # для атрибута меню с выпадающим списком
-            for i in range(len(menu_item['list'])):
-                menu_item['list'][i]['active'] = request.path != reverse(menu_item['list'][i]['url'])
-        else:
-            # для обычных атрибутов
-            menu_item['active'] = request.path != reverse(menu_item['url'])
-    return navbar
-
-
 def get_navbar(request) -> list:
+    def off_current(nav: list, req):
+        for menu_item in nav:
+            if menu_item.get('list', False):
+                # для атрибута меню с выпадающим списком
+                for i in range(len(menu_item['list'])):
+                    menu_item['list'][i]['active'] = req.path != reverse(menu_item['list'][i]['url'])
+            else:
+                # для обычных атрибутов
+                menu_item['active'] = req.path != reverse(menu_item['url'])
+        return nav
+
     """
     возвращает атрибутты для меню
     """
@@ -25,7 +24,8 @@ def get_navbar(request) -> list:
         navbar += [
             {'label': 'Авторизация', 'list': [{'url': 'logout', 'label': "Выйти"}]},
             {'label': 'Товары', 'list': [{'url': 'catalogue_list', 'label': "Каталог"},
-                                         {'url': 'create_offer', 'label': "Создать"}]}
+                                         {'url': 'create_offer', 'label': "Создать"}]},
+            {'label': 'Заказы', 'url':  'orders_list'}
         ]
     else:
         navbar += [
@@ -34,4 +34,4 @@ def get_navbar(request) -> list:
                 {'url': 'register', 'label': 'Зарегистрироваться'}
             ]}
         ]
-    return off_current(navbar=navbar, request=request)
+    return off_current(nav=navbar, req=request)

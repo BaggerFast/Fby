@@ -2,11 +2,11 @@ from django.db import models
 
 
 class TimeUnitChoices(models.TextChoices):
-    HOUR = 'HOUR', 'часы'
-    DAY = 'DAY', 'дни'
-    WEEK = 'WEEK', 'недели'
-    MONTH = 'MONTH', 'месяцы'
-    YEAR = 'YEAR', 'годы'
+    HOUR = 'HOUR', 'Часы'
+    DAY = 'DAY', 'Дни'
+    WEEK = 'WEEK', 'Недели'
+    MONTH = 'MONTH', 'Месяцы'
+    YEAR = 'YEAR', 'Годы'
 
 
 class AvailabilityChoices(models.TextChoices):
@@ -19,13 +19,13 @@ class AvailabilityChoices(models.TextChoices):
 
 
 class SupplyScheduleDayChoices(models.TextChoices):
-    MONDAY = 'MONDAY', 'понедельник'
-    TUESDAY = 'TUESDAY', 'вторник'
-    WEDNESDAY = 'WEDNESDAY', 'среда'
-    THURSDAY = 'THURSDAY', 'четверг'
-    FRIDAY = 'FRIDAY', 'пятница'
-    SATURDAY = 'SATURDAY', 'суббота'
-    SUNDAY = 'SUNDAY', 'воскресенье'
+    MONDAY = 'MONDAY', 'Понедельник'
+    TUESDAY = 'TUESDAY', 'Вторник'
+    WEDNESDAY = 'WEDNESDAY', 'Среда'
+    THURSDAY = 'THURSDAY', 'Четверг'
+    FRIDAY = 'FRIDAY', 'Пятница'
+    SATURDAY = 'SATURDAY', 'Суббота'
+    SUNDAY = 'SUNDAY', 'Воскресенье'
 
 
 class ProcessingStateStatus(models.TextChoices):
@@ -58,9 +58,10 @@ class ProcessingStateNoteType(models.TextChoices):
     LEGAL_CONFLICT = 'LEGAL_CONFLICT', 'товар не прошел модерацию по юридическим причинам. Например, он официально ' \
                                        'не продается в России или у вас нет разрешения на его продажу'
     NEED_CLASSIFICATION_INFORMATION = 'NEED_CLASSIFICATION_INFORMATION', \
-                                      'информации о товаре, которую вы предоставили, не хватает, чтобы отнести его к категории. ' \
-                                      'Проверьте, что правильно указали название, категорию, производителя и страны производства товара, ' \
-                                      'а также URL изображений или страниц с описанием, по которым можно идентифицировать товар'
+                                      'информации о товаре, которую вы предоставили, не хватает, чтобы отнести его к ' \
+                                      'категории. Проверьте, что правильно указали название, категорию, производителя' \
+                                      ' и страны производства товара, а также URL изображений или страниц с ' \
+                                      'описанием, по которым можно идентифицировать товар'
     NEED_INFORMATION = 'NEED_INFORMATION', 'товар раньше не продавался в России и пока не размещается на Маркете. ' \
                                            'Для него можно создать карточку'
     NEED_PICTURES = 'NEED_PICTURES', 'для идентификации товара нужны его изображения'

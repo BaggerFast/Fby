@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.db import models
 from main.models.ya_market.offer.base import Offer
 from main.models.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
@@ -9,21 +8,12 @@ class Timing(models.Model):
     class Meta:
         abstract = True
 
-    offer = models.OneToOneField(
-        to=Offer,
-        on_delete=models.CASCADE,
-    )
-
     timePeriod = models.PositiveSmallIntegerField(null=True, blank=True)
 
-    timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices, verbose_name='Единица измерения'
-                                , null=True, blank=True)
+    timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices, verbose_name='Единица измерения',
+                                null=True, blank=True)
 
-    comment = models.CharField(
-        max_length=2000,
-        null=True,
-        blank=True,
-    )
+    comment = models.CharField(max_length=2000, null=True, blank=True)
 
     def get_days(self):
         if self.timeUnit == TimeUnitChoices.HOUR:
@@ -39,16 +29,15 @@ class Timing(models.Model):
 
 
 class ShelfLife(Timing):
-    # Тут все сделано и работает
-    pass
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE,related_name='shelfLife')
 
 
 class LifeTime(Timing):
-    pass
+    offer = models.OneToOneField(to=Offer,on_delete=models.CASCADE,related_name='lifeTime')
 
 
 class GuaranteePeriod(Timing):
-    pass
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='guaranteePeriod')
 
 
 class Price(models.Model):
@@ -61,17 +50,7 @@ class Price(models.Model):
                               blank=True,
                               choices=VatType.choices
                               )
-    offer = models.OneToOneField(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='price',
-    )
-
-    def clean(self):
-        if self.discountBase < self.value:
-            raise ValidationError({'discountBase': 'Цена на товар без скидки < цены на товар'})
-        if self.value <= 0:
-            raise ValidationError({'value': 'Должно быть больше нуля'})
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='price')
 
 
 class ManufacturerCountry(models.Model):
@@ -79,20 +58,12 @@ class ManufacturerCountry(models.Model):
         .. todo::
            Добавить проверку на то, что в списке товаров может быть максимум 5 стран
     """
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name="manufacturerCountries",
-    )
+    offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="manufacturerCountries",)
     name = models.CharField(max_length=255, verbose_name='Страна производства товара')
 
 
 class WeightDimension(models.Model):
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='weightDimensions',
-    )
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='weightDimensions')
     length = models.FloatField(
         verbose_name='Длина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
@@ -126,24 +97,12 @@ class Url(models.Model):
         .. todo::
            Добавить проверку на то, что в списке URL'ов присутствует минимум одна запись
     """
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='urls',
-    )
+    offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name='urls')
     url = models.URLField(max_length=2000, verbose_name='Ссылка на фото')
-
-    # def clean(self):
-    #     if self.url == None:
-    #         price = Url.objects.filter(offer=self.offer)
-    #         print(price)
 
 
 class Barcode(models.Model):
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-    )
+    offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name='barcodes')
     barcode = models.CharField(max_length=255, verbose_name='Штрихкод',
                                help_text='Штрихкод обязателен при размещении товара по модели FBY и FBY+. '
                                          'Допустимые форматы: EAN-13, EAN-8, UPC-A, UPC-E, Code 128. Для книг'
@@ -159,27 +118,16 @@ class CustomsCommodityCode(models.Model):
         on_delete=models.CASCADE,
         related_name='customsCommodityCodes',
     )
-    code = models.CharField(
-        max_length=10,
-        verbose_name='Код ТН ВЭД',
-        help_text='Укажите 10 или 14 цифр без пробелов.', blank=True,
-        null=True
-    )
-
-    def clean(self):
-        if len(self.code) != 10:
-            raise ValidationError({'code': f'Код ТН ВЭД должен содержать 10. У вас {len(self.code)}'})
+    code = models.CharField(max_length=10, verbose_name='Код ТН ВЭД', help_text='Укажите 10 или 14 цифр без пробелов.',
+                            blank=True, null=True
+                            )
 
     def __str__(self):
         return self.code
 
 
 class SupplyScheduleDays(models.Model):
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name="supplyScheduleDays",
-    )
+    offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="supplyScheduleDays")
     supplyScheduleDay = models.CharField(
         max_length=9,
         choices=SupplyScheduleDayChoices.choices,
@@ -194,11 +142,7 @@ class SupplyScheduleDays(models.Model):
 
 
 class ProcessingState(models.Model):
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name='processingState_set',
-    )
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='processingState')
     status = models.CharField(
         max_length=12,
         choices=ProcessingStateStatus.choices,
@@ -232,11 +176,7 @@ class ProcessingStateNote(models.Model):
 
 
 class Mapping(models.Model):
-    offer = models.ForeignKey(
-        to=Offer,
-        on_delete=models.CASCADE,
-        related_name="mapping_set",
-    )
+    offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="mapping_set")
     marketSku = models.PositiveSmallIntegerField(
         verbose_name='SKU на Яндексе — идентификатор текущей карточки товара на Маркете',
         null=True,

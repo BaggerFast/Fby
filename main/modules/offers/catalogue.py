@@ -12,19 +12,25 @@ class CatalogueView(LoginRequiredMixin, View):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
     models_to_save = [OfferList, OfferPrice]
 
+    def context_update(self, data: dict):
+        self.context = {**self.context, **data}
+
     def post(self, request) -> HttpResponse:
         for model in self.models_to_save:
-            if not model().save_with_message(request=request):
+            if not model().save(request=request):
                 break
         return self.get(request=request)
 
     def get(self, request) -> HttpResponse:
-        self.context['navbar'] = get_navbar(request)
         offer = Offer.objects.filter(user=request.user)
-        self.context['count'] = offer.count()
-        self.context['offers'] = self.reformat_offer(offer)
-        self.context['urls'] = Url.objects.filter(offer=offer)
-        self.context['tabel'] = ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
+        local_context = {
+            'navbar': get_navbar(request),
+            'count': offer.count(),
+            'offers': self.reformat_offer(offer),
+            'urls': Url.objects.filter(offer=offer),
+            'table': ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
+        }
+        self.context_update(local_context)
 
         return render(request, Page.catalogue, self.context)
 

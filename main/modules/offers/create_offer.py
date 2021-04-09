@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic.base import View
 from main.models import Offer
-from main.modules.offers.product_card import Form, TempForm
+from main.modules.offers.product_card import Form, PriceF
 from main.view import get_navbar, Page
 
 
@@ -20,21 +20,23 @@ class CreateOfferView(LoginRequiredMixin, View):
     offer_id = None
     request = None
 
+    def context_update(self, data: dict):
+        self.context = {**self.context, **data}
+
     def pre_init(self, request):
         self.request = request
-        self.context['navbar'] = get_navbar(request)
-        self.context['content_disable'] = True
-        self.context['content'] = request.GET.get('content', 'info')
+        local_context = {'navbar': get_navbar(request), 'content_disable': True,
+                         'content': request.GET.get('content', 'info')}
+        self.context_update(local_context)
         if self.context['content'] in ['info', 'accommodation']:
-            self.form = Form() if self.context['content'] == 'info' else TempForm() \
+            self.form = Form() if self.context['content'] == 'info' else PriceF() \
                 if self.context['content'] == 'accommodation' else None
             self.offer_id = int(request.GET.get('id', -1))
         else:
             raise Http404()
 
     def end_it(self):
-        self.context['id'] = self.offer_id
-        self.context['forms'] = self.form.get_for_context()
+        self.context_update({'id': self.offer_id, 'forms': self.form.get_for_context()})
         return render(self.request, Page.product_card, self.context)
 
     def save_message(self, request):
@@ -52,15 +54,15 @@ class CreateOfferView(LoginRequiredMixin, View):
             self.offer_id = offer.id
         else:
             offer = Offer.objects.get(pk=self.offer_id)
-        self.form.get_models_classes(key1={'id': self.offer_id}, key2={'offer': offer})
-        self.form.get_post(disable=True, request=request.POST)
+        self.form.set_forms(self.offer_id)
+        self.form.set_post(disable=True, post=request.POST)
         if self.form.is_valid():
             self.form.save()
             message = self.save_message(request)
             if message:
                 return message
         else:
-            self.form.get_post(disable=False, request=request.POST)
+            self.form.set_post(disable=False, post=request.POST)
             offer.delete()
             self.context['create'] = True
         if self.offer_id >= 0 and self.context['content'] == 'info':
@@ -69,10 +71,9 @@ class CreateOfferView(LoginRequiredMixin, View):
 
     def get(self, request) -> HttpResponse:
         self.pre_init(request=request)
-        self.context['create'] = True
-        self.context['stage_next'] = True if self.context['content'] == 'info' else False
-        self.form.get_models_classes()
-        self.form.get_clear(disable=False)
+        self.context_update({'create': True, 'stage_next': True if self.context['content'] == 'info' else False})
+        self.form.set_forms()
+        self.form.set_clear(disable=False)
         if self.offer_id >= 0 and self.context['content'] != 'accommodation':
             return convert_url(offer_id=self.offer_id)
         return self.end_it()
