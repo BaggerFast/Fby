@@ -148,4 +148,4 @@ class OrderList(Requests):
             self.PARAMS = params
 
     def save(self, request=None) -> None:
-        OrderPattern(json=self.json_data['result'][self.base_context_name]).save()
+        OrderPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
