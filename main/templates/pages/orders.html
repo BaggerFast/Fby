@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Orders</title>
-</head>
-<body>
-  <style>{{ highlight_style }}</style>
-  <div class="highlight">
-    {{ content|safe }}
-  </div>
-</body>
-</html>
-
+{% extends 'app.html' %}
+{% block content %}
+    <div class="row mt-5">
+        {% include 'components/catalogue/update.html' %}
+        {% if orders %}
+            {% include 'components/orders.html' %}
+        {% else %}
+            {% include 'components/catalogue/empty.html' %}
+        {% endif %}
+    </div>
+    {% include 'components/preloader.html' %}
+{% endblock %}
