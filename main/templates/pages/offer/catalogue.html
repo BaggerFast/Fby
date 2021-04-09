@@ -1,69 +1,12 @@
 {% extends 'app.html' %}
 {% block content %}
-<div class="row mt-5">
-    <form action="" method="post">{% csrf_token %}
-        <button id="button_loader" type="submit" class="btn btn-primary">Обновить данные</button>
-    </form>
-    {% if offers %}
-    <form ref="form" method="get" style="margin-top: 20px;">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" name="input" aria-describedby="button-addon">
-        <button onClick="javascript:document.forms[1].submit();"
-                class="btn btn-outline-secondary" type="button" id="button-addon">Поиск</button>
-      </div>
-    </form>
-          {% if search %}
-            <a href="{% url 'catalogue_list' %}" class="btn-link" style="text-align: center; margin: 10px;">← Назад</a>
-          {% endif %}
-    <div class="col">
-        <span class="badge bg-secondary" style="margin-bottom: 20px;">{{ count }} товаров</span>
-        <table class="table table-hover table-borderless">
-            <thead class="table-secondary">
-                <tr>
-                  {% for name in tabel%}
-                    <th scope="col">
-                        <h6>{{name}}</h6>
-                    </th>
-                  {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for offer in offers %}
-                <tr>
-                    <td><a class="name_link" target="_blank" href="{% url 'offer_by_sku' offer.id %}">{{ offer.name }}</a></td>
-                    <td>{{ offer.description }}</td>
-                    <td>{{ offer.shopSku }}</td>
-                    <td>{{ offer.category }}</td>
-                    <td>{{ offer.vendor }}</td>
-                    <td><a class="name_link" target="_blank" href="{{ offer.image }}">{{ offer.image }}</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    <div class="row mt-5">
+        {% include 'components/catalogue/update.html' %}
+        {% if offers %}
+            {% include 'components/catalogue/offers.html' %}
+        {% else %}
+            {% include 'components/catalogue/empty.html' %}
+        {% endif %}
     </div>
-    {% else %}
-    <div style="margin-top: 20px;">
-      {% if search %}
-        <p>Ничего не найдено</p>
-        <a href="{% url 'catalogue_list' %}" class="btn-link" style="text-align: center; margin: 10px;">← Назад</a>
-      {% else %}
-        <p>У вас нет данных, нажмите кнопку обновить</p>
-      {% endif %}
-    </div>
-    {% endif %}
-</div>
-<!-- Preloader -->
-<div id="hellopreloader">
-  <div id="hellopreloader_preload">
-    <p id="hellopreloader_text">Идёт загрузка...</p>
-  </div>
-</div>
-<style>
-  .name_link {
-    text-decoration: none;
-  }
-  .name_link:hover {
-    color: red;
-  }
-</style>
+    {% include 'components/preloader.html' %}
 {% endblock %}

@@ -1,24 +1,11 @@
 {% extends 'app.html' %}
 {% block content %}
-<form action="" method="post">{% csrf_token %}
-    {% for field, errors in forms.errors.items %}
-    {% for error in errors %}
-    <div class="alert alert-danger" role="alert">
-         {{field}} : {{ error }}
-    </div>
-    {% endfor %}
-    {% endfor %}
-
-  <div>
-  {% for form in forms%}
-    <div class="mb-3">
-        <label>
-            {{form.label}}
-            {{form}}
-        </label>
-    </div>
-    {%endfor%}
-    <button type="submit" class="btn btn-primary" style="margin-bottom: 20px;">Зарегистрироваться</button>
-  </div>
-</form>
+    <form method="post">
+        {% csrf_token %}
+        {% include 'components/errors.html' %}
+        <div>
+            {% include 'components/form.html' %}
+            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        </div>
+    </form>
 {% endblock %}

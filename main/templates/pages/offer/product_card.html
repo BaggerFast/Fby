@@ -1,120 +1,19 @@
 {% extends 'app.html' %}
-
-
 {% block content %}
-
-{% if not content_disable %}
-  <form action="" method="GET" style="margin-top: 20px;">
-    <div class="buttons-group">
-      <input id="content" type="text" class="form-control d-none" name="content" value="info">
-      <input id="id" type="text" class="form-control d-none" name="id" value="{{ id }}">
-      <button id="info" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Данные о товаре</button>
-      <button id="accommodation" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Управление размещением</button>
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModalCenter">
-        Удалить
-      </button>
-    </div>
-  </form>
-{% endif %}
-
-<a href="{% url 'catalogue_list' %}"  role="button" class="btn btn-outline-danger btn-sm" style="margin-top: 20px;">
-  {% if create %}
-    Отмена
-  {% else %}
-    В каталог
-  {% endif %}
-</a>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Удаление</h5>
-      </div>
-      <div class="modal-body">
-        Вы уверены, что хотите <em>безвозвратно</em> удалить этот товар?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-        <button type="button" class="btn btn-danger">Удалить</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<form action="" method="post">{% csrf_token %}
-  {% for title, forms_list in forms.items %}
-    {% for form in forms_list.1 %}
-      {% for field, errors in form.errors.items %}
-        {% for error in errors%}
-          <div class="alert alert-danger" role="alert">
-           {{field}} : {{ error }}
-          </div>
-        {% endfor %}
-      {% endfor %}
-    {% endfor %}
-  {% endfor %}
-  {% for title, forms_list in forms.items %}
-    <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 20px;">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="{{ forms_list.0 }}Heading">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{forms_list.0}}Collapse" aria-expanded="false" aria-controls="flush-collapseOne">
-            {{ title }}
-          </button>
-        </h2>
-        <div id="{{forms_list.0}}Collapse" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body row">
+    {% include 'components/product_card/buttons.html' %}
+    {% include 'components/product_card/back.html' %}
+    {% include 'components/product_card/delete.html' %}
+    <form method="post">
+        {% csrf_token %}
+        {% for title, forms_list in forms.items %}
             {% for form in forms_list.1 %}
-              {% for item in form %}
-              <div class="mb-3">
-                <label>
-                  <label
-                    {% if item.help_text %}
-                      data-bs-toggle="tooltip" data-bs-placement="right" title="{{ item.help_text }}"
-                    {% endif %}
-                  >{{item.label}}{% if item.field.required %}*{% endif %}</label>
-                  {% if item.value or not disable or create %}
-                    {{ item }}
-                  {% else %}
-                    <input class="form-control" value="Не задано" disabled style="color: red;">
-                  {% endif %}
-                </label>
-              </div>
-              {% endfor %}
+                {% include 'components/errors.html' %}
             {% endfor %}
-          </div>
-        </div>
-      </div>
-    </div>
-  {% endfor %}
-  {% if not disable %}
-    <button id="button_save" type="submit" class="btn btn-primary" style="margin: 40px 0;">
-      {% if not create %}
-      Сохранить
-      {% else %}
-        {% if not stage_next %}
-          Создать
-        {% else %}
-          Далее
-        {% endif %}
-      {% endif %}
-    </button>
-  {% endif %}
-</form>
-{% if disable %}
-<form action="." method="GET" style="margin: 40px 0;">
-  <input type="text" class="form-control d-none" name="edit" value="1">
-  <input type="text" id="content_load" class="form-control d-none" name="content" value="{{ content }}">
-  <button id="button_loader" type="submit" class="btn btn-primary" onclick="inputLoad(this.id)">Редактировать</button>
-</form>
-{% endif %}
-
-<script>
-  function inputEdit(id) {
-    document.getElementById("content").value = id;
-  }
-</script>
-
+        {% endfor %}
+        {% for title, forms_list in forms.items %}
+            {% include 'components/product_card/accordion.html' %}
+        {% endfor %}
+        {% include 'components/product_card/save.html' %}
+    </form>
+    {% include 'components/product_card/edit.html' %}
 {% endblock %}
