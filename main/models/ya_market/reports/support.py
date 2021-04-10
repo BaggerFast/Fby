@@ -1,6 +1,7 @@
 from django.db import models
-from main.models.reports.choices import StockTypeChoices, StorageTypeChoices, InclusionTypeChoices, TariffTypeChoices
-from main.models.reports.report_offer import Sku
+from main.models.ya_market.reports.choices import StockTypeChoices, StorageTypeChoices, InclusionTypeChoices, \
+    TariffTypeChoices
+from main.models.ya_market.reports.report_offer import Sku
 from main.models.ya_market.offer.support import BaseWeightDimension
 
 

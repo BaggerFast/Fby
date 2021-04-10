@@ -1,4 +1,6 @@
 from django.db import models
+
+from main.models.ya_market.base import BaseWeightDimension
 from main.models.ya_market.offer.base import Offer
 from main.models.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
     ProcessingStateStatus, SupplyScheduleDayChoices, VatType
@@ -68,37 +70,6 @@ class ManufacturerCountry(models.Model):
     """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="manufacturerCountries",)
     name = models.CharField(max_length=255, verbose_name='Страна производства товара')
-
-
-class BaseWeightDimension(models.Model):
-    """
-    Модель хранящая размеры товара.
-    """
-    length = models.FloatField(
-        verbose_name='Длина, см',
-        help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
-        null=True,
-        blank=True,
-    )
-    width = models.FloatField(
-        verbose_name='Ширина, см',
-        help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 50.7',
-        null=True,
-        blank=True,
-    )
-    height = models.FloatField(
-        verbose_name='Высота, см',
-        help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 20.0',
-        null=True,
-        blank=True,
-    )
-    weight = models.FloatField(
-        verbose_name='Вес в упаковке (брутто), кг',
-        help_text='С учетом упаковки (брутто). '
-                  'Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 1.001',
-        null=True,
-        blank=True,
-    )
 
     class Meta:
         abstract = True
