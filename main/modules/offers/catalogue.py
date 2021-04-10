@@ -1,19 +1,14 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic.base import View
 from django.http import HttpResponse
 from main.models import Offer, Url
+from main.modules.offers.base_offer_view import BaseOfferView
 from main.view import get_navbar, Page
 from main.yandex import OfferList, OfferPrice
 
 
-class CatalogueView(LoginRequiredMixin, View):
-    """отображение каталога"""
+class CatalogueView(BaseOfferView):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
     models_to_save = [OfferList, OfferPrice]
-
-    def context_update(self, data: dict):
-        self.context = {**self.context, **data}
 
     def post(self, request) -> HttpResponse:
         for model in self.models_to_save:
@@ -49,16 +44,19 @@ class CatalogueView(LoginRequiredMixin, View):
 
     def offer_search(self, offers) -> list:
         search = self.request.GET.get('input', '').lower()
-        self.context['search'] = True if len(search) else False
+        self.context['search'] = bool(len(search))
         fields = ['name', 'description', 'shopSku', 'category', 'vendor']
-        objects = []
-        for item in offers:
-            try:
-                for field in fields:
-                    if search in getattr(item, field).lower():
-                        objects.append(item)
-                        break
-            except:
-                pass
+
+        def get_objects():
+            for item in offers:
+                try:
+                    for field in fields:
+                        if search in getattr(item, field).lower():
+                            yield item
+                            break
+                except Exception:
+                    pass
+
+        objects = [*get_objects()]
         self.context['count'] = len(objects)
         return objects
