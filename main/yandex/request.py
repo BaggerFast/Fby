@@ -4,9 +4,12 @@ import json
 from django.contrib import messages
 from fby_market.settings import YaMarket
 import requests
+
+from main.models import Price
 from main.models.save_dir import *
 from main.models.save_dir.order import OrderPattern
 from main.serializers.offer_price import PriceSerializer
+
 
 
 class Requests:
@@ -112,10 +115,50 @@ class OfferPrice(Requests):
         PricePattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
 
 
-class OfferChangePrice(Requests):
+class ChangePrices:
+    """
+    Клас для обработки, проверки и изменения цен
+    """
+    errors = []
+
+    def __init__(self, key, price_list: list = None, request=None):
+        if key == 'yandex':
+            YandexChangePrices(price_list)
+        if key == 'local':
+            LocalChangePrices(price_list)
+        if key == 'update':
+            OfferPrice().save(request)
+        if key == 'check':
+            self.check_prices(price_list)
+
+    def check_prices(self, price_list: list):
+        for price in price_list:
+            db_price = Price.objects.get(offer=price.offer)
+            if db_price.value != price.value:
+                print(f'sku: {db_price.offer.shopSku}, db price: {db_price.value}, list price: {price.value}')
+                self.errors.append(price)
+
+
+class LocalChangePrices:
+    """
+    Класс для изменения цены только в БД
+    """
+    def __init__(self, price_list: list):
+        print(*[self.change_price(price) for price in price_list])
+
+    @staticmethod
+    def change_price(price) -> dict:
+        price_object = Price.objects.get(offer=price.offer)
+        price_object.value = price.value
+        price_object.save()
+        return {'shopSku': price_object.offer.shopSku, 'price': PriceSerializer(price_object).get_data()}
+
+
+class YandexChangePrices(Requests):
     """
     Класс для изменения цены на товар на сервере яндекса
     """
+
     def __init__(self, price_list: list):
         self.temp_params = []
         [self.add_params(price) for price in price_list]

@@ -33,7 +33,7 @@ class ProductPageView(BaseOfferView):
             self.form.save()
             messages.success(self.request, 'Редактирование прошло успешно!')
             # todo save on button
-            # OfferChangePrice(price_list=list(Price.objects.filter(offer_id=pk)))
+            # YandexChangePrices(price_list=list(Price.objects.filter(offer_id=pk)))
             self.disable = True
         else:
             self.disable = False
