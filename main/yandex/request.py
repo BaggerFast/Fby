@@ -75,8 +75,8 @@ class Requests:
 
     def save(self, request) -> bool:
         """
-        возвращет True, когда модель успешно сохранилась,
-        инача False
+        возвращает True, когда модель успешно сохранилась,
+        иначе False
         """
         try:
             self.pattern_save(request)
