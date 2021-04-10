@@ -2,14 +2,20 @@ from django.db import models
 
 
 class TimeUnitChoices(models.TextChoices):
-    HOUR = 'HOUR', 'Часы'
-    DAY = 'DAY', 'Дни'
-    WEEK = 'WEEK', 'Недели'
-    MONTH = 'MONTH', 'Месяцы'
-    YEAR = 'YEAR', 'Годы'
+    """
+    Единицы времени.
+    """
+    HOUR = 'HOUR', 'часы'
+    DAY = 'DAY', 'дни'
+    WEEK = 'WEEK', 'недели'
+    MONTH = 'MONTH', 'месяцы'
+    YEAR = 'YEAR', 'годы'
 
 
 class AvailabilityChoices(models.TextChoices):
+    """
+    Доступен ли товар.
+    """
     ACTIVE = 'ACTIVE', 'поставки будут'
     INACTIVE = 'INACTIVE', 'поставок не будет: товар есть на складе, но вы больше не планируете его поставлять. ' \
                            'Через 60 дней после того, как товар закончится на складе, этот статус изменится на DELISTED'
@@ -19,16 +25,22 @@ class AvailabilityChoices(models.TextChoices):
 
 
 class SupplyScheduleDayChoices(models.TextChoices):
-    MONDAY = 'MONDAY', 'Понедельник'
-    TUESDAY = 'TUESDAY', 'Вторник'
-    WEDNESDAY = 'WEDNESDAY', 'Среда'
-    THURSDAY = 'THURSDAY', 'Четверг'
-    FRIDAY = 'FRIDAY', 'Пятница'
-    SATURDAY = 'SATURDAY', 'Суббота'
-    SUNDAY = 'SUNDAY', 'Воскресенье'
+    """
+    Дни недели.
+    """
+    MONDAY = 'MONDAY', 'понедельник'
+    TUESDAY = 'TUESDAY', 'вторник'
+    WEDNESDAY = 'WEDNESDAY', 'среда'
+    THURSDAY = 'THURSDAY', 'четверг'
+    FRIDAY = 'FRIDAY', 'пятница'
+    SATURDAY = 'SATURDAY', 'суббота'
+    SUNDAY = 'SUNDAY', 'воскресенье'
 
 
 class ProcessingStateStatus(models.TextChoices):
+    """
+    Статус модерации товара.
+    """
     READY = 'READY', 'товар прошел модерацию. Чтобы разместить его на Маркете, установите для него цену ' \
                      'и создайте поставку на склад. Подробнее см. в разделе Загрузка каталога товаров, ' \
                      'а также в разделе "Как поставить товары на склад" Справки Маркета для моделей FBY, FBY+ и FBS'
@@ -45,6 +57,9 @@ class ProcessingStateStatus(models.TextChoices):
 
 
 class ProcessingStateNoteType(models.TextChoices):
+    """
+    Причина по которой товар не прошёл модерацию.
+    """
     ASSORTMENT = 'ASSORTMENT', 'товар производится в разных вариантах. Каждый из них нужно описать как отдельный товар'
     CANCELLED = 'CANCELLED', 'товар отозван с модерации по вашей инициативе'
     CONFLICTING_INFORMATION = 'CONFLICTING_INFORMATION', 'вы предоставили потиворечивую информацию о товаре. ' \
@@ -82,6 +97,9 @@ class ProcessingStateNoteType(models.TextChoices):
 
 
 class MappingType(models.TextChoices):
+    """
+    Тип маппинга товара.
+    """
     BASE = 'BASE', 'Информация о текущей карточке товара на Маркете'
     AWAITING_MODERATION = 'AWAITING_MODERATION', 'Информация о карточке товара на Маркете, ' \
                                                  'проходящей модерацию для данного товара'
@@ -90,6 +108,9 @@ class MappingType(models.TextChoices):
 
 
 class VatType(models.IntegerChoices):
+    """
+    НДС товара.
+    """
     two = 2, '10 %'
     five = 5, '0 %'
     six = 6, 'не облагается'

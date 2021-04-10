@@ -4,6 +4,9 @@ from main.models.ya_market.offer.choices import AvailabilityChoices, MappingType
 
 
 class Offer(models.Model):
+    """
+    Модель хранящая товар.
+    """
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="offer", verbose_name="Пользователь")
 
     marketSku = models.CharField(max_length=255, verbose_name="SKU на Яндексе", null=True, blank=True)
@@ -76,19 +79,18 @@ class Offer(models.Model):
     )
 
     deliveryDurationDays = models.PositiveSmallIntegerField(verbose_name='Срок поставки',
-                                                            help_text="За какое время вы поставите товар "
-                                                                      "на склад.(в днях)",
+                                                            help_text="За какое время вы поставите товар на склад.(в днях)",
                                                             null=True,
-                                                            blank=True
-                                                            )
+                                                            blank=True)
 
     boxCount = models.PositiveIntegerField(verbose_name='Товар занимает больше одного места',
-                                           help_text='Если нет — оставьте поле пустым. Если да — '
-                                                     'укажите количество мест (например, кондиционер занимает 2 '
-                                                     'грузовых места — внешний и внутренний блоки в двух коробках).',
+                                           help_text='Если нет — оставьте поле пустым. Если да — укажите количество мест '
+                                                     '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',
                                            blank=True,
                                            null=True
+
                                            )
+
 
     class Meta:
         ordering = ['id']

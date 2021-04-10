@@ -5,6 +5,9 @@ from main.models.ya_market.offer.choices import TimeUnitChoices, MappingType, Pr
 
 
 class Timing(models.Model):
+    """
+    Модель хранящая период времени.
+    """
     class Meta:
         abstract = True
 
@@ -41,6 +44,9 @@ class GuaranteePeriod(Timing):
 
 
 class Price(models.Model):
+    """
+    Модель хранящая цену товара.
+    """
     discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True, blank=True)
     value = models.FloatField(verbose_name="Цена на товар.", null=True, blank=True)
     vat = models.IntegerField(verbose_name='Идентификатор ставки НДС',
@@ -55,6 +61,8 @@ class Price(models.Model):
 
 class ManufacturerCountry(models.Model):
     """
+    Модель хранящая страну производителя.
+
         .. todo::
            Добавить проверку на то, что в списке товаров может быть максимум 5 стран
     """
@@ -62,8 +70,10 @@ class ManufacturerCountry(models.Model):
     name = models.CharField(max_length=255, verbose_name='Страна производства товара')
 
 
-class WeightDimension(models.Model):
-    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='weightDimensions')
+class BaseWeightDimension(models.Model):
+    """
+    Модель хранящая размеры товара.
+    """
     length = models.FloatField(
         verbose_name='Длина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
@@ -90,6 +100,16 @@ class WeightDimension(models.Model):
         blank=True,
     )
 
+    class Meta:
+        abstract = True
+
+
+class WeightDimension(BaseWeightDimension):
+    """
+    Модель хранящая размеры товара (используется для offer).
+    """
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='weightDimensions')
+
 
 class Url(models.Model):
     """
@@ -102,6 +122,9 @@ class Url(models.Model):
 
 
 class Barcode(models.Model):
+    """
+       Модель хранящая штрихкод товара.
+    """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name='barcodes')
     barcode = models.CharField(max_length=255, verbose_name='Штрихкод',
                                help_text='Штрихкод обязателен при размещении товара по модели FBY и FBY+. '
@@ -113,6 +136,9 @@ class Barcode(models.Model):
 
 
 class CustomsCommodityCode(models.Model):
+    """
+    Модель хранящая код ТН ВЭД товара.
+    """
     offer = models.OneToOneField(
         to=Offer,
         on_delete=models.CASCADE,
@@ -127,6 +153,9 @@ class CustomsCommodityCode(models.Model):
 
 
 class SupplyScheduleDays(models.Model):
+    """
+        Модель хранящая дни поставки товара.
+    """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="supplyScheduleDays")
     supplyScheduleDay = models.CharField(
         max_length=9,
@@ -142,6 +171,9 @@ class SupplyScheduleDays(models.Model):
 
 
 class ProcessingState(models.Model):
+    """
+       Модель хранящая статус товара.
+    """
     offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='processingState')
     status = models.CharField(
         max_length=12,
@@ -153,6 +185,9 @@ class ProcessingState(models.Model):
 
 
 class ProcessingStateNote(models.Model):
+    """
+    Модель хранящая причину, по который товар не прошел модерацию.
+    """
     processingState = models.ForeignKey(
         to=ProcessingState,
         on_delete=models.CASCADE,
@@ -176,6 +211,9 @@ class ProcessingStateNote(models.Model):
 
 
 class Mapping(models.Model):
+    """
+        Модель хранящая маппинг товара.
+    """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="mapping_set")
     marketSku = models.PositiveSmallIntegerField(
         verbose_name='SKU на Яндексе — идентификатор текущей карточки товара на Маркете',
