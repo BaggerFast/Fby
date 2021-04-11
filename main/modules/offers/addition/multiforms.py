@@ -1,6 +1,6 @@
 from typing import List
 
-from main.forms.offer import WeightDimensionForm, UrlForm, BarcodeForm, ShelfLifeForm, LifeTimeForm, \
+from main.forms import WeightDimensionForm, UrlForm, BarcodeForm, ShelfLifeForm, LifeTimeForm, \
     GuaranteePeriodForm, CommodityCodeForm, OfferForm, PriceForm, AvailabilityForm
 from main.view import Multiform
 

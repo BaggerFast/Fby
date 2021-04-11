@@ -134,4 +134,3 @@ class VatType(models.IntegerChoices):
     five = 5, '0 %'
     six = 6, 'не облагается'
     seven = 7, '20 %'
-

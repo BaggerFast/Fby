@@ -7,9 +7,7 @@ import requests
 
 from main.models import Price
 from main.models.save_dir import *
-from main.models.save_dir.order import OrderPattern
-from main.serializers.offer_price import PriceSerializer
-
+from main.serializers import PriceSerializer
 
 
 class Requests:

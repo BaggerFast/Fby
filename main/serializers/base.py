@@ -41,9 +41,7 @@ class BaseModelSerializer(serializers.ModelSerializer):
 
         return [field
                 for field in self.fields
-                if isinstance(self.fields[field], serializers.BaseSerializer)
-                and field not in self.foreign_fields()
-                ]
+                if isinstance(self.fields[field], serializers.BaseSerializer) and field not in self.foreign_fields()]
 
     def get_parent_object(self, field, **kwargs):
         """Экземпляр родительского объекта для foreign-поля field в соответствии c **kwargs"""

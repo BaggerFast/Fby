@@ -2,10 +2,10 @@
 
 from rest_framework import serializers
 
-from main.models.ya_market.order.base import ItemPrice, Warehouse, Detail, Item, \
+from main.models import ItemPrice, Warehouse, Detail, Item, \
     InitialItem, PaymentOrder, DeliveryRegion, Order, Payment, Commission
 
-from main.serializers.base import BaseListSerializer, BaseModelSerializer
+from main.serializers import BaseListSerializer, BaseModelSerializer
 
 
 class DeliveryRegionSerializer(serializers.ModelSerializer):

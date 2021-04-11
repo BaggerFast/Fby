@@ -25,7 +25,7 @@ def get_navbar(request) -> list:
             {'label': 'Авторизация', 'list': [{'url': 'logout', 'label': "Выйти"}]},
             {'label': 'Товары', 'list': [{'url': 'catalogue_list', 'label': "Каталог"},
                                          {'url': 'create_offer', 'label': "Создать"}]},
-            {'label': 'Заказы', 'url':  'orders_list'}
+            {'label': 'Заказы', 'url': 'orders_list'}
         ]
     else:
         navbar += [

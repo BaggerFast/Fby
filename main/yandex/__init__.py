@@ -1,1 +1,1 @@
-from main.yandex.request import OfferPrice, OfferList, OrderList
+from .request import OfferPrice, OfferList, OrderList

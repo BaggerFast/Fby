@@ -1,9 +1,8 @@
 """Сериализаторы всея моделей"""
 
 from rest_framework import serializers
-from rest_framework.serializers import ListSerializer
 from main.models import *
-from main.serializers.base import BaseListSerializer, BaseModelSerializer
+from main.serializers import BaseListSerializer, BaseModelSerializer
 
 
 class PriceSerializer(serializers.ModelSerializer):

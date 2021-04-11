@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import Offer, Mapping
-from main.serializers.offer_price import OfferSerializer, MappingSerializer
+from main.serializers import OfferSerializer, MappingSerializer
 
 
 class OfferPattern:

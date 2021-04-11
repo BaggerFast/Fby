@@ -91,7 +91,6 @@ class Offer(models.Model):
 
                                            )
 
-
     class Meta:
         ordering = ['id']
 

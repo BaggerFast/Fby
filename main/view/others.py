@@ -4,8 +4,8 @@ from pygments import highlight, lexers, formatters
 from rest_framework import generics
 
 from main.models import Offer
-from main.serializers.offer_price import OfferSerializer
-from main.yandex.request import OrderList
+from main.serializers import OfferSerializer
+from main.yandex import OrderList
 
 
 class OfferList(generics.ListCreateAPIView):
@@ -48,10 +48,3 @@ def orders_list(request):
     OrderList().save()  # из Яндекса
 
     return render(request, 'orders.html', context)
-
-
-
-
-
-
-

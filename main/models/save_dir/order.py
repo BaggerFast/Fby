@@ -1,7 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import Order
-from main.serializers.orders import OrderSerializer
+from main.serializers import OrderSerializer
 
 
 class OrderPattern:

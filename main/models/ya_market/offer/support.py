@@ -40,11 +40,11 @@ class Timing(models.Model):
 
 
 class ShelfLife(Timing):
-    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE,related_name='shelfLife')
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='shelfLife')
 
 
 class LifeTime(Timing):
-    offer = models.OneToOneField(to=Offer,on_delete=models.CASCADE,related_name='lifeTime')
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='lifeTime')
 
 
 class GuaranteePeriod(Timing):
