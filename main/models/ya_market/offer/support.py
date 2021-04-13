@@ -90,9 +90,9 @@ class WeightDimension(BaseWeightDimension):
 
 class Url(models.Model):
     """
-        Список URL
-        .. todo::
-           Добавить проверку на то, что в списке URL'ов присутствует минимум одна запись
+    Список URL
+    .. todo::
+        Добавить проверку на то, что в списке URL'ов присутствует минимум одна запись
     """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name='urls')
     url = models.URLField(max_length=2000, verbose_name='Ссылка на фото')

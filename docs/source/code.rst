@@ -10,17 +10,17 @@
 
 Основные модели
 ---------------
-.. automodule:: main.models.base
+.. automodule:: main.models.ya_market.offer.base
     :members:
 
 Дополнительные модели
 ---------------------
-.. automodule:: main.models.support
+.. automodule:: main.models.ya_market.offer.support
     :members:
 
 Перечислимые типы
 -----------------
-.. automodule:: main.models.choices
+.. automodule:: main.models.ya_market.offer.choices
     :members:
 
 
