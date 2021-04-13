@@ -30,21 +30,4 @@ class OrderListView(LoginRequiredMixin, View):
             'table': ["Номер заказа и состав", "Дата заказа", "Цена, ₽", "Статус"]
         }
         self.context_update(local_context)
-
         return render(request, Page.order, self.context)
-
-    # def offer_search(self, offers) -> list:
-    #     search = self.request.GET.get('input', '').lower()
-    #     self.context['search'] = True if len(search) else False
-    #     fields = ['name', 'description', 'shopSku', 'category', 'vendor']
-    #     objects = []
-    #     for item in offers:
-    #         try:
-    #             for field in fields:
-    #                 if search in getattr(item, field).lower():
-    #                     objects.append(item)
-    #                     break
-    #         except:
-    #             pass
-    #     self.context['count'] = len(objects)
-    #     return objects
