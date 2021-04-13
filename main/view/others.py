@@ -8,23 +8,6 @@ from main.serializers import OfferSerializer
 from main.yandex import OrderList
 
 
-class OfferList(generics.ListCreateAPIView):
-    serializer_class = OfferSerializer
-    queryset = Offer.objects.all()
-
-
-class OfferDetails(generics.RetrieveAPIView):
-    serializer_class = OfferSerializer
-    queryset = Offer.objects.all()
-    lookup_field = 'id'
-
-
-class OfferEdit(generics.UpdateAPIView):
-    serializer_class = OfferSerializer
-    queryset = Offer.objects.all()
-    lookup_field = 'shopSku'
-
-
 def get_json_data_from_file(file):
     """
     Загрузка данных из файла file

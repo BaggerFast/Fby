@@ -4,7 +4,8 @@
             <label
                 {% if item.help_text %}
                     data-bs-toggle="tooltip" data-bs-placement="right" title="{{ item.help_text }}"
-                {% endif %}>
+                {% endif %}
+            >
                 {{ item.label }}
                 {% if item.field.required %}*{% endif %}
             </label>

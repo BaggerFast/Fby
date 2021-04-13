@@ -1,9 +1,5 @@
 {% block back %}
     <a href="{% url 'catalogue_list' %}"  role="button" class="btn btn-outline-danger btn-sm mt-4">
-        {% if create %}
-            Отмена
-        {% else %}
-            В каталог
-        {% endif %}
+        {% if create %}Отмена{% else %}В каталог{% endif %}
     </a>
 {% endblock %}
