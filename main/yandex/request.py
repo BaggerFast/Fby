@@ -118,22 +118,53 @@ class ChangePrices:
     Клас для обработки, проверки и изменения цен
     """
     errors = []
+    command = {
+        'yandex': 'yandex_change',
+        'local': 'local_change',
+        'update': 'update_DB',
+        'check': 'check_prices',
+    }
 
     def __init__(self, key, price_list: list = None, request=None):
-        if key == 'yandex':
-            YandexChangePrices(price_list)
-        if key == 'local':
-            LocalChangePrices(price_list)
-        if key == 'update':
-            OfferPrice().save(request)
-        if key == 'check':
-            self.check_prices(price_list)
+        """
+        Перепанравление на нужные функции по ключу
 
-    def check_prices(self, price_list: list):
-        for price in price_list:
+        yandex - отправка данных на YM
+        local - изменение данных локально в БД, не затрагивает YM
+        update - обновить данные в БД из YM
+        check - проверить цены в БД и в price_list
+        """
+        self.price_list = price_list
+        self.request = request
+        getattr(self, self.command[key])()
+
+    def yandex_change(self):
+        """
+        Изменение цен на YM
+        """
+        YandexChangePrices(self.price_list)
+
+    def local_change(self):
+        """
+        Локальное изменение цен
+        """
+        LocalChangePrices(self.price_list)
+
+    def update_data_base(self):
+        """
+        Обновление БД
+        """
+        OfferPrice().save(self.request)
+
+    def check_prices(self):
+        """
+        Проверка цен в БД и price_list
+        """
+        for price in self.price_list:
             db_price = Price.objects.get(offer=price.offer)
             if db_price.value != price.value:
-                print(f'sku: {db_price.offer.shopSku}, db price: {db_price.value}, list price: {price.value}')
+                print(f'sku: {db_price.offer.shopSku}, db price: {db_price.value},'
+                      f'list price: {price.value}')
                 self.errors.append(price)
 
 
@@ -141,36 +172,61 @@ class LocalChangePrices:
     """
     Класс для изменения цены только в БД
     """
+
     def __init__(self, price_list: list):
-        print(*[self.change_price(price) for price in price_list])
+        data = [self.change_price(price) for price in price_list]
+        self.show(data)
+
+    @staticmethod
+    def show(data):
+        """
+        Вывод данных об изменении цен
+        """
+        print(*data)
 
     @staticmethod
     def change_price(price) -> dict:
+        """
+        Изменить цену локально в БД
+
+        :return: возвращает строку с ифнормацией об изменении цен для вывода в консоль
+        """
         price_object = Price.objects.get(offer=price.offer)
         price_object.value = price.value
         price_object.save()
-        return {'shopSku': price_object.offer.shopSku, 'price': PriceSerializer(price_object).get_data()}
+        return {'shopSku': price_object.offer.shopSku,
+                'price': PriceSerializer(price_object).get_data()}
 
 
 class YandexChangePrices(Requests):
     """
-    Класс для изменения цены на товар на сервере яндекса
+    Класс для изменения цены на товар на сервере YM
     """
 
     def __init__(self, price_list: list):
         self.temp_params = []
         [self.add_params(price) for price in price_list]
         self.PARAMS = {'offers': self.temp_params}
-        super().__init__(json_name='offer-prices/updates', base_context_name='price', name='ChangePrices')
+        super().__init__(json_name='offer-prices/updates', base_context_name='price',
+                         name='ChangePrices')
 
     @staticmethod
     def get_dict(price) -> dict:
+        """
+        Получить словарь, отправляемый для изменения цен на YM
+        """
         return {'shopSku': price.offer.shopSku, 'price': PriceSerializer(price).get_data()}
 
     def get_json(self) -> dict:
+        """
+        Получение данных от YM
+        """
         return self.get_next_page()
 
     def add_params(self, price) -> None:
+        """
+        Добавить в PARAMS запрос на одну цену
+        """
         if price.value:
             self.temp_params += [self.get_dict(price)]
 
