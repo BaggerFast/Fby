@@ -5,6 +5,9 @@ class BaseWeightDimension(models.Model):
     """
     Модель хранящая размеры товара.
     """
+    class Meta:
+        abstract = True
+
     length = models.FloatField(
         verbose_name='Длина, см',
         help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',

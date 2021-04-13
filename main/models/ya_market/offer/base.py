@@ -130,14 +130,14 @@ class Offer(models.Model):
         """
         return self.guaranteePeriod.get_days()
 
-    # @property
-    # def processingState(self):
-    #     """
-    #     Информация о статусе публикации товара на Маркете
-    #
-    #     Рассчитывается на основе поля :class:`processingState_set`. Берётся последнее значение.
-    #     """
-    #     return self.processingState_set.last()
+    @property
+    def processingState(self):
+        """
+        Информация о статусе публикации товара на Маркете
+
+        Рассчитывается на основе поля :class:`processingState_set`. Берётся последнее значение.
+        """
+        return self.processingState_set.last()
 
     @property
     def mapping(self):

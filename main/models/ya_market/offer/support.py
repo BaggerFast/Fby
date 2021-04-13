@@ -77,9 +77,6 @@ class ManufacturerCountry(models.Model):
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="manufacturerCountries",)
     name = models.CharField(max_length=255, verbose_name='Страна производства товара')
 
-    class Meta:
-        abstract = True
-
 
 class WeightDimension(BaseWeightDimension):
     """
