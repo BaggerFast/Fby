@@ -15,7 +15,8 @@ class OfferPattern:
     def __init__(self, json):
         self.json = json
 
-    def save_mapping(self, data, offer_instance, mapping_name, mapping_type):
+    @staticmethod
+    def save_mapping(data, offer_instance, mapping_name, mapping_type):
         """Сохраняет карточку товара (маппинг)
 
         Если в бд есть карточка, которой нет в json-данных, удаляет ее из бд
@@ -52,21 +53,3 @@ class OfferPattern:
                     self.save_mapping(item, offer_instance, mapping_name, mapping_type)
             else:
                 print(serializer.errors)
-
-
-class Base:
-    """ для простых данных"""
-
-    def __init__(self, data, offer, name=''):
-        self.data = data
-        self.offer = offer
-        self.name = name
-
-    def save(self) -> None:
-        """
-        Сохранить данные
-        """
-        setattr(self.offer, self.name, self.data)
-
-    def exist(self, item):
-        return self.data.get(item, None)

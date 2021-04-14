@@ -2,7 +2,7 @@ from django.db import models
 from main.models.ya_market.base import BaseWeightDimension
 from main.models.ya_market.offer.base import Offer
 from main.models.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
-    ProcessingStateStatus, SupplyScheduleDayChoices, VatType, PriceSuggestionChoices
+    ProcessingStateStatus, SupplyScheduleDayChoices, VatType,  CurrencyChoices, PriceSuggestionChoices
 
 
 class PriceSuggestion(models.Model):
@@ -55,16 +55,22 @@ class Price(models.Model):
     """
     Модель хранящая цену товара.
     """
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='price')
+    currencyId = models.CharField(
+        max_length=3,
+        choices=CurrencyChoices.choices,
+        verbose_name='Валюта, в которой указана цена на товар.',
+        null=True
+    )
     discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True, blank=True)
     value = models.FloatField(verbose_name="Цена на товар.", null=True, blank=True)
     vat = models.IntegerField(verbose_name='Идентификатор ставки НДС',
-                              help_text="Если параметр не указан, используется ставка НДС, установленная в личном "
-                                        "кабинете магазина.",
+                              help_text="Если параметр не указан, используется ставка НДС, "
+                                        "установленная в личном кабинете магазина.",
                               null=True,
                               blank=True,
                               choices=VatType.choices
                               )
-    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='price')
 
 
 class ManufacturerCountry(models.Model):

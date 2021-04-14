@@ -7,7 +7,7 @@ import requests
 
 from main.models import Price
 from main.models.save_dir import *
-from main.serializers import PriceSerializer
+from main.serializers import ChangePriceSerializer
 
 
 class Requests:
@@ -89,6 +89,7 @@ class Requests:
         pass
 
     def save_json_to_file(self, file):
+        """Сохранение данных в json-файл"""
         with open(file, "w") as write_file:
             json.dump(self.json_data, write_file, indent=2, ensure_ascii=False)
 
@@ -195,7 +196,7 @@ class LocalChangePrices:
         price_object.value = price.value
         price_object.save()
         return {'shopSku': price_object.offer.shopSku,
-                'price': PriceSerializer(price_object).get_data()}
+                'price': ChangePriceSerializer(price_object).get_data()}
 
 
 class YandexChangePrices(Requests):
@@ -215,7 +216,7 @@ class YandexChangePrices(Requests):
         """
         Получить словарь, отправляемый для изменения цен на YM
         """
-        return {'shopSku': price.offer.shopSku, 'price': PriceSerializer(price).get_data()}
+        return {'shopSku': price.offer.shopSku, 'price': ChangePriceSerializer(price).get_data()}
 
     def get_json(self) -> dict:
         """
@@ -236,7 +237,7 @@ class OrderList(Requests):
 
     PARAMS = {                      # параметры надо предварительно запросить
         "dateFrom": "2021-01-01",
-        "dateTo": "2021-04-04"
+        "dateTo": "2021-04-14"
     }
 
     def __init__(self, params: dict = None):

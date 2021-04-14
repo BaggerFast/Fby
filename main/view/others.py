@@ -1,10 +1,8 @@
 import json
 from django.shortcuts import render
 from pygments import highlight, lexers, formatters
-from rest_framework import generics
 
-from main.models import Offer
-from main.serializers import OfferSerializer
+from main.models.save_dir import OfferPattern, OrderPattern, PricePattern
 from main.yandex import OrderList
 
 
@@ -31,3 +29,15 @@ def orders_list(request):
     OrderList().save()  # из Яндекса
 
     return render(request, 'orders.html', context)
+
+
+def save_db_from_files(request):
+    """Восстановление бд из файлов"""
+    json_object_offer = get_json_data_from_file("offer_data.json")
+    OfferPattern(json=json_object_offer['result']['offerMappingEntries']).save(request.user)
+    json_object_order = get_json_data_from_file("order_data.json")
+    OrderPattern(json=json_object_order['result']['orders']).save(request.user)
+    json_object_prise = get_json_data_from_file("price_data.json")
+    PricePattern(json=json_object_prise['result']['offers']).save(request.user)
+
+    return render(request, 'save_db.html')

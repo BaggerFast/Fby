@@ -5,13 +5,32 @@ from main.models import *
 from main.serializers import BaseListSerializer, BaseModelSerializer
 
 
-class PriceSerializer(serializers.ModelSerializer):
+class ChangePriceSerializer(serializers.ModelSerializer):
     def get_data(self) -> dict:
         return {**self.data, 'currencyId': 'RUR'}
 
     class Meta:
         model = Price
-        exclude = ('offer', 'id', 'vat', 'discountBase')  # исключая offer
+        fields = ['value']
+
+
+class PriceSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Price
+        fields = ['currencyId', 'discountBase', 'value', 'vat']
+
+
+class OfferForPriceSerializer(BaseModelSerializer):
+    price = PriceSerializer()
+
+    @staticmethod
+    def forward_name():
+        return 'offer'
+
+    class Meta:
+        model = Offer
+        fields = ['price', 'shopSku', 'marketSku', 'updatedAt']
 
 
 class WeightDimensionSerializer(serializers.ModelSerializer):
@@ -153,7 +172,6 @@ class SupplyScheduleDaysSerializer(serializers.ModelSerializer):
 
 
 class OfferSerializer(BaseModelSerializer):
-    # price = PriceSerializer()
     weightDimensions = WeightDimensionSerializer(required=False)
     manufacturerCountries = ManufacturerCountrySerializer(many=True, required=False)
     urls = UrlSerializer(many=True, required=False)
@@ -164,9 +182,6 @@ class OfferSerializer(BaseModelSerializer):
     customsCommodityCodes = CustomsCommodityCodeSerializer(many=True, required=False)
     supplyScheduleDays = SupplyScheduleDaysSerializer(many=True, required=False)
     processingState = ProcessingStateSerializer(required=False)
-    #  = MappingSerializer()
-    # awaitingModerationMapping = MappingSerializer()
-    # rejectedMapping = MappingSerializer()
 
     @staticmethod
     def forward_name():
@@ -175,15 +190,12 @@ class OfferSerializer(BaseModelSerializer):
     class Meta:
         model = Offer
         fields = [
-            'marketSku',
-            'updatedAt',
             'shopSku',
             'name',
             'vendor',
             'vendorCode',
             'category',
             'manufacturer',
-            # 'price',
             'weightDimensions',
             'manufacturerCountries',
             'urls',
@@ -205,7 +217,4 @@ class OfferSerializer(BaseModelSerializer):
             'lifeTimeDays',
             'guaranteePeriodDays',
             'processingState',
-            # 'mapping',
-            # 'awaitingModerationMapping',
-            # 'rejectedMapping'
         ]

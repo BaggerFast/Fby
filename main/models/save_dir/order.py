@@ -5,7 +5,9 @@ from main.serializers import OrderSerializer
 
 
 class OrderPattern:
-    """Класс, сохраняющий данные order из json в БД"""
+    """
+    Класс, сохраняющий данные order из json в БД
+    """
 
     def __init__(self, json):
         self.json = json
