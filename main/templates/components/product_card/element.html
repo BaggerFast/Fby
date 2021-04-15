@@ -1,19 +1,19 @@
 {% block offer_item %}
-    <div class="mb-3">
-        <label>
-            <label
-                {% if item.help_text %}
-                    data-bs-toggle="tooltip" data-bs-placement="right" title="{{ item.help_text }}"
-                {% endif %}
-            >
-                {{ item.label }}
-                {% if item.field.required %}*{% endif %}
-            </label>
-            {% if item.value or not disable or create %}
-                {{ item }}
-            {% else %}
-                <input class="form-control text-danger" value="Не задано" disabled>
-            {% endif %}
-        </label>
-    </div>
+  <div class="mb-3">
+    <label>
+      <label
+        {% if item.help_text %}
+          data-bs-toggle="tooltip" data-bs-placement="right" title="{{ item.help_text }}"
+        {% endif %}
+      >
+        {{ item.label }}
+        {% if item.field.required %}*{% endif %}
+      </label>
+      {% if item.value or not disable or create %}
+        {{ item }}
+      {% else %}
+        <input class="form-control text-danger" value="Не задано" disabled>
+      {% endif %}
+    </label>
+  </div>
 {% endblock %}

@@ -1,22 +1,22 @@
 {% block thead %}
-    <tbody>
-        {% for offer in offers %}
-            <tr>
-                <td>
-                    <a class="name_link" target="_blank" href="{% url 'offer_by_sku' offer.id %}">
-                        {{ offer.name }}
-                    </a>
-                </td>
-                <td>{{ offer.description }}</td>
-                <td>{{ offer.shopSku }}</td>
-                <td>{{ offer.category }}</td>
-                <td>{{ offer.vendor }}</td>
-                <td>
-                    <a class="name_link" target="_blank" href="{{ offer.image }}">
-                        {{ offer.image }}
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
+  <tbody>
+    {% for offer in offers %}
+      <tr>
+        <td>
+          <a class="name_link" target="_blank" href="{% url 'offer_by_sku' offer.id %}">
+            {{ offer.name }}
+          </a>
+        </td>
+        <td>{{ offer.description }}</td>
+        <td>{{ offer.shopSku }}</td>
+        <td>{{ offer.category }}</td>
+        <td>{{ offer.vendor }}</td>
+        <td>
+          <a class="name_link" target="_blank" href="{{ offer.image }}">
+            {{ offer.image }}
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
 {% endblock %}
