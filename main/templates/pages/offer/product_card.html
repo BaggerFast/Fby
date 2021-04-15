@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% include 'components/product_card/buttons.html' %}
-    {% include 'components/product_card/back.html' %}
-    {% include 'components/product_card/delete.html' %}
-    <form method="post">
-        {% csrf_token %}
-        {% for title, forms_list in forms.items %}
-            {% for form in forms_list.1 %}
-                {% include 'components/errors.html' %}
-            {% endfor %}
-        {% endfor %}
-        {% for title, forms_list in forms.items %}
-            {% include 'components/product_card/accordion.html' %}
-        {% endfor %}
-        {% include 'components/product_card/save.html' %}
-    </form>
-    {% include 'components/product_card/edit.html' %}
+  {% include 'components/product_card/buttons.html' %}
+  {% include 'components/product_card/back.html' %}
+  {% include 'components/product_card/delete.html' %}
+  <form method="post">
+    {% csrf_token %}
+    {% for title, forms_list in forms.items %}
+      {% for form in forms_list.1 %}
+        {% include 'components/errors.html' %}
+      {% endfor %}
+    {% endfor %}
+    {% for title, forms_list in forms.items %}
+      {% include 'components/product_card/accordion.html' %}
+    {% endfor %}
+    {% include 'components/product_card/save.html' %}
+  </form>
+  {% include 'components/product_card/edit.html' %}
 {% endblock %}

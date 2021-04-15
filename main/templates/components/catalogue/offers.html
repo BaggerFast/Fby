@@ -1,13 +1,13 @@
 {% block offer %}
-    {% include 'components/catalogue/search.html' %}
-    {% if search %}
-        <a href="{% url 'catalogue_list' %}" class="btn-link">← Назад</a>
-    {% endif %}
-    <div class="col">
-        <span class="badge bg-secondary mb-4">{{ count }} товаров</span>
-        <table class="table table-hover table-borderless">
-            {% include 'components/catalogue/thead.html' %}
-            {% include 'components/catalogue/tbody.html' %}
-        </table>
-    </div>
+  {% include 'components/catalogue/search.html' %}
+  {% if search %}
+    <a href="{% url 'catalogue_list' %}" class="btn-link">← Назад</a>
+  {% endif %}
+  <div class="col">
+    <span class="badge bg-secondary mb-4">{{ count }} товаров</span>
+    <table class="table table-hover table-borderless">
+      {% include 'components/catalogue/thead.html' %}
+      {% include 'components/catalogue/tbody.html' %}
+    </table>
+  </div>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% block save %}
-    {% if not disable %}
-        <button id="button_save" type="submit" class="btn btn-primary my-5">
-            {% if not create %}
-                Сохранить
-            {% else %}
-                {% if not stage_next %}Создать{% else %}Далее{% endif %}
-            {% endif %}
-        </button>
-    {% endif %}
+  {% if not disable %}
+    <button id="button_save" type="submit" class="btn btn-primary my-5">
+      {% if not create %}
+        Сохранить
+      {% else %}
+        {% if not stage_next %}Создать{% else %}Далее{% endif %}
+      {% endif %}
+    </button>
+  {% endif %}
 {% endblock %}

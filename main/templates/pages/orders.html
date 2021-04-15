@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="row mt-5">
-        {% include 'components/catalogue/update.html' %}
-        {% if orders %}
-            {% include 'components/orders.html' %}
-        {% else %}
-            {% include 'components/catalogue/empty.html' %}
-        {% endif %}
-    </div>
-    {% include 'components/preloader.html' %}
+  <div class="row mt-5">
+    {% include 'components/catalogue/update.html' %}
+    {% if orders %}
+      {% include 'components/orders.html' %}
+    {% else %}
+      {% include 'components/catalogue/empty.html' %}
+    {% endif %}
+  </div>
+  {% include 'components/preloader.html' %}
 {% endblock %}
