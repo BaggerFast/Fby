@@ -11,7 +11,7 @@ class BaseOfferView(LoginRequiredMixin, View):
     request = None
 
     def context_update(self, data: dict):
-        self.context = {**self.context, **data}
+        self.context = {**data, **self.context, }
 
     def end_it(self) -> HttpResponse:
         pass
