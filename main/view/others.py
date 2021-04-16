@@ -1,10 +1,6 @@
 import json
 from django.shortcuts import render
 from pygments import highlight, lexers, formatters
-from rest_framework import generics
-
-from main.models import Offer
-from main.serializers import OfferSerializer
 from main.yandex import OrderList
 
 

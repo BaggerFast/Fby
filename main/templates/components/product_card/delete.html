@@ -12,7 +12,7 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
           <form method="post">
             {% csrf_token %}
-            <input id="delete" type="text" class="form-control d-none" name="delete" value="{{ id }}">
+            <input id="delete" type="text" class="form-control d-none" name="delete">
             <button type="submit" class="btn btn-danger" onclick="inputEdit(this.id)">Удалить</button>
           </form>
         </div>
