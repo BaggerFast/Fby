@@ -63,6 +63,5 @@ class CatalogueView(BaseOfferView):
         fields = ['name', 'description', 'shopSku', 'category', 'vendor']
         keywords = search.strip().split()
         objects = search_algorithm()
-        print(len(objects))
         self.context_update({'search': bool(len(search)), 'count': len(objects)})
         return objects

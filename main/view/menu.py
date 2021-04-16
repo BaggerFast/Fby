@@ -1,9 +1,9 @@
-from typing import List
+from typing import List, Dict, Union
 
 from django.urls import reverse
 
 
-def get_navbar(request) -> List:
+def get_navbar(request) -> Dict[str, Union[list, List[Dict[str, str]]]]:
 
     def off_current(nav: List):
         for menu_item in nav:
@@ -24,7 +24,6 @@ def get_navbar(request) -> List:
     def auth_point(nav: List):
         if request.user.is_authenticated:
             nav += [
-                {'label': 'Авторизация', 'list': [{'url': 'logout', 'label': "Выйти"}]},
                 {'label': 'Товары', 'list': [{'url': 'catalogue_list', 'label': "Каталог"},
                                              {'url': 'create_offer', 'label': "Создать"}]},
                 {'label': 'Заказы', 'url': 'orders_list'}
@@ -41,7 +40,10 @@ def get_navbar(request) -> List:
             ]
         return nav
 
+    def user_point():
+        return [{'url': 'logout', 'label': "Выйти"}]
     """
     возвращает атрибутты для меню
     """
-    return off_current(not_auth_point(auth_point(static_point())))
+    data = {'main': off_current(not_auth_point(auth_point(static_point()))), 'user': user_point()}
+    return data
