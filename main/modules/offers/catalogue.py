@@ -23,7 +23,7 @@ class CatalogueView(BaseOfferView):
             'count': offer.count(),
             'offers': self.reformat_offer(offer),
             'urls': Url.objects.filter(offer=offer),
-            'table': ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
+            'table': ["Название", "SKU", "Категория", "Продавец", "Картинка"]
         }
         self.context_update(local_context)
 
