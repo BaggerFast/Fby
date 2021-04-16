@@ -27,7 +27,6 @@ class ProductPageView(BaseOfferView):
 
     def post(self, request, pk) -> HttpResponse:
         self.pre_init(request=request, pk=pk)
-        pprint(request.POST)
         self.form.set_post(disable=True, post=self.request.POST)
         if self.form.is_valid():
             self.form.save()
