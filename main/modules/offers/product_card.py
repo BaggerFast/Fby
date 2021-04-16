@@ -5,11 +5,11 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from main.models import Offer
 from main.modules.offers import OfferMultiForm, PriceMultiForm
-from main.modules.offers.base_offer_view import BaseOfferView
+from main.modules.base import BaseView
 from main.view import Page, get_navbar
 
 
-class ProductPageView(BaseOfferView):
+class ProductPageView(BaseView):
     context = {'title': 'Product card', 'page_name': 'Карточка товара'}
     form = None
     disable: bool = False

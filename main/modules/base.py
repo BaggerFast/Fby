@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views import View
 
 
-class BaseOfferView(LoginRequiredMixin, View):
+class BaseView(LoginRequiredMixin, View):
     """
     Базовый класс для отображения каталога
     """
