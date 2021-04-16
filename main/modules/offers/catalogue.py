@@ -9,6 +9,8 @@ from main.yandex import OfferList, OfferPrice
 class CatalogueView(BaseOfferView):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
     models_to_save = [OfferList, OfferPrice]
+    table = ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
+    fields_to_filter = {"category": 3, "vendor": 4}
 
     def post(self, request) -> HttpResponse:
         for model in self.models_to_save:
@@ -23,7 +25,8 @@ class CatalogueView(BaseOfferView):
             'count': offer.count(),
             'offers': self.reformat_offer(offer),
             'urls': Url.objects.filter(offer=offer),
-            'table': ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
+            'table': self.table,
+            'filter_types': self.get_filter_types(offer).items(),
         }
         self.context_update(local_context)
 
@@ -40,6 +43,27 @@ class CatalogueView(BaseOfferView):
                 setattr(offers[i], 'image', Url.objects.filter(offer=offers[i])[0].url)
             except IndexError:
                 pass
+        return offers
+
+    def get_filter_types(self, offers):
+        # PLACEHOLDER START
+        filter_types = {}
+        for field, table_index in self.fields_to_filter.items():
+            filter_types[field] = {
+                'name': self.table[table_index],
+                'options': ['Опция 1', 'Опция 2', 'Опция 3']
+            }
+        return filter_types
+        # PLACEHOLDER END
+
+    def filters_from_request(self):
+        filters = {}
+        for field, _ in self.fields_to_filter.items():
+            filters[field] = self.request.GET.get(field)
+        return filters
+
+    @staticmethod
+    def filter_offers(offers, filters):
         return offers
 
     @staticmethod
@@ -67,7 +91,9 @@ class CatalogueView(BaseOfferView):
         self.context['search'] = bool(len(search))
         fields = ['name', 'description', 'shopSku', 'category', 'vendor']
         keywords = search.strip().split()
+        filters = self.filters_from_request()
 
-        objects = self.search_algorithm(offers, fields, keywords)
+        objects = self.filter_offers(offers, filters)
+        objects = self.search_algorithm(objects, fields, keywords)
         self.context['count'] = len(objects)
         return objects
