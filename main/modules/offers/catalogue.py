@@ -70,9 +70,9 @@ class CatalogueView(BaseOfferView):
 
         def search_algorithm():
             if len(keywords) == 0:
-                return offers
+                return objects
             scores = {}
-            for item in offers:
+            for item in objects:
                 for keyword in keywords:
                     for field in fields:
                         attr = getattr(item, field)
@@ -88,6 +88,6 @@ class CatalogueView(BaseOfferView):
         keywords = search.strip().split()
         filters = self.filters_from_request()
         objects = self.filter_offers(offers, filters)
-        objects = self.search_algorithm(objects, fields, keywords)
+        objects = search_algorithm()
         self.context_update({'search': bool(len(search)), 'count': len(objects)})
         return objects
