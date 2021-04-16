@@ -1,44 +1,44 @@
 {% block navbar %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#/"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                {% for item in navbar %}
-                    {% if item.list %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ item.label }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                {% for path in item.list %}
-                                    <a class="dropdown-item {% if not path.active%}disabled{% endif %}" href="{% url path.url %}">
-                                        {{ path.label }}
-                                    </a>
-                                {% endfor %}
-                            </div>
-                        </li>
-                    {% else %}
-                        <li class="nav-item active">
-                            <a class="nav-link {% if not item.active%}disabled{% endif %}" href="{% url item.url %}">
-                                {{ item.label }}
-                            </a>
-                        </li>
-                    {% endif %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="#/"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {% for item in navbar %}
+          {% if item.list %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ item.label }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for path in item.list %}
+                  <a class="dropdown-item {% if not path.active%}disabled{% endif %}" href="{% url path.url %}">
+                    {{ path.label }}
+                  </a>
                 {% endfor %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="https://yandex.ru/support/marketplace/index.html" target="_blank">
-                        Справка
-                    </a>
-                </li>
-            </ul>
-        </div>
-        {% if user.is_authenticated %}
-            <span class="navbar-text">
-                Вы: {{ user }}
-            </span>
-        {% endif %}
-    </nav>
+              </div>
+            </li>
+          {% else %}
+            <li class="nav-item active">
+              <a class="nav-link {% if not item.active%}disabled{% endif %}" href="{% url item.url %}">
+                {{ item.label }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        <li class="nav-item active">
+          <a class="nav-link" href="https://yandex.ru/support/marketplace/index.html" target="_blank">
+            Справка
+          </a>
+        </li>
+      </ul>
+    </div>
+    {% if user.is_authenticated %}
+      <span class="navbar-text">
+        Вы: {{ user }}
+      </span>
+    {% endif %}
+  </nav>
 {% endblock %}

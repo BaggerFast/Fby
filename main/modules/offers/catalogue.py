@@ -66,34 +66,28 @@ class CatalogueView(BaseOfferView):
     def filter_offers(offers, filters):
         return offers
 
-    @staticmethod
-    def search_algorithm(offers, fields, keywords):
-        if len(keywords) == 0:
-            return offers
-
-        scores = {}
-
-        for item in offers:
-            for keyword in keywords:
-                for field in fields:
-                    attr = getattr(item, field)
-                    if attr is not None and keyword in attr.lower():
-                        if item not in scores:
-                            scores[item] = 0
-                        scores[item] += 1
-                        break
-
-        objects = sorted(scores, key=scores.get, reverse=True)
-        return objects
-
     def offer_search(self, offers) -> list:
+
+        def search_algorithm():
+            if len(keywords) == 0:
+                return offers
+            scores = {}
+            for item in offers:
+                for keyword in keywords:
+                    for field in fields:
+                        attr = getattr(item, field)
+                        if attr is not None and keyword in attr.lower():
+                            if item not in scores:
+                                scores[item] = 0
+                            scores[item] += 1
+                            break
+            return sorted(scores, key=scores.get, reverse=True)
+
         search = self.request.GET.get('input', '').lower()
-        self.context['search'] = bool(len(search))
         fields = ['name', 'description', 'shopSku', 'category', 'vendor']
         keywords = search.strip().split()
         filters = self.filters_from_request()
-
         objects = self.filter_offers(offers, filters)
         objects = self.search_algorithm(objects, fields, keywords)
-        self.context['count'] = len(objects)
+        self.context_update({'search': bool(len(search)), 'count': len(objects)})
         return objects

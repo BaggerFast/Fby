@@ -1,19 +1,19 @@
 {% block search %}
-    <form class="mt-4" method="get">
-      {% for filter_field, filter_type in filter_types %}
-        <div class="input-group mb-3">
-          <span class="input-group-text">{{ filter_type.name }}</span>
-          <select class="form-select" name="{{ filter_field }}">
-            <option selected></option>
-            {% for option in filter_type.options %}
-              <option value="{{ option }}">{{ option }}</option>
-            {% endfor %}
-          </select>
-        </div>
-      {% endfor %}
+  <form class="mt-4" method="get">
+    {% for filter_field, filter_type in filter_types %}
       <div class="input-group mb-3">
-        <input type="text" class="form-control" name="input" aria-describedby="button-addon">
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon">Поиск</button>
+        <span class="input-group-text">{{ filter_type.name }}</span>
+        <select class="form-select" name="{{ filter_field }}">
+          <option selected></option>
+          {% for option in filter_type.options %}
+            <option value="{{ option }}">{{ option }}</option>
+          {% endfor %}
+        </select>
       </div>
-    </form>
+    {% endfor %}
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" name="input" aria-describedby="button-addon">
+      <button class="btn btn-outline-secondary" type="submit" id="button-addon">Поиск</button>
+    </div>
+  </form>
 {% endblock %}
