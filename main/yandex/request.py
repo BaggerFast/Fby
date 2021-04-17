@@ -5,10 +5,11 @@ import json
 from django.contrib import messages
 from fby_market.settings import YaMarket
 import requests
+from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import Price, Offer
 from main.models.save_dir import *
-from main.serializers import ChangePriceSerializer
+from main.serializers import ChangePriceSerializer, OfferSerializer
 
 
 class Requests:
@@ -249,7 +250,6 @@ class OfferReport(Requests):
 
     def __init__(self, shop_sku: str = None):
         self.PARAMS = self.get_params() if shop_sku is None else {"shopSkus": [shop_sku]}
-        print(self.PARAMS)
         super().__init__(json_name='/stats/skus', base_context_name='shopSkus', name="OfferReport")
 
     @staticmethod
@@ -263,3 +263,65 @@ class OfferReport(Requests):
 
     def save(self, request) -> None:
         OfferReportPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
+
+
+class OfferUpdate(Requests):
+    """
+    Класс для добавления или редактирования товара в YM
+
+    Добавляет товар, указанный в запросе, в ваш каталог товаров и редактирует уже имеющийся товар.
+    Чтобы добавить в каталог новый товар, укажите в параметре shop-sku ваш SKU, которого еще нет в каталоге YM.
+    Чтобы отредактировать товар из каталога, укажите в параметре shop-sku ваш SKU этого товара в каталоге.
+    """
+
+    def __init__(self, shop_sku: str):
+        self.shop_sku = shop_sku
+        self.PARAMS = self.get_params()
+        super().__init__(json_name='offer-mapping-entries/updates',
+                         base_context_name='offerMappingEntries',
+                         name="OfferUpdate"
+                         )
+
+    def get_params(self) -> dict:
+        """Возвращает словарь для get-запроса, содержащий информацию о товаре"""
+        try:
+            offer = Offer.objects.get(shopSku=self.shop_sku)
+        except ObjectDoesNotExist:
+            print('Товара с таким shopSku нет в каталоге')
+            return dict()
+
+        offer_mapping_entry = self.get_offer_mapping_entry(offer)
+        offer_mapping_entries = {'offerMappingEntries': [offer_mapping_entry]}
+
+        return offer_mapping_entries
+
+    @staticmethod
+    def get_offer_mapping_entry(offer: Offer) -> dict:
+        """Возвращает элемент словаря для товара offer"""
+        offer_serializer = OfferSerializer(offer)
+        offer_data = offer_serializer.data
+        offer_data = {key: value for key, value in offer_data.items() if value and key != 'processingState'}
+
+        offer_mapping_entry = {'offer': offer_data}
+
+        offer_mapping = offer.mapping_set.filter(mappingType='BASE').first()
+        if offer_mapping:
+            offer_market_sku = getattr(offer_mapping, 'marketSku', None)
+            if offer_market_sku:
+                mapping_data = {'marketSku': offer_market_sku}
+                offer_mapping_entry['mapping'] = mapping_data
+
+        return offer_mapping_entry
+
+    def get_json(self) -> dict:
+        """Отправка данных и получение ответа от YM."""
+        return self.get_next_page()
+
+    def get_answer(self) -> dict:
+        """Возвращает ответ от YM
+
+        OK — запрос выполнен успешно, все товары отправлены на модерацию.
+        ERROR — хотя бы в одном товаре найдена ошибка, и ни один товар не отправлен на модерацию.
+        Если ERROR, далее следует список ошибок
+        """
+        return self.json_data

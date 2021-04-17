@@ -2,7 +2,10 @@ import json
 from django.shortcuts import render
 from pygments import highlight, lexers, formatters
 
+from main.models import Offer
 from main.models.save_dir import OfferPattern, OrderPattern, PricePattern, OfferReportPattern
+from main.serializers import OfferSerializer, MappingSerializer
+from main.yandex.request import OfferUpdate
 
 
 def get_json_data_from_file(file: str) -> dict:
@@ -14,7 +17,9 @@ def get_json_data_from_file(file: str) -> dict:
 
 def orders_list(request):
     """Временная страница для отладки десериализации"""
-    json_object = get_json_data_from_file("offer_report_data1.json")
+    json_object = OfferUpdate('04E129620').answer()
+
+    # json_object = get_json_data_from_file("order_data.json")
 
     formatted_json = json.dumps(json_object, indent=2, ensure_ascii=False)
     colorful_json = highlight(formatted_json, lexers.JsonLexer(), formatters.HtmlFormatter())
@@ -22,7 +27,7 @@ def orders_list(request):
         'highlight_style': formatters.HtmlFormatter().get_style_defs('.highlight'),
         'content': colorful_json,
     }
-    OfferReportPattern(json=json_object['result']['shopSkus']).save(request.user)
+    # OfferReportPattern(json=json_object['result']['shopSkus']).save(request.user)
 
     return render(request, 'orders.html', context)
 

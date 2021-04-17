@@ -42,6 +42,7 @@ class OfferReport(models.Model):
         verbose_name='Информация о складах, на которых хранится товар',
     )
 
-    def get_weightDimensions(self):
-        """Получение данных о weightDimensions из связанной модели Offer"""
+    @property
+    def weightDimensions(self):
+        """данные о weightDimensions из связанной модели Offer"""
         return self.offer.weightDimentions
