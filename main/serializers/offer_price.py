@@ -36,7 +36,7 @@ class OfferForPriceSerializer(BaseModelSerializer):
 class WeightDimensionSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeightDimension
-        exclude = ('offer', 'id',)  # исключая offer
+        exclude = ('offer', 'id')
 
 
 class ShelfLifeSerializer(serializers.ModelSerializer):

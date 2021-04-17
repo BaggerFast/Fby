@@ -56,6 +56,9 @@ class BaseModelSerializer(serializers.ModelSerializer):
         else:
             return {**data, **self.forward_kwargs(instance)}
 
+    def get_nested_object(self, instance, field):
+        return getattr(instance, field, None)
+
     def create(self, validated_data):
         """Создание нового объекта из validated_data"""
 
@@ -90,16 +93,16 @@ class BaseModelSerializer(serializers.ModelSerializer):
         for field in self.nested_fields():
             nested_serializer = self.fields[field]
             nested_data = validated_data.pop(field, None)
-            nested_object = getattr(instance, field, None)
-            if nested_data is not None:
-                if nested_object is not None:
+            nested_object = self.get_nested_object(instance, field)
+            if nested_data:
+                if nested_object:
                     nested_serializer.update(instance=nested_object,
                                              validated_data=self.nested_validated_data(instance, field, nested_data))
                 else:
                     nested_serializer.create(validated_data=self.nested_validated_data(instance, field, nested_data))
             else:
-                if nested_object is not None and not getattr(nested_serializer, 'many', False):
-                    nested_object.delete()
+                if nested_object:
+                    nested_object.all().delete()
 
         for field, value in validated_data.items():
             setattr(instance, field, value)
@@ -131,7 +134,6 @@ class BaseListSerializer(serializers.ListSerializer):
                               for inst in instance.all()}
         data_mapping: dict = {' '.join(str(item[key_field]) for key_field in self.key_fields): item
                               for item in validated_data}
-
         """Создание и обновление."""
         ret = []
         for object_key_fields, data in data_mapping.items():

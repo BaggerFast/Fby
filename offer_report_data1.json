@@ -1,0 +1,184 @@
+{
+  "status": "OK",
+  "result": {
+    "shopSkus": [
+      {
+        "shopSku": "127998000KX2",
+        "marketSku": 656593390,
+        "name": "Лампа автомобильная светодиодная Philips X-tremeUltinon LED 127998000KX2 Т10 2 шт.",
+        "price": 999.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 9,
+          "width": 10,
+          "height": 3,
+          "weight": 0.1
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "FIT",
+                "count": 2
+              },
+              {
+                "type": "AVAILABLE",
+                "count": 2
+              },
+              {
+                "type": "SUGGEST",
+                "count": 15
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 9.99
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 19.98
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W610/3",
+        "marketSku": 520672345,
+        "name": "Масляный фильтр MANNFILTER W610/3",
+        "price": 370.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 7,
+          "width": 8,
+          "height": 13,
+          "weight": 0.3
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 126
+              }
+            ]
+          },
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 4
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.7
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 7.4
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W719/30",
+        "marketSku": 514703012,
+        "name": "Масляный фильтр MANNFILTER W 719/30",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 15,
+          "height": 9,
+          "weight": 0.4
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 17
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      }
+    ]
+  }
+}

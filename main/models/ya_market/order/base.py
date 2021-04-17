@@ -88,6 +88,7 @@ class Item(models.Model):
     warehouse = models.ForeignKey(
         to=Warehouse,
         on_delete=models.SET_NULL,
+        related_name='offers',
         verbose_name='Информация о складе, на котором хранится товар',
         null=True
     )

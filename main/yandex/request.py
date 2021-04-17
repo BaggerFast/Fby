@@ -5,8 +5,9 @@ from django.contrib import messages
 from fby_market.settings import YaMarket
 import requests
 
-from main.models import Price
+from main.models import Price, Offer
 from main.models.save_dir import *
+from main.models.save_dir.report import OfferReportPattern
 from main.serializers import ChangePriceSerializer
 
 
@@ -233,7 +234,9 @@ class YandexChangePrices(Requests):
 
 
 class OrderList(Requests):
-    """Класс для получения списка заказов и сохранения в БД Order"""
+    """
+    Класс для получения списка заказов и сохранения в БД Order
+    """
 
     PARAMS = {                      # параметры надо предварительно запросить
         "dateFrom": "2021-01-01",
@@ -241,9 +244,35 @@ class OrderList(Requests):
     }
 
     def __init__(self, params: dict = None):
-        super().__init__(json_name='/stats/orders', base_context_name='orders', name="Order")
         if params is not None:
             self.PARAMS = params
+        super().__init__(json_name='/stats/orders', base_context_name='orders', name="Order")
 
-    def save(self, request=None) -> None:
+    def save(self, request) -> None:
         OrderPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
+
+
+class OfferReport(Requests):
+    """
+    Класс для получения отчета по остаткам товара на складах
+    """
+
+    def __init__(self, shop_sku: str = None):
+        self.PARAMS = self.get_params() if shop_sku is None else {"shopSkus": [shop_sku]}
+        print(self.PARAMS)
+        super().__init__(json_name='/stats/skus', base_context_name='shopSkus', name="OfferReport")
+
+    @staticmethod
+    def get_params():
+        """Возвращает словарь для get-запроса, содержащий список всех всех shopSku из каталога"""
+        return {"shopSkus": [offer.shopSku for offer in Offer.objects.all()]}
+
+    def get_json(self) -> dict:
+        """
+        Получение данных от YM
+        """
+        return self.get_next_page()
+
+    def save(self, request) -> None:
+        OfferReportPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
+
