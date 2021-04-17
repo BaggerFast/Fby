@@ -1,7 +1,7 @@
 from django.db import models
-from main.models.ya_market.base import BaseWeightDimension
-from main.models.ya_market.offer.base import Offer
-from main.models.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
+from main.models_addon.ya_market.base import BaseWeightDimension
+from main.models_addon.ya_market.offer.base import Offer
+from main.models_addon.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
     ProcessingStateStatus, SupplyScheduleDayChoices, VatType, PriceSuggestionChoices
 
 

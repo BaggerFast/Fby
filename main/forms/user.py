@@ -1,9 +1,13 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.models import User
+from main.models import User
 
 
 class Func:
     fields = dict()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.execute()
 
     def execute(self):
         for key in self.fields.keys():
@@ -12,29 +16,15 @@ class Func:
 
 class UserLoginForm(AuthenticationForm, Func):
     """Модель юзера для авторизации"""
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.execute()
-
     class Meta:
         model = User
         fields = ('username', 'password')
-        labels = {
-            'username': 'Логин'
-        }
+        labels = {'username': 'Логин'}
 
 
 class UserRegistrationForm(UserCreationForm, Func):
     """Модель юзера для регистрации"""
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.execute()
-
     class Meta:
         model = User
-        fields = ('first_name', 'username', 'email', 'password1', 'password2')
-        labels = {
-            'username': 'Логин'
-        }
+        fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image')
+        labels = {'username': 'Логин'}

@@ -1,6 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 
-from main.models import Order
+from main.models_addon import Order
 from main.serializers import OrderSerializer
 
 

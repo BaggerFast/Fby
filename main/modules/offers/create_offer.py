@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from main.models import Offer
+from main.models_addon import Offer
 from main.modules.offers import OfferMultiForm, PriceMultiForm
 from main.modules.base import BaseView
 from main.view import get_navbar, Page

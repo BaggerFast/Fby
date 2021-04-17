@@ -1,8 +1,8 @@
 from django.core.exceptions import ObjectDoesNotExist
 
-from main.models import Offer as OfferModel, Price
+from main.models_addon import Offer as OfferModel, Price
 from .offer import Base
-from main.models.save_dir.base import BasePattern
+from main.models_addon.save_dir.base import BasePattern
 
 
 class Prices:

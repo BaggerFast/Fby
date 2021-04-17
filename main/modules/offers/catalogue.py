@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from main.models import Offer, Url
+from main.models_addon import Offer, Url
 from main.modules.base import BaseView
 from main.view import get_navbar, Page
 from main.yandex import OfferList, OfferPrice

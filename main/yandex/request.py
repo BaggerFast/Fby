@@ -5,8 +5,8 @@ from django.contrib import messages
 from fby_market.settings import YaMarket
 import requests
 
-from main.models import Price
-from main.models.save_dir import *
+from main.models_addon import Price
+from main.models_addon.save_dir import *
 from main.serializers import PriceSerializer
 
 

@@ -1,8 +1,8 @@
 from django.db import models
-from main.models.ya_market.reports.choices import StockTypeChoices, StorageTypeChoices, InclusionTypeChoices, \
+from main.models_addon.ya_market.reports.choices import StockTypeChoices, StorageTypeChoices, InclusionTypeChoices, \
     TariffTypeChoices
-from main.models.ya_market.reports.report_offer import Sku
-from main.models.ya_market.offer.support import BaseWeightDimension
+from main.models_addon.ya_market.reports.report_offer import Sku
+from main.models_addon.ya_market.offer.support import BaseWeightDimension
 
 
 class WeightDimensions(BaseWeightDimension):

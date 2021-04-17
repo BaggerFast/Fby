@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 
-from main.models import ItemPrice, Warehouse, Detail, Item, \
+from main.models_addon import ItemPrice, Warehouse, Detail, Item, \
     InitialItem, PaymentOrder, DeliveryRegion, Order, Payment, Commission
 
 from main.serializers import BaseListSerializer, BaseModelSerializer

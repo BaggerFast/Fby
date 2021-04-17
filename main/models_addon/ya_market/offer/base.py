@@ -1,13 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import User
-from main.models.ya_market.offer.choices import AvailabilityChoices, MappingType
+from main.models import User
+from main.models_addon.ya_market.offer.choices import AvailabilityChoices, MappingType
 
 
 class Offer(models.Model):
     """
     Модель хранящая товар.
     """
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="offer", verbose_name="Пользователь")
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="offer",
+                             verbose_name="Пользователь")
 
     marketSku = models.CharField(max_length=255, verbose_name="SKU на Яндексе", null=True, blank=True)
 

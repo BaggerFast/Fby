@@ -1,6 +1,6 @@
-from django.contrib.auth.models import User
+from main.models import User
 from django.db import models
-from main.models.ya_market.order.choices import StatusChoices, PaymentTypeChoices, PriceTypeChoices, \
+from main.models_addon.ya_market.order.choices import StatusChoices, PaymentTypeChoices, PriceTypeChoices, \
     ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourseChoices, CommissionTypeChoices
 
 

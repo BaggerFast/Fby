@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% include 'components/errors.html' %}
     <div>
+
       {% include 'components/form.html' %}
       <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
     </div>
