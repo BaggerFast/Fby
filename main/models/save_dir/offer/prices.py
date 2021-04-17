@@ -1,3 +1,5 @@
+"""Паррерн для сохранения данных о цене в БД"""
+
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import Offer

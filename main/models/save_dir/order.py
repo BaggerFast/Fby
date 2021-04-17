@@ -1,3 +1,5 @@
+"""Паррерн для сохранения данных о заказах в БД"""
+
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import Order

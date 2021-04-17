@@ -1,3 +1,5 @@
+"""Паррерн для сохранения данных о товаре в БД"""
+
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import Offer, Mapping
@@ -16,7 +18,7 @@ class OfferPattern:
         self.json = json
 
     @staticmethod
-    def save_mapping(data, offer_instance, mapping_name, mapping_type):
+    def save_mapping(data: dict, offer_instance: Offer, mapping_name: str, mapping_type: str) -> None:
         """Сохраняет карточку товара (маппинг)
 
         Если в бд есть карточка, которой нет в json-данных, удаляет ее из бд

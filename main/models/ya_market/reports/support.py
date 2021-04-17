@@ -1,26 +1,17 @@
+"""Вспомогательные классы для модели OfferReport"""
+
 from django.db import models
 
-from main.models.ya_market import Offer, Warehouse
-from main.models.ya_market.reports.choices import StockTypeChoices, StorageTypeChoices, InclusionTypeChoices, \
-    TariffTypeChoices
-from main.models.ya_market.reports.report_offer import OfferReport
-from main.models.ya_market.offer.support import BaseWeightDimension
-
-
-# class WeightDimensions(BaseWeightDimension):
-#     """
-#     Модель хранящая размеры товара (используется для reports/sku).
-#     """
-#     report = models.ForeignKey(
-#         to=OfferReport,
-#         on_delete=models.CASCADE,
-#         related_name='weightDimensions',
-#     )
+from main.models.ya_market.offer import Offer
+from main.models.ya_market.order import Warehouse
+from main.models.ya_market.reports import OfferReport
+from main.models.ya_market.reports.choices import StockTypeChoices, StorageTypeChoices, \
+                                                  InclusionTypeChoices, TariffTypeChoices
 
 
 class Hiding(models.Model):
     """
-    Модель хранящая информацию о скрытии предложения.
+    Модель для хранения информации о скрытии предложения.
     """
     report = models.ForeignKey(
         to=OfferReport,
@@ -51,25 +42,6 @@ class Hiding(models.Model):
         null=True,
         blank=True
     )
-
-
-# class Warehouse(models.Model):
-#     """
-#     Модель хранящая информацию о складе.
-#     """
-#     report = models.ForeignKey(
-#         to=OfferReport,
-#         on_delete=models.CASCADE
-#     )
-#     id = models.PositiveSmallIntegerField(
-#         verbose_name='Идентификатор склада',
-#         null=True
-#     )
-#     name = models.CharField(
-#         max_length=255,
-#         verbose_name='Название товара',
-#         null=True
-#     )
 
 
 class Stock(models.Model):

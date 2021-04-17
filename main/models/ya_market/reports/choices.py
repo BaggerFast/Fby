@@ -1,3 +1,5 @@
+"""Choices для моделей из Reports"""
+
 from django.db import models
 
 

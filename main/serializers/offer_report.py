@@ -1,15 +1,19 @@
-"""Сериализаторы для OfferReport"""
+"""Сериализаторы для модели OfferReport"""
 
+from typing import List
 from rest_framework import serializers
 from main.models import *
-from main.serializers import BaseListSerializer, BaseModelSerializer, WeightDimensionSerializer
+from main.serializers import BaseListSerializer, BaseModelSerializer
 
 
 class HidingListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели Hiding"""
     key_fields = ['code']
 
 
 class HidingSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели Hiding"""
+
     class Meta:
         model = Hiding
         fields = ['type', 'code', 'message', 'comment']
@@ -17,10 +21,13 @@ class HidingSerializer(serializers.ModelSerializer):
 
 
 class InclusionListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели Inclusion"""
     key_fields = ['type']
 
 
 class InclusionSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели Inclusion"""
+
     class Meta:
         model = Inclusion
         fields = ['type', 'count']
@@ -28,14 +35,17 @@ class InclusionSerializer(serializers.ModelSerializer):
 
 
 class StorageListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели Storage"""
     key_fields = ['type']
 
 
 class StorageSerializer(BaseModelSerializer):
+    """Сериализатор для модели Storage"""
     inclusions = InclusionSerializer(many=True, required=False)
 
     @staticmethod
     def forward_name():
+        """Ключ для передачи вложенным моделям"""
         return 'storage'
 
     class Meta:
@@ -45,10 +55,13 @@ class StorageSerializer(BaseModelSerializer):
 
 
 class TariffListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели Tariff"""
     key_fields = ['type']
 
 
 class TariffSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели Tariff"""
+
     class Meta:
         model = Tariff
         fields = ['type', 'percent', 'amount']
@@ -56,10 +69,12 @@ class TariffSerializer(serializers.ModelSerializer):
 
 
 class StockListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели Stock"""
     key_fields = ['type']
 
 
 class StockSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели Stock"""
 
     class Meta:
         model = Stock
@@ -68,8 +83,10 @@ class StockSerializer(serializers.ModelSerializer):
 
 
 class WarehouseReportSerializer(BaseModelSerializer):
-    def __init__(self, offer: Offer, **kwargs):
-        self.offer = offer
+    """Сериализатор для модели Warehouse (вложенный, для сериализатора OfferReport)"""
+
+    def __init__(self, offer: Offer, **kwargs: dict):
+        self.offer = offer  # объект передается вложенному сериализатору Stock
         super().__init__(**kwargs)
 
     id = serializers.IntegerField(source='warehouse_id', required=False)
@@ -77,90 +94,35 @@ class WarehouseReportSerializer(BaseModelSerializer):
 
     @staticmethod
     def forward_name():
+        """Ключ для передачи вложенным моделям"""
         return 'warehouse'
 
-    def forward_kwargs(self, instance):
-        """Словарь для передачи экземпляра модели (instance) дочернему объекту """
+    def forward_kwargs(self, instance) -> dict:
+        """Словарь для передачи экземпляра модели (instance) вложенному объекту """
         return {'warehouse': instance, 'offer': self.offer}
 
-    def get_nested_object(self, instance, field):
+    def get_nested_object(self, instance, field: str) -> List:
+        """Возвращает список вложенных объектов, дополнительно отфильтрованный по полю offer """
         all_nested_objects = getattr(instance, field, [])
         if all_nested_objects:
             return all_nested_objects.filter(offer=self.offer)
         else:
-            return None
-
+            return []
 
     class Meta:
         model = Warehouse
         fields = ['id', 'name', 'stocks']
 
-# class WarehouseReportSerializer(serializers.ModelSerializer):
-#     id = serializers.IntegerField(source='warehouse_id', required=False)
-#     stocks = StockSerializer(many=True, required=False)
-#
-#     def __init__(self, offer: Offer, **kwargs):
-#         super().__init__(**kwargs)
-#         self.offer = offer
-#
-#     def forward_kwargs(self, instance):
-#         """Словарь для передачи экземпляра модели (instance) дочернему объекту """
-#         return {'warehouse': instance, 'offer': self.offer}
-#
-#     def nested_validated_data(self, instance, data):
-#         """validated_data для встроенного сериализатора"""
-#         return [{**attrs, **self.forward_kwargs(instance)} for attrs in data]
-#
-#     def create(self, validated_data):
-#         """Создание нового объекта из validated_data"""
-#         nested_data: dict = validated_data.pop('stocks', None)
-#         instance = Warehouse.objects.create(**validated_data)
-#         if nested_data is not None:
-#             StockSerializer.create(validated_data=self.nested_validated_data(instance, nested_data))
-#         return instance
-#
-#     def update(self, instance, validated_data):
-#         """Обновление объекта instance на основании validated_data"""
-#
-#         nested_data: dict = validated_data.pop('stocks', None)
-#         nested_object = getattr(instance, 'stocks', None)
-#         if nested_data is not None:
-#             if nested_object is not None:
-#                 StockSerializer.update(instance=nested_object,
-#                                        validated_data=self.nested_validated_data(instance, nested_data))
-#             else:
-#                 StockSerializer.create(
-#                     validated_data=self.nested_validated_data(instance, nested_data))
-#
-#         for field, value in validated_data.items():
-#             setattr(instance, field, value)
-#
-#         instance.save()
-#
-#         return instance
-#
-#     class Meta:
-#         model = Warehouse
-#         fields = ['id', 'name', 'stocks']
 
-
-# class WeightDimensionForReportSerializer(WeightDimensionSerializer):
-#     def to_representation(self, instance):
-#         return {'weightDimensions': instance.offer.weightDimensions}
-#
-#     def to_internal_value(self, data: dict):
-#         return{
-#             'offer.weightDimensions': data
-#         }
-#
-#
 class OfferReportSerializer(BaseModelSerializer):
+    """Сериализатор для модели OfferReport"""
     hidings = HidingSerializer(many=True, required=False)
     storage = StorageSerializer(many=True, required=False)
     tariffs = TariffSerializer(many=True, required=False)
 
     @staticmethod
     def forward_name():
+        """Ключ для передачи вложенным моделям"""
         return 'report'
 
     class Meta:

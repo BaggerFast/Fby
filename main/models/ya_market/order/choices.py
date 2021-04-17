@@ -1,3 +1,5 @@
+"""Choices для моделей из Order"""
+
 from django.db import models
 
 
