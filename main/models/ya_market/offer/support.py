@@ -1,8 +1,9 @@
+"""Вспомогательные модели для модели Offer"""
+
 from django.db import models
-from main.models.ya_market.base import BaseWeightDimension
 from main.models.ya_market.offer.base import Offer
 from main.models.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
-    ProcessingStateStatus, SupplyScheduleDayChoices, VatType, PriceSuggestionChoices
+    ProcessingStateStatus, SupplyScheduleDayChoices, VatType,  CurrencyChoices, PriceSuggestionChoices
 
 
 class PriceSuggestion(models.Model):
@@ -14,7 +15,7 @@ class PriceSuggestion(models.Model):
 
 class Timing(models.Model):
     """
-    Модель хранящая период времени.
+    Модель для хранения периода времени.
     """
     class Meta:
         abstract = True
@@ -53,41 +54,74 @@ class GuaranteePeriod(Timing):
 
 class Price(models.Model):
     """
-    Модель хранящая цену товара.
+    Модель для хранения цены товара.
     """
+    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='price')
+    currencyId = models.CharField(
+        max_length=3,
+        choices=CurrencyChoices.choices,
+        verbose_name='Валюта, в которой указана цена на товар.',
+        null=True
+    )
     discountBase = models.FloatField(verbose_name="Цена на товар без скидки.", null=True, blank=True)
     value = models.FloatField(verbose_name="Цена на товар.", null=True, blank=True)
     vat = models.IntegerField(verbose_name='Идентификатор ставки НДС',
-                              help_text="Если параметр не указан, используется ставка НДС, установленная в личном "
-                                        "кабинете магазина.",
+                              help_text="Если параметр не указан, используется ставка НДС, "
+                                        "установленная в личном кабинете магазина.",
                               null=True,
                               blank=True,
                               choices=VatType.choices
                               )
-    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='price')
 
 
 class ManufacturerCountry(models.Model):
     """
-    Модель хранящая страну производителя.
+    Модель для хранения страны производителя.
 
-        .. todo::
-           Добавить проверку на то, что в списке товаров может быть максимум 5 стран
+    .. todo::
+       Добавить проверку на то, что в списке товаров может быть максимум 5 стран
     """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="manufacturerCountries",)
     name = models.CharField(max_length=255, verbose_name='Страна производства товара')
 
 
-class WeightDimension(BaseWeightDimension):
+class WeightDimension(models.Model):
     """
-    Модель хранящая размеры товара (используется для offer).
+    Модель для хранения размеров и веса товара.
     """
+
     offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='weightDimensions')
+    length = models.FloatField(
+        verbose_name='Длина, см',
+        help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 65.55',
+        null=True,
+        blank=True,
+    )
+    width = models.FloatField(
+        verbose_name='Ширина, см',
+        help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 50.7',
+        null=True,
+        blank=True,
+    )
+    height = models.FloatField(
+        verbose_name='Высота, см',
+        help_text='Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 20.0',
+        null=True,
+        blank=True,
+    )
+    weight = models.FloatField(
+        verbose_name='Вес в упаковке (брутто), кг',
+        help_text='С учетом упаковки (брутто). '
+                  'Значение с точностью до тысячных, разделитель целой и дробной части — точка. Пример: 1.001',
+        null=True,
+        blank=True,
+    )
 
 
 class Url(models.Model):
     """
-    Список URL
+    Модель для хранения списка URL
+
     .. todo::
         Добавить проверку на то, что в списке URL'ов присутствует минимум одна запись
     """
@@ -97,7 +131,7 @@ class Url(models.Model):
 
 class Barcode(models.Model):
     """
-       Модель хранящая штрихкод товара.
+    Модель для хранения штрихкода товара.
     """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name='barcodes')
     barcode = models.CharField(max_length=255, verbose_name='Штрихкод',
@@ -111,7 +145,7 @@ class Barcode(models.Model):
 
 class CustomsCommodityCode(models.Model):
     """
-    Модель хранящая код ТН ВЭД товара.
+    Модель для хранения кода ТН ВЭД товара.
     """
     offer = models.OneToOneField(
         to=Offer,
@@ -128,7 +162,7 @@ class CustomsCommodityCode(models.Model):
 
 class SupplyScheduleDays(models.Model):
     """
-        Модель хранящая дни поставки товара.
+    Модель для хранения дней поставки товара.
     """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="supplyScheduleDays")
     supplyScheduleDay = models.CharField(
@@ -146,7 +180,7 @@ class SupplyScheduleDays(models.Model):
 
 class ProcessingState(models.Model):
     """
-       Модель хранящая статус товара.
+    Модель для хранения статуса товара.
     """
     offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='processingState')
     status = models.CharField(
@@ -160,7 +194,7 @@ class ProcessingState(models.Model):
 
 class ProcessingStateNote(models.Model):
     """
-    Модель хранящая причину, по который товар не прошел модерацию.
+    Модель для хранения причины, по который товар не прошел модерацию.
     """
     processingState = models.ForeignKey(
         to=ProcessingState,
@@ -186,7 +220,7 @@ class ProcessingStateNote(models.Model):
 
 class Mapping(models.Model):
     """
-        Модель хранящая маппинг товара.
+    Модель для хранения маппинга товара.
     """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="mapping_set")
     marketSku = models.PositiveSmallIntegerField(

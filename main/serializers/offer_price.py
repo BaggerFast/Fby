@@ -1,48 +1,77 @@
-"""Сериализаторы всея моделей"""
+"""Сериализаторы для модели Offer"""
 
 from rest_framework import serializers
 from main.models import *
 from main.serializers import BaseListSerializer, BaseModelSerializer
 
 
-class PriceSerializer(serializers.ModelSerializer):
+class ChangePriceSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели Price (для изменения цены)"""
     def get_data(self) -> dict:
         return {**self.data, 'currencyId': 'RUR'}
 
     class Meta:
         model = Price
-        exclude = ('offer', 'id', 'vat', 'discountBase')  # исключая offer
+        fields = ['value']
+
+
+class PriceSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели Price (встроенный, для сериализации Offer)"""
+
+    class Meta:
+        model = Price
+        fields = ['currencyId', 'discountBase', 'value', 'vat']
+
+
+class OfferForPriceSerializer(BaseModelSerializer):
+    """Сериализатор для модели Offer (встроенный, для сериализации Price)"""
+    price = PriceSerializer()
+
+    @staticmethod
+    def forward_name():
+        """Ключ для передачи вложенным моделям"""
+        return 'offer'
+
+    class Meta:
+        model = Offer
+        fields = ['price', 'shopSku', 'marketSku', 'updatedAt']
 
 
 class WeightDimensionSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели WeightDimension"""
     class Meta:
         model = WeightDimension
-        exclude = ('offer', 'id',)  # исключая offer
+        exclude = ('offer', 'id')
 
 
 class ShelfLifeSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели ShelfLife"""
     class Meta:
         model = ShelfLife
         fields = ['timePeriod', 'timeUnit', 'comment']
 
 
 class LifeTimeSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели LifeTime"""
     class Meta:
         model = LifeTime
         fields = ['timePeriod', 'timeUnit', 'comment']
 
 
 class GuaranteePeriodSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели GuaranteePeriod"""
     class Meta:
         model = GuaranteePeriod
         fields = ['timePeriod', 'timeUnit', 'comment']
 
 
 class ProcessingStateNoteListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели ProcessingStateNote"""
     key_fields = ['type']
 
 
 class ProcessingStateNoteSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели ProcessingStateNote"""
     class Meta:
         model = ProcessingStateNote
         exclude = ('processingState', 'id')
@@ -50,10 +79,12 @@ class ProcessingStateNoteSerializer(serializers.ModelSerializer):
 
 
 class ProcessingStateSerializer(BaseModelSerializer):
+    """Сериализатор для модели ProcessingState"""
     notes = ProcessingStateNoteSerializer(many=True, required=False)
 
     @staticmethod
     def forward_name():
+        """Ключ для передачи вложенным моделям"""
         return 'processingState'
 
     class Meta:
@@ -62,16 +93,19 @@ class ProcessingStateSerializer(BaseModelSerializer):
 
 
 class MappingSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели Mapping"""
     class Meta:
         model = Mapping
         exclude = ('offer', 'mappingType', 'id')
 
 
 class ManufacturerCountryListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели ManufacturerCountry"""
     key_fields = ['name']
 
 
 class ManufacturerCountrySerializer(serializers.ModelSerializer):
+    """Сериализатор для модели ManufacturerCountry"""
     def to_representation(self, instance):
         return instance.name
 
@@ -85,10 +119,12 @@ class ManufacturerCountrySerializer(serializers.ModelSerializer):
 
 
 class UrlListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели Url"""
     key_fields = ['url']
 
 
 class UrlSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели Url"""
     def to_representation(self, instance):
         return instance.url
 
@@ -102,10 +138,12 @@ class UrlSerializer(serializers.ModelSerializer):
 
 
 class BarcodeListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели Barcode"""
     key_fields = ['barcode']
 
 
 class BarcodeSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели Barcode"""
     def to_representation(self, instance):
         return instance.barcode
 
@@ -119,10 +157,12 @@ class BarcodeSerializer(serializers.ModelSerializer):
 
 
 class CustomsCommodityCodeListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели CustomsCommodityCode"""
     key_fields = ['code']
 
 
 class CustomsCommodityCodeSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели CustomsCommodityCode"""
     def to_representation(self, instance):
         return instance.code
 
@@ -136,10 +176,12 @@ class CustomsCommodityCodeSerializer(serializers.ModelSerializer):
 
 
 class SupplyScheduleDaysListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели SupplyScheduleDays"""
     key_fields = ['supplyScheduleDay']
 
 
 class SupplyScheduleDaysSerializer(serializers.ModelSerializer):
+    """Сериализатор для модели SupplyScheduleDays"""
     def to_representation(self, instance):
         return instance.supplyScheduleDay
 
@@ -153,7 +195,7 @@ class SupplyScheduleDaysSerializer(serializers.ModelSerializer):
 
 
 class OfferSerializer(BaseModelSerializer):
-    # price = PriceSerializer()
+    """Сериализатор для модели Offer"""
     weightDimensions = WeightDimensionSerializer(required=False)
     manufacturerCountries = ManufacturerCountrySerializer(many=True, required=False)
     urls = UrlSerializer(many=True, required=False)
@@ -164,29 +206,24 @@ class OfferSerializer(BaseModelSerializer):
     customsCommodityCodes = CustomsCommodityCodeSerializer(many=True, required=False)
     supplyScheduleDays = SupplyScheduleDaysSerializer(many=True, required=False)
     processingState = ProcessingStateSerializer(required=False)
-    #  = MappingSerializer()
-    # awaitingModerationMapping = MappingSerializer()
-    # rejectedMapping = MappingSerializer()
 
     @staticmethod
     def forward_name():
+        """Ключ для передачи вложенным моделям"""
         return 'offer'
 
     class Meta:
         model = Offer
         fields = [
-            'marketSku',
-            'updatedAt',
             'shopSku',
             'name',
-            'vendor',
-            'vendorCode',
             'category',
             'manufacturer',
-            # 'price',
-            'weightDimensions',
             'manufacturerCountries',
+            'weightDimensions',
             'urls',
+            'vendor',
+            'vendorCode',
             'barcodes',
             'description',
             'shelfLife',
@@ -201,11 +238,5 @@ class OfferSerializer(BaseModelSerializer):
             'supplyScheduleDays',
             'deliveryDurationDays',
             'boxCount',
-            'shelfLifeDays',
-            'lifeTimeDays',
-            'guaranteePeriodDays',
             'processingState',
-            # 'mapping',
-            # 'awaitingModerationMapping',
-            # 'rejectedMapping'
         ]

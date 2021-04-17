@@ -1,5 +1,8 @@
+"""Модели для хранения инфрмации о заказах товаров на ЯМ"""
+
 from django.contrib.auth.models import User
 from django.db import models
+
 from main.models.ya_market.order.choices import StatusChoices, PaymentTypeChoices, PriceTypeChoices, \
     ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourseChoices, CommissionTypeChoices
 
@@ -53,7 +56,7 @@ class Order(models.Model):
 
 class Warehouse(models.Model):
     """
-    Cклады, на которых хранится товар
+    Склад, на котором хранится товар.
     """
     warehouse_id = models.PositiveIntegerField(verbose_name='Идентификатор склада', null=True)
     name = models.CharField(max_length=255, verbose_name='Название склада', null=True)
@@ -88,6 +91,7 @@ class Item(models.Model):
     warehouse = models.ForeignKey(
         to=Warehouse,
         on_delete=models.SET_NULL,
+        related_name='offers',
         verbose_name='Информация о складе, на котором хранится товар',
         null=True
     )

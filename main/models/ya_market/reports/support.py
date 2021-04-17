@@ -1,35 +1,33 @@
+"""Вспомогательные классы для модели OfferReport"""
+
 from django.db import models
-from main.models.ya_market.reports.choices import StockTypeChoices, StorageTypeChoices, InclusionTypeChoices, \
-    TariffTypeChoices
-from main.models.ya_market.reports.report_offer import Sku
-from main.models.ya_market.offer.support import BaseWeightDimension
 
-
-class WeightDimensions(BaseWeightDimension):
-    """
-    Модель хранящая размеры товара (используется для reports/sku).
-    """
-    report = models.ForeignKey(
-        to=Sku,
-        on_delete=models.CASCADE,
-        related_name='weightDimensions',
-    )
+from main.models.ya_market.offer import Offer
+from main.models.ya_market.order import Warehouse
+from main.models.ya_market.reports import OfferReport
+from main.models.ya_market.reports.choices import StockTypeChoices, StorageTypeChoices, \
+                                                  InclusionTypeChoices, TariffTypeChoices
 
 
 class Hiding(models.Model):
     """
-    Модель хранящая информацию о скрытии предложения.
+    Модель для хранения информации о скрытии предложения.
     """
     report = models.ForeignKey(
-        to=Sku,
+        to=OfferReport,
+        related_name='hidings',
+        verbose_name='Информация о скрытии вашего предложения на Маркете. '
+                     'Если ваше предложение не скрыто, параметр не будет возвращаться.',
         on_delete=models.CASCADE
     )
     type = models.CharField(
+        max_length=255,
         verbose_name='Тип сообщения о скрытии вашего предложения',
         null=True,
         blank=True
     )
     code = models.CharField(
+        max_length=255,
         verbose_name='Код сообщения о скрытии вашего предложения',
         null=True,
         blank=True
@@ -39,42 +37,32 @@ class Hiding(models.Model):
         null=True,
         blank=True
     )
-    comment = models.CharField(
+    comment = models.TextField(
         verbose_name='Комментарий к сообщению о скрытии вашего предложения',
         null=True,
         blank=True
     )
 
 
-class Warehouse(models.Model):
-    """
-    Модель хранящая информацию о складе.
-    """
-    report = models.ForeignKey(
-        to=Sku,
-        on_delete=models.CASCADE
-    )
-    id = models.PositiveSmallIntegerField(
-        verbose_name='Идентификатор склада',
-        null=True
-    )
-    name = models.CharField(
-        max_length=255,
-        verbose_name='Название товара',
-        null=True
-    )
-
-
 class Stock(models.Model):
     """
-    Модель хранящая информацию о остатке товара на складе.
+    Модель для хранения информации об остатке товара на складе.
     """
     warehouse = models.ForeignKey(
         to=Warehouse,
+        related_name='stocks',
+        verbose_name='Информация об остатках товаров на складе.',
         on_delete=models.CASCADE
     )
+    offer = models.ForeignKey(
+        to=Offer,
+        related_name='stocks',
+        verbose_name='Информация об остатках товара на складах.',
+        on_delete=models.CASCADE,
+        null = True
+    )
     type = models.CharField(
-        max_length=9,
+        max_length=11,
         choices=StockTypeChoices.choices,
         verbose_name='Тип остатков товаров на складе',
         null=True
@@ -87,10 +75,12 @@ class Stock(models.Model):
 
 class Storage(models.Model):
     """
-    Модель хранящая информацию о количестве товара для типа условий хранения.
+    Модель для хранения информации об условиях хранения и обработки товара на складе.
     """
     report = models.ForeignKey(
-        to=Sku,
+        to=OfferReport,
+        related_name='storage',
+        verbose_name='Информация об условиях хранения и обработки товара на складе.',
         on_delete=models.CASCADE
     )
     type = models.CharField(
@@ -107,10 +97,13 @@ class Storage(models.Model):
 
 class Inclusion(models.Model):
     """
-    Модель хранящая информацию о количестве товара для типа условий хранения.
+    Модель для хранения дополнительной информации о количестве товара по типам условия хранения.
     """
     storage = models.ForeignKey(
         to=Storage,
+        related_name='inclusions',
+        verbose_name='Дополнительная информация о том, для скольких товаров заканчивается срок действия '
+                     'текущего тарифа и для скольких товаров действует повышенный тариф.',
         on_delete=models.CASCADE
     )
     type = models.CharField(
@@ -130,7 +123,9 @@ class Tariff(models.Model):
     Модель хранящая информацию о тарифе остатков товаров на складе.
     """
     report = models.ForeignKey(
-        to=Sku,
+        to=OfferReport,
+        related_name='tariffs',
+        verbose_name='Информация о тарифах, по которым нужно заплатить за услуги Маркета.',
         on_delete=models.CASCADE
     )
     type = models.CharField(
