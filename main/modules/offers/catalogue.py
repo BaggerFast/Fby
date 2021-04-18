@@ -51,7 +51,7 @@ class CatalogueView(BaseOfferView):
         for field, table_index in self.fields_to_filter.items():
             filter_types[field] = {
                 'name': self.table[table_index],
-                'options': ['Опция 1', 'Опция 2', 'Опция 3']
+                'options': ['Фильтры', 'Лампы для автомобилей', 'Масляные фильтры', 'VOLKSWAGEN']
             }
         return filter_types
         # PLACEHOLDER END
@@ -64,7 +64,23 @@ class CatalogueView(BaseOfferView):
 
     @staticmethod
     def filter_offers(offers, filters):
-        return offers
+        scores = []
+        for offer in offers:
+            for filter_name, filter_param in filters.items():
+                if filter_param:
+                    offer_param = getattr(offer, filter_name)
+                    if offer_param == filter_param:
+                        if offer not in scores:
+                            scores.append(offer)
+                else:
+                    scores.append(offer)
+        for offer in scores:
+            for filter_name, filter_param in filters.items():
+                if filter_param or filter_param != '':
+                    offer_param = getattr(offer, filter_name)
+                    if offer_param != filter_param:
+                        scores.remove(offer)
+        return scores
 
     def offer_search(self, offers) -> list:
 
