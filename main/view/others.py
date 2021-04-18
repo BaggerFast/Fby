@@ -3,10 +3,9 @@ import sqlite3
 import pandas as pd
 from django.shortcuts import render
 from pygments import highlight, lexers, formatters
-from main.models import Offer, Order
+from main.models import Offer
 from main.models.save_dir import OfferPattern, OrderPattern, PricePattern, OfferReportPattern
-from main.yandex.request import OfferUpdate
-from main.yandex.request import OfferUpdate, UpdateOfferList, OfferList
+from main.yandex.request import UpdateOfferList
 
 
 def get_json_data_from_file(file: str) -> dict:
