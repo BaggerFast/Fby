@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+  <p>{{ user.username }}</p>
+
+  <form method='POST'>
+    {% csrf_token %}
+    {{ password_form }}
+    <button type="submit" name="password">Save Changes</button>
+  </form>
+
+  <form method='POST'>
+    {% csrf_token %}
+    {{ email_form }}
+    <button type="submit" name="email">Save Changes</button>
+  </form>
+
+  <form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ image_form }}
+    <input name='image' type="submit" value="Submit">
+  </form>
+  <a href="/profile">Назад</a>
+
+{% endblock %}
