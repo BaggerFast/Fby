@@ -23,7 +23,7 @@ from fby_market import settings
 from main.modules import *
 import fby_market.additional_url.api.api_catalogue as catalogue
 import fby_market.additional_url.api.api_orders as orders
-from main.modules.user.profile import ProfileView
+from main.modules.user.profile import ProfileView, ProfileEditView
 
 urlpatterns = [
     path('', MainView.as_view(), name="index"),
@@ -31,6 +31,7 @@ urlpatterns = [
     path('catalogue/', include(catalogue)),
     path('orders/', include(orders)),
     path('profile', ProfileView.as_view(), name="profile"),
+    path('profile/edit', ProfileEditView.as_view(), name="profile_edit"),
     path('register/', MyRegisterFormView.as_view(), name="register"),
     path('login/', MyLoginFormView.as_view(), name='login'),
     path('logout/', login_required(LogoutView.as_view()), name='logout')

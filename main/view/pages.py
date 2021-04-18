@@ -13,3 +13,4 @@ class Page:
     create_offer = product_card = serialize('offer/product_card')
     order = serialize('orders')
     profile = serialize('profile')
+    profile_edit = serialize('profile_edit')

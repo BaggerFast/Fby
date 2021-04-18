@@ -3,5 +3,5 @@ from django.db import models
 
 
 class User(AbstractUser):
-    image = models.ImageField(verbose_name='аватарка', default=f'base/base.png', blank=True)
+    image = models.ImageField(verbose_name='аватарка', upload_to='', default=f'base/base.png', blank=True)
 
