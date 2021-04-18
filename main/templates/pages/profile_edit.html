@@ -1,29 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
   <p>{{ user.username }}</p>
-
-  <form method='POST'>
-    {% csrf_token %}
-    {{ password_form }}
-    <button type="submit" name="password">Save Changes</button>
-  </form>
-
-  <form method='POST'>
-    {% csrf_token %}
-    {{ email_form }}
-    <button type="submit" name="email">Save Changes</button>
-  </form>
-
-  <form method='POST'>
-    {% csrf_token %}
-    {{ YM_keys_form }}
-    <button type="submit" name="YM_keys">Save Changes</button>
-  </form>
-
   <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
-    {{ image_form }}
-    <input name='image' type="submit" value="Submit">
+    {% for form in base_form %}
+      <p>{{form.label}}</p>
+       <p>{{form}}</p>
+    {%endfor%}
+    <button type="submit">Save Changes</button>
+  </form>
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+    {% for form in passwd_form %}
+      <p>{{form.label}}</p>
+       <p>{{form}}</p>
+    {%endfor%}
+    <button type="submit">Change password</button>
   </form>
   <a href="/profile">Назад</a>
 

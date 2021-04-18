@@ -1,8 +1,6 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, SetPasswordForm
-from django.utils.translation import gettext, gettext_lazy as _
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm as Us
+from django.utils.translation import gettext_lazy as _
 from django import forms
-
-import main
 from main.models import User
 
 
@@ -31,59 +29,18 @@ class UserRegistrationForm(UserCreationForm, Func):
     class Meta:
         model = User
         fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image')
-        labels = {'username': 'Логин'}
+        labels = {'username': 'Логин', 'first_name': 'ФИО'}
 
 
-class CustomSetForm(forms.Form):
-    """
-        Base form that lets a user change set their params
-    """
-    def __init__(self, user, *args, **kwargs):
-        self.user = user
+class UserChangeForm(Us, Func):
+    key1 = forms.CharField(label='1й токен', required=False)
+    key2 = forms.CharField(label='2й токен', required=False)
+
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        del(self.fields['password'])
 
-    def save(self, commit):
-        if commit:
-            self.user.save()
-        return self.user
-
-
-class SetEmailForm(CustomSetForm):
-    """
-        A form that lets a user change set their email
-    """
-
-    new_email = forms.EmailField(
-        label=_("New email"),
-        widget=forms.EmailInput(attrs={'autocomplete': 'new-email'}),
-    )
-
-    def save(self, commit=True):
-        self.user.email = self.cleaned_data["new_email"]
-        return super().save(commit)
-
-
-class SetImageForm(CustomSetForm):
-    """
-        A form that lets a user change set their email
-    """
-
-    image = forms.ImageField()
-
-    def save(self, commit=True):
-        self.user.image = self.cleaned_data["image"]
-        return super().save(commit)
-
-
-class SetYMKeysForm(CustomSetForm):
-    """
-        A form that lets a user change set their YM keys
-    """
-
-    key1 = forms.CharField()
-    key2 = forms.CharField()
-
-    def save(self, commit=True):
-        key1 = self.cleaned_data['key1']
-        key2 = self.cleaned_data['key2']
-        print(key1, key2)
+    class Meta:
+        model = User
+        fields = ('first_name', 'email', 'image')
+        labels = {'username': 'Логин', 'first_name': 'ФИО'}
