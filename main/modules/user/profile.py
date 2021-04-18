@@ -26,6 +26,19 @@ class ProfileView(BaseView):
 class ProfileEditView(BaseView):
     context = {'title': 'Profile edit', 'page_name': 'Редактирование профиля'}
 
+    data_forms = {
+        'password': SetPasswordForm,
+        'email': SetEmailForm,
+        'image': SetImageForm,
+        'YM_keys': SetYMKeysForm,
+    }
+
+    def create_forms(self, user):
+        data = {}
+        for key in self.data_forms.keys():
+            data[f'{key}_form'] = self.data_forms[key](user)
+        self.context_update(data)
+
     def get_data(self, request):
         user = User.objects.get(username=request.user)
         local_context = {
@@ -50,7 +63,7 @@ class ProfileEditView(BaseView):
             form = SetEmailForm(user=request.user, data=request.POST)
         elif 'image' in request.POST:
             form = SetImageForm(user=request.user, data=request.POST, files=request.FILES)
-        elif 'ym_keys' in request.POST:
+        elif 'YM_keys' in request.POST:
             form = SetYMKeysForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.save()
