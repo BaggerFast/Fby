@@ -1,7 +1,6 @@
 import json
-import pyodbc
+import sqlite3
 import pandas as pd
-import jaydebeapi
 from django.shortcuts import render
 from pygments import highlight, lexers, formatters
 from main.models.save_dir import OfferPattern, OrderPattern, PricePattern, OfferReportPattern
@@ -47,24 +46,6 @@ def save_db_from_files(request):
 
 
 def db_to_exel():
-    """
-    db_set = jaydebeapi.connect("org.hsqldb.jdbcDriver",
-                                "",
-                                "",
-                                "db.sqlite3",)
-    """
-
-    cursor = db_set.cursor()
-    script = """
-    SELECT * FROM main_offer 
-    """
-
-    cursor.execute(script)
-
-    columns = [desc[0] for desc in cursor.description]
-    db = cursor.fetchall()
-    db_frame = pd.DataFrame(list(db), columns=columns)
-
-    writer = pd.ExcelWriter('db.xlsx')
-    db_frame.to_excel(writer, sheet_name='bar')
-    writer.save()
+    db_set = sqlite3.connect("db.sqlite3")
+    db_frame = pd.read_sql_query("SELECT * FROM main_offer", db_set)
+    db_frame.to_excel('database.xlsx')

@@ -20,6 +20,7 @@ numpy == 1.20.2
 pandas == 1.2.3
 pyodbc == 4.0.30
 JayDeBeApi == 1.2.3
+openpyxl == 3.0.7
 
 # Code style
 pycodestyle==2.7.0
