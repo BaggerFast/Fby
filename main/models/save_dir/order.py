@@ -3,16 +3,14 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import Order
+from main.models.save_dir.base import BasePattern
 from main.serializers import OrderSerializer
 
 
-class OrderPattern:
+class OrderPattern(BasePattern):
     """
     Класс, сохраняющий данные order из json в БД
     """
-
-    def __init__(self, json):
-        self.json = json
 
     def save(self, user):
         for item in self.json:

@@ -3,19 +3,17 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import Offer, Mapping
+from main.models.save_dir.base import BasePattern
 from main.serializers import OfferSerializer, MappingSerializer
 
 
-class OfferPattern:
+class OfferPattern(BasePattern):
     """Класс, сохраняющий данные offer из json в БД"""
     MAPPINGS = {
         'mapping': "BASE",
         'awaitingModerationMapping': 'AWAITING_MODERATION',
         'rejectedMapping': 'REJECTED'
     }
-
-    def __init__(self, json):
-        self.json = json
 
     @staticmethod
     def save_mapping(data: dict, offer_instance: Offer, mapping_name: str, mapping_type: str) -> None:

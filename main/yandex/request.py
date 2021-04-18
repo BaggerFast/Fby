@@ -325,3 +325,53 @@ class OfferUpdate(Requests):
         Если ERROR, далее следует список ошибок
         """
         return self.json_data
+
+
+class UpdateOfferList:
+    """
+    Класс для добавления или редактирования списка товара в YM
+
+    :param offers: товары для добавления/редактирования (список)
+    :param errors: сообщения об ошибках (список словарей вида: {shopSku: список ошибок})
+    :param success: сообщения об успехах (список словарей вида: {shopSku: 'OK'})
+    """
+    ERRORS = {
+        'BAD_REQUEST': 'у вас нет доступа к добавлению товаров в каталог'
+                       'Убедитесь, что отправляете корректный запрос',
+        'CONSTRAINT_VIOLATION': 'у товара не указаны значения параметров manufacturer-countries '
+                                'и/или url',
+        'DUPLICATE_OFFER': 'в запросе передан другой товар с тем же значением параметра shop-sku',
+        'INVALID_MARKET_SKU': 'у товара указано несуществующее значение параметра market-sku',
+        'INVALID_OFFER_ID': 'у товара длина значения параметра shop-sku превышает 80 символов '
+                            'и/или оно содержит символы, которые отличаются от печатных символов '
+                            'из таблицы ASCII',
+        'INVALID_SHOP_SKU': 'у товара указано некорректное значение параметра shop-sku',
+        'MISSING_OFFER': 'у товара нет параметра offer',
+        'NO_REQUIRED_FIELDS': 'у товара нет обязательных параметров',
+        'PROBLEMS_IN_OTHER_OFFERS': 'информация о товаре корректна, но не отправлена на модерацию '
+                                    'из‑за ошибок в других товарах'
+    }
+
+    def __init__(self, offers: List[Offer]):
+        self.offers: List[Offer] = offers
+        self.errors: List[dict] = []
+        self.success: List[dict] = []
+
+    def update_offers(self) -> None:
+        """Обновляет или добавляет товары из списка self.offers."""
+        for offer in self.offers:
+            sku = offer.shopSku
+            answer = OfferUpdate(sku).get_answer()
+            if answer['status'] == 'ERROR':
+                self.errors.append({sku: self.get_error_messages(answer)})
+            elif answer['status'] == 'OK':
+                self.success.append({sku: 'OK'})
+
+    def get_error_messages(self, answer: dict) -> List[str]:
+        """Формирует список сообщений об ошибках"""
+        error_messages = []
+        for item in answer['errors']:
+            if item['code'] in self.ERRORS:
+                item['code'] = f'{item["code"]} ({self.ERRORS[item["code"]]})'
+            error_messages.append(f'{item["code"]}: {item["message"]}')
+        return error_messages

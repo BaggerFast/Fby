@@ -3,8 +3,10 @@ import sqlite3
 import pandas as pd
 from django.shortcuts import render
 from pygments import highlight, lexers, formatters
+from main.models import Offer, Order
 from main.models.save_dir import OfferPattern, OrderPattern, PricePattern, OfferReportPattern
 from main.yandex.request import OfferUpdate
+from main.yandex.request import OfferUpdate, UpdateOfferList, OfferList
 
 
 def get_json_data_from_file(file: str) -> dict:
@@ -14,11 +16,19 @@ def get_json_data_from_file(file: str) -> dict:
     return json_object
 
 
-def orders_list(request):
+def temp_page(request):
     """Временная страница для отладки десериализации"""
-    json_object = OfferUpdate('04E129620').answer()
+    offers_list = [offer for offer in Offer.objects.all() if offer.manufacturer == 'Филиппс']
+    Offer.objects.filter(manufacturer='Филиппс').update(manufacturer='Филипс')
+    update_list = UpdateOfferList(offers_list)
+    update_list.update_offers()
+    errors = update_list.errors
+    success = update_list.success
 
-    # json_object = get_json_data_from_file("order_data.json")
+    json_object = success
+
+    # OfferList().save_json_to_file("offer_data.json")
+    # json_object = get_json_data_from_file("offer_data.json")
 
     formatted_json = json.dumps(json_object, indent=2, ensure_ascii=False)
     colorful_json = highlight(formatted_json, lexers.JsonLexer(), formatters.HtmlFormatter())
@@ -26,9 +36,8 @@ def orders_list(request):
         'highlight_style': formatters.HtmlFormatter().get_style_defs('.highlight'),
         'content': colorful_json,
     }
-    # OfferReportPattern(json=json_object['result']['shopSkus']).save(request.user)
 
-    return render(request, 'orders.html', context)
+    return render(request, 'temp.html', context)
 
 
 def save_db_from_files(request):

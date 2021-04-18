@@ -3,16 +3,14 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import OfferReport, Offer, Warehouse, Stock
+from main.models.save_dir.base import BasePattern
 from main.serializers import OfferReportSerializer, WarehouseReportSerializer
 
 
-class OfferReportPattern:
+class OfferReportPattern(BasePattern):
     """
     Класс, сохраняющий отчет по остаткам товаров на складах из json в БД
     """
-
-    def __init__(self, json):
-        self.json = json
 
     @staticmethod
     def save_warehouse(data, offer: Offer) -> Warehouse:
