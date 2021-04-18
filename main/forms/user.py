@@ -34,9 +34,23 @@ class UserRegistrationForm(UserCreationForm, Func):
         labels = {'username': 'Логин'}
 
 
-class SetEmailForm(forms.Form):
+class CustomSetForm(forms.Form):
     """
-    A form that lets a user change set their email
+        Base form that lets a user change set their params
+    """
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit):
+        if commit:
+            self.user.save()
+        return self.user
+
+
+class SetEmailForm(CustomSetForm):
+    """
+        A form that lets a user change set their email
     """
 
     new_email = forms.EmailField(
@@ -44,46 +58,30 @@ class SetEmailForm(forms.Form):
         widget=forms.EmailInput(attrs={'autocomplete': 'new-email'}),
     )
 
-    def __init__(self, user, *args, **kwargs):
-        self.user = user
-        super().__init__(*args, **kwargs)
-
     def save(self, commit=True):
         self.user.email = self.cleaned_data["new_email"]
-        if commit:
-            self.user.save()
-        return self.user
+        return super().save(commit)
 
 
-class SetImageForm(forms.Form):
+class SetImageForm(CustomSetForm):
     """
         A form that lets a user change set their email
     """
 
     image = forms.ImageField()
 
-    def __init__(self, user, *args, **kwargs):
-        self.user = user
-        super().__init__(*args, **kwargs)
-
     def save(self, commit=True):
         self.user.image = self.cleaned_data["image"]
-        if commit:
-            self.user.save()
-        return self.user
+        return super().save(commit)
 
 
-class SetYMKeysForm(forms.Form):
+class SetYMKeysForm(CustomSetForm):
     """
         A form that lets a user change set their YM keys
     """
 
     key1 = forms.CharField()
     key2 = forms.CharField()
-
-    def __init__(self, user, *args, **kwargs):
-        self.user = user
-        super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
         key1 = self.cleaned_data['key1']
