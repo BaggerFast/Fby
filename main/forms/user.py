@@ -49,11 +49,10 @@ class SetEmailForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
-        if self.is_valid():
-            self.user.email = self.data["new_email"]
-            if commit:
-                self.user.save()
-            return self.user
+        self.user.email = self.cleaned_data["new_email"]
+        if commit:
+            self.user.save()
+        return self.user
 
 
 class SetImageForm(forms.Form):
@@ -68,7 +67,25 @@ class SetImageForm(forms.Form):
         super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
-        self.user.image = self.files["image"]
+        self.user.image = self.cleaned_data["image"]
         if commit:
             self.user.save()
         return self.user
+
+
+class SetYMKeysForm(forms.Form):
+    """
+        A form that lets a user change set their YM keys
+    """
+
+    key1 = forms.CharField()
+    key2 = forms.CharField()
+
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        key1 = self.cleaned_data['key1']
+        key2 = self.cleaned_data['key2']
+        print(key1, key2)

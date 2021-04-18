@@ -14,6 +14,12 @@
     <button type="submit" name="email">Save Changes</button>
   </form>
 
+  <form method='POST'>
+    {% csrf_token %}
+    {{ YM_keys_form }}
+    <button type="submit" name="ym_keys">Save Changes</button>
+  </form>
+
   <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {{ image_form }}

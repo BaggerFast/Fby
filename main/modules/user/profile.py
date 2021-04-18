@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 from fby_market.settings import MEDIA_URL
 from django.contrib.auth.forms import SetPasswordForm
-from main.forms.user import SetEmailForm, SetImageForm, SetPasswordFormCustom, SetYMKeysForm
+from main.forms.user import SetEmailForm, SetImageForm, SetYMKeysForm
 from main.modules.base import BaseView
 from main.view import get_navbar, Page
 from main.models import User
@@ -35,6 +35,7 @@ class ProfileEditView(BaseView):
             'password_form': SetPasswordForm(user),
             'email_form': SetEmailForm(user),
             'image_form': SetImageForm(user),
+            'YM_keys_form': SetYMKeysForm(user),
         }
         self.context_update(local_context)
 
@@ -49,7 +50,8 @@ class ProfileEditView(BaseView):
             form = SetEmailForm(user=request.user, data=request.POST)
         elif 'image' in request.POST:
             form = SetImageForm(user=request.user, data=request.POST, files=request.FILES)
-
+        elif 'ym_keys' in request.POST:
+            form = SetYMKeysForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.save()
         self.get_data(request)
