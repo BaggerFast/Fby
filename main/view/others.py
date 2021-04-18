@@ -45,7 +45,5 @@ def save_db_from_files(request):
     return render(request, 'save_db.html')
 
 
-def db_to_exel():
-    db_set = sqlite3.connect("db.sqlite3")
-    db_frame = pd.read_sql_query("SELECT * FROM main_offer", db_set)
-    db_frame.to_excel('database.xlsx')
+def db_to_exel(sql_script="SELECT * FROM main_offer"):
+    pd.read_sql_query(sql=sql_script, con=sqlite3.connect("db.sqlite3")).to_excel('database.xlsx')
