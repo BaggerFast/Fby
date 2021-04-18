@@ -1,10 +1,9 @@
 import json
+import pyodbc
+import pandas as pd
 from django.shortcuts import render
 from pygments import highlight, lexers, formatters
-
-from main.models import Offer
 from main.models.save_dir import OfferPattern, OrderPattern, PricePattern, OfferReportPattern
-from main.serializers import OfferSerializer, MappingSerializer
 from main.yandex.request import OfferUpdate
 
 
@@ -44,3 +43,21 @@ def save_db_from_files(request):
     OfferReportPattern(json=json_object_report['result']['shopSkus']).save(request.user)
 
     return render(request, 'save_db.html')
+
+
+def db_to_exel():
+    db_set = pyodbc.connect(DRIVER={'SQLDriverConnect'}, DATABASE='db.sqlite3')
+    cursor = db_set.cursor()
+    script = """
+    SELECT * FROM main_offer 
+    """
+
+    cursor.execute(script)
+
+    columns = [desc[0] for desc in cursor.description]
+    db = cursor.fetchall()
+    db_frame = pd.DataFrame(list(db), columns=columns)
+
+    writer = pd.ExcelWriter('db.xlsx')
+    db_frame.to_excel(writer, sheet_name='bar')
+    writer.save()
