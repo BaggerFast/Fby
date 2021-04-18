@@ -20,7 +20,7 @@ from django.contrib.auth.views import LogoutView
 from main.modules import *
 import fby_market.additional_url.api.api_catalogue as catalogue
 import fby_market.additional_url.api.api_orders as orders
-from main.view.others import save_db_from_files, orders_list
+from main.view.others import save_db_from_files, temp_page
 
 urlpatterns = [
     path('', MainView.as_view(), name="index"),
@@ -31,5 +31,5 @@ urlpatterns = [
     path('login/', MyLoginFormView.as_view(), name='login'),
     path('logout/', login_required(LogoutView.as_view()), name='logout'),
     path('db_save/', save_db_from_files),
-    path('temp/', orders_list)
+    path('temp/', temp_page)
 ]

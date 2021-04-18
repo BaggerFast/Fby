@@ -3,14 +3,12 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models import Offer
+from main.models.save_dir.base import BasePattern
 from main.serializers.offer_price import OfferForPriceSerializer
 
 
-class PricePattern:
+class PricePattern(BasePattern):
     """Класс сохраняющий данные price из json в БД."""
-
-    def __init__(self, json: dict):
-        self.json = json
 
     def save(self, user) -> None:
         for item in self.json:
