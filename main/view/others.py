@@ -1,6 +1,7 @@
 import json
 import pyodbc
 import pandas as pd
+import jaydebeapi
 from django.shortcuts import render
 from pygments import highlight, lexers, formatters
 from main.models.save_dir import OfferPattern, OrderPattern, PricePattern, OfferReportPattern
@@ -46,7 +47,13 @@ def save_db_from_files(request):
 
 
 def db_to_exel():
-    db_set = pyodbc.connect(DRIVER={'SQLDriverConnect'}, DATABASE='db.sqlite3')
+    """
+    db_set = jaydebeapi.connect("org.hsqldb.jdbcDriver",
+                                "",
+                                "",
+                                "db.sqlite3",)
+    """
+
     cursor = db_set.cursor()
     script = """
     SELECT * FROM main_offer 
