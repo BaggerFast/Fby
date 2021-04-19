@@ -51,7 +51,7 @@ class CatalogueView(BaseOfferView):
         for field, table_index in self.fields_to_filter.items():
             filter_types[field] = {
                 'name': self.table[table_index],
-                'options': ['Фильтры', 'Лампы для автомобилей', 'Масляные фильтры', 'VOLKSWAGEN']
+                'options': set([getattr(offer, field) for offer in offers])
             }
         return filter_types
         # PLACEHOLDER END
