@@ -1,6 +1,6 @@
 import os
 
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm as Us
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm as Us, PasswordChangeForm
 from django import forms
 
 from fby_market.settings import MEDIA_ROOT
@@ -12,15 +12,19 @@ class Func:
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.execute()
+        self.turn_off()
 
-    def execute(self):
+    def turn_off(self):
         for key in self.fields.keys():
             self.fields[key].widget.attrs['class'] = 'form-control'
 
 
 class UserLoginForm(AuthenticationForm, Func):
     """Модель юзера для авторизации"""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.turn_off()
+
     class Meta:
         model = User
         fields = ('username', 'password')
@@ -29,6 +33,10 @@ class UserLoginForm(AuthenticationForm, Func):
 
 class UserRegistrationForm(UserCreationForm, Func):
     """Модель юзера для регистрации"""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.turn_off()
+
     class Meta:
         model = User
         fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image')
@@ -42,6 +50,7 @@ class UserChangeForm(Us, Func):
     def __init__(self, *args, **kwargs):
         self.del_old_image(len(args), kwargs['instance'])
         super().__init__(*args, **kwargs)
+        self.turn_off()
         del(self.fields['password'])
 
     @staticmethod
@@ -67,3 +76,10 @@ class UserChangeForm(Us, Func):
 
     def save(self, commit=True):
         return self.check_image(super().save(commit=commit))
+
+
+class UserPasswordChangeForm(PasswordChangeForm, Func):
+    """Модель юзера для смены пароля"""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.turn_off()
