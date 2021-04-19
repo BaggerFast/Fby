@@ -64,20 +64,17 @@ class CatalogueView(BaseOfferView):
 
     @staticmethod
     def filter_offers(offers, filters):
-        scores = []
+        filtered_offers = []
         for offer in offers:
-            passed = 0
-            need_to_pass = len(filters)
-            for filter_name, filter_param in filters.items():
-                if filter_param and filter_param != '':
-                    offer_param = getattr(offer, filter_name)
-                    if filter_param == offer_param:
-                        passed += 1
-                else:
-                    need_to_pass -= 1
-            if passed == need_to_pass:
-                scores.append(offer)
-        return scores
+            passed = True
+            for filter_attr, filter_value in filters.items():
+                if filter_value and len(filter_value) != 0:
+                    if filter_value != getattr(offer, filter_attr):
+                        passed = False
+                        break
+            if passed:
+                filtered_offers.append(offer)
+        return filtered_offers
 
     def offer_search(self, offers) -> list:
 
@@ -102,5 +99,12 @@ class CatalogueView(BaseOfferView):
         filters = self.filters_from_request()
         objects = self.filter_offers(offers, filters)
         objects = search_algorithm()
-        self.context_update({'search': bool(len(search)), 'count': len(objects)})
+
+        was_searching_used = len(search) != 0
+        for filter_value in filters.values():
+            if filter_value and len(filter_value) != 0:
+                was_searching_used = True
+                break
+
+        self.context_update({'search': was_searching_used, 'count': len(objects)})
         return objects
