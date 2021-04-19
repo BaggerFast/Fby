@@ -3,7 +3,6 @@
 from django.db import models
 from main.models_addon.ya_market.reports.choices import StockTypeChoices, StorageTypeChoices, InclusionTypeChoices, \
     TariffTypeChoices
-from main.models_addon.ya_market.reports.report_offer import Sku
 from main.models_addon.ya_market.offer import Offer
 from main.models_addon.ya_market.order import Warehouse
 from main.models_addon.ya_market.reports import OfferReport
@@ -59,7 +58,7 @@ class Stock(models.Model):
         related_name='stocks',
         verbose_name='Информация об остатках товара на складах.',
         on_delete=models.CASCADE,
-        null = True
+        null=True
     )
     type = models.CharField(
         max_length=11,

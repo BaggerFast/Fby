@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from main.models_addon import Offer, Url
 from main.modules.base import BaseView
 from main.view import get_navbar, Page
-from main.yandex import OfferList, OfferPrice
+from main.ya_requests import OfferList, OfferPrice
 
 
 class CatalogueView(BaseView):

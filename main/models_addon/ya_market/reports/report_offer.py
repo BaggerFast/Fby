@@ -2,7 +2,7 @@
 
 from django.db import models
 
-from main.models.ya_market import Offer, Warehouse
+from main.models_addon.ya_market import Offer, Warehouse
 
 
 class OfferReport(models.Model):

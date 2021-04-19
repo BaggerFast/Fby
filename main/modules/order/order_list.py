@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from main.models_addon import Order
 from main.view import get_navbar, Page
-from main.yandex import OrderList
+from main.ya_requests import OrderList
 from main.modules.base import BaseView
 
 

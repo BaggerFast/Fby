@@ -2,8 +2,8 @@
 
 from django.core.exceptions import ObjectDoesNotExist
 
-from main.models import OfferReport, Offer, Warehouse, Stock
-from main.models.save_dir.base import BasePattern
+from main.models_addon import OfferReport, Offer, Warehouse, Stock
+from main.models_addon.save_dir.base import BasePattern
 from main.serializers import OfferReportSerializer, WarehouseReportSerializer
 
 

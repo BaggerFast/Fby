@@ -6,10 +6,9 @@ from django.contrib import messages
 from fby_market.settings import YaMarket
 import requests
 from django.core.exceptions import ObjectDoesNotExist
-
 from main.models_addon import Price, Offer
 from main.models_addon.save_dir import *
-from main.serializers import PriceSerializer, OfferSerializer
+from main.serializers import OfferSerializer, ChangePriceSerializer
 
 
 class Requests:
@@ -125,7 +124,7 @@ class ChangePrices:
     """
     errors = []
     command = {
-        'yandex': 'yandex_change',
+        'ya_requests': 'yandex_change',
         'local': 'local_change',
         'update': 'update_DB',
         'check': 'check_prices',
@@ -133,9 +132,9 @@ class ChangePrices:
 
     def __init__(self, key: str, price_list: List = None, request=None):
         """
-        Перепнаравление на нужные функции по ключу
+        Перенаправление на нужные функции по ключу
 
-        yandex - отправка данных на YM
+        ya_requests - отправка данных на YM
         local - изменение данных локально в БД, не затрагивает YM
         update - обновить данные в БД из YM
         check - проверить цены в БД и в price_list
@@ -185,7 +184,7 @@ class LocalChangePrices:
         """
         Изменить цену локально в БД
 
-        :return: возвращает строку с ифнормацией об изменении цен для вывода в консоль
+        :return: возвращает строку с информацией об изменении цен для вывода в консоль
         """
         price_object = Price.objects.get(offer=price.offer)
         price_object.value = price.value
