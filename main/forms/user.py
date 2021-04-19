@@ -49,7 +49,7 @@ class UserChangeForm(Us, Func):
         if commit and str(user.image) != f'base/base.png':
             try:
                 os.remove((MEDIA_ROOT + '/' + str(user.image)).replace('\\', '/'))
-                os.rmdir((MEDIA_ROOT + '/user_' + str(user.id)).replace('\\', '/'))
+                os.rmdir((MEDIA_ROOT + '/' + str(user.username)).replace('\\', '/'))
             except FileNotFoundError:
                 pass
 

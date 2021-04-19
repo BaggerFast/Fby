@@ -7,7 +7,7 @@ from fby_market.settings import MEDIA_ROOT
 
 
 def get_path(instance, filename):
-    return f'user_{instance.id}/image.{filename.split(".")[-1]}'
+    return f'{instance.username}/image.{filename.split(".")[-1]}'
 
 
 class User(AbstractUser):
