@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from fby_market.settings import MEDIA_URL
 from django.contrib.auth.forms import PasswordChangeForm
-from main.forms.user import UserChangeForm
+from main.forms.user import UserChangeForm, UserPasswordChangeForm
 from main.modules.base import BaseView
 from main.view import get_navbar, Page
 from main.models import User
@@ -34,7 +34,7 @@ class ProfileEditView(BaseView):
         local_context = {
             'navbar': get_navbar(request),
             'base_form': UserChangeForm(instance=user),
-            'passwd_form': PasswordChangeForm(user=user),
+            'passwd_form': UserPasswordChangeForm(user=user),
         }
         self.context_update(local_context)
         return render(self.request, Page.profile_edit, self.context)
