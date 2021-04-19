@@ -1,5 +1,9 @@
+import os
+
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm as Us
 from django import forms
+
+from fby_market.settings import MEDIA_ROOT
 from main.models import User
 
 
@@ -36,10 +40,26 @@ class UserChangeForm(Us, Func):
     key2 = forms.CharField(label='2й токен', required=False)
 
     def __init__(self, *args, **kwargs):
+        self.del_old_image(len(args), kwargs['instance'])
         super().__init__(*args, **kwargs)
         del(self.fields['password'])
+
+    @staticmethod
+    def del_old_image(commit, user):
+        if commit and str(user.image) != f'base/base.png':
+            os.remove((MEDIA_ROOT + '/' + str(user.image)).replace('\\', '/'))
+
+    @staticmethod
+    def check_image(instance):
+        if not instance.image:
+            instance.image = f'base/base.png'
+            instance.save()
+        return instance
 
     class Meta:
         model = User
         fields = ('first_name', 'email', 'image')
         labels = {'username': 'Логин', 'first_name': 'ФИО'}
+
+    def save(self, commit=True):
+        return self.check_image(super().save(commit=commit))
