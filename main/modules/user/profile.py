@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
 from fby_market.settings import MEDIA_URL
@@ -7,6 +6,8 @@ from main.forms.user import UserChangeForm
 from main.modules.base import BaseView
 from main.view import get_navbar, Page
 from main.models import User
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 
 class ProfileView(BaseView):
@@ -42,13 +43,12 @@ class ProfileEditView(BaseView):
         print(request.POST)
         if 'first_name' in request.POST:
             form = UserChangeForm(self.request.POST, self.request.FILES, instance=user)
-            message = 'Данные успешно измененны'
+            message = 'Данные успешно изменены'
         if 'old_password' in request.POST:
             form = PasswordChangeForm(user=user, data=request.POST)
             message = 'Пароль успешно поменян'
         if form.is_valid():
             form.save()
             messages.success(request, message)
-        else:
-            return self.get(request=request)
-        return render(request, Page.profile, self.context)
+            return redirect(reverse('profile'))
+        return self.get(request=request)
