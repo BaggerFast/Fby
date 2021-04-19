@@ -47,8 +47,11 @@ class UserChangeForm(Us, Func):
     @staticmethod
     def del_old_image(commit, user):
         if commit and str(user.image) != f'base/base.png':
-            os.remove((MEDIA_ROOT + '/' + str(user.image)).replace('\\', '/'))
-            os.rmdir((MEDIA_ROOT + '/user_' + str(user.id)).replace('\\', '/'))
+            try:
+                os.remove((MEDIA_ROOT + '/' + str(user.image)).replace('\\', '/'))
+                os.rmdir((MEDIA_ROOT + '/user_' + str(user.id)).replace('\\', '/'))
+            except FileNotFoundError:
+                pass
 
     @staticmethod
     def check_image(instance):
