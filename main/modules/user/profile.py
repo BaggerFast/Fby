@@ -15,6 +15,7 @@ class ProfileView(BaseView):
 
     def get(self, request) -> HttpResponse:
         user = User.objects.get(username=request.user)
+        user.check_image()
         local_context = {
             'navbar': get_navbar(request),
             'photo': f'{MEDIA_URL}/{user.image}',
@@ -29,6 +30,7 @@ class ProfileEditView(BaseView):
 
     def get(self, request) -> HttpResponse:
         user = User.objects.get(username=request.user)
+        user.check_image()
         local_context = {
             'navbar': get_navbar(request),
             'base_form': UserChangeForm(instance=user),
