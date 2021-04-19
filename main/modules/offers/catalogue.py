@@ -46,7 +46,6 @@ class CatalogueView(BaseOfferView):
         return offers
 
     def get_filter_types(self, offers):
-        # PLACEHOLDER START
         filter_types = {}
         for field, table_index in self.fields_to_filter.items():
             filter_types[field] = {
@@ -54,7 +53,6 @@ class CatalogueView(BaseOfferView):
                 'options': set([getattr(offer, field) for offer in offers])
             }
         return filter_types
-        # PLACEHOLDER END
 
     def filters_from_request(self):
         filters = {}
