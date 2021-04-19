@@ -1,3 +1,5 @@
+"""Основная модель для хранения товара"""
+
 from django.db import models
 from main.models import User
 from main.models_addon.ya_market.offer.choices import AvailabilityChoices, MappingType

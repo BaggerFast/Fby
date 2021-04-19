@@ -1,3 +1,5 @@
+"""Choices для моделей из Offer"""
+
 from django.db import models
 
 
@@ -134,3 +136,7 @@ class VatType(models.IntegerChoices):
     five = 5, '0 %'
     six = 6, 'не облагается'
     seven = 7, '20 %'
+
+
+class CurrencyChoices(models.TextChoices):
+    RUR = 'RUR', 'Российский рубль'

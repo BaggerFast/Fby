@@ -1,14 +1,16 @@
+"""Паррерн для сохранения данных о заказах в БД"""
+
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models_addon import Order
+from main.models_addon.save_dir.base import BasePattern
 from main.serializers import OrderSerializer
 
 
-class OrderPattern:
-    """Класс, сохраняющий данные order из json в БД"""
-
-    def __init__(self, json):
-        self.json = json
+class OrderPattern(BasePattern):
+    """
+    Класс, сохраняющий данные order из json в БД
+    """
 
     def save(self, user):
         for item in self.json:

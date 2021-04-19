@@ -1,10 +1,13 @@
+"""Паррерн для сохранения данных о товаре в БД"""
+
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models_addon import Offer, Mapping
+from main.models_addon.save_dir.base import BasePattern
 from main.serializers import OfferSerializer, MappingSerializer
 
 
-class OfferPattern:
+class OfferPattern(BasePattern):
     """Класс, сохраняющий данные offer из json в БД"""
     MAPPINGS = {
         'mapping': "BASE",
@@ -12,10 +15,8 @@ class OfferPattern:
         'rejectedMapping': 'REJECTED'
     }
 
-    def __init__(self, json):
-        self.json = json
-
-    def save_mapping(self, data, offer_instance, mapping_name, mapping_type):
+    @staticmethod
+    def save_mapping(data: dict, offer_instance: Offer, mapping_name: str, mapping_type: str) -> None:
         """Сохраняет карточку товара (маппинг)
 
         Если в бд есть карточка, которой нет в json-данных, удаляет ее из бд
@@ -52,21 +53,3 @@ class OfferPattern:
                     self.save_mapping(item, offer_instance, mapping_name, mapping_type)
             else:
                 print(serializer.errors)
-
-
-class Base:
-    """ для простых данных"""
-
-    def __init__(self, data, offer, name=''):
-        self.data = data
-        self.offer = offer
-        self.name = name
-
-    def save(self) -> None:
-        """
-        Сохранить данные
-        """
-        setattr(self.offer, self.name, self.data)
-
-    def exist(self, item):
-        return self.data.get(item, None)

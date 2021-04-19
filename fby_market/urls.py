@@ -23,6 +23,7 @@ from main.modules import *
 import fby_market.additional_url.catalogue as catalogue
 import fby_market.additional_url.orders as orders
 import fby_market.additional_url.profile as profile
+from main.view.others import save_db_from_files, temp_page
 
 urlpatterns = [
     path('', MainView.as_view(), name="index"),
@@ -32,7 +33,9 @@ urlpatterns = [
     path('profile/', include(profile)),
     path('register/', MyRegisterFormView.as_view(), name="register"),
     path('login/', MyLoginFormView.as_view(), name='login'),
-    path('logout/', login_required(LogoutView.as_view()), name='logout')
+    path('logout/', login_required(LogoutView.as_view()), name='logout'),
+    path('db_save/', save_db_from_files),
+    path('temp/', temp_page)
 ]
 
 if settings.DEBUG:

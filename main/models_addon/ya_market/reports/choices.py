@@ -1,3 +1,5 @@
+"""Choices для моделей из Reports"""
+
 from django.db import models
 
 
@@ -42,7 +44,7 @@ class TariffTypeChoices(models.TextChoices):
     Типы тарифов.
     """
     AGENCY_COMMISSION = 'AGENCY_COMMISSION', 'Прием и перечисление денег от покупателя (агентское вознаграждение)'
-    FULFILLMENT = 'FULFILLMENT ', 'Обработка товара на складе Маркета'
+    FULFILLMENT = 'FULFILLMENT', 'Обработка товара на складе Маркета'
     STORAGE = 'STORAGE', 'Хранение товара на складе Маркета в течение суток'
     SURPLUS = 'SURPLUS', 'Хранение излишков на складе Маркета'
     WITHDRAW = 'WITHDRAW', 'Вывоз товара со склада Маркета'
