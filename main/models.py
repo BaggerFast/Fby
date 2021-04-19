@@ -16,4 +16,3 @@ class User(AbstractUser):
     def check_image(self):
         if not self.image or not os.path.exists((MEDIA_ROOT + '/' + str(self.image)).replace('\\', '/')):
             self.image = f'base/base.png'
-

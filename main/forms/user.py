@@ -1,8 +1,6 @@
 import os
-
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm as Us, PasswordChangeForm
 from django import forms
-
 from fby_market.settings import MEDIA_ROOT
 from main.models import User
 

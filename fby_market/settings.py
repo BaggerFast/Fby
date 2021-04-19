@@ -147,6 +147,3 @@ class YaMarket:
 
 
 AUTH_USER_MODEL = 'main.User'
-
-
-

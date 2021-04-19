@@ -42,7 +42,6 @@ class ProfileEditView(BaseView):
     def post(self, request):
         user = User.objects.get(username=request.user)
         message = form = None
-        print(request.POST)
         if 'first_name' in request.POST:
             form = UserChangeForm(self.request.POST, self.request.FILES, instance=user)
             message = 'Данные успешно изменены'

@@ -1,7 +1,4 @@
 from django.views.generic.edit import FormView
-
-from fby_market.settings import MEDIA_URL
-from main.models import User
 from main.view import get_navbar
 
 

@@ -84,7 +84,7 @@ class Multiform:
         self.__template_request(method='clear', disable=disable)
 
     def get_form_list(self, forms: list) -> list:
-        # возращает формы из списка форм (в нем лежат их классы)
+        # возвращает формы из списка форм (в нем лежат их классы)
         return [self.forms_dict[str(form())].form for form in forms]
 
     def get_for_context(self) -> dict:

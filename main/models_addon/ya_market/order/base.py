@@ -6,7 +6,6 @@ from main.models_addon.ya_market.order.choices import StatusChoices, PaymentType
     ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourseChoices, CommissionTypeChoices
 
 
-
 class DeliveryRegion(models.Model):
     """
     Регионы доставки
