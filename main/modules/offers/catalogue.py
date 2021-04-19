@@ -66,20 +66,17 @@ class CatalogueView(BaseOfferView):
     def filter_offers(offers, filters):
         scores = []
         for offer in offers:
+            passed = 0
+            need_to_pass = len(filters)
             for filter_name, filter_param in filters.items():
-                if filter_param:
+                if filter_param and filter_param != '':
                     offer_param = getattr(offer, filter_name)
-                    if offer_param == filter_param:
-                        if offer not in scores:
-                            scores.append(offer)
+                    if filter_param == offer_param:
+                        passed += 1
                 else:
-                    scores.append(offer)
-        for offer in scores:
-            for filter_name, filter_param in filters.items():
-                if filter_param or filter_param != '':
-                    offer_param = getattr(offer, filter_name)
-                    if offer_param != filter_param:
-                        scores.remove(offer)
+                    need_to_pass -= 1
+            if passed == need_to_pass:
+                scores.append(offer)
         return scores
 
     def offer_search(self, offers) -> list:
