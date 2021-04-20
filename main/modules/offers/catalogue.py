@@ -63,4 +63,3 @@ class CatalogueView(BaseView):
         self.context_update(local_context)
 
         return render(request, Page.catalogue, self.context)
-

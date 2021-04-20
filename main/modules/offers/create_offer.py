@@ -14,8 +14,7 @@ def convert_url(offer_id) -> HttpResponse:
 
 class CreateOfferView(BaseView):
     context = {'title': 'Create offer', 'page_name': 'Создать товар'}
-    form = None
-    offer_id = None
+    form = offer_id = None
     form_types = {"info": OfferMultiForm, "accommodation": PriceMultiForm}
 
     def pre_init(self, request):

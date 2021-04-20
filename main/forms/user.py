@@ -1,8 +1,6 @@
 import os
-
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm as Us, PasswordChangeForm
 from django import forms
-
 from fby_market.settings import MEDIA_ROOT
 from main.models import User
 
@@ -58,7 +56,7 @@ class UserChangeForm(Us, Func):
         if commit and str(user.image) != f'base/base.png':
             try:
                 os.remove((MEDIA_ROOT + '/' + str(user.image)).replace('\\', '/'))
-                os.rmdir((MEDIA_ROOT + '/user_' + str(user.id)).replace('\\', '/'))
+                os.rmdir((MEDIA_ROOT + '/' + str(user.username)).replace('\\', '/'))
             except FileNotFoundError:
                 pass
 

@@ -3,8 +3,8 @@
 from django.db import models
 from main.models_addon.ya_market.base import BaseWeightDimension
 from main.models_addon.ya_market.offer.base import Offer
-from main.models_addon.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
-    ProcessingStateStatus, SupplyScheduleDayChoices, VatType,  CurrencyChoices, PriceSuggestionChoices
+from main.models_addon.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType,\
+     ProcessingStateStatus, SupplyScheduleDayChoices, VatType,  CurrencyChoices, PriceSuggestionChoices
 
 
 class PriceSuggestion(models.Model):
