@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from main.models import Offer, Url
 from main.modules.offers.base_offer_view import BaseOfferView
-from main.view import get_navbar, Page
+from main.view import get_navbar, Page, Filtration
 from main.yandex import OfferList, OfferPrice
 
 
@@ -10,7 +10,10 @@ class CatalogueView(BaseOfferView):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
     models_to_save = [OfferList, OfferPrice]
     table = ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
-    fields_to_filter = {"category": 3, "vendor": 4}
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.filtration = Filtration(self.table, {"category": 3, "vendor": 4})
 
     def post(self, request) -> HttpResponse:
         for model in self.models_to_save:
@@ -26,7 +29,7 @@ class CatalogueView(BaseOfferView):
             'offers': self.reformat_offer(offer),
             'urls': Url.objects.filter(offer=offer),
             'table': self.table,
-            'filter_types': self.get_filter_types(offer).items(),
+            'filter_types': self.filtration.get_filter_types(offer).items(),
         }
         self.context_update(local_context)
 
@@ -44,35 +47,6 @@ class CatalogueView(BaseOfferView):
             except IndexError:
                 pass
         return offers
-
-    def get_filter_types(self, offers):
-        filter_types = {}
-        for field, table_index in self.fields_to_filter.items():
-            filter_types[field] = {
-                'name': self.table[table_index],
-                'options': set([getattr(offer, field) for offer in offers])
-            }
-        return filter_types
-
-    def filters_from_request(self):
-        filters = {}
-        for field, _ in self.fields_to_filter.items():
-            filters[field] = self.request.GET.get(field)
-        return filters
-
-    @staticmethod
-    def filter_offers(offers, filters):
-        filtered_offers = []
-        for offer in offers:
-            passed = True
-            for filter_attr, filter_value in filters.items():
-                if filter_value and len(filter_value) != 0:
-                    if filter_value != getattr(offer, filter_attr):
-                        passed = False
-                        break
-            if passed:
-                filtered_offers.append(offer)
-        return filtered_offers
 
     def offer_search(self, offers) -> list:
 
@@ -94,8 +68,8 @@ class CatalogueView(BaseOfferView):
         search = self.request.GET.get('input', '').lower()
         fields = ['name', 'description', 'shopSku', 'category', 'vendor']
         keywords = search.strip().split()
-        filters = self.filters_from_request()
-        objects = self.filter_offers(offers, filters)
+        filters = self.filtration.filters_from_request(self.request)
+        objects = self.filtration.filter_items(offers, filters)
         objects = search_algorithm()
 
         was_searching_used = len(search) != 0
