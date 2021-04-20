@@ -5,27 +5,27 @@
 
 Модели проекта
 ==============
-.. automodule:: main.models
+.. automodule:: main.models_addon
     :members:
 
 Основные модели
 ---------------
-.. automodule:: main.models.ya_market.offer.base
+.. automodule:: main.models_addon.ya_market.offer.base
     :members:
 
 Дополнительные модели
 ---------------------
-.. automodule:: main.models.ya_market.offer.support
+.. automodule:: main.models_addon.ya_market.offer.support
     :members:
 
 Перечислимые типы
 -----------------
-.. automodule:: main.models.ya_market.offer.choices
+.. automodule:: main.models_addon.ya_market.offer.choices
     :members:
 
 
 Представления проекта
 =====================
-.. automodule:: main.views
+.. automodule:: main.view
     :members:
 
