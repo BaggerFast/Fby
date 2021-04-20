@@ -1,5 +1,5 @@
 from django.core.management import BaseCommand
-from main.view.others import db_to_exel
+from main.view.others import db_to_excel
 
 
 class Command(BaseCommand):
@@ -10,7 +10,7 @@ class Command(BaseCommand):
         'id': 'ID',
         'username': 'Имя пользователя',
         'email': 'Электронная почта',
-        'is_superuser': 'Суперюзер',
+        'is_superuser': 'Супер-юзер',
         'marketSku': 'SKU маркета',
         'updatedAt': 'Обновлено',
         'shopSku': 'SKU магазина',
@@ -38,11 +38,14 @@ class Command(BaseCommand):
         return sql_string[:-1]
 
     def handle(self, *args, **options):
-        db_to_exel(f"SELECT{self.select_ru('username', 'email', 'is_superuser')},"
-                   f"CASE is_superuser {self.map_bool} AS '{self.columns_ru['is_superuser']}'"
-                   "FROM auth_user", 'auth_user.xlsx')
-        db_to_exel("SELECT" + self.select_ru('marketSku', 'updatedAt', 'shopSku', 'name', 'category', 'manufacturer',
-                                             'vendor', 'vendorCode', 'description', 'certificate', 'availability',
-                                             'transportUnitSize', 'minShipment', 'quantumOfSupply',
-                                             'deliveryDurationDays', 'boxCount', 'user_id') +
-                   "FROM main_offer", 'main_offer.xlsx')
+        db_to_excel(
+            'SELECT {} FROM main_offer'.format(
+                self.select_ru(
+                    'marketSku', 'updatedAt', 'shopSku', 'name', 'category', 'manufacturer',
+                    'vendor', 'vendorCode', 'description', 'certificate', 'availability',
+                    'transportUnitSize', 'minShipment', 'quantumOfSupply',
+                    'deliveryDurationDays', 'boxCount', 'user_id'
+                )
+            ),
+            'main_offer.xlsx'
+        )
