@@ -38,9 +38,9 @@ class Command(BaseCommand):
         return sql_string[:-1]
 
     def handle(self, *args, **options):
-        # db_to_exel(f"SELECT{self.select_ru('username', 'email', 'is_superuser')},"
-        #            f"CASE is_superuser {self.map_bool} AS '{self.columns_ru['is_superuser']}'"
-        #            "FROM auth_user", 'auth_user.xlsx')
+        db_to_exel(f"SELECT{self.select_ru('username', 'email', 'is_superuser')},"
+                   f"CASE is_superuser {self.map_bool} AS '{self.columns_ru['is_superuser']}'"
+                   "FROM auth_user", 'auth_user.xlsx')
         db_to_exel("SELECT" + self.select_ru('marketSku', 'updatedAt', 'shopSku', 'name', 'category', 'manufacturer',
                                              'vendor', 'vendorCode', 'description', 'certificate', 'availability',
                                              'transportUnitSize', 'minShipment', 'quantumOfSupply',
