@@ -46,14 +46,14 @@ class UserChangeForm(Us, Func):
     key2 = forms.CharField(label='2й токен', required=False)
 
     def __init__(self, *args, **kwargs):
-        self.del_old_image(len(args), kwargs['instance'])
+        self.del_old_image(args, kwargs['instance'])
         super().__init__(*args, **kwargs)
         self.turn_off()
-        del(self.fields['password'])
+        del (self.fields['password'])
 
     @staticmethod
-    def del_old_image(commit, user):
-        if commit and str(user.image) != f'base/base.png':
+    def del_old_image(args, user):
+        if args and 'image' in args[1].keys() and str(user.image) != f'base/base.png':
             try:
                 os.remove((MEDIA_ROOT + '/' + str(user.image)).replace('\\', '/'))
                 os.rmdir((MEDIA_ROOT + '/' + str(user.username)).replace('\\', '/'))
