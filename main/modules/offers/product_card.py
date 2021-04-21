@@ -38,13 +38,24 @@ class ProductPageView(BaseView):
         if 'delete' in request.POST:
             return delete()
 
+        # есть лямбда функции не забывайте
+        # ошибки: message.error('текст ошибки') прописать в своих классах сохранения
+        buttons = {
+            'offer': None,  # todo (offer) вставить функцию для сохранения текущего оффера + вывести ошибки
+            'price': None,  # todo (price) вставить функцию для сохранения текущей цены(если цена не поменялась
+                            # и вывести ошибку
+        }
+
+        btn = request.POST.get('yandex', '')
+
+        if btn in buttons.keys():
+            pass
+            # buttons[btn]()
+
         self.pre_init(request=request, pk=pk)
         self.form.set_post(disable=True, post=self.request.POST)
         if self.form.is_valid():
             self.form.save()
-            messages.success(self.request, 'Редактирование прошло успешно!')
-            # todo save on button
-            # YandexChangePrices(price_list=list(Price.objects.filter(offer_id=pk)))
             self.disable = True
         else:
             self.disable = False

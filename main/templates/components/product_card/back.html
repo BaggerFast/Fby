@@ -5,13 +5,15 @@
   {% if not create %}
   {% ifequal content 'info' %}
     <form class="mt-4" method="post">
+      {% csrf_token %}
       <input type="text" class="form-control d-none" name="yandex" value="offer">
-      <button type="button" class="btn btn-danger">Отправить товар на Яндекс</button>
+      <button type="submit" class="btn btn-danger">Отправить товар на Яндекс</button>
     </form>
   {% else %}
     <form class="mt-4" method="post">
+      {% csrf_token %}
       <input type="text" class="form-control d-none" name="yandex" value="price">
-      <button type="button" class="btn btn-danger">Отправить цену на Яндекс</button>
+      <button type="submit" class="btn btn-danger">Отправить цену на Яндекс</button>
     </form>
   {% endifequal %}
   {% endif %}
