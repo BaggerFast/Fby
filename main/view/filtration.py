@@ -8,7 +8,7 @@ class Filtration:
         for field, table_index in self.fields_to_filter.items():
             filter_types[field] = {
                 'name': self.attribute_names[table_index],
-                'options': set([getattr(item, field) for item in items])
+                'options': sorted(list(set([getattr(item, field) for item in items])))
             }
         return filter_types
 
