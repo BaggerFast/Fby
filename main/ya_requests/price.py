@@ -29,7 +29,7 @@ class ChangePrices:
         'check': 'check_prices',
     }
 
-    def __init__(self, key: str, price_list: List = None, request=None):
+    def __init__(self, keys: List[str], price_list: List = None, request=None):
         """
         Перенаправление на нужные функции по ключу
 
@@ -40,7 +40,8 @@ class ChangePrices:
         """
         self.price_list: List = price_list
         self.request = request
-        getattr(self, self.command[key])()
+        for key in keys:
+            getattr(self, self.command[key])()
 
     def yandex_change(self) -> None:
         """Изменение цен на YM."""

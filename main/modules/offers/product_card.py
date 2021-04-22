@@ -38,8 +38,7 @@ class ProductPageView(BaseView):
 
         # todo добавить price в функцию
         def update_price(price):
-            ChangePrices('ya_requests', price_list=[price])
-            ChangePrices('update', request=request)
+            ChangePrices(['ya_requests', 'update'], price_list=[price], request=request)
             if price != Price.objects.get(offer_id=pk):
                 messages.error(request, 'Данные о товаре не изменились')
 
