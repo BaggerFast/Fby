@@ -19,8 +19,8 @@
         <tr>
           <td>{{ order.order_id }}</td>
           <td>{{ order.creationDate }}</td>
-          <td>SWAG</td>
-          <td>{{ order.status }}</td>
+          <td>-</td>
+          <td>{{ order.get_status_display|capfirst }}</td>
         </tr>
       {% endfor %}
     </table>

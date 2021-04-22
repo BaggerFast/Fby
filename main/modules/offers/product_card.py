@@ -1,13 +1,15 @@
-from pprint import pprint
 from django.contrib import messages
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
+from django.urls import reverse
+from django.shortcuts import redirect
+from main.models_addon import Offer
 from main.modules.offers import OfferMultiForm, PriceMultiForm
-from main.modules.offers.base_offer_view import BaseOfferView
+from main.modules.base import BaseView
 from main.view import Page, get_navbar
 
 
-class ProductPageView(BaseOfferView):
+class ProductPageView(BaseView):
     context = {'title': 'Product card', 'page_name': 'Карточка товара'}
     form = None
     disable: bool = False
@@ -26,8 +28,17 @@ class ProductPageView(BaseOfferView):
         return render(self.request, Page.product_card, self.context)
 
     def post(self, request, pk) -> HttpResponse:
+
+        def delete() -> HttpResponse:
+            offer = Offer.objects.get(id=pk)
+            messages.success(request, f'Товар "{offer.name}" успешно удален')
+            offer.delete()
+            return redirect(reverse('catalogue_list'))
+
+        if 'delete' in request.POST:
+            return delete()
+
         self.pre_init(request=request, pk=pk)
-        pprint(request.POST)
         self.form.set_post(disable=True, post=self.request.POST)
         if self.form.is_valid():
             self.form.save()

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+  <p>{{ user.username }}</p>
+  <form enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {% for form in base_form %}
+      <div class="mb-3">
+        <label>
+          {% ifequal form.label 'Аватарка' %}
+              {{ form.label }}
+              <br>
+              {{ form }}
+          {% else %}
+            {{ form.label }}
+            {{ form }}
+          {% endifequal %}
+        </label>
+      </div>
+    {%endfor%}
+    <button class="btn btn-primary" type="submit">Сохранить</button>
+  </form>
+  <hr>
+  <form class="mb-3" method="post">
+    {% csrf_token %}
+    {% for form in passwd_form %}
+      <div class="mb-3">
+        <label>
+          {{ form.label }}
+          {{ form }}
+        </label>
+      </div>
+    {%endfor%}
+    <button class="btn btn-primary" type="submit">Сохранить</button>
+  </form>
+  <a class="btn btn-primary mb-5" href="{% url 'profile' %}">Назад</a>
+
+{% endblock %}
