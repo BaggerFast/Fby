@@ -3,10 +3,11 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.shortcuts import redirect
-from main.models_addon import Offer
+from main.models_addon import Offer, Price
 from main.modules.offers import OfferMultiForm, PriceMultiForm
 from main.modules.base import BaseView
 from main.view import Page, get_navbar
+from main.ya_requests.price import ChangePrices
 
 
 class ProductPageView(BaseView):
@@ -35,6 +36,13 @@ class ProductPageView(BaseView):
             offer.delete()
             return redirect(reverse('catalogue_list'))
 
+        # todo добавить price в функцию
+        def update_price(price):
+            ChangePrices('ya_requests', price_list=[price])
+            ChangePrices('update', request=request)
+            if price != Price.objects.get(offer_id=pk):
+                messages.error(request, 'Данные о товаре не изменились')
+
         if 'delete' in request.POST:
             return delete()
 
@@ -42,8 +50,7 @@ class ProductPageView(BaseView):
         # ошибки: message.error('текст ошибки') прописать в своих классах сохранения
         buttons = {
             'offer': None,  # todo (offer) вставить функцию для сохранения текущего оффера + вывести ошибки
-            'price': None,  # todo (price) вставить функцию для сохранения текущей цены(если цена не поменялась
-                            # и вывести ошибку
+            'price': update_price
         }
 
         btn = request.POST.get('yandex', '')

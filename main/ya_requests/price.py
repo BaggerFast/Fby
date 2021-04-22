@@ -50,7 +50,7 @@ class ChangePrices:
         """Локальное изменение цен."""
         LocalChangePrices(self.price_list)
 
-    def update_data_base(self) -> None:
+    def update_DB(self) -> None:
         """Обновление БД."""
         OfferPrice().save(self.request)
 
