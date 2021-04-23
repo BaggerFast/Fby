@@ -52,6 +52,13 @@ class Order(models.Model):
         null=True
     )
 
+    @property
+    def price(self):
+        total_price = 0
+        for item in self.items.all():
+            for price in item.prices.all():
+                total_price += price.total
+        return total_price
 
 class Warehouse(models.Model):
     """

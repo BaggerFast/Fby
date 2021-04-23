@@ -74,6 +74,10 @@ class Price(models.Model):
                               choices=VatType.choices
                               )
 
+    def clean(self):
+        pass
+        #  todo save as discountBase > 0 and > value, else error
+
 
 class ManufacturerCountry(models.Model):
     """
