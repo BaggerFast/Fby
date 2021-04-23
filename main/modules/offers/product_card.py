@@ -37,10 +37,10 @@ class ProductPageView(BaseView):
             return redirect(reverse('catalogue_list'))
 
         # todo добавить price в функцию
-        def update_price(price):
+        def update_price():
+            price = Price.objects.get(offer_id=pk)
             ChangePrices(['ya_requests', 'update'], price_list=[price], request=request)
-            if price != Price.objects.get(offer_id=pk):
-                messages.error(request, 'Данные о товаре не изменились')
+            return redirect(reverse('catalogue_list'))
 
         if 'delete' in request.POST:
             return delete()
@@ -53,10 +53,8 @@ class ProductPageView(BaseView):
         }
 
         btn = request.POST.get('yandex', '')
-
         if btn in buttons.keys():
-            pass
-            # buttons[btn]()
+            return buttons[btn]()
 
         self.pre_init(request=request, pk=pk)
         self.form.set_post(disable=True, post=self.request.POST)

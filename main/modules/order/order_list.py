@@ -21,7 +21,6 @@ class OrderListView(BaseView):
         order = Order.objects.filter(user=request.user)
         local_context = {
             'navbar': get_navbar(request),
-            'count': order.count(),
             'orders': order,
             'table': ["Номер заказа", "Дата заказа", "Цена, ₽", "Статус"]
         }
