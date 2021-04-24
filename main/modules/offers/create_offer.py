@@ -9,7 +9,7 @@ from main.view import get_navbar, Page
 
 
 def convert_url(offer_id) -> HttpResponse:
-    return redirect(reverse('create_offer') + '?content=accommodation&id=' + str(offer_id))
+    return redirect(reverse('create_offer') + f'?content=accommodation&id={offer_id}')
 
 
 class CreateOfferView(BaseView):

@@ -11,11 +11,11 @@ class FormParser:
         self.form: ModelForm
 
     @staticmethod
-    def __get_or_create(model: models.Model, attrs: dict) -> models.Model:
+    def __get_or_create(model, attrs: dict) -> models.Model:
         try:
             mod = model.objects.filter(**attrs)[0]
         except IndexError:
-            mod = model.objects.create(**attrs)
+            mod = model(**attrs)
         return mod
 
     def __template_request(self, disable: bool, model=None, attrs: dict = None, post=None):
