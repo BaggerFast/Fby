@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from main.models_addon import Offer, Url
+from main.models_addon import Offer
 from main.modules.base import BaseView
 from main.view import get_navbar, Page
 from main.ya_requests import OfferList, OfferPrice
@@ -11,15 +11,6 @@ class CatalogueView(BaseView):
     models_to_save = [OfferList, OfferPrice]
 
     def reformat_offer(self, offer) -> list:
-        def append_images() -> list:
-            offers = offer
-            for i in range(len(offers)):
-                try:
-                    setattr(offers[i], 'image', Url.objects.filter(offer=offers[i])[0].url)
-                except IndexError:
-                    pass
-            return offers
-
         def offer_search(offers) -> list:
             def search_algorithm():
                 if not len(keywords):
@@ -43,7 +34,7 @@ class CatalogueView(BaseView):
             self.context_update({'search': bool(len(search)), 'count': len(objects)})
             return objects
 
-        return offer_search(append_images())
+        return offer_search(offer)
 
     def post(self, request) -> HttpResponse:
         for model in self.models_to_save:
@@ -55,9 +46,7 @@ class CatalogueView(BaseView):
         offer = Offer.objects.filter(user=request.user)
         local_context = {
             'navbar': get_navbar(request),
-            'count': offer.count(),
             'offers': self.reformat_offer(offer=offer),
-            'urls': Url.objects.filter(),
             'table': ["Название", "SKU", "Категория", "Продавец", "Картинка"]
         }
         self.context_update(local_context)

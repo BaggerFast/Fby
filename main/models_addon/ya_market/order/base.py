@@ -1,4 +1,4 @@
-"""Модели для хранения инфрмации о заказах товаров на ЯМ"""
+"""Модели для хранения информации о заказах товаров на ЯМ"""
 
 from main.models import User
 from django.db import models
@@ -51,6 +51,14 @@ class Order(models.Model):
         verbose_name='Информация о регионе доставки',
         null=True
     )
+
+    @property
+    def price(self):
+        full_price = 0
+        for item in self.items.all():
+            for price in item.prices.all():
+                full_price += price.total
+        return full_price
 
 
 class Warehouse(models.Model):

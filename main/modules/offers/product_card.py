@@ -5,10 +5,11 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.shortcuts import redirect
-from main.models_addon import Offer
+from main.models_addon import Offer, Price
 from main.modules.offers import OfferMultiForm, PriceMultiForm
 from main.modules.base import BaseView
 from main.view import Page, get_navbar
+from main.ya_requests.price import ChangePrices
 from main.ya_requests.request import UpdateOfferList
 
 
@@ -47,7 +48,14 @@ class ProductPageView(BaseView):
             messages.success(request, f'Товар "{offer.name}" успешно удален')
             return redirect(reverse('catalogue_list'))
 
-        def save_to_ym() -> None:
+        # todo добавить price в функцию
+        def update_price() -> HttpResponse:
+            """"Обработка запроса на изменение цены на Яндексе"""
+            price = Price.objects.get(offer_id=pk)
+            ChangePrices(['ya_requests', 'update'], price_list=[price], request=request)
+            return redirect(reverse('catalogue_list'))
+
+        def save_to_ym() -> HttpResponse:
             """Обработка запроса на обновление или сохранение товара на Яндексе"""
             offer = Offer.objects.get(id=pk)
             sku = offer.shopSku
@@ -62,23 +70,19 @@ class ProductPageView(BaseView):
                 messages.error(request, error_message)
                 for error_text in update_request.errors[sku]:
                     messages.error(request, error_text)
+            return self.get(request, pk)
 
         if 'delete' in request.POST:
             return delete()
 
-        # есть лямбда функции не забывайте
-        # ошибки: message.error('текст ошибки') прописать в своих классах сохранения
         buttons = {
             'offer': save_to_ym,
-            'price': None,  # todo (price) вставить функцию для сохранения текущей цены(если цена не поменялась
-                            # и вывести ошибку
+            'price': update_price
         }
 
         btn = request.POST.get('yandex', '')
-
         if btn in buttons.keys():
-            buttons[btn]()
-            self.get(request, pk)
+            return buttons[btn]()
 
         self.pre_init(request=request, pk=pk)
         self.form.set_post(disable=True, post=self.request.POST)
