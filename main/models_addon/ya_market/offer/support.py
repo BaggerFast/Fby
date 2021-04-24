@@ -74,6 +74,10 @@ class Price(models.Model):
                               choices=VatType.choices
                               )
 
+    def clean(self):
+        pass
+        #  todo save as discountBase > 0 and > value, else error
+
 
 class ManufacturerCountry(models.Model):
     """
@@ -122,7 +126,7 @@ class CustomsCommodityCode(models.Model):
     """
     Модель для хранения кода ТН ВЭД товара.
     """
-    offer = models.OneToOneField(
+    offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='customsCommodityCodes',

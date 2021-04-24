@@ -1,4 +1,5 @@
 """Формирование запросов в YM для получения данных и сохранения их в БД"""
+import json
 from typing import List
 from django.core.exceptions import ObjectDoesNotExist
 from main.models_addon import Offer
@@ -97,10 +98,11 @@ class OfferUpdate(Requests):
     def get_offer_mapping_entry(offer: Offer) -> dict:
         """Возвращает элемент словаря для товара offer"""
         offer_serializer = OfferSerializer(offer)
-        offer_data = offer_serializer.data
+        offer_data = json.loads(json.dumps(offer_serializer.data, ensure_ascii=False))
         offer_data = {key: value for key, value in offer_data.items() if value and key != 'processingState'}
 
         offer_mapping_entry = {'offer': offer_data}
+        print(offer_mapping_entry)
 
         offer_mapping = offer.mapping_set.filter(mappingType='BASE').first()
         if offer_mapping:
@@ -152,8 +154,8 @@ class UpdateOfferList:
 
     def __init__(self, offers: List[Offer]):
         self.offers: List[Offer] = offers
-        self.errors: List[dict] = []
-        self.success: List[dict] = []
+        self.errors: dict = dict()
+        self.success: dict = dict()
 
     def update_offers(self) -> None:
         """Обновляет или добавляет товары из списка self.offers."""
@@ -161,9 +163,9 @@ class UpdateOfferList:
             sku = offer.shopSku
             answer = OfferUpdate(sku).get_answer()
             if answer['status'] == 'ERROR':
-                self.errors.append({sku: self.get_error_messages(answer)})
+                self.errors[sku] = self.get_error_messages(answer)
             elif answer['status'] == 'OK':
-                self.success.append({sku: 'OK'})
+                self.success[sku] = 'OK'
 
     def get_error_messages(self, answer: dict) -> List[str]:
         """Формирует список сообщений об ошибках"""
