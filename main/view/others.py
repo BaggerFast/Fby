@@ -16,9 +16,13 @@ def get_json_data_from_file(file: str) -> dict:
 
 
 def temp_page(request):
-    """Временная страница для отладки десериализации"""
-    offers_list = [offer for offer in Offer.objects.all() if offer.manufacturer == 'Филиппс']
-    Offer.objects.filter(manufacturer='Филиппс').update(manufacturer='Филипс')
+    """
+    Временная страница для отладки десериализации.
+
+    Будет удалена перед окончательным релизом.
+    """
+    offers_list = [Offer.objects.all().get(shopSku='04E129620')]
+    # Offer.objects.filter(manufacturer='Филиппс').update(manufacturer='Филипс')
     update_list = UpdateOfferList(offers_list)
     update_list.update_offers()
     errors = update_list.errors
