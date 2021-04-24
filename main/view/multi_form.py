@@ -1,4 +1,4 @@
-"""Базовый класс для мультиформ"""
+"""Базовый класс для набора форм"""
 
 import random
 import string
@@ -9,7 +9,7 @@ from rest_framework.utils import model_meta
 
 
 class FormParser:
-    """Парсер для одной формы из мультиформ"""
+    """Парсер для одной формы из набора форм"""
     def __init__(self, base_form):
         self.base_form = base_form
         self.form: ModelForm
@@ -58,7 +58,7 @@ class Multiform:
         return ''.join(random.choice(string.ascii_lowercase) for _ in range(5))
 
     def context(self, accordions: List, forms: List[List]) -> dict:
-        """Прдготовка контекста из списка форм"""
+        """Подготовка контекста из списка форм"""
         return dict(zip(accordions, [[self.__random_id(), form] for form in forms]))
 
     def __template_request(self, disable: bool, post=None, method: str = None,
@@ -77,7 +77,7 @@ class Multiform:
             self.forms_dict.update({str(data['form']()): form})
 
     def set_forms(self, pk) -> None:
-        """Список форм (устанавливается индивидуально для каждой мультиформы)"""
+        """Список форм (устанавливается индивидуально для каждой набора форм)"""
         raise NotImplementedError
 
     def set_post(self, disable: bool, post) -> None:
@@ -97,7 +97,7 @@ class Multiform:
         return [self.forms_dict[str(form())].form for form in forms]
 
     def get_for_context(self) -> dict:
-        """Подготовка контекста из списка форм (индивидуально для каждой мультиформы)."""
+        """Подготовка контекста из списка форм (индивидуально для каждой набора форм)."""
         raise NotImplementedError
 
     def is_valid(self) -> bool:
