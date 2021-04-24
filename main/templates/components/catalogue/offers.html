@@ -4,7 +4,7 @@
     <a href="{% url 'catalogue_list' %}" class="btn-link">← Назад</a>
   {% endif %}
   <div class="col">
-    <span class="badge bg-secondary mb-4">{{ offers | length }} товаров</span>
+    <span class="badge bg-secondary mb-4">{{ offers|length }} товаров</span>
     <table class="table table-hover table-borderless">
       {% include 'components/catalogue/thead.html' %}
       {% include 'components/catalogue/tbody.html' %}

@@ -126,7 +126,7 @@ class CustomsCommodityCode(models.Model):
     """
     Модель для хранения кода ТН ВЭД товара.
     """
-    offer = models.OneToOneField(
+    offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='customsCommodityCodes',
