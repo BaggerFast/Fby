@@ -23,7 +23,7 @@ def temp_page(request):
     """
     offers_list = [Offer.objects.all().get(shopSku='04E129620')]
     # Offer.objects.filter(manufacturer='Филиппс').update(manufacturer='Филипс')
-    update_list = UpdateOfferList(offers_list)
+    update_list = UpdateOfferList(offers_list, request)
     update_list.update_offers()
     errors = update_list.errors
     success = update_list.success

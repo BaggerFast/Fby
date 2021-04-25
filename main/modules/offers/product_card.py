@@ -59,7 +59,7 @@ class ProductPageView(BaseView):
             """Обработка запроса на обновление или сохранение товара на Яндексе"""
             offer = Offer.objects.get(id=pk)
             sku = offer.shopSku
-            update_request = UpdateOfferList([offer])
+            update_request = UpdateOfferList([offer], request)
             update_request.update_offers()
 
             if sku in update_request.success:

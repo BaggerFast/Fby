@@ -13,7 +13,7 @@ class OrderListView(BaseView):
 
     def post(self, request) -> HttpResponse:
         for model in self.models_to_save:
-            if not model().save(request=request):
+            if not model(request=request).save():
                 break
         return self.get(request=request)
 
