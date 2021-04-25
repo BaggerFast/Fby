@@ -1,7 +1,6 @@
 import json
 import requests
 from django.contrib import messages
-from fby_market.settings import YaMarket
 
 
 class Requests:
