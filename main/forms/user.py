@@ -37,14 +37,11 @@ class UserRegistrationForm(UserCreationForm, Func):
 
     class Meta:
         model = User
-        fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image')
-        labels = {'username': 'Логин', 'first_name': 'ФИО'}
+        fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image', 'client_id', 'token')
+        labels = {'username': 'Логин', 'first_name': 'ФИО', 'token': 'YM token'}
 
 
 class UserChangeForm(Us, Func):
-    key1 = forms.CharField(label='1й токен', required=False)
-    key2 = forms.CharField(label='2й токен', required=False)
-
     def __init__(self, *args, **kwargs):
         self.del_old_image(args, kwargs['instance'])
         super().__init__(*args, **kwargs)
@@ -69,8 +66,8 @@ class UserChangeForm(Us, Func):
 
     class Meta:
         model = User
-        fields = ('first_name', 'email', 'image')
-        labels = {'username': 'Логин', 'first_name': 'ФИО'}
+        fields = ('first_name', 'email', 'image', 'client_id', 'token')
+        labels = {'username': 'Логин', 'first_name': 'ФИО', 'token': 'YM token'}
 
     def save(self, commit=True):
         return self.check_image(super().save(commit=commit))
