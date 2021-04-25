@@ -37,7 +37,7 @@ class UserRegistrationForm(UserCreationForm, Func):
 
     class Meta:
         model = User
-        fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image', 'client_id', 'token')
+        fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image', 'client_id', 'token', 'shop_id')
         labels = {'username': 'Логин', 'first_name': 'ФИО', 'token': 'YM token'}
 
 
@@ -66,7 +66,7 @@ class UserChangeForm(Us, Func):
 
     class Meta:
         model = User
-        fields = ('first_name', 'email', 'image', 'client_id', 'token')
+        fields = ('first_name', 'email', 'image', 'client_id', 'token', 'shop_id')
         labels = {'username': 'Логин', 'first_name': 'ФИО', 'token': 'YM token'}
 
     def save(self, commit=True):
