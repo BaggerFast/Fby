@@ -15,7 +15,6 @@ class User(AbstractUser):
     token = models.CharField(verbose_name='YM token', max_length=255, default='')
     shop_id = models.CharField(verbose_name='Shop ID', max_length=255, default='')
 
-
     @property
     def get_image(self):
         return f'{MEDIA_URL}/{self.image}'
