@@ -44,3 +44,8 @@ main {
     text-align: center;
     margin: 10px;
 }
+
+.active_btn {
+    background-color: darkgrey;
+}
+
