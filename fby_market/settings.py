@@ -135,6 +135,19 @@ STATICFILES_DIRS = [
     'static'
 ]
 
+FIXTURE_DIRS = [
+    os.path.join(BASE_DIR, 'main', 'tests','fixtures'),
+    ]
+
+Base_URl = "http://127.0.0.1:8000/"
+
+Testing_User_Prarmiters = {
+    "name" : "vasya",
+    "password" : "promprog",
+    "email" : "1@abc.net",
+    }
+
+
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }

@@ -16,6 +16,11 @@ markdown == 3.3.4
 django-filter == 2.4.0
 numpy == 1.20.2
 
+#Tests
+pytest = 6.2.3
+selenium = 3.141.0
+chromedriver-py = 91.0.4472.19
+
 # Analytics
 pandas == 1.2.3
 
