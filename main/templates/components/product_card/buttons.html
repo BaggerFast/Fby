@@ -4,8 +4,8 @@
       <div class="buttons-group">
         <input id="content" type="text" class="form-control d-none" name="content" value="info">
         <input id="id" type="text" class="form-control d-none" name="id" value="{{ id }}">
-        <button id="info" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Данные о товаре</button>
-        <button id="accommodation" type="submit" class="btn btn-light btn-lg" onclick="inputEdit(this.id)">Управление размещением</button>
+        <button id="info" type="submit" class="btn btn-light btn-lg {% ifequal content 'info'%}active_btn{% endifequal %}" onclick="inputEdit(this.id)">Данные о товаре</button>
+        <button id="accommodation" type="submit" class="btn btn-light btn-lg {% ifequal content 'accommodation'%}active_btn{% endifequal %}" onclick="inputEdit(this.id)">Управление размещением</button>
         <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModalCenter">
           Удалить
         </button>
