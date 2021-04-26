@@ -2,7 +2,8 @@ from django.test import LiveServerTestCase
 from django.test import Client
 from django.urls import reverse
 from selenium import webdriver
-from django.conf import settings
+from django.conf import settings 
+from fby_market.settings import Base_URl, Testing_User_Prarmiters
 class CookieCreate():
     "Создаёт cookie файл сессии с залогинииым пользователем к странице предастовляющей доступ только авторизованым поользователям"
 
