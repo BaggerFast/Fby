@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\fby_market",
+    "\\fby_market\\additional_url",
+    "\\main",
+    "\\main\\management",
+    "\\main\\management\\commands",
+    "\\main\\modules",
+    "\\main\\modules\\offers",
+    "\\main\\tests",
+    "\\main\\tests\\Tests_valeus",
+    "\\main\\view"
+  ],
+  "SelectedNode": "\\main\\tests\\test_commodity_transactions.py",
+  "PreviewInSolutionExplorer": false
+}
