@@ -111,6 +111,7 @@ class Multiform:
         """Сохранение всех форм, если они не пустые."""
         for key, form_parser in self.forms_dict.items():
             if form_parser.form.is_valid():
+                print(form_parser.form)
                 instance = form_parser.form.save(commit=False)
                 if not_empty(instance):
                     for field in form_parser.attrs.keys():

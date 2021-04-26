@@ -47,7 +47,7 @@ class CreateOfferView(BaseView):
             offer = Offer.objects.get(pk=self.offer_id)
         except ObjectDoesNotExist:
             offer = Offer.objects.create(user=self.request.user)
-            self.offer_id = offer.id
+            self.offer_id = offer.pk
         self.form.set_forms(self.offer_id)
         self.form.set_post(disable=True, post=request.POST)
         if self.form.is_valid():

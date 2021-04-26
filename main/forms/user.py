@@ -1,6 +1,5 @@
 import os
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm as Us, PasswordChangeForm
-from django import forms
 from fby_market.settings import MEDIA_ROOT
 from main.models import User
 
@@ -38,7 +37,7 @@ class UserRegistrationForm(UserCreationForm, Func):
     class Meta:
         model = User
         fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image', 'client_id', 'token', 'shop_id')
-        labels = {'username': 'Логин', 'first_name': 'ФИО', 'token': 'YM token'}
+        labels = {'username': 'Логин', 'first_name': 'ФИО'}
 
 
 class UserChangeForm(Us, Func):
@@ -67,7 +66,7 @@ class UserChangeForm(Us, Func):
     class Meta:
         model = User
         fields = ('first_name', 'email', 'image', 'client_id', 'token', 'shop_id')
-        labels = {'username': 'Логин', 'first_name': 'ФИО', 'token': 'YM token'}
+        labels = {'username': 'Логин', 'first_name': 'ФИО'}
 
     def save(self, commit=True):
         return self.check_image(super().save(commit=commit))
