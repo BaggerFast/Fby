@@ -79,7 +79,7 @@ class testCreateCommodity(LiveServerTestCase):
             "GuaranteePeriod-comment", "length", "width", "height", "weight", "transportUnitSize", "minShipment",
             "quantumOfSupply", "deliveryDurationDays", "id_boxCount",
                     ])
-        ID_list_second = add_id(["id_currencyId", "id_discountBase", "id_value", "id_vat", "id_availability"])
+        ID_list_second = add_id(["currencyId", "discountBase", "value", "vat", "availability"])
         for TestValeus in TestCreateCommodityValeus:
            with self.setUp():
                 form_values_placeholder(ID_list_second, CTT_valeus.TestValeus[0])
