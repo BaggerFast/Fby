@@ -11,21 +11,23 @@ def get_path(instance, filename):
 
 class User(AbstractUser):
     image = models.ImageField(verbose_name='аватарка', upload_to=get_path, default=f'base/base.png', blank=True)
-    client_id = models.CharField(verbose_name='Client ID', max_length=255, default='')
-    token = models.CharField(verbose_name='YM token', max_length=255, default='')
-    shop_id = models.CharField(verbose_name='Shop ID', max_length=255, default='')
+    client_id = models.CharField(verbose_name='Client ID', max_length=255, default='', blank=True)
+    token = models.CharField(verbose_name='YM token', max_length=255, default='', blank=True)
+    shop_id = models.CharField(verbose_name='Shop ID', max_length=255, default='', blank=True)
 
     @property
     def get_image(self):
         return f'{MEDIA_URL}/{self.image}'
 
     def clean(self):
-        if self.image and self.client_id and self.token and self.shop_id:
-            return True
+        data = {self.client_id, self.token, self.shop_id}
+        if len(data) == 1:
+            if '' not in data:
+                raise ValidationError('Все ключи одинаковые')
+        elif len(data) < 3 or (len(data) == 3 and '' in data):
+            raise ValidationError('Введите все 3 ключа')
         if not self.image or not os.path.exists((MEDIA_ROOT + '/' + str(self.image)).replace('\\', '/')):
             self.image = f'base/base.png'
-        if not (self.client_id and self.token and self.shop_id):
-            raise ValidationError('Введите все данные')
 
     @staticmethod
     def debug_mod_keys():

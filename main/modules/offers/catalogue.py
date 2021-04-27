@@ -43,10 +43,9 @@ class CatalogueView(BaseView):
         return self.get(request=request)
 
     def get(self, request) -> HttpResponse:
-        offer = Offer.objects.filter(user=request.user)
         local_context = {
             'navbar': get_navbar(request),
-            'offers': self.reformat_offer(offer=offer),
+            'offers': self.reformat_offer(offer=Offer.objects.filter(user=request.user)),
             'table': ["Название", "SKU", "Категория", "Продавец", "Картинка"]
         }
         self.context_update(local_context)
