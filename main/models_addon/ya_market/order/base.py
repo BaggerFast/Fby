@@ -61,8 +61,7 @@ class Order(models.Model):
         return total_price
 
     @property
-    def items(self):
-        print(self.items.all())
+    def get_items(self):
         return self.items.all()
 
 

@@ -33,9 +33,10 @@ class OrderPageView(BaseView):
     context = {'title': 'Order', 'page_name': 'Заказы'}
 
     def get(self, request, pk) -> HttpResponse:
+        order = get_object_or_404(Order, pk=pk)
         local_context = {
             'navbar': get_navbar(request),
-            'order': get_object_or_404(Order, pk=pk),
+            'order': order,
         }
         self.context_update(local_context)
         return render(request, Page.order_page, self.context)
