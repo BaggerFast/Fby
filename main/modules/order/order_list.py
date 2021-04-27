@@ -19,7 +19,6 @@ class OrderListView(BaseView):
 
     def get(self, request) -> HttpResponse:
         order = Order.objects.filter(user=request.user)
-        print(len(order))
         local_context = {
             'navbar': get_navbar(request),
             'orders': order,

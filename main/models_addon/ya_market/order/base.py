@@ -60,6 +60,11 @@ class Order(models.Model):
                 total_price += price.total
         return total_price
 
+    @property
+    def items(self):
+        return self.items.all()
+
+
 class Warehouse(models.Model):
     """
     Склад, на котором хранится товар.
