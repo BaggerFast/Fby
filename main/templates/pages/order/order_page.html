@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
   <span class="badge bg-primary">{{ order.creationDate }}</span>
-  <span class="badge bg-secondary">{{ order.status }}</span>
+  <span class="badge bg-dark">{{ order.get_status_display|capfirst }}</span>
   <br>
-  {% for item in order.get_items %}
-    {{ item.offerName }}
-    {{ item.price }}
-    {{ item.total_price }}
-  {% endfor %}
+  <div class="row">
+    {% for item in order.get_items %}
+      <div class="col-sm-6">
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.offerName }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ item.price }}₽, {{ item.total_price }}₽</h6>
+            <p class="card-text">{{ item.description }}</p>
+            <a target="_blank" href="{% url 'offer_by_sku' item.id %}" class="card-link">Перейти</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
   <br>
-  <span class="badge bg-secondary">{{ order.price }}₽</span>
+  <h5>Итого: <mark>{{ order.price }}₽</mark></h5>
 {% endblock %}
