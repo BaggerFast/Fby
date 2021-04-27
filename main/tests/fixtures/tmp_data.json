@@ -1,13 +1,5 @@
 [
 {
-    "model": "sessions.session",
-    "pk": "cb1risqfus50nqe7101kjex7e1w4y60d",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQRe_C2pDSMoRx6d4zkBkGpGogKe3KeHdt0oVu_3vvv1SgbS1h62kJs6izMur0uzHFR6o7kDvVW9Ox1XWZWe-KPmjX1ybpeTncv4NCvXxrTNZMOCLYSGAzTkLsJDsPg0EH4JllsIIonjJlHwGmBGI5mlG8YfX-ANrCOBg:1laJUA:2ShJiGqUJjdfv-lAIN8tGCOXsJjC4MXkHbzSO04Nsxo",
-        "expire_date": "2021-05-08T14:42:18.286Z"
-    }
-},
-{
     "model": "main.user",
     "pk": 1,
     "fields": {

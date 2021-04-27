@@ -17,16 +17,31 @@ WEB приложение для поставщиков на Яндекс.Мар�
 ```bash
 pip install --upgrade pip
 pip install -r requirements.txt
+mkdir third_party
+cd third_party
+wget https://chromedriver.storage.googleapis.com/90.0.4430.24/chromedriver_linux64.zip
+unzip chromedriver_linux64
+rm chromedriver_linux64
+# После этого добавьте папку third_party в $PATH
 ./manage.py migrate
 ./manage.py createvasya
 ./manage.py runserver
 ```
 
-## Read more
-- FBY API: [https://yandex.ru/dev/market/partner-marketplace/doc/dg/concepts/about.html](https://yandex.ru/dev/market/partner-marketplace/doc/dg/concepts/about.html)
+# Тесты
 
+```bash
+# Перед запуском тестов установите Google Chrome (нужен для selenium'а)!
+./manage.py test
+```
+
+## Read more
+
+- FBY
+  API: [https://yandex.ru/dev/market/partner-marketplace/doc/dg/concepts/about.html](https://yandex.ru/dev/market/partner-marketplace/doc/dg/concepts/about.html)
 
 ## Документация
+
 ```bash
 cd docs
 sphinx-build -v -b coverage source/ source/coverage/

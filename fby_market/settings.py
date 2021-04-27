@@ -16,7 +16,6 @@ from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = 'asu)%c(yfxy)g&6ap$dmg+48%+t$xjn%j2_=^svmb)dnc(34vy'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -73,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fby_market.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -83,7 +80,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -103,7 +99,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -117,11 +112,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -136,17 +129,16 @@ STATICFILES_DIRS = [
 ]
 
 FIXTURE_DIRS = [
-    os.path.join(BASE_DIR, 'main', 'tests','fixtures'),
-    ]
+    os.path.join(BASE_DIR, 'main', 'tests', 'fixtures'),
+]
 
-Base_URl = "http://127.0.0.1:8000/"
+BASE_URL = "http://127.0.0.1:8000"
 
-Testing_User_Prarmiters = {
-    "name" : "vasya",
-    "password" : "promprog",
-    "email" : "1@abc.net",
-    }
-
+SELENIUM_USER_AUTH_CREDENTIALS = {
+    'name': 'vasya',
+    'password': 'promprog',
+    'email': '1@abc.net',
+}
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
