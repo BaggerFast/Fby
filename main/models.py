@@ -2,7 +2,7 @@ import os
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.db import models
-from fby_market.settings import MEDIA_ROOT, MEDIA_URL, DEBUG, YaMarket
+from fby_market.settings import MEDIA_URL, DEBUG, YaMarket
 
 
 def get_path(instance, filename):
