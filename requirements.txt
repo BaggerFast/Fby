@@ -1,5 +1,6 @@
 # Engine
 Django==3.1.7
+Pillow==8.2.0
 
 # Documentation
 Sphinx==3.5.2
@@ -17,9 +18,9 @@ django-filter == 2.4.0
 numpy == 1.20.2
 
 #Tests
-pytest = 6.2.3
-selenium = 3.141.0
-chromedriver-py = 91.0.4472.19
+pytest == 6.2.3
+selenium == 3.141.0
+chromedriver-py == 91.0.4472.19
 
 # Analytics
 pandas == 1.2.3
@@ -32,6 +33,3 @@ pycodestyle==2.7.0
 pylint==2.7.4
 pylint-django==2.4.2
 
-
-
-Pillow==8.2.0
