@@ -26,7 +26,7 @@ class User(AbstractUser):
                 raise ValidationError('Все ключи одинаковые')
         elif len(data) < 3 or (len(data) == 3 and '' in data):
             raise ValidationError('Введите все 3 ключа')
-        if not self.image or not os.path.exists(f'{MEDIA_ROOT}/{self.image}'.replace("\\", "/")):
+        if not self.image or not os.path.exists(f'{MEDIA_ROOT}/{self.image}'.replace('\\', '/')):
             self.image = f'base/base.png'
 
     @staticmethod
