@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from main.models import Order
+from main.models_addon import Order
 from main.view import get_navbar, Page
-from main.yandex import OrderList
+from main.ya_requests import OrderList
 from main.modules.base import BaseView
 
 
@@ -13,7 +13,7 @@ class OrderListView(BaseView):
 
     def post(self, request) -> HttpResponse:
         for model in self.models_to_save:
-            if not model().save(request=request):
+            if not model(request=request).save():
                 break
         return self.get(request=request)
 
@@ -21,7 +21,6 @@ class OrderListView(BaseView):
         order = Order.objects.filter(user=request.user)
         local_context = {
             'navbar': get_navbar(request),
-            'count': order.count(),
             'orders': order,
             'table': ["Номер заказа", "Дата заказа", "Цена, ₽", "Статус"]
         }

@@ -51,11 +51,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,
-}
-
 ROOT_URLCONF = 'fby_market.urls'
 
 TEMPLATES = [
@@ -132,6 +127,10 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 STATICFILES_DIRS = [
     'static'
 ]
@@ -145,3 +144,6 @@ class YaMarket:
     TOKEN = os.environ.get('YA_MARKET_TOKEN', 'define me!')
     CLIENT_ID = os.environ.get('YA_MARKET_CLIENT_ID', 'define me!')
     SHOP_ID = 21953534
+
+
+AUTH_USER_MODEL = 'main.User'

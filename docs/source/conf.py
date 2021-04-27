@@ -63,9 +63,9 @@ def process_django_models(app, what, name, obj, options, lines):
 
             field_type = type(field)
             module = field_type.__module__
-            if 'django.db.models' in module:
-                # scope with django.db.models * imports
-                module = 'django.db.models'
+            if 'django.db.models_addon' in module:
+                # scope with django.db.models_addon * imports
+                module = 'django.db.models_addon'
             lines.append(':type %s: %s.%s' % (field.attname, module, field_type.__name__))
         if enchant is not None:
             lines += spelling_white_list
