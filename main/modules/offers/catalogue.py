@@ -20,7 +20,7 @@ class CatalogueView(BaseView):
                     for keyword in keywords:
                         for field in fields:
                             attr = getattr(item, field)
-                            if attr is not None and keyword in attr.lower():
+                            if attr is not None and keyword in str(attr).lower():
                                 if item not in scores:
                                     scores[item] = 0
                                 scores[item] += 1
