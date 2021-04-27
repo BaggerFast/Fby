@@ -19,11 +19,13 @@ class OrderListView(BaseView):
 
     def get(self, request) -> HttpResponse:
         order = Order.objects.filter(user=request.user)
+        print(len(order))
         local_context = {
             'navbar': get_navbar(request),
-            'order': order,
+            'orders': order,
             'table': ["Номер заказа", "Дата заказа", "Цена, ₽", "Статус"]
         }
+        print(31)
         self.context_update(local_context)
         return render(request, Page.order, self.context)
 
