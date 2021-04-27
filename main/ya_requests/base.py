@@ -26,9 +26,8 @@ class Requests:
 
     def __init__(self, json_name: str, base_context_name: str, name: str, request):
         self.request = request
-        self.url: str = f'https://api.partner.market.yandex.ru/v2/campaigns/{self.request.user.get_shop_id()}/{json_name}.json '
-        self.headers_str: str = f'OAuth oauth_token="{self.request.user.get_token()}",' \
-                                f' oauth_client_id="{self.request.user.get_client_id()}" '
+        self.url: str = f'https://api.partner.market.yandex.ru/v2/campaigns/{self.request.user.get_shop_id()}/{json_name}.json'
+        self.headers_str: str = f'OAuth oauth_token={self.request.user.get_token()}, oauth_client_id={self.request.user.get_client_id()}'
         self.headers: dict = {'Authorization': self.headers_str, 'Content-type': 'application/json'}
         self.base_context_name: str = base_context_name  # название элемента во входном json, содержащего  данные
         self.name: str = name
