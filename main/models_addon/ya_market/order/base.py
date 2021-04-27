@@ -62,6 +62,7 @@ class Order(models.Model):
 
     @property
     def items(self):
+        print(self.items.all())
         return self.items.all()
 
 
