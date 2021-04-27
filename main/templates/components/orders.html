@@ -18,7 +18,9 @@
       </thead>
       {% for order in orders %}
         <tr>
-          <td>{{ order.order_id }}</td>
+          <td>
+            <a class="name_link" target="_blank" href="{% url 'order_by_sku' order.id %}">{{ order.order_id }}</a>
+          </td>
           <td>{{ order.creationDate }}</td>
           <td>{{ order.price }}</td>
           <td>{{ order.get_status_display|capfirst }}</td>

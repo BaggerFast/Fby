@@ -44,14 +44,11 @@ main {
     text-align: center;
     margin: 10px;
 }
-
 .table-wrapper {
   max-height: 600px;
   overflow: auto;
   /*display:inline-block;*/
 }
-
 .active_btn {
-    background-color: darkgrey;
+    background-color: #e8e8e8;
 }
-
