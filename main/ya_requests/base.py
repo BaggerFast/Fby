@@ -1,7 +1,6 @@
 import json
 import requests
 from django.contrib import messages
-from fby_market.settings import YaMarket
 
 
 class Requests:
@@ -25,9 +24,10 @@ class Requests:
         503: "Сервер временно недоступен из-за высокой загрузки. Попробуйте вызвать метод через некоторое время.",
     }
 
-    def __init__(self, json_name: str, base_context_name: str, name: str):
-        self.url: str = f'https://api.partner.market.yandex.ru/v2/campaigns/{YaMarket.SHOP_ID}/{json_name}.json'
-        self.headers_str: str = f'OAuth oauth_token="{YaMarket.TOKEN}", oauth_client_id="{YaMarket.CLIENT_ID}"'
+    def __init__(self, json_name: str, base_context_name: str, name: str, request):
+        self.request = request
+        self.url: str = f'https://api.partner.market.yandex.ru/v2/campaigns/{self.request.user.get_shop_id()}/{json_name}.json '
+        self.headers_str: str = f'OAuth oauth_token="{self.request.user.get_token()}", oauth_client_id="{self.request.user.get_client_id()}" '
         self.headers: dict = {'Authorization': self.headers_str, 'Content-type': 'application/json'}
         self.base_context_name: str = base_context_name  # название элемента во входном json, содержащего требуемые данные
         self.name: str = name
@@ -67,17 +67,17 @@ class Requests:
             return self.errors[cur_error]
         return ''
 
-    def save(self, request) -> bool:
+    def save(self) -> bool:
         """Возвращает True, когда модель успешно сохранилась, иначе False"""
         try:
-            self.pattern_save(request)
-            messages.success(request, f"Модель {self.name} успешно сохранилась")
+            self.pattern_save()
+            messages.success(self.request, f"Модель {self.name} успешно сохранилась")
             return True
         except KeyError:
-            messages.error(request, self.key_error() + f' В модели {self.name}')
+            messages.error(self.request, self.key_error() + f' В модели {self.name}')
             return False
 
-    def pattern_save(self, request) -> None:
+    def pattern_save(self) -> None:
         """Сохранение данных в соответствующую БД, используется при GET запрос"""
         pass
 

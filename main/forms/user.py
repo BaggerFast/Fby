@@ -1,6 +1,5 @@
 import os
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm as Us, PasswordChangeForm
-from django import forms
 from fby_market.settings import MEDIA_ROOT
 from main.models import User
 
@@ -37,14 +36,11 @@ class UserRegistrationForm(UserCreationForm, Func):
 
     class Meta:
         model = User
-        fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image')
+        fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image', 'client_id', 'token', 'shop_id')
         labels = {'username': 'Логин', 'first_name': 'ФИО'}
 
 
 class UserChangeForm(Us, Func):
-    key1 = forms.CharField(label='1й токен', required=False)
-    key2 = forms.CharField(label='2й токен', required=False)
-
     def __init__(self, *args, **kwargs):
         self.del_old_image(args, kwargs['instance'])
         super().__init__(*args, **kwargs)
@@ -69,7 +65,7 @@ class UserChangeForm(Us, Func):
 
     class Meta:
         model = User
-        fields = ('first_name', 'email', 'image')
+        fields = ('first_name', 'email', 'image', 'client_id', 'token', 'shop_id')
         labels = {'username': 'Логин', 'first_name': 'ФИО'}
 
     def save(self, commit=True):

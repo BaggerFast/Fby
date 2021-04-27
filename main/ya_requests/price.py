@@ -10,11 +10,11 @@ class OfferPrice(Requests):
     Класс для получения списка цен на товары и сохранения в БД Price
     """
 
-    def __init__(self):
-        super().__init__(json_name='offer-prices', base_context_name='offers', name="OfferPrice")
+    def __init__(self, request):
+        super().__init__(json_name='offer-prices', base_context_name='offers', name="OfferPrice", request=request)
 
-    def pattern_save(self, request) -> None:
-        PricePattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
+    def pattern_save(self) -> None:
+        PricePattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)
 
 
 class ChangePrices:
@@ -29,7 +29,7 @@ class ChangePrices:
         'check': 'check_prices',
     }
 
-    def __init__(self, key: str, price_list: List = None, request=None):
+    def __init__(self, keys: List[str], price_list: List = None, request=None):
         """
         Перенаправление на нужные функции по ключу
 
@@ -40,19 +40,20 @@ class ChangePrices:
         """
         self.price_list: List = price_list
         self.request = request
-        getattr(self, self.command[key])()
+        for key in keys:
+            getattr(self, self.command[key])()
 
     def yandex_change(self) -> None:
         """Изменение цен на YM."""
-        YandexChangePrices(self.price_list)
+        YandexChangePrices(self.price_list, self.request)
 
     def local_change(self) -> None:
         """Локальное изменение цен."""
         LocalChangePrices(self.price_list)
 
-    def update_data_base(self) -> None:
+    def update_DB(self) -> None:
         """Обновление БД."""
-        OfferPrice().save(self.request)
+        OfferPrice(self.request).save()
 
     def check_prices(self) -> None:
         """Проверка цен в БД и price_list."""
@@ -97,12 +98,12 @@ class YandexChangePrices(Requests):
     Класс для изменения цены на товар на сервере YM
     """
 
-    def __init__(self, price_list: List):
+    def __init__(self, price_list: List, request):
         self.temp_params: List = []
         [self.add_params(price) for price in price_list]
         self.PARAMS: dict = {'offers': self.temp_params}
         super().__init__(json_name='offer-prices/updates', base_context_name='price',
-                         name='ChangePrices')
+                         name='ChangePrices', request=request)
 
     @staticmethod
     def get_dict(price) -> dict:
