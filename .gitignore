@@ -373,5 +373,6 @@ $RECYCLE.BIN/
 *.lnk
 
 .vscode/
+.vs/
 
 # End of https://www.toptal.com/developers/gitignore/api/django,pycharm+all,python,linux,macos,windows
