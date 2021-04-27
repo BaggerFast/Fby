@@ -1,0 +1,9 @@
+{% block edit %}
+  {% if disable %}
+    <form class="my-5" method="get">
+      <input type="text" class="form-control d-none" name="edit" value="1">
+      <input type="text" id="content_load" class="form-control d-none" name="content" value="{{ content }}">
+      <button id="button_loader" type="submit" class="btn btn-primary" onclick="inputLoad(this.id)">Редактировать</button>
+    </form>
+  {% endif %}
+{% endblock %}

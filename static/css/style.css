@@ -1,29 +1,57 @@
 html, body {
-  font-family: 'Ubuntu', sans-serif;
-  font-weight: 600 !important;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 600 !important;
+}
+main {
+    margin-top: 50px;
+}
+.navbar-text {
+    color: black;
+    white-space: nowrap;
 }
 .to-the-top {
-  position: fixed;
-  right: 0;
-  bottom: 100px;
-  width: 70px;
-  height: 125px;
-  border-radius: 5px 0 0 5px;
-  text-align: center;
-  font-size: 72px;
-  background-color: white;
-  color: black;
-  cursor: pointer;
-  transition: all 0.5s;
-  overflow: hidden;
+    position: fixed;
+    right: 0;
+    bottom: 100px;
+    width: 70px;
+    height: 125px;
+    border-radius: 5px 0 0 5px;
+    text-align: center;
+    font-size: 72px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: all 0.5s;
+    overflow: hidden;
 }
 .to-the-top p {
-  margin-top: -26px;
+    margin-top: -26px;
 }
 .hidden-ttt {
-  right: -70px;
-  opacity: 0%;
+    right: -70px;
+    opacity: 0%;
 }
 .visible-ttt {
-  opacity: 75%;
+    opacity: 75%;
 }
+.name_link {
+    text-decoration: none;
+}
+.name_link:hover {
+    color: red;
+}
+.btn-link {
+    text-align: center;
+    margin: 10px;
+}
+
+.table-wrapper {
+  max-height: 600px;
+  overflow: auto;
+  /*display:inline-block;*/
+}
+
+.active_btn {
+    background-color: darkgrey;
+}
+

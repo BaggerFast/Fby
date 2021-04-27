@@ -1,0 +1,30 @@
+{% block offer %}
+  {% include 'components/catalogue/search.html' %}
+  {% if search %}
+    <a href="{% url 'catalogue_list' %}" class="btn-link">← Назад</a>
+  {% endif %}
+  <div class="col">
+    <span class="badge bg-secondary mb-4">{{ orders | length }} товаров</span>
+    <div class="table-wrapper">
+    <table class="table table-hover table-borderless">
+      <thead class="table-secondary">
+        <tr>
+          {% for name in table %}
+            <th scope="col">
+              <h6>{{ name }}</h6>
+            </th>
+          {% endfor %}
+        </tr>
+      </thead>
+      {% for order in orders %}
+        <tr>
+          <td>{{ order.order_id }}</td>
+          <td>{{ order.creationDate }}</td>
+          <td>{{ order.price }}</td>
+          <td>{{ order.get_status_display|capfirst }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    </div>
+  </div>
+{% endblock %}

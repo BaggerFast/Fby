@@ -1,0 +1,10 @@
+{% block form %}
+  {% for item in form %}
+    <div class="mb-3">
+      <label>
+        {{ item.label }}
+        {{ item }}
+      </label>
+    </div>
+  {%endfor %}
+{% endblock %}

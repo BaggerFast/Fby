@@ -29,7 +29,7 @@ python3.8 --version
 pip install --upgrade pip
 pip install -r requirements.txt
 ./manage.py migrate
-./manage.py shell -c "from django.contrib.auth import get_user_model; get_user_model().objects.create_superuser('vasya', '1@abc.net', 'promprog')"
+./manage.py createvasya
 ./manage.py runserver
 ```
 
@@ -44,4 +44,11 @@ sphinx-build -v -b coverage source/ source/coverage/
 mv source/coverage/python.txt source/coverage.rst
 rm -rf source/coverage/
 make html
+```
+
+
+## Codestyle
+```bash
+DJANGO_SETTINGS_MODULE=fby_market.settings pylint fby_market main manage.py
+pycodestyle --ignore=E501 fby_market main manage.py
 ```

@@ -1,0 +1,20 @@
+{% block back %}
+  <a href="{% url 'catalogue_list' %}" role="button" class="btn btn-outline-danger btn-sm mt-4">
+    {% if create %}Отмена{% else %}В каталог{% endif %}
+  </a>
+  {% if not create %}
+  {% ifequal content 'info' %}
+    <form class="mt-4" method="post">
+      {% csrf_token %}
+      <input type="text" class="form-control d-none" name="yandex" value="offer">
+      <button type="submit" class="btn btn-danger">Отправить товар на Яндекс</button>
+    </form>
+  {% else %}
+    <form class="mt-4" method="post">
+      {% csrf_token %}
+      <input type="text" class="form-control d-none" name="yandex" value="price">
+      <button type="submit" class="btn btn-danger">Отправить цену на Яндекс</button>
+    </form>
+  {% endifequal %}
+  {% endif %}
+{% endblock %}

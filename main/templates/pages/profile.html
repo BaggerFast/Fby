@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+  <p>{{ user.username }}</p>
+  <img src="{{user.get_image}}" style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%;"/>
+  <br>
+  <a href="{% url 'profile_edit' %}">Редактировать профиль</a>
+  <p>{{  user.email }}</p>
+{% endblock %}

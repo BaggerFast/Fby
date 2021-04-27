@@ -1,9 +1,6 @@
-{% extends 'app.html' %}
+{% extends 'base.html' %}
 {% block content %}
   <h1 class="display-1">FBY market provider</h1>
-  {% if user.is_authenticated %}
-  <h1><mark>{{ user }}</mark></h1>
-  {% endif %}
   <h3>WEB приложение для поставщиков на Яндекс.Маркет. Размещение по схеме FBY (фулфилмент)</h3>
   <h2>Детали</h2>
   <p class="lead">

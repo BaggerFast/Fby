@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
 from django.shortcuts import redirect
-from main.forms.user import UserLoginForm
+from main.forms import UserLoginForm
 from main.modules.user.base import BaseView
 from main.view import Page
 

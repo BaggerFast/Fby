@@ -1,86 +1,102 @@
-from typing import List
+"""Модуль для отображения карточки товара"""
 
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404, HttpResponse
 from django.shortcuts import render
-from django.views.generic.base import View
-from main.forms.offer import *
-from main.models import Offer, Price
-from main.view import Page, get_navbar, Multiform
-from main.yandex.request import OfferChangePrice
+from django.urls import reverse
+from django.shortcuts import redirect
+from main.models_addon import Offer, Price
+from main.modules.offers import OfferMultiForm, PriceMultiForm
+from main.modules.base import BaseView
+from main.view import Page, get_navbar
+from main.ya_requests.price import ChangePrices
+from main.ya_requests.request import UpdateOfferList
 
 
-class Form(Multiform):
-    def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
-        forms: list = [WeightDimensionForm, UrlForm, BarcodeForm, WeightDimensionForm, ShelfLifeForm, LifeTimeForm,
-                       GuaranteePeriodForm, CommodityCodeForm]
-        self.model_list: List[dict] = [{'attrs': key1, 'form': OfferForm}] + [{'attrs': key2, 'form': form} for form in
-                                                                              forms]
-
-    def get_for_context(self) -> dict:
-        forms: List[List] = [
-            [list(self.models_json[str(OfferForm())].form)[:6],
-             *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])],
-            self.get_form_list([ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm]),
-            self.get_form_list([WeightDimensionForm]),
-            [list(self.models_json[str(OfferForm())].form)[6::]]
-        ]
-        names: list = ['Основная информация', 'Сроки', 'Габариты и вес в упаковке', 'Особенности логистики']
-        return self.context(forms=forms, names=names)
-
-
-class TempForm(Multiform):
-    def get_models_classes(self, key1: dict = None, key2: dict = None) -> None:
-        forms: List = [PriceForm]
-        self.model_list: List[dict] = [{'attrs': key1, 'form': AvailabilityForm}] + [{'attrs': key2, 'form': form} for
-                                                                                     form in forms]
-
-    def get_for_context(self) -> dict:
-        names: List = ['Управление ценой', 'Управление поставками']
-        forms: List[List] = [self.get_form_list([PriceForm]), self.get_form_list([AvailabilityForm])]
-        return self.context(forms=forms, names=names)
-
-
-class ProductPageView(LoginRequiredMixin, View):
-    """отображение каталога"""
-    context = {'title': 'Product_card', 'page_name': 'Карточка товара'}
+class ProductPageView(BaseView):
+    """
+    Класс, управляющий отображением карточки товара
+    """
+    context = {'title': 'Product card', 'page_name': 'Карточка товара'}
     form = None
-    request = None
+    disable: bool = False
+    form_types = {"info": OfferMultiForm, "accommodation": PriceMultiForm}
 
-    def pre_init(self, pk, request):
-        self.request = request
-        self.context['navbar'] = get_navbar(request)
-        self.context['content'] = request.GET.get('content', 'info')
-        correct_content = ['info', 'accommodation']
-        if self.context['content'] in correct_content:
-            self.form = Form() if self.context['content'] == 'info' else TempForm() \
-                if self.context['content'] == 'accommodation' else None
-            self.form.get_models_classes(key1={'id': pk}, key2={'offer': Offer.objects.get(id=pk)})
+    def pre_init(self, pk: int, request) -> None:
+        """Предварительная настройка контекста"""
+        self.context_update({'navbar': get_navbar(request),
+                             'content': request.GET.get('content', 'info')}
+                            )
+        if self.context['content'] in self.form_types:
+            self.form = self.form_types[self.context['content']]()
+            self.form.set_forms(pk=pk)
         else:
             raise Http404()
 
-    def end_it(self, disable) -> HttpResponse:
-        self.context['forms'] = self.form.get_for_context()
-        self.context['disable'] = disable
+    def end_it(self) -> HttpResponse:
+        """Окончательная настройка контекста и отправка ответа на запрос"""
+        self.context_update({'forms': self.form.get_for_context(), 'disable': self.disable})
         return render(self.request, Page.product_card, self.context)
 
-    def post(self, request, pk) -> HttpResponse:
-        self.pre_init(pk=pk, request=request)
-        self.form.get_post(disable=True, request=request.POST)
+    def post(self, request, pk: int) -> HttpResponse:
+        """Обработка post-запроса"""
+
+        def delete() -> HttpResponse:
+            """Обработка запроса на удаление товара с перенаправлением на страницу каталога."""
+            offer = Offer.objects.get(id=pk)
+            offer.delete()
+            messages.success(request, f'Товар "{offer.name}" успешно удален')
+            return redirect(reverse('catalogue_list'))
+
+        # todo добавить price в функцию
+        def update_price() -> HttpResponse:
+            """"Обработка запроса на изменение цены на Яндексе"""
+            price = Price.objects.get(offer_id=pk)
+            ChangePrices(['ya_requests', 'update'], price_list=[price], request=request)
+            return redirect(reverse('catalogue_list'))
+
+        def save_to_ym() -> HttpResponse:
+            """Обработка запроса на обновление или сохранение товара на Яндексе"""
+            offer = Offer.objects.get(id=pk)
+            sku = offer.shopSku
+            update_request = UpdateOfferList([offer], request)
+            update_request.update_offers()
+
+            if sku in update_request.success:
+                success_message = f'Товар shopSku = {sku} успешно сохранен на Яндексе'
+                messages.success(request, success_message)
+            elif sku in update_request.errors:
+                error_message = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.'
+                messages.error(request, error_message)
+                for error_text in update_request.errors[sku]:
+                    messages.error(request, error_text)
+            return self.get(request, pk)
+
+        if 'delete' in request.POST:
+            return delete()
+
+        buttons = {
+            'offer': save_to_ym,
+            'price': update_price
+        }
+
+        btn = request.POST.get('yandex', '')
+        if btn in buttons.keys():
+            return buttons[btn]()
+
+        self.pre_init(request=request, pk=pk)
+        self.form.set_post(disable=True, post=self.request.POST)
         if self.form.is_valid():
             self.form.save()
-            messages.success(request, 'Редактирование прошло успешно!')
-            # todo save on button
-            # OfferChangePrice(price_list=list(Price.objects.filter(offer_id=pk)))
-            disable = True
+            self.disable = True
         else:
-            disable = False
-            self.form.get_post(disable=False, request=request.POST)
-        return self.end_it(disable=disable)
+            self.disable = False
+            self.form.set_post(disable=self.disable, post=self.request.POST)
+        return self.end_it()
 
     def get(self, request, pk) -> HttpResponse:
-        self.pre_init(pk=pk, request=request)
-        disable = False if int(request.GET.get('edit', 0)) else True
-        self.form.get_fill(disable=disable)
-        return self.end_it(disable=disable)
+        """Обработка get-запроса"""
+        self.pre_init(request=request, pk=pk)
+        self.disable = not bool(self.request.GET.get('edit', 0))
+        self.form.set_fill(disable=self.disable)
+        return self.end_it()

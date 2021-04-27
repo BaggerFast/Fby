@@ -1,0 +1,7977 @@
+{
+  "status": "OK",
+  "result": {
+    "shopSkus": [
+      {
+        "shopSku": "W610/6",
+        "marketSku": 521410007,
+        "name": "Масляный фильтр MANNFILTER W610/6",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 7,
+          "width": 9,
+          "height": 10,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W719/30",
+        "marketSku": 514703012,
+        "name": "Масляный фильтр MANNFILTER W 719/30",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 15,
+          "height": 9,
+          "weight": 0.4
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 17
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64210NL-HCB",
+        "marketSku": 573945000,
+        "name": "Лампа автомобильная галогенная Osram Night Breaker Laser 64210NL-HCB H7 12V 55W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 10,
+          "width": 11,
+          "height": 5,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "6110",
+        "marketSku": 100835718858,
+        "name": "Антикор OILRIGHT Мовиль 2 кг банка бежевый",
+        "categoryId": 90488,
+        "categoryName": "Антикоры",
+        "weightDimensions": {
+          "length": 15,
+          "width": 16,
+          "height": 14,
+          "weight": 2.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "CUK2939",
+        "marketSku": 592359022,
+        "name": "Фильтр MANNFILTER CUK2939",
+        "categoryId": 13477846,
+        "categoryName": "Салонные фильтры",
+        "weightDimensions": {
+          "length": 6,
+          "width": 26,
+          "height": 31,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "127998000KX2",
+        "marketSku": 656593390,
+        "name": "Лампа автомобильная светодиодная Philips X-tremeUltinon LED 127998000KX2 Т10 2 шт.",
+        "price": 999.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 9,
+          "width": 10,
+          "height": 3,
+          "weight": 0.1
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "FIT",
+                "count": 2
+              },
+              {
+                "type": "AVAILABLE",
+                "count": 2
+              },
+              {
+                "type": "SUGGEST",
+                "count": 15
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 9.99
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 19.98
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "30011328746",
+        "marketSku": 12808759,
+        "name": "Моторное масло IDEMITSU 5W-30 SN/GF-5 4 л",
+        "price": 1399.0,
+        "categoryId": 90478,
+        "categoryName": "Моторные масла",
+        "weightDimensions": {
+          "length": 23,
+          "width": 11,
+          "height": 28,
+          "weight": 3.6
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 13.99
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 27.98
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "04e129620a",
+        "marketSku": 558288048,
+        "name": "Воздушный фильтр VOLKSWAGEN 04e129620a",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 24,
+          "width": 23,
+          "height": 6,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "KU9004",
+        "marketSku": 100627609999,
+        "name": "Лак KUDO универсальный матовый прозрачный 520 мл",
+        "categoryId": 2561869,
+        "categoryName": "Аэрозольная краска",
+        "weightDimensions": {
+          "length": 9,
+          "width": 8,
+          "height": 21,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "11961ULW4X2",
+        "marketSku": 651075744,
+        "name": "Лампа автомобильная светодиодная Philips Ultinon LED 11961ULW4X2 W5W 1W 2 шт.",
+        "price": 555.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 7,
+          "width": 13,
+          "height": 4,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 5.55
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 11.1
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W610/3",
+        "marketSku": 520672345,
+        "name": "Масляный фильтр MANNFILTER W610/3",
+        "price": 370.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 7,
+          "width": 8,
+          "height": 13,
+          "weight": 0.3
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 126
+              }
+            ]
+          },
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 4
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.7
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 7.4
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "971334L000",
+        "marketSku": 647120562,
+        "name": "Фильтр KIA 97133-4L000",
+        "price": 550.0,
+        "categoryId": 13477846,
+        "categoryName": "Салонные фильтры",
+        "weightDimensions": {
+          "length": 24,
+          "width": 28,
+          "height": 2,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 5.5
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 11.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "21010-1012005-82",
+        "marketSku": 650524037,
+        "name": "Масляный фильтр LADA 21010-1012005-82",
+        "price": 304.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 12,
+          "height": 11,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.04
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 6.08
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "12972RVS2",
+        "marketSku": 648937226,
+        "name": "Лампа автомобильная галогенная Philips RacingVision +150% 12972RVS2 H7 12V 55W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 10,
+          "width": 12,
+          "height": 5,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W71283",
+        "marketSku": 591150006,
+        "name": "Масляный фильтр MANNFILTER W 712/83",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 11,
+          "height": 9,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W92021",
+        "marketSku": 521723669,
+        "name": "Масляный фильтр MANNFILTER W 920/21",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 11,
+          "width": 13,
+          "height": 11,
+          "weight": 0.5
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 58
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W8017",
+        "marketSku": 515114312,
+        "name": "Масляный фильтр MANNFILTER W 8017",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 11,
+          "height": 9,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "SPL-23",
+        "marketSku": 100732740728,
+        "name": "Рамка для номера Dollex SPL-23 черный 1 шт.",
+        "categoryId": 13208249,
+        "categoryName": "Рамки для номеров",
+        "weightDimensions": {
+          "length": 15,
+          "width": 55,
+          "height": 2,
+          "weight": 0.5
+        },
+        "warehouses": [
+          {
+            "id": 172,
+            "name": "Яндекс.Маркет (Московская область, Софьино)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "2630035505KIA",
+        "marketSku": 647041018,
+        "name": "Масляный фильтр HYUNDAI/KIA 26300-35505",
+        "price": 399.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 10,
+          "width": 10,
+          "height": 8,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.99
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 7.98
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "2301",
+        "marketSku": 100865006765,
+        "name": "Смазка ВМПАВТО SILICOT универсальная с фторопластом 0.03 кг",
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 14,
+          "width": 2,
+          "height": 3,
+          "weight": 0.05
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "11376721",
+        "name": "Перчатки Dollex, х/б с ПВХ 5 ниток (уп. 5 пар) черные",
+        "categoryId": 15720347,
+        "categoryName": "Защита рук",
+        "weightDimensions": {
+          "length": 15,
+          "width": 5,
+          "height": 20,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "8406",
+        "marketSku": 100802758357,
+        "name": "Автомобильная смазка ВМПАВТО Для цепей Дорожных и Спортивных мотоциклов 0.4 л",
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 6,
+          "width": 7,
+          "height": 25,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "6105",
+        "marketSku": 100834032564,
+        "name": "Антикор OILRIGHT Пушечное сало 2 кг ведро черный",
+        "price": 319.0,
+        "categoryId": 90488,
+        "categoryName": "Антикоры",
+        "weightDimensions": {
+          "length": 14,
+          "width": 18,
+          "height": 13,
+          "weight": 2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.19
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 6.38
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "HG2206",
+        "marketSku": 100820134770,
+        "name": "Hi-Gear HG2206 Мягкий очиститель для двигателей с износом с SMT² 0.444 л",
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 7,
+          "width": 18,
+          "height": 7,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1137672",
+        "name": "Перчатки х/б с ПВХ '4 нитки' (уп. 5 пар) черные",
+        "categoryId": 15720347,
+        "categoryName": "Защита рук",
+        "weightDimensions": {
+          "length": 21,
+          "width": 28,
+          "height": 5,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "HG2207",
+        "marketSku": 100820648223,
+        "name": "Hi-Gear HG2207 Мягкий очиститель двигателя 0.444 л",
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 7,
+          "width": 19,
+          "height": 7,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "21050-1012005-82",
+        "marketSku": 650536056,
+        "name": "Масляный фильтр LADA 21050-1012005-82",
+        "price": 255.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 10,
+          "width": 11,
+          "height": 9,
+          "weight": 0.4
+        },
+        "warehouses": [
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 14
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 2.55
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 5.1
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "8408",
+        "marketSku": 100774659035,
+        "name": "Автомобильная смазка ВМПАВТО Для цепей Внедорожных мотоциклов 0.4 л",
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 6,
+          "width": 7,
+          "height": 25,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W68/3",
+        "marketSku": 514786043,
+        "name": "Масляный фильтр MANNFILTER W 68/3",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 9,
+          "height": 9,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "MZ690115",
+        "marketSku": 649710736,
+        "name": "Масляный фильтр Mitsubishi MZ690115",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 10,
+          "height": 9,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "9-AB-42-R",
+        "marketSku": 100836234826,
+        "name": "Герметик прокладок ABRO серый 999 США 42,5 г 9-AB-42-R",
+        "categoryId": 90483,
+        "categoryName": "Клеи и герметики",
+        "weightDimensions": {
+          "length": 11,
+          "width": 23,
+          "height": 4,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "HG3270",
+        "name": "Hi-Gear HG3270 Очиститель каталитического нейтрализатора, системы питания 0.444 л",
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 20,
+          "width": 5,
+          "height": 5,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "11961ULWX2",
+        "marketSku": 649989798,
+        "name": "Лампа автомобильная светодиодная Philips Ultinon LED 11961ULWX2 W5W 2 шт.",
+        "price": 565.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 7,
+          "width": 13,
+          "height": 4,
+          "weight": 0.1
+        },
+        "warehouses": [
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 14
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 5.65
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 11.3
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "MW641",
+        "marketSku": 626707061,
+        "name": "Масляный фильтр MANNFILTER MW 64/1",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 8,
+          "height": 13,
+          "weight": 0.6
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1987301107",
+        "marketSku": 576814022,
+        "name": "Лампа автомобильная галогенная Bosch Gigalight Plus 120 1987301107 H7 12V 55W 2 шт.",
+        "price": 1319.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 6,
+          "width": 11,
+          "height": 9,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 13.19
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 26.38
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W71295",
+        "marketSku": 590366821,
+        "name": "Масляный фильтр MANNFILTER W 712/95",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 8,
+          "height": 8,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W71294",
+        "marketSku": 590358983,
+        "name": "Масляный фильтр MANNFILTER W712/94",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 10,
+          "height": 11,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1503",
+        "marketSku": 100774781199,
+        "name": "Автомобильная смазка ВМПАВТО МС 1600 0.1 кг",
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 15,
+          "width": 3,
+          "height": 3,
+          "weight": 0.03
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "15208-AA100",
+        "marketSku": 650141974,
+        "name": "Масляный фильтр SUBARU 15208AA100",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 9,
+          "height": 7,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W6101",
+        "marketSku": 520671317,
+        "name": "Масляный фильтр MANNFILTER W 610/1",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 9,
+          "height": 11,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "NSK-105",
+        "marketSku": 100774711912,
+        "name": "Накидка Dollex Город зеленый/желтый",
+        "categoryId": 90465,
+        "categoryName": "Чехлы и накидки на сиденья",
+        "weightDimensions": {
+          "length": 24,
+          "width": 18,
+          "height": 4,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "2825HCBI-02B",
+        "marketSku": 573945004,
+        "name": "Лампа автомобильная галогенная Osram COOL BLUE INTENSE W5W 2825HCBI-02B 12V 5W",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 8,
+          "width": 3,
+          "height": 5,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "90915-YZZE1",
+        "marketSku": 643041366,
+        "name": "Масляный фильтр TOYOTA 90915-YZZE1",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 7,
+          "width": 7.6,
+          "height": 7.8,
+          "weight": 0.22
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "90915-YZZE2",
+        "marketSku": 643311025,
+        "name": "Масляный фильтр TOYOTA 90915-YZZE2",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 8,
+          "height": 9,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "5000401",
+        "name": "Массажная подушка CAR & HOME CHM-8028",
+        "categoryId": 15806939,
+        "categoryName": "Массажные матрасы и подушки",
+        "weightDimensions": {
+          "length": 21,
+          "width": 34,
+          "height": 12,
+          "weight": 1.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1907",
+        "marketSku": 100777394732,
+        "name": "Автомобильная смазка ВМПАВТО МС 1630 0.03 кг",
+        "price": 345.0,
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 13,
+          "width": 21,
+          "height": 2,
+          "weight": 0.1
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 18
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.45
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 6.9
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "hg5615",
+        "marketSku": 660550064,
+        "name": "Hi-Gear Пенный полироль для приборной панели салона автомобиля PRO Line HG5615, 0.28 кг",
+        "categoryId": 14369113,
+        "categoryName": "Уход за салоном",
+        "weightDimensions": {
+          "length": 8,
+          "width": 23,
+          "height": 8,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "WP-310F",
+        "marketSku": 573635044,
+        "name": "Фильтр внутренний с аэратором и флейтой 200 л/ч (FILTER 002)",
+        "categoryId": 15967001,
+        "categoryName": "Фильтры",
+        "weightDimensions": {
+          "length": 14,
+          "width": 10,
+          "height": 7,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1505",
+        "marketSku": 100831300759,
+        "name": "Автомобильная смазка ВМПАВТО МС 1600 0.005 кг",
+        "price": 120.0,
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 5,
+          "width": 15,
+          "height": 2,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 1.2
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 2.4
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "28113-1R100",
+        "marketSku": 646970633,
+        "name": "Панельный фильтр HYUNDAI 28113-1R100",
+        "price": 965.0,
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 20,
+          "width": 28,
+          "height": 6,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 9.65
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 19.3
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "HG5204",
+        "marketSku": 623090319,
+        "name": "Hi-Gear Сухая химчистка салона автомобиля HG5204, 0.5 кг",
+        "categoryId": 14369113,
+        "categoryName": "Уход за салоном",
+        "weightDimensions": {
+          "length": 7,
+          "width": 26,
+          "height": 7,
+          "weight": 0.7
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1883037",
+        "marketSku": 647123423,
+        "name": "Масляный фильтр Ford 1883037",
+        "price": 528.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 9,
+          "height": 9,
+          "weight": 0.3
+        },
+        "warehouses": [
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 5
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 5.28
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 10.56
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64210",
+        "marketSku": 581436053,
+        "name": "Лампа автомобильная галогенная Osram Original Line 64210 H7 12V 55W 1 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 4,
+          "width": 6,
+          "height": 7,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64210NBS-HCB",
+        "marketSku": 536096059,
+        "name": "Лампа автомобильная галогенная Osram NIGHT BREAKER SILVER H7 64210NBS-HCB +100% 12V 55W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 12,
+          "width": 13,
+          "height": 5,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "A24",
+        "marketSku": 592359160,
+        "name": "Eikosha Ароматизатор для автомобиля Air Spencer A-24, Clear Squash",
+        "categoryId": 90475,
+        "categoryName": "Ароматизаторы салона",
+        "weightDimensions": {
+          "length": 8,
+          "width": 9,
+          "height": 4,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "21120-1109080-82",
+        "marketSku": 650493186,
+        "name": "Панельный фильтр LADA 21120-1109080-82",
+        "price": 328.0,
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 7,
+          "width": 24,
+          "height": 24,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.28
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 6.56
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64211",
+        "marketSku": 650307012,
+        "name": "Лампа автомобильная галогенная Osram Original Line 64211 H11 55W 1 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 6,
+          "width": 9,
+          "height": 5,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "CU2939",
+        "marketSku": 591308023,
+        "name": "Фильтр MANNFILTER CU2939",
+        "categoryId": 13477846,
+        "categoryName": "Салонные фильтры",
+        "weightDimensions": {
+          "length": 25,
+          "width": 31,
+          "height": 6,
+          "weight": 0.2
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "RW0501",
+        "marketSku": 649989175,
+        "name": "RUNWAY Полироль фар RW0501, 0.05 л",
+        "categoryId": 14369311,
+        "categoryName": "Полироли для фар и автостекол",
+        "weightDimensions": {
+          "length": 5,
+          "width": 6,
+          "height": 14,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "PE0114302B9A",
+        "marketSku": 646823336,
+        "name": "Масляный фильтр Mazda PE0114302B9A",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 10,
+          "height": 6,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64193NBS-HCB",
+        "marketSku": 573855462,
+        "name": "Лампа автомобильная галогенная Osram NIGHT BREAKER SILVER H4 64193NBS-HCB 12V 60/55W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 12,
+          "width": 14,
+          "height": 6,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "560410054",
+        "marketSku": 1716371690,
+        "name": "Автомобильный аккумулятор VARTA Blue Dynamic D47 (560 410 054)",
+        "categoryId": 90436,
+        "categoryName": "Аккумуляторные батареи",
+        "weightDimensions": {
+          "length": 17,
+          "width": 26,
+          "height": 22,
+          "weight": 14.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64193CLC",
+        "marketSku": 641424576,
+        "name": "Лампа автомобильная галогенная Osram Original line 64193CLC H4 60/55W 1 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 6,
+          "width": 6,
+          "height": 7,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "нж240",
+        "name": "Женские цветные носки 3 пары с принтами (Без паники я фея) 37-41 Носки",
+        "categoryId": 7811934,
+        "categoryName": "Носки",
+        "weightDimensions": {
+          "length": 25,
+          "width": 10,
+          "height": 2,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "2204",
+        "marketSku": 100777321090,
+        "name": "Автомобильная смазка ВМПАВТО Silicot Gel 0.04 кг",
+        "price": 299.0,
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 9,
+          "width": 7,
+          "height": 19,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 2.99
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 5.98
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "LN2001",
+        "marketSku": 100829030635,
+        "name": "Lavr Промывка инжекторных систем ML101 1 л",
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 10,
+          "width": 10,
+          "height": 22,
+          "weight": 0.9
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64193ALS-HCB",
+        "marketSku": 530338054,
+        "name": "Лампа автомобильная галогенная Osram ALLSEASON 64193ALS-HCB +30% H4 60/55W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 10,
+          "width": 11,
+          "height": 5,
+          "weight": 0.15
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "2201",
+        "marketSku": 100830900759,
+        "name": "Смазка ВМПАВТО МС силиконовая с фторопластом 0.4 кг",
+        "price": 1265.0,
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 10,
+          "width": 11,
+          "height": 10,
+          "weight": 0.5
+        },
+        "warehouses": [
+          {
+            "id": 172,
+            "name": "Яндекс.Маркет (Московская область, Софьино)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 23
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 12.65
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 25.3
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64180L",
+        "marketSku": 665056133,
+        "name": "Лампа автомобильная галогенная Osram 64180L H18 12V 65W 1 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 5,
+          "width": 6,
+          "height": 6,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "C22117",
+        "marketSku": 525016011,
+        "name": "Воздушный фильтр MANNFILTER C 22 117",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 6,
+          "width": 22,
+          "height": 22,
+          "weight": 0.31
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "26300-35505",
+        "marketSku": 647041018,
+        "name": "Масляный фильтр HYUNDAI 26300-35505",
+        "price": 399.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 10,
+          "width": 10,
+          "height": 8,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.99
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 7.98
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "4501",
+        "marketSku": 100777453728,
+        "name": "ВМПАВТО Resurs-T 0.05 кг",
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 6,
+          "width": 6,
+          "height": 10,
+          "weight": 0.09
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "нж243",
+        "name": "Женские цветные носки 3 пары с принтами (Винишко) 37-41 Носки",
+        "categoryId": 7811934,
+        "categoryName": "Носки",
+        "weightDimensions": {
+          "length": 25,
+          "width": 10,
+          "height": 2,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1913",
+        "marketSku": 100774713937,
+        "name": "Смазка ВМПАВТО Медная МС 1640 0.4 кг",
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 15,
+          "width": 15,
+          "height": 15,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "C27009",
+        "marketSku": 531302015,
+        "name": "Воздушный фильтр MANNFILTER C 27 009",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 4,
+          "width": 29,
+          "height": 21,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "HU612/2X",
+        "marketSku": 586043299,
+        "name": "Фильтрующий элемент MANNFILTER HU612/2X",
+        "price": 475.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 6,
+          "width": 13,
+          "height": 7,
+          "weight": 0.1
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 48
+              }
+            ]
+          },
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 4.75
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 9.5
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1911",
+        "marketSku": 100830888747,
+        "name": "Автомобильная смазка ВМПАВТО Медная МС 1640 0.03 кг",
+        "price": 289.0,
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 3,
+          "width": 16,
+          "height": 4,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 2.89
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 5.78
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "28113-M4000",
+        "marketSku": 632488472,
+        "name": "Панельный фильтр HYUNDAI 28113-M4000",
+        "price": 1525.0,
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 17,
+          "width": 29,
+          "height": 7,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 15.25
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 30.5
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "ELM327",
+        "name": "Диагностический адаптер Автосканер Bluetooth ELM-327",
+        "categoryId": 4955914,
+        "categoryName": "Бортовые компьютеры",
+        "weightDimensions": {
+          "length": 13,
+          "width": 14,
+          "height": 1,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "8601",
+        "marketSku": 100774859729,
+        "name": "Автомобильная смазка ВМПАВТО Валера 0.4 л",
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 5,
+          "width": 25,
+          "height": 5,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W712/52",
+        "marketSku": 590366899,
+        "name": "Масляный фильтр MANNFILTER W712/52",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 10,
+          "height": 11,
+          "weight": 0.4
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 5
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "152089599R",
+        "marketSku": 670607571,
+        "name": "Масляный фильтр Renault 152089599R",
+        "price": 799.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 9,
+          "height": 10,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 7.99
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 15.98
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "NSR-201",
+        "marketSku": 100774719890,
+        "name": "Накидка Dollex Машинки синий",
+        "categoryId": 90465,
+        "categoryName": "Чехлы и накидки на сиденья",
+        "weightDimensions": {
+          "length": 27,
+          "width": 20,
+          "height": 2,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "5000103",
+        "marketSku": 14232607,
+        "name": "Наполнитель для кошачьего туалета Мурзик \"Цеолайт\", 4 л",
+        "categoryId": 12766642,
+        "categoryName": "Наполнители для кошачьих туалетов",
+        "weightDimensions": {
+          "length": 24,
+          "width": 37,
+          "height": 6,
+          "weight": 2.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1003",
+        "marketSku": 662551101,
+        "name": "Смазка для садовой техники ВМПАВТО ULTRA-0 200 г",
+        "price": 210.0,
+        "categoryId": 15772208,
+        "categoryName": "Масла для садовой техники",
+        "weightDimensions": {
+          "length": 7,
+          "width": 5,
+          "height": 19,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 2.1
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 4.2
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "2630035504KIA",
+        "marketSku": 647041010,
+        "name": "Масляный фильтр HYUNDAI 26300-35504",
+        "price": 339.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 10,
+          "height": 10,
+          "weight": 0.4
+        },
+        "warehouses": [
+          {
+            "id": 172,
+            "name": "Яндекс.Маркет (Московская область, Софьино)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.39
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 6.78
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "5000104",
+        "marketSku": 14232596,
+        "name": "Впитывающий наполнитель Снежок Цеолайт 4 л",
+        "categoryId": 12766642,
+        "categoryName": "Наполнители для кошачьих туалетов",
+        "weightDimensions": {
+          "length": 22.8,
+          "width": 38.1,
+          "height": 15.3,
+          "weight": 2.474
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W7015",
+        "marketSku": 514778017,
+        "name": "Масляный фильтр MANNFILTER W 7015",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 10,
+          "height": 9,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "04e115561h",
+        "marketSku": 561833112,
+        "name": "Масляный фильтр VOLKSWAGEN 04e115561h",
+        "price": 582.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 9,
+          "height": 9,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 5.82
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 11.64
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "12342XVS2",
+        "marketSku": 582962144,
+        "name": "Лампа автомобильная галогенная Philips X-tremeVision +130% H4 3700K 60/55W 2 шт.",
+        "price": 1052.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 11,
+          "width": 15,
+          "height": 4,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 10.52
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 21.04
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "5000101",
+        "name": "Впитывающий наполнитель ",
+        "categoryId": 12766642,
+        "categoryName": "Наполнители для кошачьих туалетов",
+        "weightDimensions": {
+          "length": 22,
+          "width": 32,
+          "height": 2,
+          "weight": 2.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "WP-320F",
+        "marketSku": 573465082,
+        "name": "Фильтр BARBUS WP-320F",
+        "categoryId": 15967001,
+        "categoryName": "Фильтры",
+        "weightDimensions": {
+          "length": 10,
+          "width": 7,
+          "height": 20,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "5000100",
+        "marketSku": 14252675,
+        "name": "Впитывающий наполнитель Мурзик Силикагель 4 л",
+        "categoryId": 12766642,
+        "categoryName": "Наполнители для кошачьих туалетов",
+        "weightDimensions": {
+          "length": 22.4,
+          "width": 39.5,
+          "height": 10.6,
+          "weight": 2.316
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "66240",
+        "marketSku": 530357022,
+        "name": "Лампа автомобильная ксеноновая Osram XENARC ORIGINAL D2S 66240 35W 1 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 8,
+          "width": 3,
+          "height": 5,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "УТ000191573",
+        "marketSku": 100940009728,
+        "name": "Антикор КППС Удалитель ржавчины 0.25 кг банка бежевый",
+        "categoryId": 90488,
+        "categoryName": "Антикоры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 10,
+          "height": 7,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1407",
+        "marketSku": 100774717217,
+        "name": "Смазка ВМПАВТО МС 1520 RUBIN 0.375 кг",
+        "price": 425.0,
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 6,
+          "width": 26,
+          "height": 7,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 4.25
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 8.5
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "C21014",
+        "marketSku": 525021052,
+        "name": "Воздушный фильтр MANNFILTER C 21 014",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 22,
+          "width": 23,
+          "height": 5,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1987301012",
+        "marketSku": 576045010,
+        "name": "Лампа автомобильная галогенная Bosch Pure Light 1987301012 H7 12V 55W 1 шт.",
+        "price": 257.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 11,
+          "width": 15,
+          "height": 1,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 2.57
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 5.14
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "8200768913",
+        "marketSku": 672917214,
+        "name": "Масляный фильтр Renault 8200768913",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 10,
+          "height": 7,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "HG2250",
+        "marketSku": 100812767007,
+        "name": "Hi-Gear HG2250 Комплекс присадок к маслу для двигателей с износом с SMT² 0.444 л",
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 8,
+          "width": 18,
+          "height": 7,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "28113H8100",
+        "marketSku": 647004211,
+        "name": "Панельный фильтр HYUNDAI 28113H8100",
+        "price": 594.0,
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 16,
+          "width": 28,
+          "height": 7,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 5.94
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 11.88
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "8200431051",
+        "marketSku": 652536529,
+        "name": "Панельный фильтр Renault 8200431051",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 45,
+          "width": 27,
+          "height": 8,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "15208-65F0A",
+        "marketSku": 645423421,
+        "name": "Масляный фильтр Nissan 15208-65F0A",
+        "price": 578.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 8,
+          "height": 7,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 5.78
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 11.56
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W9142",
+        "marketSku": 519704496,
+        "name": "Масляный фильтр MANNFILTER W914/2",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 12,
+          "width": 11,
+          "height": 8,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64193NLHCB",
+        "marketSku": 573945001,
+        "name": "Лампа автомобильная галогенная Osram NIGHT BREAKER LASER H4 64193NL-HCB 12V 60/55W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 12,
+          "width": 13,
+          "height": 5,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "fix-a-leak",
+        "name": "CTX FIX-A-LEAK 1л.  Для устранения протечки в бассейнах, трубах, СПА.",
+        "categoryId": 13776188,
+        "categoryName": "Химические средства",
+        "weightDimensions": {
+          "length": 30,
+          "width": 10,
+          "height": 10,
+          "weight": 1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "31184-1R000",
+        "marketSku": 642777577,
+        "name": "Фильтр топливного насоса HYUNDAI 31184-1R000",
+        "price": 576.0,
+        "categoryId": 90449,
+        "categoryName": "Топливные фильтры",
+        "weightDimensions": {
+          "length": 10,
+          "width": 16,
+          "height": 3,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 5.76
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 11.52
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64210ALLHCB",
+        "marketSku": 530363054,
+        "name": "Лампа автомобильная галогенная Osram ALLSEASON 64210ALL-HCB +30% H7 55W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 11,
+          "width": 13,
+          "height": 5,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "11066XUWX2",
+        "marketSku": 663894328,
+        "name": "Лампа автомобильная светодиодная Philips 11066XUWX2 W21/5W 12/24V 1,8/0,3W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 9,
+          "width": 6,
+          "height": 3,
+          "weight": 0.12
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "7700274177",
+        "marketSku": 653347486,
+        "name": "Масляный фильтр Renault 7700274177",
+        "price": 450.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 11,
+          "height": 6,
+          "weight": 0.3
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 10
+              }
+            ]
+          },
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 10
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 4.5
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 9.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1412",
+        "marketSku": 101116801980,
+        "name": "Смазка ВМПАВТО МС 1520 RUBIN 2 л",
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 11,
+          "width": 30,
+          "height": 24,
+          "weight": 1.7
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "2630035504",
+        "marketSku": 647041010,
+        "name": "Масляный фильтр HYUNDAI 26300-35504",
+        "price": 339.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 10,
+          "height": 10,
+          "weight": 0.4
+        },
+        "warehouses": [
+          {
+            "id": 172,
+            "name": "Яндекс.Маркет (Московская область, Софьино)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.39
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 6.78
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "2101",
+        "marketSku": 100777891862,
+        "name": "Автомобильная смазка ВМПАВТО Silicot REZIN 0.03 л",
+        "price": 241.0,
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 4,
+          "width": 11,
+          "height": 2,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 2.41
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 4.82
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "M2624934",
+        "marketSku": 662547409,
+        "name": "Дисковые тормозные колодки задние Marshall M2624934 для Hyundai Solaris, Hyundai Tucson, Kia Rio (4 шт.)",
+        "categoryId": 17424413,
+        "categoryName": "Тормозные колодки",
+        "weightDimensions": {
+          "length": 15,
+          "width": 10,
+          "height": 10,
+          "weight": 1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "WK692",
+        "marketSku": 577015081,
+        "name": "Топливный фильтр MANNFILTER WK 69/2",
+        "categoryId": 90449,
+        "categoryName": "Топливные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 6,
+          "height": 18,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "XA20206",
+        "marketSku": 12828742,
+        "name": "Синтетическое моторное масло XADO Atomic Oil 5W-40 SL/CF 4 л",
+        "categoryId": 90478,
+        "categoryName": "Моторные масла",
+        "weightDimensions": {
+          "length": 12,
+          "width": 18,
+          "height": 27,
+          "weight": 3.8
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "12961NBVB2",
+        "marketSku": 645435860,
+        "name": "Лампа автомобильная галогенная Philips White Vision 12961NBVB2 12V W5W 2 шт.",
+        "price": 263.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 6,
+          "width": 15,
+          "height": 3,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 2.63
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 5.26
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "4401",
+        "marketSku": 100777482754,
+        "name": "ВМПАВТО Resurs Diesel 0.05 кг",
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 6,
+          "width": 12,
+          "height": 5,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "8603",
+        "marketSku": 100802750464,
+        "name": "Автомобильная смазка ВМПАВТО Валера 0.21 л",
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 8,
+          "width": 6,
+          "height": 13,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W7008",
+        "marketSku": 514794001,
+        "name": "Масляный фильтр MANNFILTER W7008",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 11,
+          "height": 8,
+          "weight": 0.3
+        },
+        "warehouses": [
+          {
+            "id": 172,
+            "name": "Яндекс.Маркет (Московская область, Софьино)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 47
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "036129620J",
+        "marketSku": 558177072,
+        "name": "Воздушный фильтр VOLKSWAGEN 036129620j",
+        "price": 434.0,
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 22,
+          "width": 41,
+          "height": 5,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 4.34
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 8.68
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "A07822S",
+        "marketSku": 100957276786,
+        "name": "Автомобильный компрессор AVS KE300TL черный/серебристый",
+        "categoryId": 90463,
+        "categoryName": "Автомобильные компрессоры",
+        "weightDimensions": {
+          "length": 21,
+          "width": 28,
+          "height": 11,
+          "weight": 2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "752802B",
+        "marketSku": 645434637,
+        "name": "Лампа автомобильная накаливания Osram Original line 7528-02B P21/5W (BAY15d) 12V 21/5W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 7,
+          "width": 12,
+          "height": 5,
+          "weight": 0.1
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 73
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "3397118908",
+        "marketSku": 478556129,
+        "name": "Щетка стеклоочистителя бескаркасная Bosch Aerotwin AR604S 600 мм / 450 мм, 2 шт.",
+        "categoryId": 90470,
+        "categoryName": "Щетки стеклоочистителей",
+        "weightDimensions": {
+          "length": 6,
+          "width": 72,
+          "height": 5,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1987301026",
+        "marketSku": 575777118,
+        "name": "Лампа автомобильная накаливания Bosch Pure Light 1987301026 W5W 12V 5W 2 шт.",
+        "price": 171.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 8,
+          "width": 13,
+          "height": 2,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 1.71
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 3.42
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "3397118907",
+        "marketSku": 478557061,
+        "name": "Щетка стеклоочистителя бескаркасная Bosch Aerotwin AR601S 600 мм / 400 мм, 2 шт.",
+        "categoryId": 90470,
+        "categoryName": "Щетки стеклоочистителей",
+        "weightDimensions": {
+          "length": 7,
+          "width": 72,
+          "height": 5,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "04E129620",
+        "marketSku": 558288011,
+        "name": "Воздушный фильтр VOLKSWAGEN 04e129620",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 23,
+          "width": 30,
+          "height": 4,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "12498VPB2",
+        "marketSku": 662684692,
+        "name": "Лампа автомобильная накаливания Philips VisionPlus +60% 12498VPB2 P21W 2 шт.",
+        "price": 227.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 7,
+          "width": 15,
+          "height": 3,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 2.27
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 4.54
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "700113",
+        "name": "Женские цветные носки 5 пар с яркими принтами (фрукты) 37-41",
+        "categoryId": 7811934,
+        "categoryName": "Носки",
+        "weightDimensions": {
+          "length": 15,
+          "width": 5,
+          "height": 5,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64210ULT-HCB",
+        "marketSku": 530337006,
+        "name": "Лампа автомобильная галогенная Osram ULTRA LIFE H7 64210ULT-HCB 12V 55W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 12,
+          "width": 13,
+          "height": 5,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "26300-02503",
+        "marketSku": 647046004,
+        "name": "Масляный фильтр HYUNDAI 26300-02503",
+        "price": 490.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 9,
+          "height": 8,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 4.9
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 9.8
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "11180-8122010-82",
+        "marketSku": 650493032,
+        "name": "Фильтр LADA 11180-8122010-82",
+        "price": 361.0,
+        "categoryId": 13477846,
+        "categoryName": "Салонные фильтры",
+        "weightDimensions": {
+          "length": 5,
+          "width": 30,
+          "height": 17,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.61
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 7.22
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "XW-10",
+        "marketSku": 100882792732,
+        "name": "Зарядное устройство C2R  (автомат, 8А, 6-12В)",
+        "categoryId": 6856242,
+        "categoryName": "Зарядные устройства для аккумуляторов",
+        "weightDimensions": {
+          "length": 19,
+          "width": 9,
+          "height": 21,
+          "weight": 0.9
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1701",
+        "marketSku": 100830892756,
+        "name": "Смазка ВМПАВТО МС-2000 0.02 кг",
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 5,
+          "width": 10,
+          "height": 5,
+          "weight": 0.06
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "1304",
+        "marketSku": 100774780752,
+        "name": "Автомобильная смазка ВМПАВТО MC 1510 BLUE 0.42 л",
+        "price": 520.0,
+        "categoryId": 90489,
+        "categoryName": "Смазки",
+        "weightDimensions": {
+          "length": 5,
+          "width": 26,
+          "height": 7,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 5.2
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 10.4
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "560409054",
+        "marketSku": 1716371689,
+        "name": "Автомобильный аккумулятор VARTA Blue Dynamic D59 (560 409 054)",
+        "categoryId": 90436,
+        "categoryName": "Аккумуляторные батареи",
+        "weightDimensions": {
+          "length": 19,
+          "width": 26,
+          "height": 18,
+          "weight": 13.7
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "282502B",
+        "marketSku": 650491022,
+        "name": "Лампа автомобильная накаливания Osram 2825-02B W5W 5W 2 шт.",
+        "price": 135.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 8,
+          "width": 11,
+          "height": 1,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 1.35
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 2.7
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "C35154",
+        "marketSku": 531671088,
+        "name": "Воздушный фильтр MANNFILTER C35154",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 36,
+          "height": 14,
+          "weight": 0.39
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "NN-011",
+        "marketSku": 100773420127,
+        "name": "Автомобильный насос Dollex NN-011 серый",
+        "categoryId": 14734226,
+        "categoryName": "Насосы для подкачки шин",
+        "weightDimensions": {
+          "length": 12,
+          "width": 33,
+          "height": 11,
+          "weight": 1.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "нж259",
+        "name": "Женские цветные носки 3 пары с принтами (Мистика) 37-41 Носки",
+        "categoryId": 7811934,
+        "categoryName": "Носки",
+        "weightDimensions": {
+          "length": 25,
+          "width": 10,
+          "height": 2,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "ABRO9-AB",
+        "marketSku": 100814366733,
+        "name": "Универсальный силиконовый герметик для ремонта автомобиля ABRO 9-AB, 0.085 кг серый",
+        "price": 170.0,
+        "categoryId": 90483,
+        "categoryName": "Клеи и герметики",
+        "weightDimensions": {
+          "length": 10,
+          "width": 22,
+          "height": 2,
+          "weight": 0.1
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "FIT",
+                "count": 3
+              },
+              {
+                "type": "FREEZE",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 1.7
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 3.4
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "2128722",
+        "marketSku": 651941118,
+        "name": "Масляный фильтр Ford 2128722",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 9,
+          "height": 9,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "DL-012",
+        "marketSku": 100779103792,
+        "name": "Накидка Dollex массажная , дерево желтый",
+        "categoryId": 90465,
+        "categoryName": "Чехлы и накидки на сиденья",
+        "weightDimensions": {
+          "length": 27,
+          "width": 42,
+          "height": 6,
+          "weight": 1.4
+        },
+        "warehouses": [
+          {
+            "id": 172,
+            "name": "Яндекс.Маркет (Московская область, Софьино)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 6
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "OC195",
+        "marketSku": 645433004,
+        "name": "Масляный фильтр MAHLE OC 195",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 9,
+          "height": 8,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "165467674R",
+        "marketSku": 673075033,
+        "name": "Воздушный фильтр Renault 165467674R",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 30,
+          "width": 15,
+          "height": 10,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "OC196",
+        "marketSku": 647028079,
+        "name": "Масляный фильтр MAHLE OC 196",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 9,
+          "height": 9,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "12362PRC1",
+        "marketSku": 650772145,
+        "name": "Лампа автомобильная галогенная Philips 12362PRC1 H11 12V 55W 1 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 9,
+          "width": 4,
+          "height": 3,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "12961B2",
+        "marketSku": 642756555,
+        "name": "Лампа автомобильная накаливания Philips Vision 12961B2 W5W 12V 5W 2 шт.",
+        "price": 151.0,
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 8,
+          "width": 14,
+          "height": 3,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 1.51
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 3.02
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "KU-70005",
+        "marketSku": 100675883694,
+        "name": "Преобразователь ржавчины KUDO со структурным модификатором с кисточкой 0.01 л",
+        "categoryId": 90484,
+        "categoryName": "Преобразователи ржавчины",
+        "weightDimensions": {
+          "length": 9,
+          "width": 7,
+          "height": 13,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "KU-9002",
+        "marketSku": 100627669049,
+        "name": "Лак KUDO универсальный глянцевый прозрачный 520 мл",
+        "categoryId": 2561869,
+        "categoryName": "Аэрозольная краска",
+        "weightDimensions": {
+          "length": 7,
+          "width": 9,
+          "height": 20,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "311121R000",
+        "marketSku": 642290215,
+        "name": "Топливный фильтр HYUNDAI 31112-1R000",
+        "price": 1293.0,
+        "categoryId": 90449,
+        "categoryName": "Топливные фильтры",
+        "weightDimensions": {
+          "length": 11,
+          "width": 12,
+          "height": 12,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 12.93
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 25.86
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "500500",
+        "name": "Умная автовизитка с QR код",
+        "categoryId": 90472,
+        "categoryName": "Наклейки, шильдики и значки",
+        "weightDimensions": {
+          "length": 5,
+          "width": 4,
+          "height": 1,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "NSP-001",
+        "marketSku": 100779096913,
+        "name": "Накидка Dollex прозрачная бесцветный",
+        "categoryId": 90465,
+        "categoryName": "Чехлы и накидки на сиденья",
+        "weightDimensions": {
+          "length": 21,
+          "width": 21,
+          "height": 1,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "Ln1003",
+        "marketSku": 100818299757,
+        "name": "Lavr 5-минутная промывка двигателя 0.45 л",
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 6,
+          "width": 21,
+          "height": 6,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "8201153808",
+        "marketSku": 651859652,
+        "name": "Фильтр Renault 8201153808",
+        "categoryId": 13477846,
+        "categoryName": "Салонные фильтры",
+        "weightDimensions": {
+          "length": 23,
+          "width": 25,
+          "height": 4,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "KNV-01",
+        "marketSku": 100802754174,
+        "name": "Крепёжный комплект Dollex KNV-01 хром",
+        "categoryId": 13208249,
+        "categoryName": "Рамки для номеров",
+        "weightDimensions": {
+          "length": 9,
+          "width": 13,
+          "height": 2,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "90915-YZZJ3",
+        "marketSku": 650524029,
+        "name": "Масляный фильтр TOYOTA 90915-YZZJ3",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 11,
+          "height": 10,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "8505",
+        "marketSku": 100895436705,
+        "name": "ВМПАВТО Пенная раскоксовка двигателя Валера 0.4 л",
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 7,
+          "width": 7,
+          "height": 23,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "8506",
+        "marketSku": 100895436704,
+        "name": "ВМПАВТО Пенная раскоксовка двигателя Валера 0.25 л",
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 8,
+          "width": 7,
+          "height": 13,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "GDB3332",
+        "marketSku": 654177415,
+        "name": "Дисковые тормозные колодки передние TRW GDB3332 для LADA Largus, LADA Vesta (4 шт.)",
+        "categoryId": 17424413,
+        "categoryName": "Тормозные колодки",
+        "weightDimensions": {
+          "length": 13,
+          "width": 8,
+          "height": 18,
+          "weight": 1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "4304",
+        "marketSku": 100777485768,
+        "name": "ВМПАВТО Resurs Next 0.075 кг",
+        "price": 609.0,
+        "categoryId": 14350309,
+        "categoryName": "Присадки и промывки",
+        "weightDimensions": {
+          "length": 7,
+          "width": 4,
+          "height": 15,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 6.09
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 12.18
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "E301531801",
+        "marketSku": 100595340380,
+        "name": "Батарейка Energizer Max 9V/Крона 1 шт блистер",
+        "categoryId": 90626,
+        "categoryName": "Батарейки и аккумуляторы",
+        "weightDimensions": {
+          "length": 9,
+          "width": 13,
+          "height": 1,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W6018",
+        "marketSku": 521723534,
+        "name": "Масляный фильтр MANNFILTER W 6018",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 8,
+          "height": 13,
+          "weight": 0.6
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "HG5217",
+        "marketSku": 623089241,
+        "name": "Hi-Gear Очиститель-кондиционер для кожи салона автомобиля HG5217, 0.5 кг",
+        "categoryId": 14369113,
+        "categoryName": "Уход за салоном",
+        "weightDimensions": {
+          "length": 7,
+          "width": 27,
+          "height": 8,
+          "weight": 0.6
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "HG8002N",
+        "marketSku": 100856991755,
+        "name": "Hi-Gear Шампунь для бесконтактной мойки автомобиля HG8009/HG8002N 1 л",
+        "categoryId": 90430,
+        "categoryName": "Автошампуни и пены",
+        "weightDimensions": {
+          "length": 7,
+          "width": 12,
+          "height": 22,
+          "weight": 1.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "TB-050",
+        "marketSku": 100724974833,
+        "name": "Ленточный буксировочный трос Dollex TB-050 (5 м) (5 т) желтый/синий",
+        "categoryId": 90446,
+        "categoryName": "Буксировочные тросы",
+        "weightDimensions": {
+          "length": 16,
+          "width": 8,
+          "height": 6,
+          "weight": 0.512
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "12342LLECOS2",
+        "marketSku": 643041607,
+        "name": "Лампа автомобильная галогенная Philips LongLife EcoVision 12342LLECOS2 H4 60/55W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 12,
+          "width": 15,
+          "height": 6,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "6101",
+        "marketSku": 100836756767,
+        "name": "Антикор OILRIGHT Мастика резинобитумная 2 кг банка черный",
+        "categoryId": 90488,
+        "categoryName": "Антикоры",
+        "weightDimensions": {
+          "length": 15,
+          "width": 18,
+          "height": 14,
+          "weight": 2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "A-1818",
+        "marketSku": 650314063,
+        "name": "Воздушный фильтр SAKURA A-1818",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 18,
+          "width": 31,
+          "height": 3,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "64193CBI-HCB",
+        "marketSku": 530361599,
+        "name": "Лампа автомобильная галогенная Osram COOL BLUE INTENSE H4 64193CBI-HCB 12V 60/55W 2 шт.",
+        "categoryId": 14405299,
+        "categoryName": "Лампы для автомобилей",
+        "weightDimensions": {
+          "length": 12,
+          "width": 14,
+          "height": 5,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "KR-977",
+        "marketSku": 475770038,
+        "name": "KERRY Очиститель велюра и обивки салона автомобиля KR-977, 0.65 л",
+        "categoryId": 14369113,
+        "categoryName": "Уход за салоном",
+        "weightDimensions": {
+          "length": 8,
+          "width": 26,
+          "height": 7,
+          "weight": 0.6
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "C27030",
+        "marketSku": 530929542,
+        "name": "Воздушный фильтр MANNFILTER C 27 030",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 13,
+          "width": 30,
+          "height": 8,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W71275",
+        "marketSku": 590364609,
+        "name": "Масляный фильтр MANNFILTER W 712/75",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 9,
+          "height": 9,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W71273",
+        "marketSku": 590364599,
+        "name": "Масляный фильтр MANNFILTER W 712/73",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 11,
+          "height": 10,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "97133D1000",
+        "marketSku": 650140569,
+        "name": "Фильтр KIA 97133D1000",
+        "categoryId": 13477846,
+        "categoryName": "Салонные фильтры",
+        "weightDimensions": {
+          "length": 25,
+          "width": 28,
+          "height": 3,
+          "weight": 0.2
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W671",
+        "marketSku": 514787011,
+        "name": "Масляный фильтр MANNFILTER W67/1",
+        "price": 341.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 9,
+          "height": 8,
+          "weight": 0.3
+        },
+        "warehouses": [
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 5
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.41
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 6.82
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "26300-35531",
+        "marketSku": 647028484,
+        "name": "Масляный фильтр HYUNDAI 26300-35531",
+        "price": 770.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 13,
+          "width": 8,
+          "height": 8,
+          "weight": 0.6
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 7.7
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 15.4
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "KNS-01",
+        "marketSku": 100733049740,
+        "name": "Крепёжный комплект Dollex KNS-01 хром",
+        "categoryId": 13208249,
+        "categoryName": "Рамки для номеров",
+        "weightDimensions": {
+          "length": 10,
+          "width": 4,
+          "height": 4,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "HU9254X",
+        "marketSku": 590366010,
+        "name": "Фильтрующий элемент MANNFILTER HU 925/4 x",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 10,
+          "height": 12,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "06J115403Q",
+        "marketSku": 561627126,
+        "name": "Масляный фильтр VOLKSWAGEN 06j115403q",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 6,
+          "width": 15,
+          "height": 9,
+          "weight": 0.6
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "21080101200582",
+        "marketSku": 660025391,
+        "name": "Масляный фильтр LADA 21080-1012005-82",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 11,
+          "width": 13,
+          "height": 8,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "C14130",
+        "marketSku": 591296117,
+        "name": "Воздушный фильтр MANNFILTER C 14 130",
+        "categoryId": 6101352,
+        "categoryName": "Воздушные фильтры",
+        "weightDimensions": {
+          "length": 20,
+          "width": 20,
+          "height": 20,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "15208-9F60A",
+        "marketSku": 650491338,
+        "name": "Масляный фильтр Nissan 15208-9F60A",
+        "price": 457.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 8,
+          "height": 9,
+          "weight": 0.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 4.57
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 9.14
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "152566",
+        "marketSku": 12692301,
+        "name": "Моторное масло MOBIL Super 3000 X1 5W-40 4 л",
+        "price": 1770.0,
+        "categoryId": 90478,
+        "categoryName": "Моторные масла",
+        "weightDimensions": {
+          "length": 19,
+          "width": 14,
+          "height": 24,
+          "weight": 3.3
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 17.7
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 35.4
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "HU71151X",
+        "marketSku": 589520379,
+        "name": "Фильтрующий элемент MANNFILTER HU 711/51 x",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 9,
+          "height": 10,
+          "weight": 0.28
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W81180",
+        "marketSku": 515114314,
+        "name": "Масляный фильтр MANNFILTER W811/80",
+        "price": 350.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 10,
+          "height": 9,
+          "weight": 0.4
+        },
+        "warehouses": [
+          {
+            "id": 172,
+            "name": "Яндекс.Маркет (Московская область, Софьино)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 296
+              }
+            ]
+          },
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 13
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.5
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 7.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W71945",
+        "marketSku": 586038012,
+        "name": "Масляный фильтр MANNFILTER W719/45",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 16,
+          "height": 9,
+          "weight": 0.5
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "W75/3",
+        "marketSku": 586011000,
+        "name": "Масляный фильтр MANNFILTER W75/3",
+        "price": 380.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 9,
+          "width": 10,
+          "height": 6,
+          "weight": 0.3
+        },
+        "warehouses": [
+          {
+            "id": 145,
+            "name": "«Маршрут» (Московская область, Котельники)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 12
+              }
+            ]
+          },
+          {
+            "id": 147,
+            "name": "Яндекс.Маркет (Ростовская область)",
+            "stocks": [
+              {
+                "type": "SUGGEST",
+                "count": 3
+              }
+            ]
+          }
+        ],
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 3.8
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 7.6
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "96879797",
+        "marketSku": 647120663,
+        "name": "Масляный фильтр GENERAL MOTORS 96879797",
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 10,
+          "width": 9,
+          "height": 9,
+          "weight": 0.4
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      },
+      {
+        "shopSku": "04152-YZZA6",
+        "marketSku": 647145093,
+        "name": "Фильтрующий элемент TOYOTA 04152-YZZA6",
+        "price": 5000.0,
+        "categoryId": 90442,
+        "categoryName": "Масляные фильтры",
+        "weightDimensions": {
+          "length": 8,
+          "width": 10,
+          "height": 8,
+          "weight": 0.1
+        },
+        "tariffs": [
+          {
+            "type": "AGENCY_COMMISSION",
+            "percent": 1.0,
+            "amount": 50.0
+          },
+          {
+            "type": "FEE",
+            "percent": 2.0,
+            "amount": 100.0
+          },
+          {
+            "type": "FULFILLMENT",
+            "amount": 30.0
+          },
+          {
+            "type": "STORAGE",
+            "amount": 0.8
+          },
+          {
+            "type": "WITHDRAW",
+            "amount": 36.0
+          },
+          {
+            "type": "SURPLUS",
+            "amount": 150.0
+          }
+        ]
+      }
+    ]
+  }
+}

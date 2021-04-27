@@ -1,0 +1,20 @@
+{% block accordion %}
+  <div class="accordion accordion-flush mt-4" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="{{ forms_list.0 }}h">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{forms_list.0}}c" aria-expanded="false" aria-controls="flush-collapseOne">
+          {{ title }}
+        </button>
+      </h2>
+      <div id="{{ forms_list.0 }}c" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body row">
+          {% for form in forms_list.1 %}
+            {% for item in form %}
+              {% include 'components/product_card/element.html' %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -4,7 +4,7 @@ from main.view import *
 
 
 class MainView(View):
-    """отображение гланой страницы"""
+    """отображение главной страницы"""
     context = {'title': 'Main'}
 
     def get(self, request):
