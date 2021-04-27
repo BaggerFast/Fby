@@ -1,4 +1,7 @@
-"""Основная модель для хранения товара"""
+"""
+Основная модель для хранения товара
+docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/get-campaigns-id-offer-mapping-entries.html
+"""
 
 from django.db import models
 from main.models import User

@@ -1,4 +1,7 @@
-"""Модели для хранения информации о заказах товаров на ЯМ"""
+"""
+Модели для хранения информации о заказах товаров на ЯМ
+docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/post-campaigns-id-stats-orders.html
+"""
 
 from main.models import User
 from django.db import models
@@ -145,7 +148,6 @@ class ItemPrice(models.Model):
         verbose_name='Суммарная цена или скидка на все единицы товара в заказе',
         help_text='Указана в рублях. Точность — два знака после запятой',
         null=True)
-
 
 
 class Detail(models.Model):

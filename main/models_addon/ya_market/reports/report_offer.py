@@ -1,7 +1,9 @@
-"""Модель для хранения отчетов по остаткам товаров на складах"""
+"""
+Модель для хранения отчетов по остаткам товаров на складах
+docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/post-campaigns-id-stats-skus.html
+"""
 
 from django.db import models
-
 from main.models_addon.ya_market import Offer, Warehouse
 
 
