@@ -48,7 +48,7 @@ def save_db_from_files(request):
     json_object_offer = get_json_data_from_file("json_data/offer_data.json")
     OfferPattern(json=json_object_offer['result']['offerMappingEntries']).save(request.user)
     json_object_order = get_json_data_from_file("json_data/order_data.json")
-    OrderPattern(json=json_object_order['result']['orders']).save(request.user)
+    OrderPattern(json=json_object_order['result']['order']).save(request.user)
     json_object_prise = get_json_data_from_file("json_data/price_data.json")
     PricePattern(json=json_object_prise['result']['offers']).save(request.user)
     json_object_report = get_json_data_from_file("json_data/offer_report_data.json")

@@ -29,7 +29,7 @@ urlpatterns = [
     path('', MainView.as_view(), name="index"),
     path('admin/', admin.site.urls),
     path('catalogue/', include(catalogue)),
-    path('orders/', include(orders)),
+    path('order/', include(orders)),
     path('profile/', include(profile)),
     path('register/', MyRegisterFormView.as_view(), name="register"),
     path('login/', MyLoginFormView.as_view(), name='login'),

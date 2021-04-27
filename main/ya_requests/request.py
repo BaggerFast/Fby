@@ -33,7 +33,7 @@ class OrderList(Requests):
     def __init__(self, request, params: dict = None):
         if params is not None:
             self.PARAMS = params
-        super().__init__(json_name='/stats/orders', base_context_name='orders', name="Order", request=request)
+        super().__init__(json_name='/stats/order', base_context_name='order', name="Order", request=request)
 
     def save(self) -> None:
         OrderPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)
