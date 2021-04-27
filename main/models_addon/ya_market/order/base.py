@@ -107,6 +107,14 @@ class Item(models.Model):
         null=True
     )
 
+    @property
+    def price(self):
+        return self.prices.costPerItem
+
+    @property
+    def total_price(self):
+        return self.prices.total
+
 
 class ItemPrice(models.Model):
     """
@@ -137,6 +145,7 @@ class ItemPrice(models.Model):
         verbose_name='Суммарная цена или скидка на все единицы товара в заказе',
         help_text='Указана в рублях. Точность — два знака после запятой',
         null=True)
+
 
 
 class Detail(models.Model):
