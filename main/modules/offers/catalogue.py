@@ -36,7 +36,6 @@ class CatalogueView(BaseView):
             fields = ['name', 'description', 'shopSku', 'category', 'vendor']
             keywords = search.strip().split()
             filters = self.filtration.filters_from_request(self.request)
-            objects = self.filtration.filter_items(offers, filters)
             objects = search_algorithm()
 
             was_searching_used = len(search) != 0
