@@ -109,11 +109,11 @@ class Item(models.Model):
 
     @property
     def price(self):
-        return self.prices.costPerItem
+        return self.prices.filter(item=self)[0].costPerItem
 
     @property
     def total_price(self):
-        return self.prices.total
+        return self.prices.filter(item=self)[0].total
 
 
 class ItemPrice(models.Model):

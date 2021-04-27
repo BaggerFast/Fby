@@ -6,6 +6,7 @@
   {% for item in order.get_items %}
     {{ item.offerName }}
     {{ item.price }}
+    {{ item.total_price }}
   {% endfor %}
   <br>
   <span class="badge bg-secondary">{{ order.price }}₽</span>
