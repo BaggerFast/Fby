@@ -9,14 +9,14 @@ from main.modules.base import BaseView
 from main.view import get_navbar, Page
 
 
-def convert_url(offer_id) -> HttpResponse:
-    return redirect(reverse('create_offer') + f'?content=accommodation&id={offer_id}')
-
-
 class CreateOfferView(BaseView):
     context = {'title': 'Create offer', 'page_name': 'Создать товар'}
     form = offer_id = None
     form_types = {"info": OfferMultiForm, "accommodation": PriceMultiForm}
+
+    @staticmethod
+    def convert_url(offer_id) -> HttpResponse:
+        return redirect(reverse('create_offer') + f'?content=accommodation&id={offer_id}')
 
     def pre_init(self, request):
         self.request = request
@@ -59,7 +59,7 @@ class CreateOfferView(BaseView):
             offer.delete()
             self.context['create'] = True
         if offer.id and self.context['content'] == 'info':
-            return convert_url(offer.id)
+            return self.convert_url(offer.id)
         return self.end_it()
 
     def get(self, request) -> HttpResponse:
@@ -68,5 +68,5 @@ class CreateOfferView(BaseView):
         self.form.set_forms()
         self.form.set_clear(disable=False)
         if self.offer_id and self.context['content'] != 'accommodation':
-            return convert_url(self.offer_id)
+            return self.convert_url(self.offer_id)
         return self.end_it()
