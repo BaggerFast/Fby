@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  <img src="{{user.get_image}}" style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%;"/>
+  <img src="{{user.get_image}}" style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%; border: solid 3px black;"/>
   <br>
   <h4 class="mt-4"><mark>{{ user.username }}</mark></h4>
   {% for form in base_form %}
