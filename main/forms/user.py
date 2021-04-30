@@ -71,9 +71,17 @@ class UserChangeForm(Us, Func):
     def save(self, commit=True):
         return self.check_image(super().save(commit=commit))
 
+    @property
+    def success_message(self):
+        return 'Данные успешно изменены'
+
 
 class UserPasswordChangeForm(PasswordChangeForm, Func):
     """Модель юзера для смены пароля"""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.turn_off()
+
+    @property
+    def success_message(self):
+        return 'пароль успешно изменен'

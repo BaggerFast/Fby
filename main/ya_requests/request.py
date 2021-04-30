@@ -14,7 +14,8 @@ class OfferList(Requests):
     """
 
     def __init__(self, request):
-        super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries', name="Offer", request=request)
+        super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries', name="Offer",
+                         request=request)
 
     def pattern_save(self) -> None:
         OfferPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)
@@ -76,8 +77,7 @@ class OfferUpdate(Requests):
     def __init__(self, request, shop_sku: str):
         self.shop_sku = shop_sku
         self.PARAMS = self.get_params()
-        super().__init__(json_name='offer-mapping-entries/updates',
-                         base_context_name='offerMappingEntries',
+        super().__init__(json_name='offer-mapping-entries/updates', base_context_name='offerMappingEntries',
                          name="OfferUpdate",
                          request=request
                          )

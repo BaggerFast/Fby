@@ -2,7 +2,7 @@
 
 from django.contrib import messages
 from django.http import Http404, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.shortcuts import redirect
 from main.models_addon import Offer, Price
@@ -24,9 +24,7 @@ class ProductPageView(BaseView):
 
     def pre_init(self, pk: int, request) -> None:
         """Предварительная настройка контекста"""
-        self.context_update({'navbar': get_navbar(request),
-                             'content': request.GET.get('content', 'info')}
-                            )
+        self.context_update({'navbar': get_navbar(request), 'content': request.GET.get('content', 'info')})
         if self.context['content'] in self.form_types:
             self.form = self.form_types[self.context['content']]()
             self.form.set_forms(pk=pk)
@@ -43,12 +41,11 @@ class ProductPageView(BaseView):
 
         def delete() -> HttpResponse:
             """Обработка запроса на удаление товара с перенаправлением на страницу каталога."""
-            offer = Offer.objects.get(id=pk)
+            offer = get_object_or_404(Offer, id=pk)
             offer.delete()
             messages.success(request, f'Товар "{offer.name}" успешно удален')
             return redirect(reverse('catalogue_list'))
 
-        # todo добавить price в функцию
         def update_price() -> HttpResponse:
             """"Обработка запроса на изменение цены на Яндексе"""
             price = Price.objects.get(offer_id=pk)
@@ -59,15 +56,13 @@ class ProductPageView(BaseView):
             """Обработка запроса на обновление или сохранение товара на Яндексе"""
             offer = Offer.objects.get(id=pk)
             sku = offer.shopSku
-            update_request = UpdateOfferList([offer], request)
+            update_request = UpdateOfferList([offer], request=request)
             update_request.update_offers()
 
             if sku in update_request.success:
-                success_message = f'Товар shopSku = {sku} успешно сохранен на Яндексе'
-                messages.success(request, success_message)
+                messages.success(request, f'Товар shopSku = {sku} успешно сохранен на Яндексе')
             elif sku in update_request.errors:
-                error_message = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.'
-                messages.error(request, error_message)
+                messages.error(request, f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.')
                 for error_text in update_request.errors[sku]:
                     messages.error(request, error_text)
             return self.get(request, pk)
@@ -86,11 +81,10 @@ class ProductPageView(BaseView):
 
         self.pre_init(request=request, pk=pk)
         self.form.set_post(disable=True, post=self.request.POST)
-        if self.form.is_valid():
+        self.disable = self.form.is_valid()
+        if self.disable:
             self.form.save()
-            self.disable = True
         else:
-            self.disable = False
             self.form.set_post(disable=self.disable, post=self.request.POST)
         return self.end_it()
 

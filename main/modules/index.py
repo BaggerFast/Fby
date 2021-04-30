@@ -7,6 +7,6 @@ class MainView(View):
     """отображение главной страницы"""
     context = {'title': 'Main'}
 
-    def get(self, request):
-        self.context['navbar'] = get_navbar(request)
-        return render(request, Page.index, self.context)
+    @staticmethod
+    def get(request):
+        return render(request, Page.index, {'navbar': get_navbar(request)})

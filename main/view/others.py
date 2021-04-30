@@ -10,8 +10,7 @@ def save_db_from_files(request):
         """Загрузка данных из файла file."""
         file = f'json_data/{file}.json'
         with open(file, "r", encoding="utf-8") as read_file:
-            json_object = json.load(read_file)
-        return json_object['result']
+            return json.load(read_file)['result']
 
     """Восстановление бд из файлов"""
     context = {

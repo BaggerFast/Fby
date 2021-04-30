@@ -20,9 +20,11 @@ class CreateOfferView(BaseView):
 
     def pre_init(self, request):
         self.request = request
-        local_context = {'navbar': get_navbar(request),
-                         'content_disable': True,
-                         'content': request.GET.get('content', 'info')}
+        local_context = {
+            'navbar': get_navbar(request),
+            'content_disable': True,
+            'content': request.GET.get('content', 'info')
+        }
         self.context_update(local_context)
         if self.context['content'] in self.form_types:
             self.form = self.form_types[self.context['content']]()

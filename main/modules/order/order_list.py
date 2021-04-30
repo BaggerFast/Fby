@@ -38,10 +38,7 @@ class OrderListView(BaseView):
         return order_search(order)
 
     def post(self, request) -> HttpResponse:
-        for model in self.models_to_save:
-            if not model(request=request).save():
-                break
-        return self.get(request=request)
+        return self.save_models(request=request)
 
     def get(self, request) -> HttpResponse:
         local_context = {
@@ -49,7 +46,6 @@ class OrderListView(BaseView):
             'orders': self.reformat_order(Order.objects.filter(user=request.user)),
             'table': ["Номер заказа", "Дата заказа", "Цена, ₽", "Статус"]
         }
-        print(31)
         self.context_update(local_context)
         return render(request, Page.order, self.context)
 
@@ -59,9 +55,5 @@ class OrderPageView(BaseView):
 
     def get(self, request, pk) -> HttpResponse:
         order = get_object_or_404(Order, pk=pk)
-        local_context = {
-            'navbar': get_navbar(request),
-            'order': order,
-        }
-        self.context_update(local_context)
+        self.context_update({'navbar': get_navbar(request), 'order': order})
         return render(request, Page.order_page, self.context)
