@@ -42,10 +42,14 @@ class UserRegistrationForm(UserCreationForm, Func):
 
 
 class UserChangeForm(Us, Func):
-    def __init__(self, disable: bool = False, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         self.del_old_image(args, kwargs['instance'])
+        disabled = False
+        if 'disable' in kwargs.keys():
+            disabled = kwargs['disable']
+            del kwargs['disable']
         super().__init__(*args, **kwargs)
-        self.turn_off(disable)
+        self.turn_off(disabled)
         del (self.fields['password'])
 
     @staticmethod

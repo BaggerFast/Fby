@@ -16,7 +16,6 @@ class ProfileView(BaseView):
         user = User.objects.get(username=request.user)
         local_context = {
             'navbar': get_navbar(request),
-            'user': user,
             'base_form': UserChangeForm(instance=user, disable=True),
         }
         self.context_update(local_context)
