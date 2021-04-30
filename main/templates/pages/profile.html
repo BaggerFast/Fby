@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-  <p>{{ user.username }}</p>
   <img src="{{user.get_image}}" style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%;"/>
   <br>
+  <h4 class="mt-4"><mark>{{ user.username }}</mark></h4>
+  {% for form in base_form %}
+    {% ifnotequal form.label 'Аватарка' %}
+      <div class="mb-3">
+        <label>
+            <div>
+              {{ form.label }}
+              {{ form }}
+            </div>
+        </label>
+      </div>
+    {% endifnotequal %}
+  {%endfor%}
   <a href="{% url 'profile_edit' %}">Редактировать профиль</a>
-  <p>{{  user.email }}</p>
 {% endblock %}

@@ -14,7 +14,11 @@ class ProfileView(BaseView):
 
     def get(self, request) -> HttpResponse:
         user = User.objects.get(username=request.user)
-        local_context = {'navbar': get_navbar(request), 'user': user}
+        local_context = {
+            'navbar': get_navbar(request),
+            'user': user,
+            'base_form': UserChangeForm(instance=user, disable=True),
+        }
         self.context_update(local_context)
         return render(self.request, Page.profile, self.context)
 
