@@ -9,13 +9,17 @@ from main.ya_requests import OfferList, OfferPrice
 class CatalogueView(BaseView):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
     models_to_save = [OfferList, OfferPrice]
-    table = ["Название", "Описание", "SKU", "Категория", "Продавец", "Картинка"]
+    table = ["Название", "SKU", "Категория", "Продавец", "Картинка"]
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.filtration = Filtration(self.table, {"category": 3, "vendor": 4})
+        self.filtration = Filtration({
+            "vendor": "Торговая марка",
+            "category": "Категория",
+            "availability": "Планы по поставкам",
+        })
 
-    def reformat_offer(self, offer) -> list:
+    def reformat_offer(self, offer, filter_types) -> list:
         def append_images() -> list:
             offers = offer
             for i in range(len(offers)):
@@ -28,9 +32,9 @@ class CatalogueView(BaseView):
         def offer_search(offers) -> list:
             def search_algorithm():
                 if not len(keywords):
-                    return offers
+                    return objects
                 scores = {}
-                for item in offers:
+                for item in objects:
                     for keyword in keywords:
                         for field in fields:
                             attr = getattr(item, field)
@@ -44,7 +48,7 @@ class CatalogueView(BaseView):
             search = self.request.GET.get('input', '').lower()
             fields = ['name', 'description', 'shopSku', 'category', 'vendor']
             keywords = search.strip().split()
-            filters = self.filtration.filters_from_request(self.request)
+            filters = self.filtration.filters_from_request(self.request, filter_types)
             objects = self.filtration.filter_items(offers, filters)
             objects = search_algorithm()
 
@@ -67,14 +71,14 @@ class CatalogueView(BaseView):
 
     def get(self, request) -> HttpResponse:
         offer = Offer.objects.filter(user=request.user)
+        filter_types = self.filtration.get_filter_types(offer)
         local_context = {
             'navbar': get_navbar(request),
             'count': offer.count(),
-            'offers': self.reformat_offer(offer=offer),
+            'offers': self.reformat_offer(offer, filter_types),
             'urls': Url.objects.filter(),
-            'table': ["Название", "SKU", "Категория", "Продавец", "Картинка"],
-            'filter_types': self.filtration.get_filter_types(offer).items(),
+            'table': self.table,
+            'filter_types': filter_types.items(),
         }
         self.context_update(local_context)
-
         return render(request, Page.catalogue, self.context)

@@ -44,3 +44,9 @@ main {
     text-align: center;
     margin: 10px;
 }
+
+.dropdown-item-no-active.active,.dropdown-item-no-active:active {
+    color: #1e2125;
+    background-color: #f8f9fa;
+}
+
