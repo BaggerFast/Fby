@@ -3,6 +3,7 @@
   <p>{{ user.username }}</p>
   <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
+    {% include 'components/errors.html' %}
     {% for form in base_form %}
       <div class="mb-3">
         <label>
@@ -22,6 +23,7 @@
   <hr>
   <form class="mb-3" method="post">
     {% csrf_token %}
+    {% include 'components/errors.html' %}
     {% for form in passwd_form %}
       <div class="mb-3">
         <label>

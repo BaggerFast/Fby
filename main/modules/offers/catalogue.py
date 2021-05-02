@@ -20,15 +20,6 @@ class CatalogueView(BaseView):
         })
 
     def reformat_offer(self, offer, filter_types) -> list:
-        def append_images() -> list:
-            offers = offer
-            for i in range(len(offers)):
-                try:
-                    setattr(offers[i], 'image', Url.objects.filter(offer=offers[i])[0].url)
-                except IndexError:
-                    pass
-            return offers
-
         def offer_search(offers) -> list:
             def search_algorithm():
                 if not len(keywords):
@@ -61,21 +52,21 @@ class CatalogueView(BaseView):
             self.context_update({'search': was_searching_used, 'count': len(objects)})
             return objects
 
-        return offer_search(append_images())
+        return offer_search(offer)
 
     def post(self, request) -> HttpResponse:
         for model in self.models_to_save:
-            if not model().save(request=request):
+            if not model(request=request).save():
                 break
         return self.get(request=request)
 
     def get(self, request) -> HttpResponse:
-        offer = Offer.objects.filter(user=request.user)
-        filter_types = self.filtration.get_filter_types(offer)
+        offers = Offer.objects.filter(user=request.user)
+        filter_types = self.filtration.get_filter_types(offers)
         local_context = {
             'navbar': get_navbar(request),
-            'count': offer.count(),
-            'offers': self.reformat_offer(offer, filter_types),
+            'count': offers.count(),
+            'offers': self.reformat_offer(offers, filter_types),
             'urls': Url.objects.filter(),
             'table': self.table,
             'filter_types': filter_types.items(),

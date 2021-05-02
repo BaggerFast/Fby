@@ -45,6 +45,16 @@ main {
     margin: 10px;
 }
 
+.table-wrapper {
+  max-height: 600px;
+  overflow: auto;
+  /*display:inline-block;*/
+}
+
+.active_btn {
+    background-color: darkgrey;
+}
+
 .dropdown-item-no-active.active,.dropdown-item-no-active:active {
     color: #1e2125;
     background-color: #f8f9fa;

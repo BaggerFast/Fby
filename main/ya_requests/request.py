@@ -1,4 +1,5 @@
 """Формирование запросов в YM для получения данных и сохранения их в БД"""
+import json
 from typing import List
 from django.core.exceptions import ObjectDoesNotExist
 from main.models_addon import Offer
@@ -12,11 +13,11 @@ class OfferList(Requests):
     Класс для получения списка товаров и сохранения в БД Offer
     """
 
-    def __init__(self):
-        super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries', name="Offer")
+    def __init__(self, request):
+        super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries', name="Offer", request=request)
 
-    def pattern_save(self, request) -> None:
-        OfferPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
+    def pattern_save(self) -> None:
+        OfferPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)
 
 
 class OrderList(Requests):
@@ -29,13 +30,13 @@ class OrderList(Requests):
         "dateTo": "2021-04-17"
     }
 
-    def __init__(self, params: dict = None):
+    def __init__(self, request, params: dict = None):
         if params is not None:
             self.PARAMS = params
-        super().__init__(json_name='/stats/orders', base_context_name='orders', name="Order")
+        super().__init__(json_name='/stats/orders', base_context_name='orders', name="Order", request=request)
 
-    def save(self, request) -> None:
-        OrderPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
+    def save(self) -> None:
+        OrderPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)
 
 
 class OfferReport(Requests):
@@ -46,9 +47,9 @@ class OfferReport(Requests):
     иначе - по всему списку товаров из каталога
     """
 
-    def __init__(self, shop_sku: str = None):
+    def __init__(self, request, shop_sku: str = None):
         self.PARAMS = self.get_params() if shop_sku is None else {"shopSkus": [shop_sku]}
-        super().__init__(json_name='/stats/skus', base_context_name='shopSkus', name="OfferReport")
+        super().__init__(json_name='/stats/skus', base_context_name='shopSkus', name="OfferReport", request=request)
 
     @staticmethod
     def get_params() -> dict:
@@ -59,8 +60,8 @@ class OfferReport(Requests):
         """Получение данных от YM."""
         return self.get_next_page()
 
-    def save(self, request) -> None:
-        OfferReportPattern(json=self.json_data['result'][self.base_context_name]).save(request.user)
+    def save(self) -> None:
+        OfferReportPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)
 
 
 class OfferUpdate(Requests):
@@ -72,12 +73,13 @@ class OfferUpdate(Requests):
     Чтобы отредактировать товар из каталога, укажите в параметре shop-sku ваш SKU этого товара в каталоге.
     """
 
-    def __init__(self, shop_sku: str):
+    def __init__(self, request, shop_sku: str):
         self.shop_sku = shop_sku
         self.PARAMS = self.get_params()
         super().__init__(json_name='offer-mapping-entries/updates',
                          base_context_name='offerMappingEntries',
-                         name="OfferUpdate"
+                         name="OfferUpdate",
+                         request=request
                          )
 
     def get_params(self) -> dict:
@@ -97,10 +99,11 @@ class OfferUpdate(Requests):
     def get_offer_mapping_entry(offer: Offer) -> dict:
         """Возвращает элемент словаря для товара offer"""
         offer_serializer = OfferSerializer(offer)
-        offer_data = offer_serializer.data
+        offer_data = json.loads(json.dumps(offer_serializer.data, ensure_ascii=False))
         offer_data = {key: value for key, value in offer_data.items() if value and key != 'processingState'}
 
         offer_mapping_entry = {'offer': offer_data}
+        print(offer_mapping_entry)
 
         offer_mapping = offer.mapping_set.filter(mappingType='BASE').first()
         if offer_mapping:
@@ -150,20 +153,21 @@ class UpdateOfferList:
                                     'из‑за ошибок в других товарах'
     }
 
-    def __init__(self, offers: List[Offer]):
+    def __init__(self, offers: List[Offer], request):
+        self.request = request
         self.offers: List[Offer] = offers
-        self.errors: List[dict] = []
-        self.success: List[dict] = []
+        self.errors: dict = dict()
+        self.success: dict = dict()
 
     def update_offers(self) -> None:
         """Обновляет или добавляет товары из списка self.offers."""
         for offer in self.offers:
             sku = offer.shopSku
-            answer = OfferUpdate(sku).get_answer()
+            answer = OfferUpdate(sku, self.request).get_answer()
             if answer['status'] == 'ERROR':
-                self.errors.append({sku: self.get_error_messages(answer)})
+                self.errors[sku] = self.get_error_messages(answer)
             elif answer['status'] == 'OK':
-                self.success.append({sku: 'OK'})
+                self.success[sku] = 'OK'
 
     def get_error_messages(self, answer: dict) -> List[str]:
         """Формирует список сообщений об ошибках"""
