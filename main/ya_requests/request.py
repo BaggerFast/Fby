@@ -1,7 +1,8 @@
 """Формирование запросов в YM для получения данных и сохранения их в БД"""
 import json
 from typing import List
-from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpRequest
+
 from main.models_addon import Offer
 from main.models_addon.save_dir import *
 from main.serializers import OfferSerializer
@@ -13,7 +14,7 @@ class OfferList(Requests):
     Класс для получения списка товаров и сохранения в БД Offer
     """
 
-    def __init__(self, request):
+    def __init__(self, request: HttpRequest):
         super().__init__(json_name='offer-mapping-entries', base_context_name='offerMappingEntries', name="Offer",
                          request=request)
 
@@ -31,7 +32,7 @@ class OrderList(Requests):
         "dateTo": "2021-04-17"
     }
 
-    def __init__(self, request, params: dict = None):
+    def __init__(self, request: HttpRequest, params: dict = None):
         if params is not None:
             self.PARAMS = params
         super().__init__(json_name='/stats/orders', base_context_name='orders', name="Order", request=request)
@@ -48,14 +49,14 @@ class OfferReport(Requests):
     иначе - по всему списку товаров из каталога
     """
 
-    def __init__(self, request, shop_sku: str = None):
-        self.PARAMS = self.get_params() if shop_sku is None else {"shopSkus": [shop_sku]}
+    def __init__(self, request: HttpRequest, shop_sku: str = None):
+        self.PARAMS = self.get_params(request) if shop_sku is None else {"shopSkus": [shop_sku]}
         super().__init__(json_name='/stats/skus', base_context_name='shopSkus', name="OfferReport", request=request)
 
     @staticmethod
-    def get_params() -> dict:
-        """Возвращает словарь для get-запроса, содержащий список всех всех shopSku из каталога"""
-        return {"shopSkus": [offer.shopSku for offer in Offer.objects.all()]}
+    def get_params(request: HttpRequest) -> dict:
+        """Возвращает словарь для get-запроса, содержащий список всех всех shopSku из каталога текущего пользователя """
+        return {"shopSkus": [offer.shopSku for offer in Offer.objects.filter(user=request.user)]}
 
     def get_json(self) -> dict:
         """Получение данных от YM."""
@@ -74,25 +75,19 @@ class OfferUpdate(Requests):
     Чтобы отредактировать товар из каталога, укажите в параметре shop-sku ваш SKU этого товара в каталоге.
     """
 
-    def __init__(self, request, shop_sku: str):
-        self.shop_sku = shop_sku
-        self.request = request
+    def __init__(self, request: HttpRequest, offer: Offer):
+        self.offer = offer
         self.PARAMS = self.get_params()
-        super().__init__(json_name='offer-mapping-entries/updates', base_context_name='offerMappingEntries',
+        super().__init__(json_name='offer-mapping-entries/updates',
+                         base_context_name='offerMappingEntries',
                          name="OfferUpdate",
-                         request=request)
+                         request=request
+                         )
 
     def get_params(self) -> dict:
         """Возвращает словарь для get-запроса, содержащий информацию о товаре"""
-        try:
-            offer = Offer.objects.get(shopSku=self.shop_sku, user=self.request.user)
-        except ObjectDoesNotExist:
-            print('Товара с таким shopSku нет в каталоге')
-            return dict()
-
-        offer_mapping_entry = self.get_offer_mapping_entry(offer)
+        offer_mapping_entry = self.get_offer_mapping_entry(self.offer)
         offer_mapping_entries = {'offerMappingEntries': [offer_mapping_entry]}
-
         return offer_mapping_entries
 
     @staticmethod
@@ -132,8 +127,8 @@ class UpdateOfferList:
     Класс для добавления или редактирования списка товара в YM
 
     :param offers: товары для добавления/редактирования (список)
-    :param errors: сообщения об ошибках (список словарей вида: {shopSku: список ошибок})
-    :param success: сообщения об успехах (список словарей вида: {shopSku: 'OK'})
+    :param errors: сообщения об ошибках (словарь вида: {shopSku: список ошибок})
+    :param success: сообщения об успехах (словарь вида: {shopSku: 'OK'})
     """
     ERRORS = {
         'BAD_REQUEST': 'у вас нет доступа к добавлению товаров в каталог'
@@ -152,8 +147,8 @@ class UpdateOfferList:
                                     'из‑за ошибок в других товарах'
     }
 
-    def __init__(self, offers: List[Offer], request):
-        self.request = request
+    def __init__(self, offers: List[Offer], request: HttpRequest):
+        self.request: HttpRequest = request
         self.offers: List[Offer] = offers
         self.errors: dict = dict()
         self.success: dict = dict()
@@ -162,7 +157,7 @@ class UpdateOfferList:
         """Обновляет или добавляет товары из списка self.offers."""
         for offer in self.offers:
             sku = offer.shopSku
-            answer = OfferUpdate(self.request, sku).get_answer()
+            answer = OfferUpdate(self.request, offer).get_answer()
             if answer['status'] == 'ERROR':
                 self.errors[sku] = self.get_error_messages(answer)
             elif answer['status'] == 'OK':

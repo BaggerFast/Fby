@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from main.models_addon import Offer, Url
 from main.modules.base import BaseView
 from main.view import get_navbar, Page, Filtration
@@ -50,10 +50,10 @@ class CatalogueView(BaseView):
             return objects
         return offer_search(offer)
 
-    def post(self, request) -> HttpResponse:
+    def post(self, request: HttpRequest) -> HttpResponse:
         return self.save_models(request=request)
 
-    def get(self, request) -> HttpResponse:
+    def get(self, request: HttpRequest) -> HttpResponse:
         offers = Offer.objects.filter(user=request.user)
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {

@@ -1,11 +1,12 @@
 import json
 import sqlite3
 import pandas as pd
+from django.http import HttpRequest
 from django.shortcuts import render
 from main.models_addon.save_dir import OfferPattern, OrderPattern, PricePattern, OfferReportPattern
 
 
-def save_db_from_files(request):
+def save_db_from_files(request: HttpRequest):
     def get_json_data_from_file(file: str) -> dict:
         """Загрузка данных из файла file."""
         file = f'json_data/{file}.json'
