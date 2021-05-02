@@ -11,7 +11,13 @@ class BaseView(LoginRequiredMixin, View):
     request = None
 
     def context_update(self, data: dict):
-        self.context = {**data, **self.context, }
+        self.context = {**data, **self.context}
+
+    def save_models(self, request) -> HttpResponse:
+        for model in self.models_to_save:
+            if not model(request=request).save():
+                break
+        return self.get(request=request)
 
     def end_it(self) -> HttpResponse:
         pass

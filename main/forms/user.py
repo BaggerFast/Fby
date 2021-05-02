@@ -7,13 +7,14 @@ from main.models import User
 class Func:
     fields = dict()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.turn_off()
+    disabled = []
 
-    def turn_off(self):
+    def turn_off(self, disable: bool = False):
         for key in self.fields.keys():
             self.fields[key].widget.attrs['class'] = 'form-control'
+            self.fields[key].widget.attrs['placeholder'] = 'Не задано'
+            if key in self.disabled or disable:
+                self.fields[key].widget.attrs['disabled'] = 'true'
 
 
 class UserLoginForm(AuthenticationForm, Func):
@@ -43,8 +44,12 @@ class UserRegistrationForm(UserCreationForm, Func):
 class UserChangeForm(Us, Func):
     def __init__(self, *args, **kwargs):
         self.del_old_image(args, kwargs['instance'])
+        disabled = False
+        if 'disable' in kwargs.keys():
+            disabled = kwargs['disable']
+            del kwargs['disable']
         super().__init__(*args, **kwargs)
-        self.turn_off()
+        self.turn_off(disabled)
         del (self.fields['password'])
 
     @staticmethod
@@ -71,9 +76,17 @@ class UserChangeForm(Us, Func):
     def save(self, commit=True):
         return self.check_image(super().save(commit=commit))
 
+    @property
+    def success_message(self):
+        return 'Данные успешно изменены'
+
 
 class UserPasswordChangeForm(PasswordChangeForm, Func):
     """Модель юзера для смены пароля"""
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.turn_off()
+
+    @property
+    def success_message(self):
+        return 'пароль успешно изменен'

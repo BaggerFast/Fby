@@ -29,7 +29,7 @@ class CatalogueView(BaseView):
                     for keyword in keywords:
                         for field in fields:
                             attr = getattr(item, field)
-                            if attr is not None and keyword in attr.lower():
+                            if attr is not None and keyword in str(attr).lower():
                                 if item not in scores:
                                     scores[item] = 0
                                 scores[item] += 1
@@ -55,10 +55,7 @@ class CatalogueView(BaseView):
         return offer_search(offer)
 
     def post(self, request) -> HttpResponse:
-        for model in self.models_to_save:
-            if not model(request=request).save():
-                break
-        return self.get(request=request)
+        return self.save_models(request=request)
 
     def get(self, request) -> HttpResponse:
         offers = Offer.objects.filter(user=request.user)

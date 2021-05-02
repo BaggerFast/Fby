@@ -22,14 +22,15 @@ class ChangePrices:
     Клас для обработки, проверки и изменения цен
     """
     errors = []
-    command = {
-        'ya_requests': 'yandex_change',
-        'local': 'local_change',
-        'update': 'update_DB',
-        'check': 'check_prices',
-    }
 
     def __init__(self, keys: List[str], price_list: List = None, request=None):
+        self.command = {
+            'ya_requests': self.yandex_change,
+            'local': self.local_change,
+            'update': self.update_db,
+            'check': self.check_prices,
+        }
+
         """
         Перенаправление на нужные функции по ключу
 
@@ -38,10 +39,11 @@ class ChangePrices:
         update - обновить данные в БД из YM
         check - проверить цены в БД и в price_list
         """
+
         self.price_list: List = price_list
         self.request = request
         for key in keys:
-            getattr(self, self.command[key])()
+            self.command[key]()
 
     def yandex_change(self) -> None:
         """Изменение цен на YM."""
@@ -51,7 +53,7 @@ class ChangePrices:
         """Локальное изменение цен."""
         LocalChangePrices(self.price_list)
 
-    def update_DB(self) -> None:
+    def update_db(self) -> None:
         """Обновление БД."""
         OfferPrice(self.request).save()
 
@@ -60,9 +62,11 @@ class ChangePrices:
         for price in self.price_list:
             db_price = Price.objects.get(offer=price.offer)
             if db_price.value != price.value:
-                print(f'sku: {db_price.offer.shopSku}, db price: {db_price.value},'
-                      f'list price: {price.value}')
                 self.errors.append(price)
+
+
+def sku_and_price(price):
+    return {'shopSku': price.offer.shopSku, 'price': ChangePriceSerializer(price).get_data()}
 
 
 class LocalChangePrices:
@@ -89,8 +93,7 @@ class LocalChangePrices:
         price_object = Price.objects.get(offer=price.offer)
         price_object.value = price.value
         price_object.save()
-        return {'shopSku': price_object.offer.shopSku,
-                'price': ChangePriceSerializer(price_object).get_data()}
+        return sku_and_price(price_object)
 
 
 class YandexChangePrices(Requests):
@@ -108,7 +111,7 @@ class YandexChangePrices(Requests):
     @staticmethod
     def get_dict(price) -> dict:
         """Получить словарь, отправляемый для изменения цен на YM."""
-        return {'shopSku': price.offer.shopSku, 'price': ChangePriceSerializer(price).get_data()}
+        return sku_and_price(price)
 
     def get_json(self) -> dict:
         """Получение данных от YM."""

@@ -42,8 +42,8 @@ def get_navbar(request) -> Dict[str, Union[list, List[Dict[str, str]]]]:
 
     def user_point():
         return [{'url': 'logout', 'label': "Выйти"}, {'url': 'profile', 'label': "Личный кабинет"}]
+
     """
-    возвращает атрибутты для меню
+    возвращает аттрибуты для меню
     """
-    data = {'main': off_current(not_auth_point(auth_point(static_point()))), 'user': user_point()}
-    return data
+    return {'main': off_current(not_auth_point(auth_point(static_point()))), 'user': user_point()}

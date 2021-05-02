@@ -1,4 +1,7 @@
-"""Модели для хранения информации о заказах товаров на ЯМ"""
+"""
+Модели для хранения информации о заказах товаров на ЯМ
+docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/post-campaigns-id-stats-orders.html
+"""
 
 from main.models import User
 from django.db import models
@@ -60,6 +63,11 @@ class Order(models.Model):
                 total_price += price.total
         return total_price
 
+    @property
+    def get_items(self):
+        return self.items.all()
+
+
 class Warehouse(models.Model):
     """
     Склад, на котором хранится товар.
@@ -101,6 +109,14 @@ class Item(models.Model):
         verbose_name='Информация о складе, на котором хранится товар',
         null=True
     )
+
+    @property
+    def price(self):
+        return self.prices.filter(item=self)[0].costPerItem
+
+    @property
+    def total_price(self):
+        return self.prices.filter(item=self)[0].total
 
 
 class ItemPrice(models.Model):

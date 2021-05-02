@@ -14,7 +14,10 @@ class ProfileView(BaseView):
 
     def get(self, request) -> HttpResponse:
         user = User.objects.get(username=request.user)
-        local_context = {'navbar': get_navbar(request), 'user': user}
+        local_context = {
+            'navbar': get_navbar(request),
+            'base_form': UserChangeForm(instance=user, disable=True),
+        }
         self.context_update(local_context)
         return render(self.request, Page.profile, self.context)
 
@@ -34,16 +37,14 @@ class ProfileEditView(BaseView):
 
     def post(self, request):
         user = User.objects.get(username=request.user)
-        msg = form = None
+        form = None
         if 'first_name' in request.POST:
             form = UserChangeForm(self.request.POST, self.request.FILES, instance=user)
-            msg = 'Данные успешно изменены'
         if 'old_password' in request.POST:
-            form = PasswordChangeForm(user=user, data=request.POST)
-            msg = 'Пароль успешно поменян'
+            form = UserPasswordChangeForm(user=user, data=request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, msg)
+            messages.success(request, form.success_message)
             return redirect(reverse('profile'))
         else:
             messages.error(request, 'Ошибка')

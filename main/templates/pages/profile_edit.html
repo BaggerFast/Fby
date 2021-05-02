@@ -4,17 +4,16 @@
   <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {% include 'components/errors.html' %}
-    {% for form in base_form %}
+    {% for item in base_form %}
       <div class="mb-3">
         <label>
           {% ifequal form.label 'Аватарка' %}
-              {{ form.label }}
+              {{ item.label }} {% if item.field.required %}*{% endif %}
               <br>
-              {{ form }}
           {% else %}
-            {{ form.label }}
-            {{ form }}
+            {{ item.label }} {% if item.field.required %}*{% endif %}
           {% endifequal %}
+            {{ item }}
         </label>
       </div>
     {%endfor%}
@@ -24,16 +23,15 @@
   <form class="mb-3" method="post">
     {% csrf_token %}
     {% include 'components/errors.html' %}
-    {% for form in passwd_form %}
+    {% for item in passwd_form %}
       <div class="mb-3">
         <label>
-          {{ form.label }}
-          {{ form }}
+          {{ item.label }} {% if item.field.required %}*{% endif %}
+          {{ item }}
         </label>
       </div>
     {%endfor%}
     <button class="btn btn-primary" type="submit">Сохранить</button>
   </form>
   <a class="btn btn-primary mb-5" href="{% url 'profile' %}">Назад</a>
-
 {% endblock %}

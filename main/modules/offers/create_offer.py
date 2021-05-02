@@ -9,20 +9,22 @@ from main.modules.base import BaseView
 from main.view import get_navbar, Page
 
 
-def convert_url(offer_id) -> HttpResponse:
-    return redirect(reverse('create_offer') + f'?content=accommodation&id={offer_id}')
-
-
 class CreateOfferView(BaseView):
     context = {'title': 'Create offer', 'page_name': 'Создать товар'}
     form = offer_id = None
     form_types = {"info": OfferMultiForm, "accommodation": PriceMultiForm}
 
+    @staticmethod
+    def convert_url(offer_id) -> HttpResponse:
+        return redirect(reverse('create_offer') + f'?content=accommodation&id={offer_id}')
+
     def pre_init(self, request):
         self.request = request
-        local_context = {'navbar': get_navbar(request),
-                         'content_disable': True,
-                         'content': request.GET.get('content', 'info')}
+        local_context = {
+            'navbar': get_navbar(request),
+            'content_disable': True,
+            'content': request.GET.get('content', 'info')
+        }
         self.context_update(local_context)
         if self.context['content'] in self.form_types:
             self.form = self.form_types[self.context['content']]()
@@ -47,8 +49,7 @@ class CreateOfferView(BaseView):
             offer = Offer.objects.get(pk=self.offer_id)
         except ObjectDoesNotExist:
             offer = Offer.objects.create(user=self.request.user)
-            self.offer_id = offer.pk
-        self.form.set_forms(self.offer_id)
+        self.form.set_forms(offer.id)
         self.form.set_post(disable=True, post=request.POST)
         if self.form.is_valid():
             self.form.save()
@@ -59,8 +60,8 @@ class CreateOfferView(BaseView):
             self.form.set_post(disable=False, post=request.POST)
             offer.delete()
             self.context['create'] = True
-        if self.offer_id and self.context['content'] == 'info':
-            return convert_url(self.offer_id)
+        if offer.id and self.context['content'] == 'info':
+            return self.convert_url(offer.id)
         return self.end_it()
 
     def get(self, request) -> HttpResponse:
@@ -69,5 +70,5 @@ class CreateOfferView(BaseView):
         self.form.set_forms()
         self.form.set_clear(disable=False)
         if self.offer_id and self.context['content'] != 'accommodation':
-            return convert_url(self.offer_id)
+            return self.convert_url(self.offer_id)
         return self.end_it()
