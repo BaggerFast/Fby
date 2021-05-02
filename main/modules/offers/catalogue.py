@@ -35,23 +35,19 @@ class CatalogueView(BaseView):
                                 scores[item] += 1
                                 break
                 return sorted(scores, key=scores.get, reverse=True)
-
             search = self.request.GET.get('input', '').lower()
             fields = ['name', 'description', 'shopSku', 'category', 'vendor']
             keywords = search.strip().split()
             filters = self.filtration.filters_from_request(self.request, filter_types)
             objects = self.filtration.filter_items(offers, filters)
             objects = search_algorithm()
-
             was_searching_used = len(search) != 0
             for filter_value in filters.values():
                 if filter_value and len(filter_value) != 0:
                     was_searching_used = True
                     break
-
             self.context_update({'search': was_searching_used, 'count': len(objects)})
             return objects
-
         return offer_search(offer)
 
     def post(self, request) -> HttpResponse:
@@ -62,9 +58,7 @@ class CatalogueView(BaseView):
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {
             'navbar': get_navbar(request),
-            'count': offers.count(),
             'offers': self.reformat_offer(offers, filter_types),
-            'urls': Url.objects.filter(),
             'table': self.table,
             'filter_types': filter_types.items(),
         }

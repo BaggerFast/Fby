@@ -1,9 +1,9 @@
 
-class Page:
-    @staticmethod
-    def serialize(page_path: str) -> str:
-        return f'pages/{page_path}.html'
+def serialize(page_path: str) -> str:
+    return f'pages/{page_path}.html'
 
+
+class Page:
     """
     Для простого взаимодействия с путями файлов html
     """

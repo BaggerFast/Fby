@@ -18,7 +18,6 @@ class Filtration:
             str_options = [filter_type['options'][int(option)]
                            for option in request.GET.getlist(str(index), '')]
             filters[field] = str_options
-        print(filters)
         return filters
 
     @staticmethod
