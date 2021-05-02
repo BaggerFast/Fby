@@ -1,11 +1,13 @@
-def serialize(page: str) -> str:
-    return f'pages/{page}.html'
-
 
 class Page:
+    @staticmethod
+    def serialize(page_path: str) -> str:
+        return f'pages/{page_path}.html'
+
     """
     Для простого взаимодействия с путями файлов html
     """
+
     index = serialize('index')
     registration = serialize('registration')
     login = serialize('login')

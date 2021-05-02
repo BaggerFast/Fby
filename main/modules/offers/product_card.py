@@ -24,7 +24,8 @@ class ProductPageView(BaseView):
 
     def pre_init(self, pk: int, request) -> None:
         """Предварительная настройка контекста"""
-        self.context_update({'navbar': get_navbar(request), 'content': request.GET.get('content', 'info')})
+        self.context_update({'navbar': get_navbar(request),
+                             'content': request.GET.get('content', 'info')})
         if self.context['content'] in self.form_types:
             self.form = self.form_types[self.context['content']]()
             self.form.set_forms(pk=pk)
@@ -56,7 +57,7 @@ class ProductPageView(BaseView):
             """Обработка запроса на обновление или сохранение товара на Яндексе"""
             offer = Offer.objects.get(id=pk)
             sku = offer.shopSku
-            update_request = UpdateOfferList([offer], request=request)
+            update_request = UpdateOfferList(offers=[offer], request=request)
             update_request.update_offers()
 
             if sku in update_request.success:

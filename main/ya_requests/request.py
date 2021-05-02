@@ -76,16 +76,16 @@ class OfferUpdate(Requests):
 
     def __init__(self, request, shop_sku: str):
         self.shop_sku = shop_sku
+        self.request = request
         self.PARAMS = self.get_params()
         super().__init__(json_name='offer-mapping-entries/updates', base_context_name='offerMappingEntries',
                          name="OfferUpdate",
-                         request=request
-                         )
+                         request=request)
 
     def get_params(self) -> dict:
         """Возвращает словарь для get-запроса, содержащий информацию о товаре"""
         try:
-            offer = Offer.objects.get(shopSku=self.shop_sku)
+            offer = Offer.objects.get(shopSku=self.shop_sku, user=self.request.user)
         except ObjectDoesNotExist:
             print('Товара с таким shopSku нет в каталоге')
             return dict()
@@ -103,7 +103,6 @@ class OfferUpdate(Requests):
         offer_data = {key: value for key, value in offer_data.items() if value and key != 'processingState'}
 
         offer_mapping_entry = {'offer': offer_data}
-        print(offer_mapping_entry)
 
         offer_mapping = offer.mapping_set.filter(mappingType='BASE').first()
         if offer_mapping:
@@ -163,7 +162,7 @@ class UpdateOfferList:
         """Обновляет или добавляет товары из списка self.offers."""
         for offer in self.offers:
             sku = offer.shopSku
-            answer = OfferUpdate(sku, self.request).get_answer()
+            answer = OfferUpdate(self.request, sku).get_answer()
             if answer['status'] == 'ERROR':
                 self.errors[sku] = self.get_error_messages(answer)
             elif answer['status'] == 'OK':
