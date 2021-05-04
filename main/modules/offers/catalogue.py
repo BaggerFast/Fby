@@ -9,15 +9,13 @@ from main.ya_requests import OfferList, OfferPrice
 class CatalogueView(BaseView):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
     models_to_save = [OfferList, OfferPrice]
-    table = ["Название", "SKU", "Категория", "Продавец", "Картинка"]
+    table = ["Название", "SKU", "Категория", "Продавец"]
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.filtration = Filtration({
-            "vendor": "Торговая марка",
-            "category": "Категория",
-            "availability": "Планы по поставкам",
-        })
+    filtration = Filtration({
+        "vendor": "Торговая марка",
+        "category": "Категория",
+        "availability": "Планы по поставкам",
+    })
 
     def reformat_offer(self, offer, filter_types) -> list:
         def offer_search(offers) -> list:

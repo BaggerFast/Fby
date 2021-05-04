@@ -59,3 +59,8 @@ main {
     background-color: #f8f9fa;
 }
 
+.dropdown-menu.scrollable {
+    height: auto;
+    max-height: 20em;
+    overflow-x: hidden;
+}
