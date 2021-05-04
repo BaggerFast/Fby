@@ -5,7 +5,14 @@ from typing import List
 from django.db.models import QuerySet
 
 
-def export_qs_to_csv(query_set: QuerySet, field_names: List[str] = None, exclude=True):
+def export_qs_to_csv(query_set: QuerySet, field_names: List[str] = None, exclude=True) -> None:
+    """
+    :param query_set: QuerySet
+
+    :param field_names: List of fields, which NO need to be exported or need to be exported
+
+    :param exclude: Defines mode of filtering field_names
+    """
     if not field_names:
         field_names = ["id"]
 
