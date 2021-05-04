@@ -129,10 +129,10 @@ STATICFILES_DIRS = [
 ]
 
 FIXTURE_DIRS = [
-    os.path.join(BASE_DIR, 'main', 'tests', 'fixtures'),
+    os.path.join(BASE_DIR, 'main', 'tests', 'tests_data', 'fixtures'),
 ]
 
-TESTS_VALUES_DIR = os.path.join(BASE_DIR, 'main', 'tests', 'tests_values')
+TESTS_VALUES_DIR = os.path.join(BASE_DIR, 'main', 'tests', 'tests_data', 'tests_values')
 
 BASE_URL = "http://127.0.0.1:8000"
 
