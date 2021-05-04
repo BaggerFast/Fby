@@ -2,11 +2,11 @@
 Команда для создания суперпользователя
 
 Параметры:
--n, --name NAME- задать username=NAME для пользователя, усли не задан - username=vasya
+-n, --name NAME- задать username=NAME для пользователя, если не задан - username=vasya
 -d, --db_save - восстановить из файлов бд для создаваемого пользователя
 """
-import json
 
+import json
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
@@ -43,7 +43,7 @@ class Command(BaseCommand):
     help = f'Create superuser {username} (password: {password}, email: {email})'
 
     def add_arguments(self, parser):
-        """Опреднляем параметры"""
+        """Определяем параметры"""
         parser.add_argument('-n', '--name', type=str, help='Username для создаваемого пользователя')
         parser.add_argument(
             '-d', '--db_save',
