@@ -27,7 +27,7 @@ class LoadingСommodityTestCase(LiveServerTestCase):
         self.client = Client()
         options = Options()
         options.headless = HEADLESS
-        self.driver = webdriver.Chrome(executable_path=binary_path, options=options)
+        self.driver = webdriver.Chrome(executable_path='chromedriver', options=options)
         self.auth_manager = AuthManager(self.driver, self.client)
 
     def tearDown(self):
