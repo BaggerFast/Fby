@@ -376,4 +376,6 @@ $RECYCLE.BIN/
 
 main_offer.xlsx
 
+third_party/
+
 # End of https://www.toptal.com/developers/gitignore/api/django,pycharm+all,python,linux,macos,windows

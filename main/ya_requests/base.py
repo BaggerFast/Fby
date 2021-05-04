@@ -1,6 +1,7 @@
 import json
 import requests
 from django.contrib import messages
+from django.http import HttpRequest
 
 
 class Requests:
@@ -24,7 +25,7 @@ class Requests:
         503: "Сервер временно недоступен из-за высокой загрузки. Попробуйте вызвать метод через некоторое время.",
     }
 
-    def __init__(self, json_name: str, base_context_name: str, name: str, request):
+    def __init__(self, json_name: str, base_context_name: str, name: str, request: HttpRequest):
         self.request = request
         self.url: str = 'https://api.partner.market.yandex.ru/v2/campaigns/' \
                         f'{self.request.user.get_shop_id()}/{json_name}.json'

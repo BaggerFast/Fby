@@ -8,7 +8,7 @@
           <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             {{ filter_type.name }}
           </a>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-menu scrollable" aria-labelledby="dropdownMenuLink">
             {% for option in filter_type.options %}
               <div class="form-check-inline dropdown-item dropdown-item-no-active">
                 <input class="form-check-input" type="checkbox" name="{{ forloop.parentloop.counter0 }}" value="{{ forloop.counter0 }}" id="{{ forloop.parentloop.counter0 }}:{{ forloop.counter0 }}">
@@ -21,24 +21,12 @@
         </div>
       {% endfor %}
     </div>
-<!--    {% for filter_field, filter_type in filter_types %}-->
-<!--      <div class="input-group mb-3">-->
-<!--        <span class="input-group-text">{{ filter_type.name }}</span>-->
-<!--        <select class="form-select" name="{{ filter_field }}">-->
-<!--          <option selected></option>-->
-<!--          {% for option in filter_type.options %}-->
-<!--            <option value="{{ option }}">{{ option }}</option>-->
-<!--          {% endfor %}-->
-<!--        </select>-->
-<!--      </div>-->
-<!--    {% endfor %}-->
     <div class="input-group mb-3">
       <input type="text" class="form-control" name="input" aria-describedby="button-addon">
       <button class="btn btn-outline-secondary" type="submit" id="button-addon">Поиск</button>
     </div>
   </form>
 {% endblock %}
-
 {% block scripts %}
   <script src="{% static 'js/no_close_on_choose.js' %}"></script>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from main.models_addon import Offer
@@ -18,8 +18,8 @@ class CreateOfferView(BaseView):
     def convert_url(offer_id) -> HttpResponse:
         return redirect(reverse('create_offer') + f'?content=accommodation&id={offer_id}')
 
-    def pre_init(self, request):
-        self.request = request
+    def pre_init(self, request: HttpRequest):
+        self.request: HttpRequest = request
         local_context = {
             'navbar': get_navbar(request),
             'content_disable': True,
@@ -43,7 +43,7 @@ class CreateOfferView(BaseView):
         else:
             messages.success(self.request, 'Первая часть модели сохранена')
 
-    def post(self, request) -> HttpResponse:
+    def post(self, request: HttpRequest) -> HttpResponse:
         self.pre_init(request=request)
         try:
             offer = Offer.objects.get(pk=self.offer_id)
@@ -64,7 +64,7 @@ class CreateOfferView(BaseView):
             return self.convert_url(offer.id)
         return self.end_it()
 
-    def get(self, request) -> HttpResponse:
+    def get(self, request: HttpRequest) -> HttpResponse:
         self.pre_init(request=request)
         self.context_update({'create': True, 'stage_next': self.context['content'] == 'info'})
         self.form.set_forms()

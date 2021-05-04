@@ -1,4 +1,7 @@
 from typing import List
+
+from django.http import HttpRequest
+
 from main.models_addon import Price
 from main.models_addon.save_dir import PricePattern
 from main.serializers import ChangePriceSerializer
@@ -10,7 +13,7 @@ class OfferPrice(Requests):
     Класс для получения списка цен на товары и сохранения в БД Price
     """
 
-    def __init__(self, request):
+    def __init__(self, request: HttpRequest):
         super().__init__(json_name='offer-prices', base_context_name='offers', name="OfferPrice", request=request)
 
     def pattern_save(self) -> None:
@@ -23,7 +26,7 @@ class ChangePrices:
     """
     errors = []
 
-    def __init__(self, keys: List[str], price_list: List = None, request=None):
+    def __init__(self, keys: List[str], price_list: List = None, request: HttpRequest = None):
         self.command = {
             'ya_requests': self.yandex_change,
             'local': self.local_change,
@@ -41,7 +44,7 @@ class ChangePrices:
         """
 
         self.price_list: List = price_list
-        self.request = request
+        self.request: HttpRequest = request
         for key in keys:
             self.command[key]()
 
@@ -101,7 +104,7 @@ class YandexChangePrices(Requests):
     Класс для изменения цены на товар на сервере YM
     """
 
-    def __init__(self, price_list: List, request):
+    def __init__(self, price_list: List, request: HttpRequest):
         self.temp_params: List = []
         [self.add_params(price) for price in price_list]
         self.PARAMS: dict = {'offers': self.temp_params}

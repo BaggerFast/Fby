@@ -8,7 +8,7 @@ from main.models_addon.ya_market.offer.choices import TimeUnitChoices, MappingTy
 
 
 class PriceSuggestion(models.Model):
-    price = models.FloatField()
+    price = models.FloatField(verbose_name='Цена')
     type = models.CharField(max_length=21, choices=PriceSuggestionChoices.choices, verbose_name='Типы цен',
                             null=True, blank=True)
     offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name="priceSuggestion")

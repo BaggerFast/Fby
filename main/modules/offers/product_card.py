@@ -1,7 +1,7 @@
 """Модуль для отображения карточки товара"""
 
 from django.contrib import messages
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.shortcuts import redirect
@@ -22,7 +22,7 @@ class ProductPageView(BaseView):
     disable: bool = False
     form_types = {"info": OfferMultiForm, "accommodation": PriceMultiForm}
 
-    def pre_init(self, pk: int, request) -> None:
+    def pre_init(self, pk: int, request: HttpRequest) -> None:
         """Предварительная настройка контекста"""
         self.context_update({'navbar': get_navbar(request),
                              'content': request.GET.get('content', 'info')})
@@ -37,7 +37,7 @@ class ProductPageView(BaseView):
         self.context_update({'forms': self.form.get_for_context(), 'disable': self.disable})
         return render(self.request, Page.product_card, self.context)
 
-    def post(self, request, pk: int) -> HttpResponse:
+    def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         """Обработка post-запроса"""
 
         def delete() -> HttpResponse:
@@ -89,7 +89,7 @@ class ProductPageView(BaseView):
             self.form.set_post(disable=self.disable, post=self.request.POST)
         return self.end_it()
 
-    def get(self, request, pk) -> HttpResponse:
+    def get(self, request: HttpRequest, pk) -> HttpResponse:
         """Обработка get-запроса"""
         self.pre_init(request=request, pk=pk)
         self.disable = not bool(self.request.GET.get('edit', 0))
