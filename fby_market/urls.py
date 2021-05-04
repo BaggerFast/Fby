@@ -18,25 +18,30 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import path, include
 from django.contrib.auth.views import LogoutView
+import debug_toolbar
+
 from fby_market import settings
 from main.modules import *
 import fby_market.additional_url.catalogue as catalogue
 import fby_market.additional_url.orders as orders
 import fby_market.additional_url.profile as profile
-from main.view.others import save_db_from_files, temp_page
 
 urlpatterns = [
+    # basic
     path('', MainView.as_view(), name="index"),
     path('admin/', admin.site.urls),
+
+    # nested
     path('catalogue/', include(catalogue)),
     path('orders/', include(orders)),
     path('profile/', include(profile)),
+
+    # authorize
     path('register/', MyRegisterFormView.as_view(), name="register"),
     path('login/', MyLoginFormView.as_view(), name='login'),
     path('logout/', login_required(LogoutView.as_view()), name='logout'),
-    path('db_save/', save_db_from_files),
-    path('temp/', temp_page)
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += path('__debug__/', include(debug_toolbar.urls)),

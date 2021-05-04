@@ -1,7 +1,7 @@
 import json
 import requests
 from django.contrib import messages
-from fby_market.settings import YaMarket
+from django.http import HttpRequest
 
 
 class Requests:
@@ -25,27 +25,28 @@ class Requests:
         503: "Сервер временно недоступен из-за высокой загрузки. Попробуйте вызвать метод через некоторое время.",
     }
 
-    def __init__(self, json_name: str, base_context_name: str, name: str):
-        self.url: str = f'https://api.partner.market.yandex.ru/v2/campaigns/{YaMarket.SHOP_ID}/{json_name}.json'
-        self.headers_str: str = f'OAuth oauth_token="{YaMarket.TOKEN}", oauth_client_id="{YaMarket.CLIENT_ID}"'
+    def __init__(self, json_name: str, base_context_name: str, name: str, request: HttpRequest):
+        self.request = request
+        self.url: str = 'https://api.partner.market.yandex.ru/v2/campaigns/' \
+                        f'{self.request.user.get_shop_id()}/{json_name}.json'
+        self.headers_str: str = f'OAuth oauth_token={self.request.user.get_token()},' \
+                                f' oauth_client_id={self.request.user.get_client_id()}'
         self.headers: dict = {'Authorization': self.headers_str, 'Content-type': 'application/json'}
-        self.base_context_name: str = base_context_name  # название элемента во входном json, содержащего требуемые данные
+        self.base_context_name: str = base_context_name  # название элемента во входном json, содержащего  данные
         self.name: str = name
         self.json_data: dict = self.get_json()
 
     def get_json(self) -> dict:
         """Получение данных от YM"""
         json_data = self.get_next_page()
-        if "OK" in json_data['status']:
-            json_data = self.get_all_pages(json_data=json_data)
-        return json_data
+        return self.get_all_pages(json_data=json_data) if "OK" in json_data['status'] else json_data
 
     def get_next_page(self, next_page_token: str = None) -> dict:
         """
         Формирование запроса и получение очередной страницы данных
         (если next_page_token не задан, вернется первая страница)
         """
-        url = self.url + f'?page_token={next_page_token}' if next_page_token else self.url
+        url = f'{self.url}?page_token={next_page_token}' if next_page_token else self.url
         if self.PARAMS:  # если есть входные параметры, формируем post-запрос
             data = requests.post(url, headers=self.headers, json=self.PARAMS)
         else:
@@ -67,17 +68,17 @@ class Requests:
             return self.errors[cur_error]
         return ''
 
-    def save(self, request) -> bool:
+    def save(self) -> bool:
         """Возвращает True, когда модель успешно сохранилась, иначе False"""
         try:
-            self.pattern_save(request)
-            messages.success(request, f"Модель {self.name} успешно сохранилась")
+            self.pattern_save()
+            messages.success(self.request, f'Модель {self.name} успешно сохранилась')
             return True
         except KeyError:
-            messages.error(request, self.key_error() + f' В модели {self.name}')
+            messages.error(self.request, f'{self.key_error()} В модели {self.name}')
             return False
 
-    def pattern_save(self, request) -> None:
+    def pattern_save(self) -> None:
         """Сохранение данных в соответствующую БД, используется при GET запрос"""
         pass
 

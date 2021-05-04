@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 from django.contrib import messages
-from fby_market.settings import MEDIA_URL
 from django.contrib.auth.forms import PasswordChangeForm
 from main.forms.user import UserChangeForm, UserPasswordChangeForm
 from main.modules.base import BaseView
@@ -15,11 +14,9 @@ class ProfileView(BaseView):
 
     def get(self, request) -> HttpResponse:
         user = User.objects.get(username=request.user)
-        user.check_image()
         local_context = {
             'navbar': get_navbar(request),
-            'photo': f'{MEDIA_URL}/{user.image}',
-            'user': user,
+            'base_form': UserChangeForm(instance=user, disable=True),
         }
         self.context_update(local_context)
         return render(self.request, Page.profile, self.context)
@@ -30,7 +27,6 @@ class ProfileEditView(BaseView):
 
     def get(self, request) -> HttpResponse:
         user = User.objects.get(username=request.user)
-        user.check_image()
         local_context = {
             'navbar': get_navbar(request),
             'base_form': UserChangeForm(instance=user),
@@ -41,15 +37,15 @@ class ProfileEditView(BaseView):
 
     def post(self, request):
         user = User.objects.get(username=request.user)
-        message = form = None
+        form = None
         if 'first_name' in request.POST:
             form = UserChangeForm(self.request.POST, self.request.FILES, instance=user)
-            message = 'Данные успешно изменены'
         if 'old_password' in request.POST:
-            form = PasswordChangeForm(user=user, data=request.POST)
-            message = 'Пароль успешно поменян'
+            form = UserPasswordChangeForm(user=user, data=request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, message)
+            messages.success(request, form.success_message)
             return redirect(reverse('profile'))
+        else:
+            messages.error(request, 'Ошибка')
         return self.get(request=request)

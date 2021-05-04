@@ -8,14 +8,11 @@ sphinx-rtd-theme==0.5.1
 pyenchant==3.2.0
 sphinxcontrib-spelling==7.1.0
 
-# Network
-requests==2.25.1
-
 # API
 djangorestframework == 3.12.2
 markdown == 3.3.4
 django-filter == 2.4.0
-numpy == 1.20.2
+requests==2.25.1
 
 #Tests
 pytest == 6.2.3
@@ -23,9 +20,10 @@ selenium == 3.141.0
 chromedriver-py == 91.0.4472.19
 
 # Analytics
+numpy == 1.20.2
 pandas == 1.2.3
 
-# Exel
+# Excel
 openpyxl == 3.0.7
 
 # Code style
@@ -33,3 +31,5 @@ pycodestyle==2.7.0
 pylint==2.7.4
 pylint-django==2.4.2
 
+# Debug
+django-debug-toolbar==3.2.1

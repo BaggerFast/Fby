@@ -1,4 +1,7 @@
-"""Основная модель для хранения товара"""
+"""
+Основная модель для хранения товара
+docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/get-campaigns-id-offer-mapping-entries.html
+"""
 
 from django.db import models
 from main.models import User
@@ -91,11 +94,14 @@ class Offer(models.Model):
                                                      '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',
                                            blank=True,
                                            null=True
-
                                            )
 
     class Meta:
         ordering = ['id']
+
+    @property
+    def image(self):
+        return self.urls.first().url
 
     @property
     def shelfLifeDays(self):
@@ -156,3 +162,7 @@ class Offer(models.Model):
     def rejectedMapping(self):
         """Информация о последней карточке товара на Маркете, отклоненной на модерации для данного товара"""
         return self.mapping_set.get(mappingType=MappingType.REJECTED)
+
+    @property
+    def image(self):
+        return self.urls.all()[0].url

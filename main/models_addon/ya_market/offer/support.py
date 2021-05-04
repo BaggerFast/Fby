@@ -8,7 +8,7 @@ from main.models_addon.ya_market.offer.choices import TimeUnitChoices, MappingTy
 
 
 class PriceSuggestion(models.Model):
-    price = models.FloatField()
+    price = models.FloatField(verbose_name='Цена')
     type = models.CharField(max_length=21, choices=PriceSuggestionChoices.choices, verbose_name='Типы цен',
                             null=True, blank=True)
     offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name="priceSuggestion")
@@ -74,6 +74,10 @@ class Price(models.Model):
                               choices=VatType.choices
                               )
 
+    def clean(self):
+        pass
+        #  todo save as discountBase > 0 and > value, else error
+
 
 class ManufacturerCountry(models.Model):
     """
@@ -122,7 +126,7 @@ class CustomsCommodityCode(models.Model):
     """
     Модель для хранения кода ТН ВЭД товара.
     """
-    offer = models.OneToOneField(
+    offer = models.ForeignKey(
         to=Offer,
         on_delete=models.CASCADE,
         related_name='customsCommodityCodes',

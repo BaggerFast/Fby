@@ -1,10 +1,11 @@
 {% block offer %}
   {% include 'components/catalogue/search.html' %}
   {% if search %}
-    <a href="{% url 'catalogue_list' %}" class="btn-link">← Назад</a>
+    <a href="{% url 'orders_list' %}" class="btn-link">← Назад</a>
   {% endif %}
   <div class="col">
-    <span class="badge bg-secondary mb-4">{{ count }} товаров</span>
+    <span class="badge bg-secondary mb-4">{{ orders|length }} заказов</span>
+    <div class="table-wrapper">
     <table class="table table-hover table-borderless">
       <thead class="table-secondary">
         <tr>
@@ -17,12 +18,15 @@
       </thead>
       {% for order in orders %}
         <tr>
-          <td>{{ order.order_id }}</td>
+          <td>
+            <a class="name_link" target="_blank" href="{% url 'order_by_sku' order.id %}">{{ order.order_id }}</a>
+          </td>
           <td>{{ order.creationDate }}</td>
-          <td>-</td>
+          <td>{{ order.price }}</td>
           <td>{{ order.get_status_display|capfirst }}</td>
         </tr>
       {% endfor %}
     </table>
+    </div>
   </div>
 {% endblock %}

@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     >
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/preloader.css' %}" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
       <header>
         <!--{% include 'components/navbar.html' %}-->
       </header>
-      <main style="margin-left: 60px;">
+      <main>
         <div id="ttt" class="to-the-top hidden-ttt">
           <p>↑</p>
         </div>
@@ -59,5 +60,7 @@
     <script src="{% static 'js/scroll.js' %}"></script>
     <script src="{% static 'js/tooltip.js' %}"></script>
     <script src="{% static 'js/preloader.js' %}"></script>
+    {% block scripts %}
+    {% endblock %}
   </body>
 </html>
