@@ -12,8 +12,8 @@
             {% for option in filter_type.options %}
               <div class="form-check-inline dropdown-item dropdown-item-no-active">
                 <input class="form-check-input" type="checkbox" name="{{ forloop.parentloop.counter0 }}" value="{{ forloop.counter0 }}" id="{{ forloop.parentloop.counter0 }}:{{ forloop.counter0 }}">
-                <label class="form-check-label" for="{{ forloop.parentloop.counter0 }}:{{ forloop.counter0 }}">
-                  {{ option }}
+                <label class="form-check-label" title="{{ option }}" for="{{ forloop.parentloop.counter0 }}:{{ forloop.counter0 }}">
+                  {{ option|lower|capfirst|truncatechars:50 }}
                 </label>
               </div>
             {% endfor %}

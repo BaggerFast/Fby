@@ -5,9 +5,18 @@ class Filtration:
     def get_filter_types(self, items):
         filter_types = {}
         for field, name in self.fields_to_filter.items():
+            options = set()
+            for item in items:
+                get_display_name = "get_{}_display".format(field)
+                if hasattr(item, get_display_name):
+                    options.add(getattr(item, get_display_name)())
+                else:
+                    options.add(getattr(item, field))
+            options = sorted(options)
+
             filter_types[field] = {
                 'name': name,
-                'options': sorted(list(set([getattr(item, field) for item in items if getattr(item, field)])))
+                'options': options,
             }
         return filter_types
 
