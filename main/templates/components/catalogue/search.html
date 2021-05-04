@@ -11,8 +11,8 @@
           <div class="dropdown-menu scrollable" aria-labelledby="dropdownMenuLink">
             {% for option in filter_type.options %}
               <div class="form-check-inline dropdown-item dropdown-item-no-active">
-                <input class="form-check-input" type="checkbox" name="{{ forloop.parentloop.counter0 }}" value="{{ forloop.counter0 }}" id="{{ filter_field }}{{ forloop.counter0 }}">
-                <label class="form-check-label" for="{{ filter_field }}{{ forloop.counter0 }}">
+                <input class="form-check-input" type="checkbox" name="{{ forloop.parentloop.counter0 }}" value="{{ forloop.counter0 }}" id="{{ forloop.parentloop.counter0 }}:{{ forloop.counter0 }}">
+                <label class="form-check-label" for="{{ forloop.parentloop.counter0 }}:{{ forloop.counter0 }}">
                   {{ option }}
                 </label>
               </div>
