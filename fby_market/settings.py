@@ -140,6 +140,8 @@ SELENIUM_USER_AUTH_CREDENTIALS = {
     'email': '1@abc.net',
 }
 
+HEADLESS = True
+
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }

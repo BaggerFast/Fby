@@ -9,30 +9,15 @@ from time import sleep
 
 from chromedriver_py import binary_path
 from django.test import LiveServerTestCase, Client
+from selenium.webdriver.chrome.options import Options
 from django.urls import reverse
 from selenium import webdriver
 from selenium.common import exceptions
 from selenium.webdriver.support.ui import Select
-
-from fby_market.settings import BASE_URL, BASE_DIR
-from main.tests.Cookie import CookieManager
-from main.tests.Tests_valeus import Commodity_transactios_test_valeus as CTT_valeus
-from main.tests.Tests_valeus.Commodity_transactios_test_valeus import TestCreateCommodityValues
-
-
-def add_id(data: list):
-    return [f'id_{value}' for value in data]
-
-
-def form_values_placeholder(id_list, values, driver, select):
-    """Заполняет объекты формы по предоставленному списку id значениями из списка values"""
-    for id, value in zip(id_list, values):
-        element = driver.find_element_by_id(id)
-        if element.tag_name == "select":
-            element = Select(element)
-            select.select_by_visible_text(value)
-        else:
-            element.send_keys(value)
+from fby_market.settings import BASE_URL, HEADLESS
+from main.tests.auxiliary_module.auth import AuthManager
+from main.tests.Tests_values.Commodity_transactios_test_values import TestCreateCommodityValues as CTT_values
+from main.tests.auxiliary_module.auxiliary_functions import form_values_placeholder, add_id
 
 
 class LoadingСommodityTestCase(LiveServerTestCase):
@@ -40,10 +25,11 @@ class LoadingСommodityTestCase(LiveServerTestCase):
     fixtures = ['tmp_data.json']
 
     def setUp(self):
-        os.environ['PATH'] = str(BASE_DIR / 'third_party') + ':' + os.environ.get('PATH')
         self.client = Client()
-        self.driver = webdriver.Chrome(executable_path='chromedriver')
-        self.cookie_manager = CookieManager(self.driver, self.client)
+        options = Options()
+        options.headless = HEADLESS
+        self.driver = webdriver.Chrome(executable_path=binary_path, options=options)
+        self.auth_manager = AuthManager(self.driver, self.client)
 
     def tearDown(self):
         self.driver.quit()
@@ -54,47 +40,57 @@ class LoadingСommodityTestCase(LiveServerTestCase):
         и обновляем каталог после чего проверяем наличие таблицы каталога.
         В ином случае выдаём исключение
         """
-        self.cookie_manager.set_cookie_by_name('catalogue_list')
-        # TODO: поправить авторизацию (ибо не работает)
+        self.auth_manager.authorization_by_name('catalogue_list')
         self.driver.get(BASE_URL + reverse('catalogue_list'))
         element = self.driver.find_element_by_id('button_loader')
         element.click()
         try:
-            # TODO: переделать на id элемента
-            table_item = self.driver.find_element_by_class_name("table table-hover table-borderless")
+            table_item = self.driver.find_element_by_id("catalogue_table")
         except exceptions.NoSuchElementException:
             table_item = None
         self.assertNotEqual(table_item, None)
 
 
-class testCreateCommodity(LiveServerTestCase):
+class CreateCommodity(LiveServerTestCase):
     """тесты на проверку создания товара"""
     fixtures = ['tmp_data.json']
 
-    def tearDown(self):
-        self.driver.quit()
-
-    def testCreateCommodity(self):
-        """переходит на страницу загрузки каталога Заполняет форму значениями проверяет переход на catalogue"""
+    def setUp(self):
         self.test_user = Client()
-        self.driver = webdriver.Chrome(executable_path='chromedriver')
-        self.cookie_manager = CookieManager(self.driver, self.test_user)
-        self.cookie_manager.set_cookie_by_name("create_offer")
+        options = Options()
+        options.headless = HEADLESS
+        self.driver = webdriver.Chrome(executable_path=binary_path, options=options)
+        self.auth_manager = AuthManager(self.driver, self.test_user)
+        self.auth_manager.authorization_by_name("create_offer")
         self.driver.get(BASE_URL + reverse("create_offer"))
-        ID_lst_first = add_id([
+        self.ID_list_first = add_id([
             "name", "category", "vendor", "vendorCode", "manufacturer", "description", "url", "barcode", "id_code",
             "ShelfLife-timePeriod", "ShelfLife-timeUnit", "ShelfLife-comment", "LifeTime-timePeriod",
             "LifeTime-timeUnit", "LifeTime-comment", "GuaranteePeriod-timePeriod", "GuaranteePeriod-timeUnit",
             "GuaranteePeriod-comment", "length", "width", "height", "weight", "transportUnitSize", "minShipment",
             "quantumOfSupply", "deliveryDurationDays", "id_boxCount",
         ])
-        ID_list_second = add_id(["currencyId", "discountBase", "value", "vat", "availability"])
-        for TestValeus in TestCreateCommodityValues:
-            with self.setUp():
-                form_values_placeholder(ID_list_second, CTT_valeus.TestValeus[0], self.driver, None)
-                button = self.driver.dinf_element_by_id("button_save")
-                button.click()
-                form_values_placeholder(ID_list_second, CTT_valeus.TestValeus[1], self.driver, None)
-                button = self.driver.dinf_element_by_id("button_save")
-                button.click()
-                assert self.driver.dinf_element_by_tag_name("title").text != "Catalogue"
+        self.ID_list_second = add_id(["currencyId", "discountBase", "value", "vat", "availability"])
+
+    def tearDown(self):
+        self.driver.quit()
+
+    def create_commodity_base(self, test_values) -> None:
+        """
+        базовая часть для TestCreateCommodity, не является тестом
+        """
+        form_values_placeholder(self.ID_list_first, test_values[0], self.driver)
+        button = self.driver.find_element_by_id("button_save")
+        button.click()
+        form_values_placeholder(self.ID_list_second, test_values[1], self.driver)
+        button = self.driver.find_element_by_id("button_save")
+        button.click()
+        assert self.driver.find_element_by_tag_name("title").text != "Catalogue"
+
+    def test_create_commodity(self):
+        """переходит на страницу загрузки каталога Заполняет форму значениями проверяет переход на catalogue"""
+        for test_values in CTT_values:
+            self.create_commodity_base(test_values)
+
+
+
