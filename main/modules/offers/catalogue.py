@@ -22,13 +22,14 @@ class CatalogueView(BaseView):
         if not len(keywords):
             return objects
         scores = {}
-        for item, keyword, field in itertools.product(objects, keywords, self.fields):
-            attr = getattr(item, field)
-            if attr is not None and keyword in str(attr).lower():
-                if item not in scores:
-                    scores[item] = 0
-                scores[item] += 1
-                break
+        for item, keyword in itertools.product(objects, keywords):
+            for field in self.fields:
+                attr = getattr(item, field)
+                if attr is not None and keyword in str(attr).lower():
+                    if item not in scores:
+                        scores[item] = 0
+                    scores[item] += 1
+                    break
         return sorted(scores, key=scores.get, reverse=True)
 
     def reformat_offer(self, offer, filter_types) -> list:
