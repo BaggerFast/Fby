@@ -16,8 +16,7 @@ from selenium.common import exceptions
 from selenium.webdriver.support.ui import Select
 from fby_market.settings import BASE_URL, HEADLESS
 from main.tests.auxiliary_module.auth import AuthManager
-from main.tests.Tests_values.Commodity_transactios_test_values import TestCreateCommodityValues as CTT_values
-from main.tests.auxiliary_module.auxiliary_functions import form_values_placeholder, add_id
+from main.tests.auxiliary_module.auxiliary_functions import form_values_placeholder, add_id, tests_data_load
 
 
 class LoadingСommodityTestCase(LiveServerTestCase):
@@ -52,10 +51,13 @@ class LoadingСommodityTestCase(LiveServerTestCase):
 
 
 class CreateCommodity(LiveServerTestCase):
-    """тесты на проверку создания товара"""
+    """
+    тесты на проверку создания товара
+    """
     fixtures = ['tmp_data.json']
 
     def setUp(self):
+        self.CTT_values = tests_data_load("commodity_transactions_test_values.json")
         self.test_user = Client()
         options = Options()
         options.headless = HEADLESS
@@ -89,7 +91,7 @@ class CreateCommodity(LiveServerTestCase):
 
     def test_create_commodity(self):
         """переходит на страницу загрузки каталога Заполняет форму значениями проверяет переход на catalogue"""
-        for test_values in CTT_values:
+        for test_values in self.CTT_values:
             self.create_commodity_base(test_values)
 
 

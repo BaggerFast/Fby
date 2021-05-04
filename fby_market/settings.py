@@ -132,6 +132,8 @@ FIXTURE_DIRS = [
     os.path.join(BASE_DIR, 'main', 'tests', 'fixtures'),
 ]
 
+TESTS_VALUES_DIR = os.path.join(BASE_DIR, 'main', 'tests', 'tests_values')
+
 BASE_URL = "http://127.0.0.1:8000"
 
 SELENIUM_USER_AUTH_CREDENTIALS = {
