@@ -7,7 +7,7 @@ class Filtration:
         for field, name in self.fields_to_filter.items():
             filter_types[field] = {
                 'name': name,
-                'options': sorted(list(set([getattr(item, field) for item in items])))
+                'options': sorted(list(set([getattr(item, field) for item in items if getattr(item, field)])))
             }
         return filter_types
 
