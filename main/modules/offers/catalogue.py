@@ -11,7 +11,7 @@ class CatalogueView(BaseView):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
     models_to_save = [OfferList, OfferPrice]
     fields = ['name', 'description', 'shopSku', 'category', 'vendor']
-    table = ['Название', 'SKU', 'Категория', 'Продавец', 'Картинка']
+    table = ['Название', 'SKU', 'Категория', 'Продавец']
     filtration = Filtration({
         "vendor": "Торговая марка",
         "category": "Категория",
