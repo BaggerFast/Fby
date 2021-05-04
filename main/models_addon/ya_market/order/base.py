@@ -9,6 +9,24 @@ from main.models_addon.ya_market.order.choices import StatusChoices, PaymentType
     ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourseChoices, CommissionTypeChoices
 
 
+def get_total_for_price(func):
+    def wrapper(self):
+        data = func(self)
+        for price in self.prices.all():
+            if price.type == data:
+                return price.total
+    return wrapper
+
+
+def get_per_item_for_price(func):
+    def wrapper(self):
+        data = func(self)
+        for price in self.prices.all():
+            if price.type == data:
+                return price.costPerItem
+    return wrapper
+
+
 class DeliveryRegion(models.Model):
     """
     Регионы доставки
@@ -85,13 +103,13 @@ class Item(models.Model):
         on_delete=models.CASCADE,
         related_name='items',
         verbose_name='Список товаров в заказе после возможных изменений',
-        help_text='В ходе обработки заказа Маркет может удалить из него единицы товаров — '
-                  'при проблемах на складе или по инициативе пользователя. '
-                  'Если из заказа удалены все единицы товара, его не будет в списке items — '
-                  'только в списке initialItems. '
-                  'Если в заказе осталась хотя бы одна единица товара, он будет и в списке items '
-                  '(с уменьшенным количеством единиц count), '
-                  'и в списке initialItems (с первоначальным количеством единиц initialCount).',
+        help_text="""В ходе обработки заказа Маркет может удалить из него единицы товаров —
+                  при проблемах на складе или по инициативе пользователя.
+                  Если из заказа удалены все единицы товара, его не будет в списке items —
+                  только в списке initialItems. '
+                  Если в заказе осталась хотя бы одна единица товара, он будет и в списке items
+                  (с уменьшенным количеством единиц count), 
+                  и в списке initialItems (с первоначальным количеством единиц initialCount).""",
         null=True
     )
     offerName = models.CharField(max_length=255, verbose_name='Название товара', null=True)
@@ -111,12 +129,51 @@ class Item(models.Model):
     )
 
     @property
-    def price(self):
-        return self.prices.filter(item=self)[0].costPerItem
+    def per_item_price(self):
+        pr = 0
+        for price in self.prices.all():
+            pr += price.costPerItem
+        return pr
 
     @property
+    @get_per_item_for_price
+    def per_item_price(self):
+        return 'BUYER'
+
+    @property
+    @get_per_item_for_price
+    def per_item_cashback(self):
+        return "CASHBACK"
+
+    @property
+    @get_per_item_for_price
+    def per_item_spasibo(self):
+        return "MARKETPLACE"
+
+    @property
+    @get_per_item_for_price
+    def per_item_marketplace(self):
+        return "SPASIBO"
+
+    @property
+    @get_total_for_price
     def total_price(self):
-        return self.prices.filter(item=self)[0].total
+        return 'BUYER'
+
+    @property
+    @get_total_for_price
+    def total_cashback(self):
+        return "CASHBACK"
+
+    @property
+    @get_total_for_price
+    def total_spasibo(self):
+        return "MARKETPLACE"
+
+    @property
+    @get_total_for_price
+    def total_marketplace(self):
+        return "SPASIBO"
 
 
 class ItemPrice(models.Model):
