@@ -51,7 +51,7 @@ class OrderListView(BaseView):
 
 
 class OrderPageView(BaseView):
-    context = {'title': 'Order', 'page_name': 'Карточка заказа'}
+    context = {'title': 'Order', 'page_name': 'Информация о заказе'}
 
     def get(self, request, pk) -> HttpResponse:
         order = get_object_or_404(Order, pk=pk)
