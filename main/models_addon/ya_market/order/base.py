@@ -70,6 +70,9 @@ class Order(models.Model):
             total += item.per_item_price
         return total
 
+    class Meta:
+        ordering = ['id']
+
 
 class Warehouse(models.Model):
     """
@@ -112,15 +115,16 @@ class Item(models.Model):
     )
 
     @property
+    def discounts(self):
+        return self.prices.all()
+
+    @property
     def per_item_price(self):
         # цена за текущий товар без учетов скидок
         pr = 0
-        for price in self.prices.all():
+        for price in self.discounts:
             pr += price.costPerItem
         return pr
-
-    def discounts(self):
-        return self.prices.all()
 
 
 class ItemPrice(models.Model):
@@ -301,14 +305,13 @@ class Commission(models.Model):
     actual = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name="""Сумма комиссии в рублях, которая была выставлена в момент создания заказа
-                     и которую нужно оплатить""",
+        verbose_name='Сумма комиссии, которая была выставлена в момент создания заказа и которую нужно оплатить',
         help_text='Точность — два знака после запятой',
         null=True)
     predicted = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name="""Сумма комиссии в рублях, которая была бы выставлена,
-                     'если бы заказ был создан в момент формирования отчета по заказам""",
+        verbose_name="""Сумма комиссии, которая была бы выставлена, если бы заказ был создан в момент
+                        формирования отчета по заказам""",
         help_text='Точность — два знака после запятой',
         null=True)

@@ -19,7 +19,6 @@ class OrderPattern(BasePattern):
                 serializer = OrderSerializer(instance=instance, data=item)
             except ObjectDoesNotExist:
                 serializer = OrderSerializer(data=item)
-
             if serializer.is_valid():
                 serializer.save(user=user)
             else:
