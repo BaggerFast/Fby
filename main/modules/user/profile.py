@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 from django.contrib import messages
-from django.contrib.auth.forms import PasswordChangeForm
 from main.forms.user import UserChangeForm, UserPasswordChangeForm
 from main.modules.base import BaseView
 from main.view import get_navbar, Page
