@@ -24,10 +24,10 @@ class PaymentTypeChoices(models.TextChoices):
 
 
 class PriceTypeChoices(models.TextChoices):
-    BUYER = 'BUYER', 'цена на товар с учетом скидок, в том числе Маркет Бонусов и бонусов СберСпасибо'
-    CASHBACK = 'CASHBACK', 'баллы кешбэка по подписке Яндекс Плюс'
-    MARKETPLACE = 'MARKETPLACE', 'Маркет Бонусы'
-    SPASIBO = 'SPASIBO', 'бонусы СберСпасибо'
+    BUYER = 'BUYER', 'Цена на товар с учетом скидок'
+    CASHBACK = 'CASHBACK', 'Скидка по баллам Яндекс Плюс за шт.'
+    MARKETPLACE = 'MARKETPLACE', 'Скидка по бонусам Маркета за шт.'
+    SPASIBO = 'SPASIBO', 'Скидка по бонусам СберСпасибо за шт.'
 
 
 class ItemStatusChoices(models.TextChoices):
@@ -41,15 +41,15 @@ class StockTypeChoices(models.TextChoices):
 
 
 class TypeOfPaymentChoices(models.TextChoices):
-    PAYMENT = 'PAYMENT', 'оплата'
-    REFUND = 'REFUND', 'возврат'
+    PAYMENT = 'PAYMENT', 'Платеж'
+    REFUND = 'REFUND', 'Возврат платежа'
 
 
-class PaymentSourseChoices(models.TextChoices):
-    BUYER = 'BUYER', 'оплата или возврат деньгами'
-    CASHBACK = 'CASHBACK', 'оплата или возврат баллами кешбэка по подписке Яндекс Плюс'
-    MARKETPLACE = 'MARKETPLACE', 'оплата или возврат Маркет Бонусами'
-    SPASIBO = 'SPASIBO', 'оплата или возврат бонусами СберСпасибо'
+class PaymentSourceChoices(models.TextChoices):
+    BUYER = 'BUYER', 'покупателя'
+    CASHBACK = 'CASHBACK', 'за скидку по баллам Яндекс.Плюса'
+    MARKETPLACE = 'MARKETPLACE', 'за скидку маркетплейса'
+    SPASIBO = 'SPASIBO', 'за скидку по бонусам СберСпасибо'
 
 
 class CommissionTypeChoices(models.TextChoices):

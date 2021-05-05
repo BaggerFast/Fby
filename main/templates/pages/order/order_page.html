@@ -9,22 +9,24 @@
         <div class="card mt-4">
           <div class="card-body">
             <h5 class="card-title">{{ item.offerName }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{{ item.per_item_price }}₽, {{ item.total_price }}₽</h6>
-
+            <h6 class="card-subtitle mb-2 text-muted"> Ваша цена за шт. {{ item.per_item_price }}₽</h6>
             <p class="card-text"> {{ item.description }}</p>
-            <p class="card-text"> {{ item.per_item_cashback }}</p>
-            <p class="card-text"> {{ item.per_item_marketplace }} </p>
-            <p class="card-text"> {{ item.per_item_spasibo }} </p>
-            <p class="card-text"> {{ item.count }} </p>
+            {% for disc in item.discounts %}
+              <p class="card-text"> {{disc.get_type_display}} {{disc.costPerItem}}</p>
+            {% endfor %}
+            <p class="card-text"> Количество: {{ item.count }} </p>
             <a target="_blank" href="{% url 'offer_by_sku' item.id %}" class="card-link">Перейти</a>
           </div>
-            <p class="card-text">{{ item.total_cashback }}</p>
-            <p class="card-text"> {{ item.total_marketplace }} </p>
-            <p class="card-text"> {{ item.total_spasibo }} </p>
         </div>
       </div>
     {% endfor %}
+    <div>
+      {# все готово, нужно сделать таблицей #}
+      {% for payment in order.get_payments %}
+        <p>{{payment.get_type_display}} {{ payment.get_source_display }} {{ payment.total }} {{ payment.ord_id }} {{ payment.ord_data }} {{ payment.date }} </p>
+      {% endfor %}
+    </div>
   </div>
   <br>
-  <h5>Итого: <mark>{{ order.price }}₽</mark></h5>
+  <h5>Итого: <mark>{{ order.total_price }}₽</mark></h5>
 {% endblock %}

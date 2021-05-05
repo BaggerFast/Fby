@@ -2,29 +2,10 @@
 Модели для хранения информации о заказах товаров на ЯМ
 docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/post-campaigns-id-stats-orders.html
 """
-
 from main.models import User
 from django.db import models
 from main.models_addon.ya_market.order.choices import StatusChoices, PaymentTypeChoices, PriceTypeChoices, \
-    ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourseChoices, CommissionTypeChoices
-
-
-def get_total_for_price(func):
-    def wrapper(self):
-        data = func(self)
-        for price in self.prices.all():
-            if price.type == data:
-                return price.total
-    return wrapper
-
-
-def get_per_item_for_price(func):
-    def wrapper(self):
-        data = func(self)
-        for price in self.prices.all():
-            if price.type == data:
-                return price.costPerItem
-    return wrapper
+    ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourceChoices, CommissionTypeChoices
 
 
 class DeliveryRegion(models.Model):
@@ -55,8 +36,8 @@ class Order(models.Model):
     )
     statusUpdateDate = models.DateTimeField(
         verbose_name='Дата и время, когда статус заказа был изменен в последний раз',
-        help_text='Формат даты и времени: ISO 8601. '
-                  'Например, 2017-11-21T00:00:00. Часовой пояс — UTC+03:00 (Москва)',
+        help_text="""Формат даты и времени: ISO 8601.
+                    Например, 2017-11-21T00:00:00. Часовой пояс — UTC+03:00 (Москва)""",
         null=True
     )
     paymentType = models.CharField(
@@ -74,16 +55,20 @@ class Order(models.Model):
     )
 
     @property
-    def price(self):
-        total_price = 0
-        for item in self.items.all():
-            for price in item.prices.all():
-                total_price += price.total
-        return total_price
+    def get_items(self):
+        # возвращает все товары заказа
+        return self.items.all()
 
     @property
-    def get_items(self):
-        return self.items.all()
+    def get_payments(self):
+        return self.payments.filter(type='PAYMENT') | self.payments.filter(type='REFUND')
+
+    @property
+    def total_price(self):
+        total = 0
+        for item in self.items.all():
+            total += item.per_item_price
+        return total
 
 
 class Warehouse(models.Model):
@@ -106,7 +91,7 @@ class Item(models.Model):
         help_text="""В ходе обработки заказа Маркет может удалить из него единицы товаров —
                   при проблемах на складе или по инициативе пользователя.
                   Если из заказа удалены все единицы товара, его не будет в списке items —
-                  только в списке initialItems. '
+                  только в списке initialItems.
                   Если в заказе осталась хотя бы одна единица товара, он будет и в списке items
                   (с уменьшенным количеством единиц count), 
                   и в списке initialItems (с первоначальным количеством единиц initialCount).""",
@@ -115,11 +100,9 @@ class Item(models.Model):
     offerName = models.CharField(max_length=255, verbose_name='Название товара', null=True)
     marketSku = models.PositiveIntegerField(verbose_name='SKU на Яндексе', null=True)
     shopSku = models.CharField(max_length=255, verbose_name='SKU товара в нашем магазине', null=True)
-    count = models.PositiveIntegerField(
-        verbose_name='Количество единиц товара с учетом удаленных единиц',
-        help_text='Если из заказа удалены все единицы товара, он попадет только в список initialItems.',
-        null=True
-    )
+    count = models.PositiveIntegerField(verbose_name='Количество единиц товара с учетом удаленных единиц',
+                                        help_text="""Если из заказа удалены все единицы товара, он попадет
+                                        только в список initialItems.""", null=True)
     warehouse = models.ForeignKey(
         to=Warehouse,
         on_delete=models.SET_NULL,
@@ -130,50 +113,14 @@ class Item(models.Model):
 
     @property
     def per_item_price(self):
+        # цена за текущий товар без учетов скидок
         pr = 0
         for price in self.prices.all():
             pr += price.costPerItem
         return pr
 
-    @property
-    @get_per_item_for_price
-    def per_item_price(self):
-        return 'BUYER'
-
-    @property
-    @get_per_item_for_price
-    def per_item_cashback(self):
-        return "CASHBACK"
-
-    @property
-    @get_per_item_for_price
-    def per_item_spasibo(self):
-        return "MARKETPLACE"
-
-    @property
-    @get_per_item_for_price
-    def per_item_marketplace(self):
-        return "SPASIBO"
-
-    @property
-    @get_total_for_price
-    def total_price(self):
-        return 'BUYER'
-
-    @property
-    @get_total_for_price
-    def total_cashback(self):
-        return "CASHBACK"
-
-    @property
-    @get_total_for_price
-    def total_spasibo(self):
-        return "MARKETPLACE"
-
-    @property
-    @get_total_for_price
-    def total_marketplace(self):
-        return "SPASIBO"
+    def discounts(self):
+        return self.prices.all()
 
 
 class ItemPrice(models.Model):
@@ -250,13 +197,13 @@ class InitialItem(models.Model):
         on_delete=models.CASCADE,
         related_name='initialItems',
         verbose_name='Список товаров в заказе до изменений',
-        help_text='В ходе обработки заказа Маркет может удалить из него единицы товаров — '
-                  'при проблемах на складе или по инициативе пользователя. '
-                  'Если из заказа удалены все единицы товара, его не будет в списке items — '
-                  'только в списке initialItems. '
-                  'Если в заказе осталась хотя бы одна единица товара, он будет и в списке items '
-                  '(с уменьшенным количеством единиц count), '
-                  'и в списке initialItems (с первоначальным количеством единиц initialCount).',
+        help_text="""В ходе обработки заказа Маркет может удалить из него единицы товаров —
+                  при проблемах на складе или по инициативе пользователя.
+                  Если из заказа удалены все единицы товара, его не будет в списке items —
+                  только в списке initialItems. '
+                  Если в заказе осталась хотя бы одна единица товара, он будет и в списке items
+                  (с уменьшенным количеством единиц count),
+                  и в списке initialItems (с первоначальным количеством единиц initialCount).""",
         null=True
     )
     offerName = models.CharField(max_length=255, verbose_name='Название товара', null=True)
@@ -294,7 +241,7 @@ class Payment(models.Model):
     )
     source = models.CharField(
         max_length=11,
-        choices=PaymentSourseChoices.choices,
+        choices=PaymentSourceChoices.choices,
         verbose_name='Способ денежного перевода',
         null=True
     )
@@ -302,9 +249,17 @@ class Payment(models.Model):
         max_digits=10,
         decimal_places=2,
         verbose_name='Сумма денежного перевода',
-        help_text='Значение указывается в рублях независимо от способа денежного перевода. '
-                  'Точность — два знака после запятой',
+        help_text="""Значение указывается в рублях независимо от способа денежного перевода.
+                  Точность — два знака после запятой""",
         null=True)
+
+    @property
+    def ord_id(self):
+        return self.paymentOrder.payment_order_id
+
+    @property
+    def ord_data(self):
+        return self.paymentOrder.date
 
 
 class PaymentOrder(models.Model):
@@ -346,14 +301,14 @@ class Commission(models.Model):
     actual = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name='Сумма комиссии в рублях, которая была выставлена в момент создания заказа '
-                     'и которую нужно оплатить',
+        verbose_name="""Сумма комиссии в рублях, которая была выставлена в момент создания заказа
+                     и которую нужно оплатить""",
         help_text='Точность — два знака после запятой',
         null=True)
     predicted = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name='Сумма комиссии в рублях, которая была бы выставлена, '
-                     'если бы заказ был создан в момент формирования отчета по заказам',
+        verbose_name="""Сумма комиссии в рублях, которая была бы выставлена,
+                     'если бы заказ был создан в момент формирования отчета по заказам""",
         help_text='Точность — два знака после запятой',
         null=True)
