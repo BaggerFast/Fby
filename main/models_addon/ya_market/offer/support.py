@@ -28,18 +28,6 @@ class Timing(models.Model):
 
     comment = models.CharField(max_length=2000, null=True, blank=True)
 
-    def get_days(self):
-        if self.timeUnit == TimeUnitChoices.HOUR:
-            return self.timePeriod / 24
-        elif self.timeUnit == TimeUnitChoices.DAY:
-            return self.timePeriod
-        elif self.timeUnit == TimeUnitChoices.WEEK:
-            return self.timePeriod * 7
-        elif self.timeUnit == TimeUnitChoices.MONTH:
-            return self.timePeriod * 31
-        elif self.timeUnit == TimeUnitChoices.YEAR:
-            return self.timePeriod * 365
-
 
 class ShelfLife(Timing):
     offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='shelfLife')
@@ -100,9 +88,6 @@ class WeightDimension(BaseWeightDimension):
 class Url(models.Model):
     """
     Модель для хранения списка URL
-
-    .. todo::
-        Добавить проверку на то, что в списке url'ов присутствует минимум одна запись
     """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name='urls')
     url = models.URLField(max_length=2000, verbose_name='Ссылка на фото')
@@ -132,8 +117,7 @@ class CustomsCommodityCode(models.Model):
         related_name='customsCommodityCodes',
     )
     code = models.CharField(max_length=10, verbose_name='Код ТН ВЭД', help_text='Укажите 10 или 14 цифр без пробелов.',
-                            blank=True, null=True
-                            )
+                            blank=True, null=True)
 
     def __str__(self):
         return self.code
