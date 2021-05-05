@@ -22,7 +22,7 @@
             <a class="name_link" target="_blank" href="{% url 'order_by_sku' order.id %}">{{ order.order_id }}</a>
           </td>
           <td>{{ order.creationDate }}</td>
-          <td>{{ order.price }}</td>
+          <td>{{ order.total_price }}</td>
           <td>{{ order.get_status_display|capfirst }}</td>
         </tr>
       {% endfor %}

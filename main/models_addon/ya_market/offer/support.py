@@ -102,7 +102,7 @@ class Url(models.Model):
     Модель для хранения списка URL
 
     .. todo::
-        Добавить проверку на то, что в списке URL'ов присутствует минимум одна запись
+        Добавить проверку на то, что в списке url'ов присутствует минимум одна запись
     """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name='urls')
     url = models.URLField(max_length=2000, verbose_name='Ссылка на фото')
@@ -114,10 +114,10 @@ class Barcode(models.Model):
     """
     offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name='barcodes')
     barcode = models.CharField(max_length=255, verbose_name='Штрихкод',
-                               help_text='Штрихкод обязателен при размещении товара по модели FBY и FBY+. '
-                                         'Допустимые форматы: EAN-13, EAN-8, UPC-A, UPC-E, Code 128. Для книг'
-                                         ' — ISBN-10 или ISBN-13. Для товаров определённых производителей передайте '
-                                         'только код GTIN. Если штрихкодов несколько, укажите их через запятую.',
+                               help_text="""Штрихкод обязателен при размещении товара по модели FBY и FBY+.
+                                         Допустимые форматы: EAN-13, EAN-8, UPC-A, UPC-E, Code 128. Для книг
+                                          — ISBN-10 или ISBN-13. Для товаров определённых производителей передайте
+                                         только код GTIN. Если штрихкодов несколько, укажите их через запятую.""",
                                blank=True,
                                null=True)
 
@@ -148,7 +148,7 @@ class SupplyScheduleDays(models.Model):
         max_length=9,
         choices=SupplyScheduleDayChoices.choices,
         verbose_name='Дни поставки',
-        help_text='Дни недели, когда вы готовы поставлять товары на склад маркетплейса. '
+        help_text='Дни недели, когда вы готовы поставлять товары на склад маркетплейса.'
                   'Заполняйте поле, чтобы получать рекомендации о пополнении товаров на складе.',
         null=True
     )

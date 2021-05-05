@@ -44,7 +44,7 @@ class OfferReportPattern(BasePattern):
             if serializer.is_valid():
                 report_instance = serializer.save(offer=offer)
 
-                """Обновояем список актуальных складов для товара offer"""
+                """Обновляем список актуальных складов для товара offer"""
                 actual_warehouses = []
                 for data_item in warehouses_data:
                     warehouse = self.save_warehouse(data_item, offer)

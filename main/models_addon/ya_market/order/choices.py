@@ -4,30 +4,30 @@ from django.db import models
 
 
 class StatusChoices(models.TextChoices):
-    CANCELLED_BEFORE_PROCESSING = 'CANCELLED_BEFORE_PROCESSING', 'заказ отменен до начала его обработки'
-    CANCELLED_IN_DELIVERY = 'CANCELLED_IN_DELIVERY', 'заказ отменен во время его доставки'
-    CANCELLED_IN_PROCESSING = 'CANCELLED_IN_PROCESSING', 'заказ отменен во время его обработки'
-    DELIVERY = 'DELIVERY', 'заказ передан службе доставки'
-    DELIVERED = 'DELIVERED', 'заказ доставлен'
-    PARTIALLY_RETURNED = 'PARTIALLY_RETURNED', 'заказ частично возвращен покупателем'
-    PICKUP = 'PICKUP', 'заказ доставлен в пункт выдачи'
-    PROCESSING = 'PROCESSING', 'заказ в обработке'
-    REJECTED = 'REJECTED', 'заказ создан, но не оплачен'
-    RETURNED = 'RETURNED', 'заказ полностью возвращен покупателем'
-    UNKNOWN = 'UNKNOWN', 'неизвестный статус заказа'
+    CANCELLED_BEFORE_PROCESSING = 'CANCELLED_BEFORE_PROCESSING', 'Отменён до обработки'
+    CANCELLED_IN_DELIVERY = 'CANCELLED_IN_DELIVERY', 'Отменен во время его доставки'
+    CANCELLED_IN_PROCESSING = 'CANCELLED_IN_PROCESSING', 'Отменен во время его обработки'
+    DELIVERY = 'DELIVERY', 'Передан службе доставки'
+    DELIVERED = 'DELIVERED', 'Доставлен'
+    PARTIALLY_RETURNED = 'PARTIALLY_RETURNED', 'Частично возвращен покупателем'
+    PICKUP = 'PICKUP', 'Доставлен в пункт выдачи'
+    PROCESSING = 'PROCESSING', 'В обработке'
+    REJECTED = 'REJECTED', 'Создан, но не оплачен'
+    RETURNED = 'RETURNED', 'Полностью возвращен покупателем'
+    UNKNOWN = 'UNKNOWN', 'Неизвестный статус'
 
 
 class PaymentTypeChoices(models.TextChoices):
-    CREDIT = 'CREDIT', 'заказ оформлен в кредит'
-    POSTPAID = 'POSTPAID', 'заказ оплачен после того, как был получен'
-    PREPAID = 'PREPAID', 'заказ оплачен до того, как был получен'
+    CREDIT = 'CREDIT', 'Оформлен в кредит'
+    POSTPAID = 'POSTPAID', 'Оплачен после получения'
+    PREPAID = 'PREPAID', 'Оплачен до получения'
 
 
 class PriceTypeChoices(models.TextChoices):
-    BUYER = 'BUYER', 'цена на товар с учетом скидок, в том числе Маркет Бонусов и бонусов СберСпасибо'
-    CASHBACK = 'CASHBACK', 'баллы кешбэка по подписке Яндекс Плюс'
-    MARKETPLACE = 'MARKETPLACE', 'Маркет Бонусы'
-    SPASIBO = 'SPASIBO', 'бонусы СберСпасибо'
+    BUYER = 'BUYER', 'Цена на товар с учетом скидок'
+    CASHBACK = 'CASHBACK', 'Скидка по баллам Яндекс Плюс за шт.'
+    MARKETPLACE = 'MARKETPLACE', 'Скидка по бонусам Маркета за шт.'
+    SPASIBO = 'SPASIBO', 'Скидка по бонусам СберСпасибо за шт.'
 
 
 class ItemStatusChoices(models.TextChoices):
@@ -41,15 +41,15 @@ class StockTypeChoices(models.TextChoices):
 
 
 class TypeOfPaymentChoices(models.TextChoices):
-    PAYMENT = 'PAYMENT', 'оплата'
-    REFUND = 'REFUND', 'возврат'
+    PAYMENT = 'PAYMENT', 'Платеж'
+    REFUND = 'REFUND', 'Возврат платежа'
 
 
-class PaymentSourseChoices(models.TextChoices):
-    BUYER = 'BUYER', 'оплата или возврат деньгами'
-    CASHBACK = 'CASHBACK', 'оплата или возврат баллами кешбэка по подписке Яндекс Плюс'
-    MARKETPLACE = 'MARKETPLACE', 'оплата или возврат Маркет Бонусами'
-    SPASIBO = 'SPASIBO', 'оплата или возврат бонусами СберСпасибо'
+class PaymentSourceChoices(models.TextChoices):
+    BUYER = 'BUYER', 'покупателя'
+    CASHBACK = 'CASHBACK', 'за скидку по баллам Яндекс.Плюса'
+    MARKETPLACE = 'MARKETPLACE', 'за скидку маркетплейса'
+    SPASIBO = 'SPASIBO', 'за скидку по бонусам СберСпасибо'
 
 
 class CommissionTypeChoices(models.TextChoices):

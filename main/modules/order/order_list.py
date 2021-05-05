@@ -29,7 +29,7 @@ class OrderListView(BaseView):
                 return sorted(scores, key=scores.get, reverse=True)
 
             search = self.request.GET.get('input', '').lower()
-            fields = ['order_id', 'status', 'statusUpdateDate', 'deliveryRegion', 'price']
+            fields = ['order_id', 'status', 'statusUpdateDate', 'deliveryRegion']
             keywords = search.strip().split()
             objects = search_algorithm()
             self.context_update({'search': bool(len(search)), 'count': len(objects)})
@@ -51,7 +51,7 @@ class OrderListView(BaseView):
 
 
 class OrderPageView(BaseView):
-    context = {'title': 'Order', 'page_name': 'Карточка заказа'}
+    context = {'title': 'Order', 'page_name': 'Информация о заказе'}
 
     def get(self, request, pk) -> HttpResponse:
         order = get_object_or_404(Order, pk=pk)
