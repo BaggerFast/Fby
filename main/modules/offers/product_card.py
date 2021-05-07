@@ -27,8 +27,7 @@ class ProductPageView(BaseView):
         self.context_update({'navbar': get_navbar(request),
                              'content': request.GET.get('content', 'info')})
         if self.context['content'] in self.form_types:
-            self.form = self.form_types[self.context['content']]()
-            self.form.set_forms(pk=pk)
+            self.form = self.form_types[self.context['content']](Offer.objects.get(pk=pk))
         else:
             raise Http404()
 
@@ -81,17 +80,19 @@ class ProductPageView(BaseView):
             return buttons[btn]()
 
         self.pre_init(request=request, pk=pk)
-        self.form.set_post(disable=True, post=self.request.POST)
+        self.form.set_post(post=self.request.POST)
+        self.form.set_disable(True)
         self.disable = self.form.is_valid()
         if self.disable:
             self.form.save()
         else:
-            self.form.set_post(disable=self.disable, post=self.request.POST)
+            self.form.set_disable(False)
         return self.end_it()
 
     def get(self, request: HttpRequest, pk) -> HttpResponse:
         """Обработка get-запроса"""
         self.pre_init(request=request, pk=pk)
         self.disable = not bool(self.request.GET.get('edit', 0))
-        self.form.set_fill(disable=self.disable)
+        self.form.get_fill_form()
+        self.form.set_disable(self.disable)
         return self.end_it()
