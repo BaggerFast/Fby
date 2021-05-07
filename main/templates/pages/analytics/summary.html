@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>Summary</h1>
-  <div class="row">
-    <div class="col-sm text-center border rounded">Заказы</div>
-    <div class="col-sm text-center border rounded">Товары</div>
-    <div class="col-sm text-center border rounded">Эффективность</div>
+  <div class="row d-flex justify-content-between">
+    <div class="col-sm-4 text-center border rounded">
+      Заказы
+      {% if graph %}
+      {{ graph|safe }}
+      {% endif %}
+    </div>
+
+    <div class="col-sm-3 text-center border rounded">
+      Товары
+    </div>
+
+    <div class="col-sm-4 text-center border rounded">
+      Эффективность
+    </div>
   </div>
 {% endblock %}
