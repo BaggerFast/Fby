@@ -153,18 +153,27 @@ class Offer(models.Model):
         return self.guaranteePeriod
 
     @property
+    @decor
+    def get_price(self):
+        return self.price
+
+    @property
+    @decor
     def url(self):
         return self.urls.first()
 
     @property
+    @decor
     def barcode(self):
         return self.barcodes.first()
 
     @property
+    @decor
     def weight_dimensions(self):
         return self.weightDimensions
 
     @property
+    @decor
     def commodity_codes(self):
         return self.customsCommodityCodes.first()
 

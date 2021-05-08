@@ -5,6 +5,8 @@ from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.shortcuts import redirect
+
+from main.forms import PriceForm
 from main.models_addon import Offer, Price
 from main.modules.offers import OfferMultiForm, PriceMultiForm
 from main.modules.base import BaseView
@@ -27,7 +29,8 @@ class ProductPageView(BaseView):
         self.context_update({'navbar': get_navbar(request),
                              'content': request.GET.get('content', 'info')})
         if self.context['content'] in self.form_types:
-            self.form = self.form_types[self.context['content']](Offer.objects.get(pk=pk))
+            self.form = self.form_types[self.context['content']]()
+            self.form.settings(offer=Offer.objects.get(pk=pk))
         else:
             raise Http404()
 
@@ -93,6 +96,6 @@ class ProductPageView(BaseView):
         """Обработка get-запроса"""
         self.pre_init(request=request, pk=pk)
         self.disable = not bool(self.request.GET.get('edit', 0))
-        self.form.get_fill_form()
+        self.form.get_fill()
         self.form.set_disable(self.disable)
         return self.end_it()

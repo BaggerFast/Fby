@@ -49,15 +49,16 @@ class CreateOfferView(BaseView):
             offer = Offer.objects.get(pk=self.offer_id)
         except ObjectDoesNotExist:
             offer = Offer.objects.create(user=self.request.user)
-        self.form.set_forms(offer.id)
-        self.form.set_post(disable=True, post=request.POST)
+        self.form.settings(offer)
+        self.form.set_post(post=request.POST)
+        self.form.set_disable(True)
         if self.form.is_valid():
             self.form.save()
             message = self.save_message()
             if message:
                 return message
         else:
-            self.form.set_post(disable=False, post=request.POST)
+            self.form.set_post(False)
             offer.delete()
             self.context['create'] = True
         if offer.id and self.context['content'] == 'info':
@@ -67,8 +68,9 @@ class CreateOfferView(BaseView):
     def get(self, request: HttpRequest) -> HttpResponse:
         self.pre_init(request=request)
         self.context_update({'create': True, 'stage_next': self.context['content'] == 'info'})
-        self.form.set_forms()
-        self.form.set_clear(disable=False)
+        self.form.settings()
+        self.form.get_space()
+        self.form.set_disable()
         if self.offer_id and self.context['content'] != 'accommodation':
             return self.convert_url(self.offer_id)
         return self.end_it()

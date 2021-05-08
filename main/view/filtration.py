@@ -12,6 +12,8 @@ class Filtration:
                     options.add(getattr(item, get_display_name)())
                 else:
                     options.add(getattr(item, field))
+            if None in options:
+                options.remove(None)
             options = sorted(options)
 
             filter_types[field] = {

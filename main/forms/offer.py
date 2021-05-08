@@ -36,9 +36,6 @@ class ShelfLifeForm(ModelForm, Func):
             'comment': 'Комментарий к сроку годности',
         }
 
-    def __str__(self):
-        return 'shelfLife'
-
 
 class LifeTimeForm(ModelForm, Func):
     prefix = 'LifeTime'
@@ -55,9 +52,6 @@ class LifeTimeForm(ModelForm, Func):
             'timePeriod': 'Срок службы',
             'comment': 'Комментарий к сроку службы',
         }
-
-    def __str__(self):
-        return 'lifeTime'
 
 
 class GuaranteePeriodForm(ModelForm, Func):
@@ -90,26 +84,17 @@ class WeightDimensionForm(ModelForm, Func):
         model = WeightDimension
         exclude = ('offer',)
 
-    def __str__(self):
-        return 'weight'
-
 
 class BarcodeForm(ModelForm, Func):
     class Meta:
         model = Barcode
         exclude = ('offer',)
 
-    def __str__(self):
-        return 'barcode'
-
 
 class UrlForm(ModelForm, Func):
     class Meta:
         model = Url
         exclude = ('offer',)
-
-    def __str__(self):
-        return 'url'
 
 
 class OfferForm(ModelForm, Func):
@@ -123,22 +108,17 @@ class OfferForm(ModelForm, Func):
             'description': forms.Textarea(),
         }
 
-    def __str__(self):
-        return 'offer'
-
 
 class CommodityCodeForm(ModelForm, Func):
     class Meta:
         model = CustomsCommodityCode
         exclude = ('offer',)
 
-    def __str__(self):
-        return 'commodityCode'
-
 
 class PriceForm(ModelForm, Func):
-    def __str__(self):
-        return 'priceForm'
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.min_max_value()
 
     class Meta:
         model = Price
@@ -146,9 +126,6 @@ class PriceForm(ModelForm, Func):
 
 
 class AvailabilityForm(ModelForm, Func):
-    def __str__(self):
-        return 'availabilityForm'
-
     class Meta:
         model = Offer
         fields = ['availability', ]
