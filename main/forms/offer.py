@@ -7,7 +7,7 @@ class Func:
     fields = dict()
     disabled = []
 
-    def turn_off(self, disable: bool = False):
+    def set_disable(self, disable: bool = False):
         for key in self.fields.keys():
             self.fields[key].widget.attrs['class'] = 'form-control'
             self.fields[key].widget.attrs['placeholder'] = 'Не задано'
@@ -27,8 +27,8 @@ class ShelfLifeForm(ModelForm, Func):
         model = ShelfLife
         exclude = ('offer',)
         help_texts = {
-            'timePeriod': 'Через сколько дней товар станет непригоден для использования. '
-                          'Например, срок годности есть у таких категорий, как продукты питания и медицинские препараты.',
+            'timePeriod': """Через сколько дней товар станет непригоден для использования. Например, срок годности есть 
+                            у таких категорий, как продукты питания и медицинские препараты.""",
             'comment': 'Дополнительные условия хранения.',
         }
         labels = {
@@ -44,8 +44,8 @@ class LifeTimeForm(ModelForm, Func):
         model = LifeTime
         exclude = ('offer',)
         help_texts = {
-            'timePeriod': 'в течение какого периода товар будет исправно выполнять свою функцию'
-                          ', а изготовитель — нести ответственность за его существенные недостатки.',
+            'timePeriod': """В течение какого периода товар будет исправно выполнять свою функцию, 
+                            а изготовитель — нести ответственность за его существенные недостатки.""",
             'comment': 'Дополнительные условия использования в течение срока службы.',
         }
         labels = {
@@ -62,17 +62,14 @@ class GuaranteePeriodForm(ModelForm, Func):
 
         exclude = ('offer',)
         help_texts = {
-            'timePeriod': 'В течение этого периода возможны обслуживание и ремонт товара, возврат денег.'
-                          ' Изготовитель или продавец несет ответственность за недостатки товара.',
+            'timePeriod': """В течение этого периода возможны обслуживание и ремонт товара, возврат денег.
+                                Изготовитель или продавец несет ответственность за недостатки товара.""",
             'comment': 'Дополнительные условия гарантии.',
         }
         labels = {
             'timePeriod': 'Гарантийный срок',
             'comment': 'Комментарий к гарантийному сроку',
         }
-
-    def __str__(self):
-        return 'guarantee'
 
 
 class WeightDimensionForm(ModelForm, Func):

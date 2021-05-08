@@ -2,13 +2,10 @@
 
 import random
 import string
-from typing import List
-from django.db import models
-from django.forms import ModelForm
 from rest_framework.utils import model_meta
 
 
-class Multiform:
+class FormSet:
     """
     Класс-парсер для набора форм
     """
@@ -30,6 +27,9 @@ class Multiform:
     def get_for_context(self):
         raise NotImplementedError
 
+    def configure(self):
+        raise NotImplementedError
+
     def is_valid(self) -> bool:
         """Проверка валидности всех вложенных моделей."""
         for form in self.forms_dict.values():
@@ -39,13 +39,13 @@ class Multiform:
 
     def set_disable(self, disable=False):
         for form in self.forms_dict.values():
-            form.turn_off(disable)
+            form.set_disable(disable)
 
-    def get_fill(self):
+    def set_fill(self):
         for attrs in self.forms:
             self.forms_dict.update({attrs[0]: attrs[0](instance=attrs[1])})
 
-    def get_space(self):
+    def set_empty(self):
         for attrs in self.forms:
             self.forms_dict.update({attrs[0]: attrs[0]()})
 
@@ -82,3 +82,7 @@ class Multiform:
             if field.name != 'id' and getattr(instance, field.name, None):
                 return True
         return False
+
+    @staticmethod
+    def cortege_from_lists(forms: list, attrs: list):
+        return [(forms[i], attrs[i]) for i in range(len(forms))]
