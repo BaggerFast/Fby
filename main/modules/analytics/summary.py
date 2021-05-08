@@ -1,19 +1,20 @@
 """Модуль для рендера страницы аналитики"""
+import datetime
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.offline as opy
 from django.shortcuts import render
 from django.views.generic.base import View
-import plotly.graph_objects as go
-import pandas as pd
-import plotly.offline as opy
-import plotly.express as px
-from main.models_addon.ya_market.offer.base import Offer
 
+from main.models_addon.ya_market.order.base import Order
 from main.view import *
 
 
 def get_pie_figure():
     """
     Создание круговой диаграммы
-    :return: plot class object
+    :return: Объект класса plotly.plot
     """
     offers = get_data_from_db()
     fig = go.Figure(data=[go.Pie(labels=offers.columns, values=offers.value_counts())])
@@ -23,22 +24,43 @@ def get_pie_figure():
 def get_data_from_db():
     """
     Функция для получения данных из БД
-    :return: Pandas.DataFrame
+    :return: Объект класса Pandas.DataFrame
     """
-    offers = Offer.objects.all().values('transportUnitSize', 'user')
+    offers = Order.objects.all().values()
     offers = pd.DataFrame(offers)
     return offers
 
 
+def get_orders_for_month():
+    """
+    Возращает заказы за текущий месяц
+    :return: Объект класса Django QuerySet
+    """
+    return Order.objects.filter(creationDate__gt=datetime.datetime.now().replace(day=1))
+
+
+def calculate_total_cost(orders):
+    total_cost = 0
+
+    for order in orders:
+        total_cost += order.total_price
+
+    return total_cost
+
+
 class SummaryView(View):
-    """Отображение главной страницы"""
+    """Отображение страницы с отчётом"""
     context = {
         'title': 'Summary',
     }
 
     def get(self, request):
+        orders = get_orders_for_month()
+
         self.context['navbar'] = get_navbar(request)
-        self.context['graph'] = get_pie_figure()
+        self.context['orders_amount'] = len(orders)
+        self.context['orders_total_cost'] = f'{calculate_total_cost(orders)}₽'
+
         return render(request, Page.summary, self.context)
 
 

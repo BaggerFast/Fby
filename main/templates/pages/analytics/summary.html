@@ -3,10 +3,8 @@
   <h1>Summary</h1>
   <div class="row d-flex justify-content-between">
     <div class="col-sm-4 text-center border rounded">
-      Заказы
-      {% if graph %}
-      {{ graph|safe }}
-      {% endif %}
+      <h2>Заказы и доставка</h2>
+      <p>Заказанные в этом месяце товары: {{ orders_amount }}шт. на сумму {{ orders_total_cost }}</p>
     </div>
 
     <div class="col-sm-3 text-center border rounded">

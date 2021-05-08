@@ -23,9 +23,10 @@ class Order(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name="Пользователь")
 
     order_id = models.PositiveIntegerField(verbose_name='Идентификатор заказа')
-    creationDate = models.DateField(
-        verbose_name='Дата создания заказа',
-        help_text='Формат даты: ГГГГ‑ММ‑ДД',
+    creationDate = models.DateTimeField(
+        verbose_name='Дата и время создания заказа',
+        help_text="""Формат даты и времени: ISO 8601.
+                    Например, 2017-11-21T00:00:00. Часовой пояс — UTC+03:00 (Москва)""",
         null=True
     )
     status = models.CharField(
