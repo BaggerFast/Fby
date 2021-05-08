@@ -1,0 +1,13 @@
+{% block pills %}
+  <div class="dropdown">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="/media/{{user.image}}" alt="mdo" width="45" height="45" class="rounded-circle me-2">
+      <strong>{{ user }}</strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+      {% for item in navbar.user %}
+        <li><a class="dropdown-item" href="{% url item.url %}">{{ item.label }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
