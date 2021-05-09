@@ -4,7 +4,33 @@
   <div class="row d-flex justify-content-between">
     <div class="col-sm-4 text-center border rounded">
       <h2>Заказы и доставка</h2>
-      <p>Заказанные в этом месяце товары: {{ orders_amount }}шт. на сумму {{ orders_total_cost }}</p>
+
+      <h3>Заказанные в этом месяце товары</h3>
+      <p>{{ orders_amount }} на сумму {{ orders_total_cost }}</p>
+
+      <h3>Заказы в доставке</h3>
+      <div class="row d-flex justify-content-between">
+        <div class="col-sm-6">
+          Закаказанные в этом месяце:<br> {{ current_month_orders_in_delivery_amount }}
+          на сумму {{ current_month_orders_in_delivery_total_cost }}
+        </div>
+        <div class="col-sm-6">
+          Закаказанные раньше:<br> {{ previous_month_orders_in_delivery_amount }}
+          на сумму {{ previous_month_orders_in_delivery_total_cost }}
+        </div>
+      </div>
+
+      <h3>Доставленные в этом месяце заказы</h3>
+      <div class="row d-flex justify-content-between">
+        <div class="col-sm-6">
+          Закаказанные в этом месяце:<br> {{ current_month_delivered_orders_amount }}
+          на сумму {{ current_month_delivered_orders_total_cost }}
+        </div>
+        <div class="col-sm-6">
+          Закаказанные раньше: {{ previous_month_delivered_orders_amount }}<br>
+          на сумму {{ previous_month_delivered_orders_total_cost }}
+        </div>
+      </div>
     </div>
 
     <div class="col-sm-3 text-center border rounded">
