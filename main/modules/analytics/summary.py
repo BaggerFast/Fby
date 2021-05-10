@@ -56,6 +56,11 @@ def get_orders_for_previous_month(included_statuses):
 
 
 def calculate_total_cost(orders):
+    """
+    Подсчитать доход
+    :param orders: Заказы для подсчёта
+    :return: Общий доход
+    """
     total_cost = 0
 
     for order in orders:
@@ -65,12 +70,27 @@ def calculate_total_cost(orders):
 
 
 def calculate_total_net_cost(orders):
+    """
+    Подсчитать себестоимость
+    :param orders: Заказы для подсчёта
+    :return: Общая себестоимость
+    """
     total_net_cost = 0
 
     for order in orders:
         total_net_cost += order.total_net_price
 
     return total_net_cost
+
+
+def calculate_revenue(income, net_cost):
+    """
+    Ф-ия для подсчёта выручки. Рассчитывается по простой формуле *income* - *net_cost*
+    :param income: Доход
+    :param net_cost: Себестоимость
+    :return: Выручка
+    """
+    return income - net_cost
 
 
 class Stat:
@@ -86,7 +106,7 @@ class Stat:
         """
         Инициализация объекта класса параметр
         :param name: Название параметра
-        :param orders: Заказы, лист из 2 объектов - заказы за пред. месяц и за тек. месяц соответственно
+        :param all_orders: Заказы, лист из 2 объектов - заказы за пред. месяц и за тек. месяц соответственно
         :param included_statuses: Какие статусы для фильтра должны быть, если не заданы то берутся стандартные:
             'DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING'
         """
@@ -103,15 +123,18 @@ class Stat:
         self.curr_amount = len(filtered_orders[0])
         self.curr_total_cost = f'{calculate_total_cost(filtered_orders[0])}₽'
         self.curr_total_net_cost = f'{calculate_total_net_cost(filtered_orders[0])}₽'
+        self.curr_revenue = f'{calculate_revenue(float(self.curr_total_cost[:-1]), float(self.curr_total_net_cost[:-1]))}₽'
 
         if filtered_orders[1] is not None:
             self.prev_amount = len(filtered_orders[1])
             self.prev_total_cost = f'{calculate_total_cost(filtered_orders[1])}₽'
             self.prev_total_net_cost = f'{calculate_total_net_cost(filtered_orders[1])}₽'
+            self.prev_revenue = f'{calculate_revenue(float(self.prev_total_cost[:-1]), float(self.prev_total_net_cost[:-1]))}₽'
         else:
             self.prev_amount = None
             self.prev_amount = None
             self.prev_total_net_cost = None
+            self.prev_revenue = None
 
         self.name = name
 

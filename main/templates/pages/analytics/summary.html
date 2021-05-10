@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Summary</h1>
+  <h1>Отчёт</h1>
   <div class="row d-flex justify-content-between">
     <div class="col-sm-4 text-center border rounded">
       <h2>Заказы и доставка</h2>
@@ -12,14 +12,16 @@
             <div class="col-sm-6">
               Закаказанные в этом месяце:<br> {{ stat.curr_amount }}
               на сумму {{ stat.curr_total_cost }}<br>
-              Себестоимость {{ stat.curr_total_net_cost }}
+              Себестоимость {{ stat.curr_total_net_cost }}<br>
+              Прибыль {{ stat.curr_revenue }}
             </div>
           {% endif %}
           {% if stat.prev_amount is not None and stat.prev_total_cost is not None %}
             <div class="col-sm-6">
               Закаказанные раньше: {{ stat.prev_amount }}<br>
               на сумму {{ stat.prev_total_cost }}<br>
-              Себестоимость {{ stat.prev_total_net_cost }}
+              Себестоимость {{ stat.prev_total_net_cost }}<br>
+              Прибыль {{ stat.prev_revenue }}
             </div>
           {% endif %}
         </div>
