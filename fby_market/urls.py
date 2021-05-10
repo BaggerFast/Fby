@@ -25,6 +25,7 @@ from main.modules import *
 import fby_market.additional_url.catalogue as catalogue
 import fby_market.additional_url.orders as orders
 import fby_market.additional_url.profile as profile
+import fby_market.additional_url.stats as stats
 
 urlpatterns = [
     # basic
@@ -35,6 +36,7 @@ urlpatterns = [
     path('catalogue/', include(catalogue)),
     path('orders/', include(orders)),
     path('profile/', include(profile)),
+    path('stats/', include(stats)),
 
     # authorize
     path('register/', MyRegisterFormView.as_view(), name="register"),
