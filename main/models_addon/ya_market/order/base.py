@@ -4,6 +4,8 @@ docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/post-cam
 """
 from main.models import User
 from django.db import models
+
+from main.models_addon.ya_market.offer.base import Offer
 from main.models_addon.ya_market.order.choices import StatusChoices, PaymentTypeChoices, PriceTypeChoices, \
     ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourceChoices, CommissionTypeChoices
 
@@ -70,6 +72,19 @@ class Order(models.Model):
             total += item.per_item_price
         return total
 
+    @property
+    def total_net_price(self):
+        """
+        Рассчитать общую себестоимость
+        :return: Общая себестоимость
+        """
+        total = 0
+
+        for item in self.items.all():
+            total += item.per_item_net_price
+
+        return total
+
     class Meta:
         ordering = ['id']
 
@@ -124,6 +139,16 @@ class Item(models.Model):
         pr = 0
         for price in self.discounts:
             pr += price.costPerItem
+        return pr
+
+    @property
+    def per_item_net_price(self):
+        # цена за текущий товар без учетов скидок
+        pr = 0
+        for price in self.discounts:
+            net_cost = Offer.objects.get(marketSku=price.item.marketSku).price.net_cost
+            if net_cost:
+                pr += Offer.objects.get(marketSku=price.item.marketSku).price.net_cost
         return pr
 
 

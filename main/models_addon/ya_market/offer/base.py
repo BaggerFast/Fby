@@ -97,8 +97,6 @@ class Offer(models.Model):
                                            null=True
                                            )
 
-    net_cost = models.PositiveIntegerField(null=True, verbose_name='Себестоимость')
-
     class Meta:
         ordering = ['id']
 

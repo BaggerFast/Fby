@@ -64,6 +64,15 @@ def calculate_total_cost(orders):
     return total_cost
 
 
+def calculate_total_net_cost(orders):
+    total_net_cost = 0
+
+    for order in orders:
+        total_net_cost += order.total_net_price
+
+    return total_net_cost
+
+
 class Stat:
     """
     Класс параметра для статистики.
@@ -86,20 +95,23 @@ class Stat:
         filtered_orders = []
 
         for in_orders in all_orders:
-            try:
+            if in_orders is not None:
                 filtered_orders.append(in_orders.filter(status__in=included_statuses))
-            except AttributeError:
+            else:
                 filtered_orders.append(None)
 
         self.curr_amount = len(filtered_orders[0])
         self.curr_total_cost = f'{calculate_total_cost(filtered_orders[0])}₽'
+        self.curr_total_net_cost = f'{calculate_total_net_cost(filtered_orders[0])}₽'
 
         if filtered_orders[1] is not None:
             self.prev_amount = len(filtered_orders[1])
             self.prev_total_cost = f'{calculate_total_cost(filtered_orders[1])}₽'
+            self.prev_total_net_cost = f'{calculate_total_net_cost(filtered_orders[1])}₽'
         else:
             self.prev_amount = None
             self.prev_amount = None
+            self.prev_total_net_cost = None
 
         self.name = name
 

@@ -61,6 +61,7 @@ class Price(models.Model):
                               blank=True,
                               choices=VatType.choices
                               )
+    net_cost = models.PositiveIntegerField(verbose_name="Себестоимость", null=True, blank=True)
 
     def clean(self):
         pass
