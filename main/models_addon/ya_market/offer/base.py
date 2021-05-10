@@ -39,7 +39,7 @@ class Offer(models.Model):
     vendorCode = models.CharField(max_length=255, verbose_name='Артикул производителя', null=True, blank=True)
 
     description = models.CharField(max_length=2000, verbose_name='Описание товара', null=True, blank=True)
-
+    
     certificate = models.CharField(
         max_length=255,
         verbose_name='Номер документа на товар',
@@ -96,6 +96,8 @@ class Offer(models.Model):
                                            blank=True,
                                            null=True
                                            )
+
+    net_cost = models.PositiveIntegerField(null=True, verbose_name='Себестоимость')
 
     class Meta:
         ordering = ['id']
