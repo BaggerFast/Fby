@@ -118,7 +118,7 @@ class OfferForm(ModelForm, Func):
     class Meta:
         model = Offer
         fields = ['name', 'category', 'vendor', 'vendorCode', 'manufacturer', 'description', 'transportUnitSize',
-                  'minShipment', 'quantumOfSupply', 'deliveryDurationDays', 'boxCount']
+                  'minShipment', 'quantumOfSupply', 'deliveryDurationDays', 'boxCount', 'net_cost']
         widgets = {
             'description': forms.Textarea(),
         }
