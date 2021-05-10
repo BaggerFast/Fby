@@ -64,6 +64,46 @@ def calculate_total_cost(orders):
     return total_cost
 
 
+class Stat:
+    """
+    Класс параметра для статистики.
+    """
+    def __init__(
+        self,
+        name=None,
+        all_orders=None,
+        included_statuses=('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING')
+    ):
+        """
+        Инициализация объекта класса параметр
+        :param name: Название параметра
+        :param orders: Заказы, лист из 2 объектов - заказы за пред. месяц и за тек. месяц соответственно
+        :param included_statuses: Какие статусы для фильтра должны быть, если не заданы то берутся стандартные:
+            'DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING'
+        """
+        if len(all_orders) == 1:
+            all_orders.append(None)
+        filtered_orders = []
+
+        for in_orders in all_orders:
+            try:
+                filtered_orders.append(in_orders.filter(status__in=included_statuses))
+            except AttributeError:
+                filtered_orders.append(None)
+
+        self.curr_amount = len(filtered_orders[0])
+        self.curr_total_cost = f'{calculate_total_cost(filtered_orders[0])}₽'
+
+        if filtered_orders[1] is not None:
+            self.prev_amount = len(filtered_orders[1])
+            self.prev_total_cost = f'{calculate_total_cost(filtered_orders[1])}₽'
+        else:
+            self.prev_amount = None
+            self.prev_amount = None
+
+        self.name = name
+
+
 class SummaryView(View):
     """Отображение страницы с отчётом"""
     context = {
@@ -72,38 +112,17 @@ class SummaryView(View):
 
     def get(self, request):
         included_statuses = ('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING')
-        current_month_orders = get_orders_for_current_month(included_statuses)
-        previous_month_orders = get_orders_for_previous_month(included_statuses)
+        orders = [get_orders_for_current_month(included_statuses), get_orders_for_previous_month(included_statuses)]
 
         self.context['navbar'] = get_navbar(request)
 
-        self.add_orders_to_context(current_month_orders, 'orders', included_statuses)
-        self.add_orders_to_context(current_month_orders, 'current_month_orders_in_delivery',
-                                   ('DELIVERY', 'PROCESSING', 'PICKUP'))
-        self.add_orders_to_context(previous_month_orders, 'previous_month_orders_in_delivery',
-                                   ('DELIVERY', 'PROCESSING', 'PICKUP'))
-        self.add_orders_to_context(current_month_orders, 'current_month_delivered_orders', ('DELIVERED', 'PICKUP'))
-        self.add_orders_to_context(previous_month_orders, 'previous_month_delivered_orders', ('DELIVERED', 'PICKUP'))
+        self.context['stats'] = [
+            Stat('', [orders[0]], included_statuses),
+            Stat('Заказы в доставке', orders, ('DELIVERY', 'PROCESSING', 'PICKUP')),
+            Stat('Доставленные в этом месяце заказы', orders, ('DELIVERED', 'PICKUP')),
+        ]
 
         return render(request, Page.summary, self.context)
-
-    def add_orders_to_context(
-        self,
-        orders,
-        context_names,
-        included_statuses=('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING')
-    ):
-        """
-        Добавить в контекст отфильтрованные заказы
-        :param orders: заказы
-        :param context_names: как называть контексты,
-                              к концу строки потом добавляются _amount и _total_cost соответственно
-        :param included_statuses: какие статусы для фильтра должны быть, если не заданы то берутся стандартные:
-            'DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING'
-        """
-        filtered_orders = orders.filter(status__in=included_statuses)
-        self.context[context_names + '_amount'] = len(filtered_orders)
-        self.context[context_names + '_total_cost'] = f'{calculate_total_cost(filtered_orders)}₽'
 
 
 """

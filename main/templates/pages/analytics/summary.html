@@ -5,32 +5,23 @@
     <div class="col-sm-4 text-center border rounded">
       <h2>Заказы и доставка</h2>
 
-      <h3>Заказанные в этом месяце товары</h3>
-      <p>{{ orders_amount }} на сумму {{ orders_total_cost }}</p>
-
-      <h3>Заказы в доставке</h3>
-      <div class="row d-flex justify-content-between">
-        <div class="col-sm-6">
-          Закаказанные в этом месяце:<br> {{ current_month_orders_in_delivery_amount }}
-          на сумму {{ current_month_orders_in_delivery_total_cost }}
+      {% for stat in stats %}
+        <h3>{{ stat.name }}</h3>
+        <div class="row d-flex justify-content-between">
+          {% if stat.curr_amount is not None and stat.curr_total_cost is not None %}
+            <div class="col-sm-6">
+              Закаказанные в этом месяце:<br> {{ stat.curr_amount }}
+              на сумму {{ stat.curr_total_cost }}
+            </div>
+          {% endif %}
+          {% if stat.prev_amount is not None and stat.prev_total_cost is not None %}
+            <div class="col-sm-6">
+              Закаказанные раньше: {{ stat.prev_amount }}<br>
+              на сумму {{ stat.prev_total_cost }}
+            </div>
+          {% endif %}
         </div>
-        <div class="col-sm-6">
-          Закаказанные раньше:<br> {{ previous_month_orders_in_delivery_amount }}
-          на сумму {{ previous_month_orders_in_delivery_total_cost }}
-        </div>
-      </div>
-
-      <h3>Доставленные в этом месяце заказы</h3>
-      <div class="row d-flex justify-content-between">
-        <div class="col-sm-6">
-          Закаказанные в этом месяце:<br> {{ current_month_delivered_orders_amount }}
-          на сумму {{ current_month_delivered_orders_total_cost }}
-        </div>
-        <div class="col-sm-6">
-          Закаказанные раньше: {{ previous_month_delivered_orders_amount }}<br>
-          на сумму {{ previous_month_delivered_orders_total_cost }}
-        </div>
-      </div>
+      {% endfor %}
     </div>
 
     <div class="col-sm-3 text-center border rounded">
@@ -40,5 +31,5 @@
     <div class="col-sm-4 text-center border rounded">
       Эффективность
     </div>
-  </div>
+</div>
 {% endblock %}
