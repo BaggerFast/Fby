@@ -2,6 +2,8 @@
 Модели для хранения информации о заказах товаров на ЯМ
 docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/post-campaigns-id-stats-orders.html
 """
+from django.shortcuts import get_object_or_404
+
 from main.models import User
 from django.db import models
 
@@ -72,8 +74,7 @@ class Order(models.Model):
             total += item.per_item_price
         return total
 
-    @property
-    def total_net_price(self):
+    def total_net_price(self, user):
         """
         Рассчитать общую себестоимость
         :return: Общая себестоимость
@@ -81,7 +82,7 @@ class Order(models.Model):
         total = 0
 
         for item in self.items.all():
-            total += item.per_item_net_price
+            total += item.per_item_net_price(user)
 
         return total
 
@@ -141,14 +142,11 @@ class Item(models.Model):
             pr += price.costPerItem
         return pr
 
-    @property
-    def per_item_net_price(self):
+    def per_item_net_price(self, user):
         # цена за текущий товар без учетов скидок
         pr = 0
         for price in self.discounts:
-            net_cost = Offer.objects.get(marketSku=price.item.marketSku).price.net_cost
-            if net_cost:
-                pr += net_cost
+            pr += get_object_or_404(Offer, marketSku=price.item.marketSku, user=user).price.net_cost
         return pr
 
 
