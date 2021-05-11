@@ -148,7 +148,7 @@ class Item(models.Model):
         for price in self.discounts:
             net_cost = Offer.objects.get(marketSku=price.item.marketSku).price.net_cost
             if net_cost:
-                pr += Offer.objects.get(marketSku=price.item.marketSku).price.net_cost
+                pr += net_cost
         return pr
 
 

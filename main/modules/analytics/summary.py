@@ -93,10 +93,30 @@ def calculate_revenue(income, net_cost):
     return income - net_cost
 
 
+class SecondaryStats:
+    """
+    Класс второстепенных статов.
+    """
+    def __init__(self, time='', orders=None):
+        """
+        Инициализация объекта
+        :param time: В какое время подсчитывалось время(прошлый, текущий месяц и т.п.). Строка должна отвечать на вопрос
+                     **когда?**
+        :param orders: Заказы
+        """
+        if orders is not None:
+            self.time = time
+            self.amount = len(orders)
+            self.total_cost = f'{calculate_total_cost(orders)}₽'
+            self.total_net_cost = f'{calculate_total_net_cost(orders)}₽'
+            self.revenue = f'{calculate_revenue(float(self.total_cost[:-1]), float(self.total_net_cost[:-1]))}₽'
+
+
 class Stat:
     """
     Класс параметра для статистики.
     """
+
     def __init__(
         self,
         name=None,
@@ -120,22 +140,10 @@ class Stat:
             else:
                 filtered_orders.append(None)
 
-        self.curr_amount = len(filtered_orders[0])
-        self.curr_total_cost = f'{calculate_total_cost(filtered_orders[0])}₽'
-        self.curr_total_net_cost = f'{calculate_total_net_cost(filtered_orders[0])}₽'
-        self.curr_revenue = f'{calculate_revenue(float(self.curr_total_cost[:-1]), float(self.curr_total_net_cost[:-1]))}₽'
-
-        if filtered_orders[1] is not None:
-            self.prev_amount = len(filtered_orders[1])
-            self.prev_total_cost = f'{calculate_total_cost(filtered_orders[1])}₽'
-            self.prev_total_net_cost = f'{calculate_total_net_cost(filtered_orders[1])}₽'
-            self.prev_revenue = f'{calculate_revenue(float(self.prev_total_cost[:-1]), float(self.prev_total_net_cost[:-1]))}₽'
-        else:
-            self.prev_amount = None
-            self.prev_amount = None
-            self.prev_total_net_cost = None
-            self.prev_revenue = None
-
+        self.secondary_stats = [
+            SecondaryStats('в этом месяце', filtered_orders[0]),
+            SecondaryStats('ранее', filtered_orders[1])
+        ]
         self.name = name
 
 
