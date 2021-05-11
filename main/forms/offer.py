@@ -7,7 +7,7 @@ class Func:
     fields = dict()
     disabled = []
 
-    def turn_off(self, disable: bool = False):
+    def set_disable(self, disable: bool = False):
         for key in self.fields.keys():
             self.fields[key].widget.attrs['class'] = 'form-control'
             self.fields[key].widget.attrs['placeholder'] = 'Не задано'
@@ -27,17 +27,14 @@ class ShelfLifeForm(ModelForm, Func):
         model = ShelfLife
         exclude = ('offer',)
         help_texts = {
-            'timePeriod': 'Через сколько дней товар станет непригоден для использования. '
-                          'Например, срок годности есть у таких категорий, как продукты питания и медицинские препараты.',
+            'timePeriod': """Через сколько дней товар станет непригоден для использования. Например, срок годности есть 
+                            у таких категорий, как продукты питания и медицинские препараты.""",
             'comment': 'Дополнительные условия хранения.',
         }
         labels = {
             'timePeriod': 'Срок годности',
             'comment': 'Комментарий к сроку годности',
         }
-
-    def __str__(self):
-        return 'shelfLife'
 
 
 class LifeTimeForm(ModelForm, Func):
@@ -47,17 +44,14 @@ class LifeTimeForm(ModelForm, Func):
         model = LifeTime
         exclude = ('offer',)
         help_texts = {
-            'timePeriod': 'в течение какого периода товар будет исправно выполнять свою функцию'
-                          ', а изготовитель — нести ответственность за его существенные недостатки.',
+            'timePeriod': """В течение какого периода товар будет исправно выполнять свою функцию, 
+                            а изготовитель — нести ответственность за его существенные недостатки.""",
             'comment': 'Дополнительные условия использования в течение срока службы.',
         }
         labels = {
             'timePeriod': 'Срок службы',
             'comment': 'Комментарий к сроку службы',
         }
-
-    def __str__(self):
-        return 'lifeTime'
 
 
 class GuaranteePeriodForm(ModelForm, Func):
@@ -68,17 +62,14 @@ class GuaranteePeriodForm(ModelForm, Func):
 
         exclude = ('offer',)
         help_texts = {
-            'timePeriod': 'В течение этого периода возможны обслуживание и ремонт товара, возврат денег.'
-                          ' Изготовитель или продавец несет ответственность за недостатки товара.',
+            'timePeriod': """В течение этого периода возможны обслуживание и ремонт товара, возврат денег.
+                                Изготовитель или продавец несет ответственность за недостатки товара.""",
             'comment': 'Дополнительные условия гарантии.',
         }
         labels = {
             'timePeriod': 'Гарантийный срок',
             'comment': 'Комментарий к гарантийному сроку',
         }
-
-    def __str__(self):
-        return 'guarantee'
 
 
 class WeightDimensionForm(ModelForm, Func):
@@ -90,26 +81,17 @@ class WeightDimensionForm(ModelForm, Func):
         model = WeightDimension
         exclude = ('offer',)
 
-    def __str__(self):
-        return 'weight'
-
 
 class BarcodeForm(ModelForm, Func):
     class Meta:
         model = Barcode
         exclude = ('offer',)
 
-    def __str__(self):
-        return 'barcode'
-
 
 class UrlForm(ModelForm, Func):
     class Meta:
         model = Url
         exclude = ('offer',)
-
-    def __str__(self):
-        return 'url'
 
 
 class OfferForm(ModelForm, Func):
@@ -123,22 +105,17 @@ class OfferForm(ModelForm, Func):
             'description': forms.Textarea(),
         }
 
-    def __str__(self):
-        return 'offer'
-
 
 class CommodityCodeForm(ModelForm, Func):
     class Meta:
         model = CustomsCommodityCode
         exclude = ('offer',)
 
-    def __str__(self):
-        return 'commodityCode'
-
 
 class PriceForm(ModelForm, Func):
-    def __str__(self):
-        return 'priceForm'
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.min_max_value()
 
     class Meta:
         model = Price
@@ -146,9 +123,6 @@ class PriceForm(ModelForm, Func):
 
 
 class AvailabilityForm(ModelForm, Func):
-    def __str__(self):
-        return 'availabilityForm'
-
     class Meta:
         model = Offer
         fields = ['availability', ]

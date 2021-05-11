@@ -8,6 +8,15 @@ from main.models import User
 from main.models_addon.ya_market.offer.choices import AvailabilityChoices, MappingType
 
 
+def decor(func):
+    def wrapper(self):
+        try:
+            return func(self)
+        except Exception:
+            return None
+    return wrapper
+
+
 class Offer(models.Model):
     """
     Модель хранящая товар.
@@ -22,8 +31,8 @@ class Offer(models.Model):
     shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU', null=True)
 
     name = models.CharField(max_length=255,
-                            help_text='Составляйте по схеме: тип товара + бренд или производитель + модель + '
-                                      'отличительные характеристики.',
+                            help_text="""Составляйте по схеме: тип товара + бренд или производитель + модель +
+                                      отличительные характеристики.""",
                             verbose_name='Название товара', null=True)
 
     category = models.CharField(max_length=255, verbose_name='Категория', null=True)
@@ -108,11 +117,7 @@ class Offer(models.Model):
     def shelfLifeDays(self):
         """
         Срок годности товара: через сколько дней товар станет непригоден для использования.
-
         Рассчитывается на основе поля :class:`shelfLife`
-
-        .. todo::
-           Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
         """
         return self.shelfLife.get_days()
 
@@ -120,11 +125,7 @@ class Offer(models.Model):
     def lifeTimeDays(self):
         """
         Срок службы товара: течение какого периода товар будет исправно выполнять свою функцию,
-
         Рассчитывается на основе поля :class:`lifeTime`
-
-        .. todo::
-           Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
         """
         return self.lifeTime.get_days()
 
@@ -132,13 +133,49 @@ class Offer(models.Model):
     def guaranteePeriodDays(self):
         """
         Гарантийный срок товара: в течение какого периода возможны обслуживание и ремонт товара или возврат денег
-
         Рассчитывается на основе поля :class:`guaranteePeriod`
-
-        .. todo::
-           Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
         """
         return self.guaranteePeriod.get_days()
+
+    @property
+    @decor
+    def shelf_life(self):
+        return self.shelfLife
+
+    @property
+    @decor
+    def life_time(self):
+        return self.lifeTime
+
+    @property
+    @decor
+    def guarantee_period(self):
+        return self.guaranteePeriod
+
+    @property
+    @decor
+    def get_price(self):
+        return self.price
+
+    @property
+    @decor
+    def url(self):
+        return self.urls.first()
+
+    @property
+    @decor
+    def barcode(self):
+        return self.barcodes.first()
+
+    @property
+    @decor
+    def weight_dimensions(self):
+        return self.weightDimensions
+
+    @property
+    @decor
+    def commodity_codes(self):
+        return self.customsCommodityCodes.first()
 
     @property
     def processingState(self):

@@ -1,0 +1,11 @@
+{% block errors %}
+  {% include 'components/errors.html' %}
+  {% for item in passwd_form %}
+    <div class="mb-3">
+      <label>
+        {{ item.label }} {% if item.field.required %}*{% endif %}
+        {{ item }}
+      </label>
+    </div>
+  {% endfor %}
+{% endblock %}

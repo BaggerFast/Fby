@@ -4,7 +4,7 @@ from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from main.models_addon import Offer
-from main.modules.offers import OfferMultiForm, PriceMultiForm
+from main.modules.offers import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
 from main.view import get_navbar, Page
 
@@ -12,7 +12,7 @@ from main.view import get_navbar, Page
 class CreateOfferView(BaseView):
     context = {'title': 'Create offer', 'page_name': 'Создать товар'}
     form = offer_id = None
-    form_types = {"info": OfferMultiForm, "accommodation": PriceMultiForm}
+    form_types = {"info": OfferFormSet, "accommodation": PriceFormSet}
 
     @staticmethod
     def convert_url(offer_id) -> HttpResponse:
@@ -49,15 +49,16 @@ class CreateOfferView(BaseView):
             offer = Offer.objects.get(pk=self.offer_id)
         except ObjectDoesNotExist:
             offer = Offer.objects.create(user=self.request.user)
-        self.form.set_forms(offer.id)
-        self.form.set_post(disable=True, post=request.POST)
+        self.form.configure(offer)
+        self.form.set_post(post=request.POST)
+        self.form.set_disable(True)
         if self.form.is_valid():
             self.form.save()
             message = self.save_message()
             if message:
                 return message
         else:
-            self.form.set_post(disable=False, post=request.POST)
+            self.form.set_post(False)
             offer.delete()
             self.context['create'] = True
         if offer.id and self.context['content'] == 'info':
@@ -67,8 +68,9 @@ class CreateOfferView(BaseView):
     def get(self, request: HttpRequest) -> HttpResponse:
         self.pre_init(request=request)
         self.context_update({'create': True, 'stage_next': self.context['content'] == 'info'})
-        self.form.set_forms()
-        self.form.set_clear(disable=False)
+        self.form.configure()
+        self.form.set_empty()
+        self.form.set_disable()
         if self.offer_id and self.context['content'] != 'accommodation':
             return self.convert_url(self.offer_id)
         return self.end_it()

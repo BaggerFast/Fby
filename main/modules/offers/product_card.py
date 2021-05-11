@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.shortcuts import redirect
 from main.models_addon import Offer, Price
-from main.modules.offers import OfferMultiForm, PriceMultiForm
+from main.modules.offers import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
 from main.view import Page, get_navbar
 from main.ya_requests.price import ChangePrices
@@ -20,7 +20,7 @@ class ProductPageView(BaseView):
     context = {'title': 'Product card', 'page_name': 'Карточка товара'}
     form = None
     disable: bool = False
-    form_types = {"info": OfferMultiForm, "accommodation": PriceMultiForm}
+    form_types = {"info": OfferFormSet, "accommodation": PriceFormSet}
 
     def pre_init(self, pk: int, request: HttpRequest) -> None:
         """Предварительная настройка контекста"""
@@ -28,7 +28,7 @@ class ProductPageView(BaseView):
                              'content': request.GET.get('content', 'info')})
         if self.context['content'] in self.form_types:
             self.form = self.form_types[self.context['content']]()
-            self.form.set_forms(pk=pk)
+            self.form.configure(offer=Offer.objects.get(pk=pk))
         else:
             raise Http404()
 
@@ -81,17 +81,19 @@ class ProductPageView(BaseView):
             return buttons[btn]()
 
         self.pre_init(request=request, pk=pk)
-        self.form.set_post(disable=True, post=self.request.POST)
+        self.form.set_post(post=self.request.POST)
+        self.form.set_disable(True)
         self.disable = self.form.is_valid()
         if self.disable:
             self.form.save()
         else:
-            self.form.set_post(disable=self.disable, post=self.request.POST)
+            self.form.set_disable(False)
         return self.end_it()
 
     def get(self, request: HttpRequest, pk) -> HttpResponse:
         """Обработка get-запроса"""
         self.pre_init(request=request, pk=pk)
         self.disable = not bool(self.request.GET.get('edit', 0))
-        self.form.set_fill(disable=self.disable)
+        self.form.set_fill()
+        self.form.set_disable(self.disable)
         return self.end_it()

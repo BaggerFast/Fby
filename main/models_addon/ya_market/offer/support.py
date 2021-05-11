@@ -28,6 +28,18 @@ class Timing(models.Model):
 
     comment = models.CharField(max_length=2000, null=True, blank=True)
 
+    def get_days(self):
+        if self.timeUnit == TimeUnitChoices.HOUR:
+            return self.timePeriod / 24
+        elif self.timeUnit == TimeUnitChoices.DAY:
+            return self.timePeriod
+        elif self.timeUnit == TimeUnitChoices.WEEK:
+            return self.timePeriod * 7
+        elif self.timeUnit == TimeUnitChoices.MONTH:
+            return self.timePeriod * 31
+        elif self.timeUnit == TimeUnitChoices.YEAR:
+            return self.timePeriod * 365
+
 
 class ShelfLife(Timing):
     offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name='shelfLife')
