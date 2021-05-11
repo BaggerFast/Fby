@@ -2,12 +2,8 @@
 Модели для хранения информации о заказах товаров на ЯМ
 docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/post-campaigns-id-stats-orders.html
 """
-from django.shortcuts import get_object_or_404
-
 from main.models import User
 from django.db import models
-
-from main.models_addon.ya_market.offer.base import Offer
 from main.models_addon.ya_market.order.choices import StatusChoices, PaymentTypeChoices, PriceTypeChoices, \
     ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourceChoices, CommissionTypeChoices
 
@@ -73,7 +69,6 @@ class Order(models.Model):
         for item in self.items.all():
             total += item.per_item_price
         return total
-
 
     def total_net_price(self, offer):
         """

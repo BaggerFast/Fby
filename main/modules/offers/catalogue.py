@@ -1,4 +1,3 @@
-import itertools
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from main.models_addon import Offer
@@ -18,38 +17,6 @@ class CatalogueView(BaseView):
         "availability": "Планы по поставкам",
     })
 
-    def search_algorithm(self, keywords, objects):
-        if not len(keywords):
-            return objects
-        scores = {}
-        for item, keyword in itertools.product(objects, keywords):
-            for field in self.fields:
-                attr = getattr(item, field)
-                if attr is not None and keyword in str(attr).lower():
-                    if item not in scores:
-                        scores[item] = 0
-                    scores[item] += 1
-                    break
-        return sorted(scores, key=scores.get, reverse=True)
-
-    def reformat_offer(self, offer, filter_types) -> list:
-        def offer_search(offers) -> list:
-            keywords = self.request.GET.get('input', '').lower().strip().split()
-            filters = self.filtration.filters_from_request(self.request, filter_types)
-
-            objects = self.filtration.filter_items(offers, filters)
-            objects = self.search_algorithm(keywords, objects)
-
-            was_searching_used = len(keywords) != 0
-            if not was_searching_used:
-                filter_values = [j for sub in filters.values() for j in sub]
-                if len(filter_values):
-                    was_searching_used = True
-
-            self.context_update({'search': was_searching_used})
-            return objects
-        return offer_search(offer)
-
     def post(self, request: HttpRequest) -> HttpResponse:
         return self.save_models(request=request)
 
@@ -58,7 +25,7 @@ class CatalogueView(BaseView):
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {
             'navbar': get_navbar(request),
-            'offers': self.reformat_offer(offers, filter_types),
+            'offers': self.sort_object(offers, filter_types),
             'table': self.table,
             'filter_types': filter_types.items(),
         }
