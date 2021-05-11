@@ -74,7 +74,7 @@ class Order(models.Model):
             total += item.per_item_price
         return total
 
-    def total_net_price(self):
+    def total_net_price(self, offer):
         """
         Рассчитать общую себестоимость
         :return: Общая себестоимость
@@ -82,7 +82,7 @@ class Order(models.Model):
         total = 0
 
         for item in self.items.all():
-            total += item.per_item_net_price()
+            total += item.per_item_net_price(offer)
 
         return total
 
@@ -142,11 +142,11 @@ class Item(models.Model):
             pr += price.costPerItem
         return pr
 
-    def per_item_net_price(self):
+    def per_item_net_price(self, offers):
         # цена за текущий товар без учетов скидок
         pr = 0
         for price in self.discounts:
-            net_cost = get_object_or_404(Offer, marketSku=price.item.marketSku).price.net_cost
+            net_cost = offers.get(marketSku=price.item.marketSku).price.net_cost
             if net_cost:
                 pr += net_cost
         return pr
