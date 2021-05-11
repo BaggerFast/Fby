@@ -33,25 +33,27 @@ def get_data_from_db():
     return offers
 
 
-def get_orders_for_current_month(included_statuses):
+def get_orders_for_current_month(included_statuses, user):
     """
     Возращает заказы за текущий месяц
     :return: Объект класса Django QuerySet
     """
     return Order.objects.filter(
         creationDate__gt=datetime.date.today().replace(day=1),
-        status__in=included_statuses
+        status__in=included_statuses,
+        user=user
     )
 
 
-def get_orders_for_previous_month(included_statuses):
+def get_orders_for_previous_month(included_statuses, user):
     """
     Возращает заказы за прошлые месяцы
     :return: Объект класса Django QuerySet
     """
     return Order.objects.filter(
         creationDate__lt=datetime.date.today().replace(day=1),
-        status__in=included_statuses
+        status__in=included_statuses,
+        user=user
     )
 
 
@@ -69,7 +71,7 @@ def calculate_total_cost(orders):
     return total_cost
 
 
-def calculate_total_net_cost(orders, user):
+def calculate_total_net_cost(orders):
     """
     Подсчитать себестоимость
     :param orders: Заказы для подсчёта
@@ -79,7 +81,7 @@ def calculate_total_net_cost(orders, user):
     total_net_cost = 0
 
     for order in orders:
-        total_net_cost += order.total_net_price(user)
+        total_net_cost += order.total_net_price()
 
     return total_net_cost
 
@@ -98,7 +100,7 @@ class SecondaryStats:
     """
     Класс второстепенных статов.
     """
-    def __init__(self, time='', orders=None, request=None):
+    def __init__(self, time='', orders=None):
         """
         Инициализация объекта
         :param time: В какое время подсчитывалось время(прошлый, текущий месяц и т.п.). Строка должна отвечать на вопрос
@@ -109,7 +111,7 @@ class SecondaryStats:
             self.time = time
             self.amount = len(orders)
             self.total_cost = f'{calculate_total_cost(orders)}₽'
-            self.total_net_cost = f'{calculate_total_net_cost(orders, request.user)}₽'
+            self.total_net_cost = f'{calculate_total_net_cost(orders)}₽'
             self.revenue = f'{calculate_revenue(float(self.total_cost[:-1]), float(self.total_net_cost[:-1]))}₽'
 
 
@@ -123,7 +125,6 @@ class Stat:
         name=None,
         all_orders=None,
         included_statuses=('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING'),
-        request=None
     ):
         """
         Инициализация объекта класса параметр
@@ -143,8 +144,8 @@ class Stat:
                 filtered_orders.append(None)
 
         self.secondary_stats = [
-            SecondaryStats('в этом месяце', filtered_orders[0], request),
-            SecondaryStats('ранее', filtered_orders[1], request)
+            SecondaryStats('в этом месяце', filtered_orders[0]),
+            SecondaryStats('ранее', filtered_orders[1])
         ]
         self.name = name
 
@@ -157,14 +158,14 @@ class SummaryView(View):
 
     def get(self, request):
         included_statuses = ('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING')
-        orders = [get_orders_for_current_month(included_statuses), get_orders_for_previous_month(included_statuses)]
+        orders = [get_orders_for_current_month(included_statuses, request.user), get_orders_for_previous_month(included_statuses, request.user)]
 
         self.context['navbar'] = get_navbar(request)
 
         self.context['stats'] = [
-            Stat('', [orders[0]], included_statuses, request),
-            Stat('Заказы в доставке', orders, ('DELIVERY', 'PROCESSING', 'PICKUP'), request),
-            Stat('Доставленные в этом месяце заказы', orders, ('DELIVERED', 'PICKUP'), request),
+            Stat('', [orders[0]], included_statuses),
+            Stat('Заказы в доставке', orders, ('DELIVERY', 'PROCESSING', 'PICKUP')),
+            Stat('Доставленные в этом месяце заказы', orders, ('DELIVERED', 'PICKUP')),
         ]
 
         return render(request, Page.summary, self.context)
