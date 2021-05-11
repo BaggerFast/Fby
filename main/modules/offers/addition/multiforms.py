@@ -27,7 +27,6 @@ class OfferFormSet(OfferBaseFormSet):
         self.forms: list = self.cortege_from_lists(forms=forms_clear, attrs=attrs)
 
     def get_for_context(self) -> dict:
-        print(self.get_form_list([WeightDimensionForm]))
         forms: List[List] = [
             [list(self.forms_dict[OfferForm])[:6], *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])],
             self.get_form_list([ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm]),

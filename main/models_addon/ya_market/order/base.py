@@ -74,16 +74,15 @@ class Order(models.Model):
             total += item.per_item_price
         return total
 
+
     def total_net_price(self, offer):
         """
         Рассчитать общую себестоимость
         :return: Общая себестоимость
         """
         total = 0
-
         for item in self.items.all():
             total += item.per_item_net_price(offer)
-
         return total
 
     class Meta:

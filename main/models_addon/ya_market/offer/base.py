@@ -14,6 +14,7 @@ def decor(func):
             return func(self)
         except Exception:
             return None
+
     return wrapper
 
 
@@ -48,7 +49,7 @@ class Offer(models.Model):
     vendorCode = models.CharField(max_length=255, verbose_name='Артикул производителя', null=True, blank=True)
 
     description = models.CharField(max_length=2000, verbose_name='Описание товара', null=True, blank=True)
-    
+
     certificate = models.CharField(
         max_length=255,
         verbose_name='Номер документа на товар',
@@ -200,3 +201,16 @@ class Offer(models.Model):
     def rejectedMapping(self):
         """Информация о последней карточке товара на Маркете, отклоненной на модерации для данного товара"""
         return self.mapping_set.get(mappingType=MappingType.REJECTED)
+
+    @property
+    @decor
+    def rent(self):
+        price = self.get_price
+        data = {
+            2: 0.1,
+            5: 0,
+            6: 0,
+            7: 0.2,
+        }
+        clear_profit = price.value - price.value * data[price.vat]
+        return (clear_profit - price.net_cost) / clear_profit * 100

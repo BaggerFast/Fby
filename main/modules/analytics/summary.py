@@ -1,42 +1,15 @@
 """Модуль для рендера страницы аналитики"""
 import datetime
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-import plotly.offline as opy
 from django.shortcuts import render
 from django.views.generic.base import View
-
+from main.models_addon import Offer
 from main.models_addon.ya_market.order.base import Order
-from main.models_addon.ya_market.offer.base import Offer
-from main.view import *
+from main.view import Page, get_navbar
 
 
-def get_pie_figure():
+def orders_for_current_month(included_statuses, user):
     """
-    Создание круговой диаграммы
-    :return: Объект класса plotly.plot
-    """
-    offers = get_data_from_db()
-    fig = go.Figure(data=[go.Pie(labels=offers.columns, values=offers.value_counts())])
-
-    return opy.plot(fig, auto_open=False, output_type='div')
-
-
-def get_data_from_db():
-    """
-    Функция для получения данных из БД
-    :return: Объект класса Pandas.DataFrame
-    """
-    offers = Order.objects.all().values()
-    offers = pd.DataFrame(offers)
-
-    return offers
-
-
-def get_orders_for_current_month(included_statuses, user):
-    """
-    Возращает заказы за текущий месяц
+    Возвращает заказы за текущий месяц
     :return: Объект класса Django QuerySet
     """
     return Order.objects.filter(
@@ -48,7 +21,7 @@ def get_orders_for_current_month(included_statuses, user):
 
 def get_orders_for_previous_month(included_statuses, user):
     """
-    Возращает заказы за прошлые месяцы
+    Возвращает заказы за прошлые месяцы
     :return: Объект класса Django QuerySet
     """
     return Order.objects.filter(
@@ -65,10 +38,8 @@ def calculate_total_cost(orders):
     :return: Общий доход
     """
     total_cost = 0
-
     for order in orders:
         total_cost += order.total_price
-
     return total_cost
 
 
@@ -80,15 +51,9 @@ def calculate_total_net_cost(orders, offers):
     :return: Общая себестоимость
     """
     total_net_cost = 0
-
     for order in orders:
         total_net_cost += order.total_net_price(offers)
-
     return total_net_cost
-
-
-def get_offers_for_user(user):
-    return Offer.objects.filter(user=user)
 
 
 def calculate_revenue(income, net_cost):
@@ -102,13 +67,14 @@ def calculate_revenue(income, net_cost):
 
 
 def calculate_profitability(income, revenue):
-    return income/revenue*100
+    return income / revenue * 100
 
 
 class SecondaryStats:
     """
-    Класс второстепенных статов.
+    Класс второстепенных stats.
     """
+
     def __init__(self, time='', orders=None, request=None):
         """
         Инициализация объекта
@@ -119,11 +85,12 @@ class SecondaryStats:
         if orders is not None:
             self.time = time
             self.amount = len(orders)
-            self.total_cost = f'{calculate_total_cost(orders)}₽'
-
-            offers = get_offers_for_user(request.user)
-            self.total_net_cost = f'{calculate_total_net_cost(orders, offers)}₽'
-            self.revenue = f'{calculate_revenue(float(self.total_cost[:-1]), float(self.total_net_cost[:-1]))}₽'
+            self.total_cost = calculate_total_cost(orders)
+            if request:
+                self.total_net_cost = calculate_total_net_cost(orders, offers=Offer.objects.filter(user=request.user))
+            else:
+                self.total_net_cost = 0
+            self.revenue = calculate_revenue(float(self.total_cost), float(self.total_net_cost))
 
 
 class Stat:
@@ -131,13 +98,9 @@ class Stat:
     Класс параметра для статистики.
     """
 
-    def __init__(
-        self,
-        name=None,
-        all_orders=None,
-        included_statuses=('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING'),
-        request=None
-    ):
+    def __init__(self, name=None, all_orders=None,
+                 included_statuses=('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING'),
+                 request=None):
         """
         Инициализация объекта класса параметр
         :param name: Название параметра
@@ -163,58 +126,25 @@ class Stat:
 
 
 class SummaryView(View):
+    context = {}
+
+    def context_update(self, data: dict):
+        self.context = {**data, **self.context}
+
     """Отображение страницы с отчётом"""
-    context = {
-        'title': 'Отчёт',
-    }
 
     def get(self, request):
         included_statuses = ('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING')
-        orders = [get_orders_for_current_month(included_statuses, request.user), get_orders_for_previous_month(included_statuses, request.user)]
-
-        self.context['navbar'] = get_navbar(request)
-
-        self.context['stats'] = [
-            Stat('', [orders[0]], included_statuses),
-            Stat('Заказы в доставке', orders, ('DELIVERY', 'PROCESSING', 'PICKUP'), request),
-            Stat('Доставленные в этом месяце заказы', orders, ('DELIVERED', 'PICKUP'), request)
-        ]
-
+        orders = [orders_for_current_month(included_statuses, user=request.user),
+                  get_orders_for_previous_month(included_statuses, user=request.user)]
+        local_context = {
+            'navbar': get_navbar(request),
+            'stats': [
+                Stat('', [orders[0]], included_statuses),
+                Stat('Заказы в доставке', orders, ('DELIVERY', 'PROCESSING', 'PICKUP'), request=request),
+                Stat('Доставленные в этом месяце заказы', orders, ('DELIVERED', 'PICKUP'), request=request),
+            ],
+            'title': 'Отчёт',
+        }
+        self.context_update(local_context)
         return render(request, Page.summary, self.context)
-
-
-"""
-:param labels: Sectors names
-:type labels: list
-
-:param values: Sectors values
-:type values: list
-"""
-
-
-def pie(labels=None, values=None):
-    """Создание круговой диаграммы"""
-    fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
-    fig.show()
-
-
-"""
-:param df: Pandas dataframe, that will be displayed on chart
-:type df: Pandas df
-
-:param y_axis_name: Name of y axis, x axis automatically set to time 
-:type y_axis_name: str
-
-:param range_bottom: Date where chart will begin
-:type range_bottom: datetime.datetime
-
-:param range_top: Date where chart will end
-:type range_top: datetime.datetime
-
-"""
-
-
-def time_series(df, y_axis_name, range_bottom, range_top):
-    """Создание диаграммы за периуд времени"""
-    fig = px.line(df, x='Date', y=y_axis_name, range_x=[range_bottom, range_top])
-    fig.show()

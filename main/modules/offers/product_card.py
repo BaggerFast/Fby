@@ -1,4 +1,5 @@
 """Модуль для отображения карточки товара"""
+import math
 
 from django.contrib import messages
 from django.http import Http404, HttpResponse, HttpRequest
@@ -32,8 +33,13 @@ class ProductPageView(BaseView):
         else:
             raise Http404()
 
-    def end_it(self) -> HttpResponse:
+    def end_it(self, pk) -> HttpResponse:
         """Окончательная настройка контекста и отправка ответа на запрос"""
+        rent = Offer.objects.get(pk=pk).rent
+        if rent:
+            self.context['rent'] = math.floor(rent)
+            if rent < 8:
+                messages.error(self.request, f'Рентабельность: {math.floor(rent)}% < 8%. Не прибыльно!!!')
         self.context_update({'forms': self.form.get_for_context(), 'disable': self.disable})
         return render(self.request, Page.product_card, self.context)
 
@@ -88,7 +94,7 @@ class ProductPageView(BaseView):
             self.form.save()
         else:
             self.form.set_disable(False)
-        return self.end_it()
+        return self.end_it(pk)
 
     def get(self, request: HttpRequest, pk) -> HttpResponse:
         """Обработка get-запроса"""
@@ -96,4 +102,4 @@ class ProductPageView(BaseView):
         self.disable = not bool(self.request.GET.get('edit', 0))
         self.form.set_fill()
         self.form.set_disable(self.disable)
-        return self.end_it()
+        return self.end_it(pk)
