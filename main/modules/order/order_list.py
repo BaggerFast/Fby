@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from main.models_addon import Order
+from main.models_addon.ya_market import Order
 from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OrderList
 from main.modules.base import BaseView

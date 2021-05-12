@@ -21,7 +21,8 @@ from django.contrib.auth.views import LogoutView
 import debug_toolbar
 
 from fby_market import settings
-from main.modules import *
+from main.modules.user import MyRegisterFormView, MyLoginFormView
+from main.modules import MainView
 import fby_market.additional_url.catalogue as catalogue
 import fby_market.additional_url.orders as orders
 import fby_market.additional_url.profile as profile

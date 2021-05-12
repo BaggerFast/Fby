@@ -1,13 +1,16 @@
-from django.shortcuts import render
+from django.contrib import messages
 from django.http import HttpResponse, HttpRequest
 from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
 from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OfferList, OfferPrice
 
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
-class CatalogueView(BaseView):
-    context = {'title': 'Catalogue', 'page_name': 'Каталог'}
+
+class CatalogueRentView(BaseView):
+    context = {'title': 'Rent_catalogue', 'page_name': 'Нерентабельные товары'}
     models_to_save = [OfferList, OfferPrice]
     fields = ['name', 'description', 'shopSku', 'category', 'vendor']
     table = ['Название', 'SKU', 'Категория', 'Продавец']
@@ -21,7 +24,10 @@ class CatalogueView(BaseView):
         return self.save_models(request=request)
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        offers = Offer.objects.filter(user=request.user)
+        offers = [offer for offer in Offer.objects.filter(user=request.user) if offer.rent and offer.rent < 8]
+        if not offers:
+            messages.success(self.request, 'Все товары рентабельны')
+            return redirect(reverse('catalogue_list'))
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {
             'navbar': get_navbar(request),

@@ -2,7 +2,7 @@
 
 from django.core.exceptions import ObjectDoesNotExist
 
-from main.models_addon import Order
+from main.models_addon.ya_market import Order
 from main.models_addon.save_dir.base import BasePattern
 from main.serializers import OrderSerializer
 

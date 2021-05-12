@@ -4,6 +4,7 @@ docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/post-cam
 """
 from main.models import User
 from django.db import models
+from main.models_addon.ya_market import Offer
 from main.models_addon.ya_market.order.choices import StatusChoices, PaymentTypeChoices, PriceTypeChoices, \
     ItemStatusChoices, StockTypeChoices, TypeOfPaymentChoices, PaymentSourceChoices, CommissionTypeChoices
 
@@ -144,6 +145,9 @@ class Item(models.Model):
             if net_cost:
                 pr += net_cost
         return pr
+
+    def get_offer_id(self, user):
+        return Offer.objects.get(marketSku=self.marketSku, user=user).id
 
 
 class ItemPrice(models.Model):

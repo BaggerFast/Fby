@@ -2,7 +2,7 @@ from typing import List
 
 from django.http import HttpRequest
 
-from main.models_addon import Price
+from main.models_addon.ya_market import Price
 from main.models_addon.save_dir import PricePattern
 from main.serializers import ChangePriceSerializer
 from main.ya_requests.base import Requests

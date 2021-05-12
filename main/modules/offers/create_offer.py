@@ -3,8 +3,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from main.models_addon import Offer
-from main.modules.offers import OfferFormSet, PriceFormSet
+from main.models_addon.ya_market import Offer
+from main.modules.offers.addition import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
 from main.view import get_navbar, Page
 

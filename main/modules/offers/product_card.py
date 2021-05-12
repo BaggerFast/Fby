@@ -6,8 +6,8 @@ from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.shortcuts import redirect
-from main.models_addon import Offer, Price
-from main.modules.offers import OfferFormSet, PriceFormSet
+from main.models_addon.ya_market import Offer, Price
+from main.modules.offers.addition import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
 from main.view import Page, get_navbar
 from main.ya_requests.price import ChangePrices

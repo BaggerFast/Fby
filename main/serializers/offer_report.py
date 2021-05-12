@@ -2,8 +2,7 @@
 
 from typing import List
 from rest_framework import serializers
-from main.models import *
-from main.models_addon import Hiding, Inclusion, Storage, Tariff, Stock, Offer, Warehouse, OfferReport
+from main.models_addon.ya_market import Hiding, Inclusion, Storage, Tariff, Stock, Offer, Warehouse, OfferReport
 from main.serializers import BaseListSerializer, BaseModelSerializer
 
 
