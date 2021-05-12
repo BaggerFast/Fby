@@ -7,6 +7,9 @@
     {% else %}
       {% include 'components/catalogue/empty.html' %}
     {% endif %}
+    <div class="col-sm-8">
+      <button id="checkbox" form="table" name="checkbox" type="submit" class="btn btn-danger">Удалить</button>
+    </div>
   </div>
   {% include 'components/preloader.html' %}
 {% endblock %}

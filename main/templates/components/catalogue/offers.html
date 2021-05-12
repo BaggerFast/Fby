@@ -6,13 +6,12 @@
   <div class="col">
     <span class="badge bg-secondary mb-4">{{ offers|length }} товаров</span>
     <div class="table-wrapper">
-      <form method="post">
+      <form id="table" method="post">
         {% csrf_token %}
-        <table class="table table-hover table-borderless">
-          {% include 'components/catalogue/thead.html' %}
-          {% include 'components/catalogue/tbody.html' %}
-        </table>
-        <button id="checkbox" name="checkbox" type="submit" class="btn btn-danger">Удалить</button>
+          <table class="table table-hover table-borderless">
+            {% include 'components/catalogue/thead.html' %}
+            {% include 'components/catalogue/tbody.html' %}
+          </table>
       </form>
     </div>
   </div>
