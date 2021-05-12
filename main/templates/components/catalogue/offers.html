@@ -1,7 +1,7 @@
 {% block offers %}
   {% include 'components/search.html' %}
   {% if search %}
-    <a href="{% url 'catalogue_list' %}" class="btn-link">← Назад</a>
+    <a class="btn btn-danger mb-5" href="{% url 'catalogue_list' %}">Назад</a>
   {% endif %}
   <div class="col">
     <span class="badge bg-secondary mb-4">{{ offers|length }} товаров</span>

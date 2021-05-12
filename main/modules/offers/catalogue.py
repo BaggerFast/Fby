@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
-from main.models_addon.ya_market import Offer
 from main.forms.checkbox import CheckBoxSet
-from main.models_addon import Offer
+from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
 from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OfferList, OfferPrice
@@ -38,11 +37,18 @@ class CatalogueView(BaseView):
         formset = CheckBoxSet(len(sorted_obj)).formset
         local_context = {
             'navbar': get_navbar(request),
-            'offers': sorted_obj,
             'table': self.table,
             'filter_types': filter_types.items(),
             'formset': formset,
-            'table_lines': [{'form': form, 'offer': offer} for form, offer in zip(formset, sorted_obj)]
+            'current_type': int(request.GET.get('content', 0)),
+            'types': ['Прошел модерацию',
+                      'Проходит модерацию',
+                      'Нужно найти карточку',
+                      'Не прошел из-за ошибок в описании',
+                      'Не прошел, так как Маркет не планирует размещает подобные товары',
+                      'Не прошел, так как Маркет пока не размещает подобные товары',
+                      'Не прошел по другой причине'],
+            'offers': [{'form': form, 'offer': offer} for form, offer in zip(formset, sorted_obj)]
         }
         self.context_update(local_context)
         return render(request, Page.catalogue, self.context)

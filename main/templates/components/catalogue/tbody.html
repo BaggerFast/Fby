@@ -1,16 +1,16 @@
 {% block thead %}
   <tbody>
-    {% for line in table_lines %}
+    {% for offer in offers %}
       <tr>
         <td>
-          {{ line.form.box }}
+          {{ offer.form.box }}
         </td>
         <td>
-          <a class="name_link" target="_blank" href="{% url 'offer_by_sku' line.offer.id %}">{{ line.offer.name }}</a>
+          <a class="name_link" target="_blank" href="{% url 'offer_by_sku' offer.offer.id %}">{{ offer.offer.name }}</a>
         </td>
-        <td>{{ line.offer.shopSku }}</td>
-        <td>{{ line.offer.category }}</td>
-        <td>{{ line.offer.vendor }}</td>
+        <td>{{ offer.offer.shopSku }}</td>
+        <td>{{ offer.offer.category }}</td>
+        <td>{{ offer.offer.vendor }}</td>
       </tr>
     {% endfor %}
   </tbody>
