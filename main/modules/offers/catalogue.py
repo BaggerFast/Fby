@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
-from main.models_addon.ya_market import Offer
 from main.forms.checkbox import CheckBoxSet
-from main.models_addon import Offer
+from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
 from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OfferList, OfferPrice
