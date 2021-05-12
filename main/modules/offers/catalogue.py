@@ -1,24 +1,10 @@
-import time
-
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
+from main.forms.checkbox import CheckBoxSet
 from main.models_addon import Offer
 from main.modules.base import BaseView
 from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OfferList, OfferPrice
-
-from django import forms
-from django.forms.formsets import formset_factory
-
-
-class CheckboxForm(forms.Form):
-    box = forms.BooleanField()
-
-
-class CheckBoxSet:
-    def __init__(self, extra):
-        self.article_formset = formset_factory(CheckboxForm, extra=extra)
-        self.formset = self.article_formset()
 
 
 class CatalogueView(BaseView):
