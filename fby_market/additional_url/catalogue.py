@@ -5,5 +5,4 @@ urlpatterns = [
     path('', CatalogueView.as_view(), name='catalogue_list'),
     path('create/', CreateOfferView.as_view(), name="create_offer"),
     path('<int:pk>/', ProductPageView.as_view(), name='offer_by_sku'),
-    path('rent/', CatalogueRentView.as_view(), name='rent_catalogue')
     ]

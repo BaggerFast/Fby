@@ -4,6 +4,7 @@ from django.forms import formset_factory
 
 class CheckboxForm(forms.Form):
     box = forms.BooleanField()
+    box.widget.attrs['class'] = 'form-check-input'
 
 
 class CheckBoxSet:
