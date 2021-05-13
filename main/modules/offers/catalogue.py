@@ -30,7 +30,7 @@ class CatalogueView(BaseView):
         'Не прошел модерацию',
         'Не отправленные',
         'Не рентабельные',
-            ]
+        ]
 
     def find_offers_id_by_regular(self, request, regular_string=r'form-checkbox:'):
         offers_ids = [re.sub(regular_string, '', line) for line in list(dict(request.POST).keys())[1:-1]]
