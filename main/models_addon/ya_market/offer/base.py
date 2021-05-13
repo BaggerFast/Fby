@@ -179,13 +179,18 @@ class Offer(models.Model):
         return self.customsCommodityCodes.first()
 
     @property
+    @decor
+    def processing_state(self):
+        return self.processingState
+
+    @property
     def processingState(self):
         """
         Информация о статусе публикации товара на Маркете
 
-        Рассчитывается на основе поля :class:`processingState_set`. Берётся последнее значение.
+        Рассчитывается на основе поля :class:`processingState_set`.
         """
-        return self.processingState_set.last()
+        return self.processingState_set
 
     @property
     def mapping(self):

@@ -40,7 +40,9 @@ class ProductPageView(BaseView):
             self.context['rent'] = math.floor(rent)
             if rent < 8:
                 messages.error(self.request, f'Рентабельность: {math.floor(rent)}% < 8%. Не прибыльно!!!')
-        self.context_update({'forms': self.form.get_for_context(), 'disable': self.disable})
+        self.context_update({'forms': self.form.get_for_context(),
+                             'disable': self.disable,
+                             'offer': Offer.objects.get(pk=pk)})
         return render(self.request, Page.product_card, self.context)
 
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:

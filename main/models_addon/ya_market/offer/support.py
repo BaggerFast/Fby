@@ -167,6 +167,10 @@ class ProcessingState(models.Model):
         null=True
     )
 
+    @property
+    def get_notes(self):
+        return self.notes.all()
+
 
 class ProcessingStateNote(models.Model):
     """

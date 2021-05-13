@@ -20,11 +20,12 @@ class CatalogueView(BaseView):
         "availability": "Планы по поставкам",
     })
     types = [
-            'Весь список',
-            'Прошел модерацию',
-            'На модерации',
-            'Не прошел модерацию',
-            'Не рентабельные',
+        'Весь список',
+        'Прошел модерацию',
+        'На модерации',
+        'Не прошел модерацию',
+        'Не отправленные',
+        'Не рентабельные',
             ]
 
     def find_offers_id_by_regular(self, request, regular_string=r'form-checkbox:'):
@@ -43,11 +44,12 @@ class CatalogueView(BaseView):
         offers = Offer.objects.filter(user=self.request.user)
         types = {
             0: lambda: [offer.id for offer in offers],
-            1: lambda: [offer.id for offer in offers if offer.processingState.status == 'READY'],
-            2: lambda: [offer.id for offer in offers if offer.processingState.status == 'IN_WORK'],
-            3: lambda: [offer.id for offer in offers if offer.processingState.status in ['NEED_INFO', 'REJECTED',
+            1: lambda: [offer.id for offer in offers if offer.processing_state and offer.processing_state.status == 'READY'],
+            2: lambda: [offer.id for offer in offers if offer.processing_state and offer.processing_state.status == 'IN_WORK'],
+            3: lambda: [offer.id for offer in offers if offer.processing_state and offer.processing_state.status in ['NEED_INFO', 'REJECTED',
                                                                                         'SUSPENDED', 'OTHER']],
-            4: lambda: [offer.id for offer in offers if offer.rent and offer.rent < 8],
+            4: lambda: [offer.id for offer in offers if not offer.processing_state],
+            5: lambda: [offer.id for offer in offers if offer.rent and offer.rent < 8],
         }
         return Offer.objects.filter(id__in=types[index]())
 
@@ -55,7 +57,7 @@ class CatalogueView(BaseView):
         self.request = request
         category_index = int(request.GET.get('content', 0))
         offers = self.configure_offer(category_index)
-        if not offers:
+        if not offers and category_index:
             messages.error(self.request, f'Каталог {self.types[category_index].lower()} пуст')
             return redirect(reverse('catalogue_list'))
         filter_types = self.filtration.get_filter_types(offers)
