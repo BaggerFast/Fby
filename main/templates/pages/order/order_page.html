@@ -19,7 +19,7 @@
               <p class="card-text"> {{disc.get_type_display}} {{disc.costPerItem}}</p>
             {% endfor %}
             <p class="card-text"> Количество: {{ item.count }} </p>
-            <a target="_blank" href="{% url 'offer_by_sku' item.get_offer_id user %}" class="card-link">Перейти</a>
+            {# <a target="_blank" href="{% url 'offer_by_sku' item.id %}" class="card-link">Перейти</a> ]#}
           </div>
         </div>
       </div>

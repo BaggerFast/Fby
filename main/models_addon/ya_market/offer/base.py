@@ -29,7 +29,7 @@ class Offer(models.Model):
 
     updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
 
-    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU', null=True)
+    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU')
 
     name = models.CharField(max_length=255,
                             help_text="""Составляйте по схеме: тип товара + бренд или производитель + модель +
@@ -219,3 +219,8 @@ class Offer(models.Model):
         }
         clear_profit = price.value - price.value * data[price.vat]
         return (clear_profit - price.net_cost) / clear_profit * 100
+
+    @property
+    @decor
+    def manufacturer_country(self):
+        return self.manufacturerCountries.first()
