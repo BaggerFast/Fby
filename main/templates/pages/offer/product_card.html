@@ -6,7 +6,7 @@
      <p>Модерация: {{ note.get_type_display|capfirst }}
     {% endfor %}
     {% elif offer.processingState %}
-       <p>Модерация: Пройдена
+       <p>Модерация: {{offer.processingState.get_status_display}}
     {% else %}
       <p>Модерация: товар не отправлен на Яндекс Маркет</p>
     {% endif %}

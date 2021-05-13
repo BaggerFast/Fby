@@ -1,4 +1,8 @@
+import operator
+from functools import reduce
+
 from django.contrib import messages
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from django.urls import reverse
@@ -26,7 +30,7 @@ class CatalogueView(BaseView):
         'Не прошел модерацию',
         'Не отправленные',
         'Не рентабельные',
-            ]
+        ]
 
     def find_offers_id_by_regular(self, request, regular_string=r'form-checkbox:'):
         offers_ids = [re.sub(regular_string, '', line) for line in list(dict(request.POST).keys())[1:-1]]
@@ -41,17 +45,15 @@ class CatalogueView(BaseView):
         return self.get(request)
 
     def configure_offer(self, index):
-        offers = Offer.objects.filter(user=self.request.user)
-        types = {
-            0: lambda: [offer.id for offer in offers],
-            1: lambda: [offer.id for offer in offers if offer.processing_state and offer.processing_state.status == 'READY'],
-            2: lambda: [offer.id for offer in offers if offer.processing_state and offer.processing_state.status == 'IN_WORK'],
-            3: lambda: [offer.id for offer in offers if offer.processing_state and offer.processing_state.status in ['NEED_INFO', 'REJECTED',
-                                                                                        'SUSPENDED', 'OTHER']],
-            4: lambda: [offer.id for offer in offers if not offer.processing_state],
-            5: lambda: [offer.id for offer in offers if offer.rent and offer.rent < 8],
+        query = {
+            0: Q(),
+            1: Q(processingState__status='READY'),
+            2: Q(processingState__status='IN_WORK'),
+            3: Q(processingState__status__in=['NEED_INFO', 'REJECTED', 'SUSPENDED', 'OTHER']),
+            4: Q(processingState__isnull=True),
+            5: Q(processingState__status__lte=8)
         }
-        return Offer.objects.filter(id__in=types[index]())
+        return Offer.objects.filter(user=self.request.user).filter(query[index])
 
     def get(self, request: HttpRequest) -> HttpResponse:
         self.request = request
