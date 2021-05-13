@@ -3,15 +3,16 @@
     {% for offer in offers %}
       <tr>
         <td>
-          {{ offer.form.box }}
+          <input type="checkbox" class="form-check-input" name="form-checkbox:{{ offer.id }}" id="form-checkbox:{{ offer.id }}">
         </td>
         <td>
-          <a class="name_link" target="_blank" href="{% url 'offer_by_sku' offer.offer.id %}">{{ offer.offer.name }}</a>
+          <a class="name_link" target="_blank" href="{% url 'offer_by_sku' offer.id %}">{{ offer.name }}</a>
         </td>
-        <td>{{ offer.offer.shopSku }}</td>
-        <td>{{ offer.offer.category }}</td>
-        <td>{{ offer.offer.vendor }}</td>
+        <td>{{ offer.shopSku }}</td>
+        <td>{{ offer.category }}</td>
+        <td>{{ offer.vendor }}</td>
       </tr>
     {% endfor %}
   </tbody>
 {% endblock %}
+
