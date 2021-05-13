@@ -25,7 +25,6 @@ def get_navbar(request) -> Dict[str, Union[list, List[Dict[str, str]]]]:
         if request.user.is_authenticated:
             nav += [
                 {'label': 'Товары', 'list': [{'url': 'catalogue_list', 'label': "Каталог"},
-                                             {'url': 'rent_catalogue', 'label': 'Не рентабельные'},
                                              {'url': 'create_offer', 'label': "Создать"}]},
                 {'label': 'Заказы', 'url': 'orders_list'},
                 {'label': 'Отчёт', 'url': 'summary'}
