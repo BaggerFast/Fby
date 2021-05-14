@@ -44,12 +44,9 @@ class Filtration:
     def filters_from_request(self, request, filter_types):
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
+            str_options = [filter_type['options'][int(option)] for option in request.GET.getlist(str(index), '')]
             if field in self.choices.keys():
-                str_options = [choice[0] for choice in
-                               self.find_choice(self.choices[field], str_options)]
-            else:
-                str_options = [filter_type['options'][int(option)]
-                               for option in request.GET.getlist(str(index), '')]
+                str_options = [choice[0] for choice in self.find_choice(self.choices[field], str_options)]
             filters[field] = str_options
         return filters
 
