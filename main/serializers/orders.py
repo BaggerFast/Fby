@@ -4,8 +4,7 @@ from rest_framework import serializers
 
 from main.models_addon import ItemPrice, Warehouse, Detail, Item, \
     InitialItem, PaymentOrder, DeliveryRegion, Order, Payment, Commission
-
-from main.serializers import BaseListSerializer, BaseModelSerializer
+from main.serializers import BaseListSerializer, BaseModelSerializer, SimpleModelSerializer
 
 
 class DeliveryRegionSerializer(serializers.ModelSerializer):
@@ -22,7 +21,7 @@ class ItemPriceListSerializer(BaseListSerializer):
     key_fields = ['type']
 
 
-class ItemPriceSerializer(serializers.ModelSerializer):
+class ItemPriceSerializer(SimpleModelSerializer):
     """Сериализатор для модели ItemPrice"""
     class Meta:
         model = ItemPrice
@@ -44,7 +43,7 @@ class DetailListSerializer(BaseListSerializer):
     key_fields = ['itemStatus', 'stockType']
 
 
-class DetailSerializer(serializers.ModelSerializer):
+class DetailSerializer(SimpleModelSerializer):
     """Сериализатор для модели Detail"""
     class Meta:
         model = Detail
@@ -74,7 +73,7 @@ class ItemSerializer(BaseModelSerializer):
         list_serializer_class = ItemListSerializer
 
 
-class InitialItemSerializer(serializers.ModelSerializer):
+class InitialItemSerializer(SimpleModelSerializer):
     """Сериализатор для модели InitialItem"""
     class Meta:
         model = InitialItem
@@ -82,7 +81,7 @@ class InitialItemSerializer(serializers.ModelSerializer):
         list_serializer_class = ItemListSerializer
 
 
-class PaymentOrderSerializer(serializers.ModelSerializer):
+class PaymentOrderSerializer(SimpleModelSerializer):
     """Сериализатор для модели PaymentOrder"""
     id = serializers.IntegerField(source='payment_order_id', required=False)
 
@@ -115,7 +114,7 @@ class CommissionListSerializer(BaseListSerializer):
     key_fields = ['type']
 
 
-class CommissionSerializer(serializers.ModelSerializer):
+class CommissionSerializer(SimpleModelSerializer):
     """Сериализатор для модели Commission"""
     class Meta:
         model = Commission

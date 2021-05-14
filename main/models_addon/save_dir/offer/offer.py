@@ -2,7 +2,9 @@
 
 from django.core.exceptions import ObjectDoesNotExist
 
-from main.models_addon import Offer, Mapping
+from main.models_addon import Offer, Mapping, SupplyScheduleDays, CustomsCommodityCode, Barcode, Url, \
+    ManufacturerCountry, ProcessingState, ProcessingStateNote, GuaranteePeriod, LifeTime, ShelfLife, WeightDimension, \
+    Price
 from main.models_addon.save_dir.base import BasePattern
 from main.serializers import OfferSerializer, MappingSerializer
 
@@ -14,9 +16,66 @@ class OfferPattern(BasePattern):
         'awaitingModerationMapping': 'AWAITING_MODERATION',
         'rejectedMapping': 'REJECTED'
     }
+    MODELS = {
+        Offer: {
+            'unique_fields': ['shopSku', 'user'],
+            'update_fields': ['name', 'category', 'manufacturer',
+                              'vendor', 'vendorCode', 'certificate',
+                              'availability', 'transportUnitSize',
+                              'minShipment', 'quantumOfSupply',
+                              'deliveryDurationDays', 'boxCount']
+        },
+        SupplyScheduleDays: {
+            'unique_fields': ['offer', 'supplyScheduleDay'],
+            'update_fields': []
+        },
+        CustomsCommodityCode: {
+            'unique_fields': ['offer', 'code'],
+            'update_fields': []
+        },
+        Barcode: {
+            'unique_fields': ['offer', 'barcode'],
+            'update_fields': []
+        },
+        Url: {
+            'unique_fields': ['offer', 'url'],
+            'update_fields': []
+        },
+        ManufacturerCountry: {
+            'unique_fields': ['offer', 'name'],
+            'update_fields': []
+        },
+        ProcessingState: {
+            'unique_fields': ['offer', 'status'],
+            'update_fields': []
+        },
+        ProcessingStateNote: {
+            'unique_fields': ['processingState', 'type'],
+            'update_fields': ['payload']
+        },
+        GuaranteePeriod: {
+            'unique_fields': ['offer'],
+            'update_fields': ['timePeriod', 'timeUnit', 'comment']
+        },
+        LifeTime: {
+            'unique_fields': ['offer'],
+            'update_fields': ['timePeriod', 'timeUnit', 'comment']
+        },
+        ShelfLife: {
+            'unique_fields': ['offer'],
+            'update_fields': ['timePeriod', 'timeUnit', 'comment']
+        },
+        WeightDimension: {
+            'unique_fields': ['offer'],
+            'update_fields': ['length', 'width', 'height', 'weight']
+        },
+        Mapping: {
+            'unique_fields': ['offer', 'mappingType'],
+            'update_fields': ['marketSku', 'modelId', 'categoryId']
+        },
+    }
 
-    @staticmethod
-    def save_mapping(data: dict, offer_instance: Offer, mapping_name: str, mapping_type: str) -> None:
+    def save_mapping(self, data: dict, offer_instance: Offer, mapping_name: str, mapping_type: str) -> None:
         """Сохраняет карточку товара (маппинг)
 
         Если в бд есть карточка, которой нет в json-данных, удаляет ее из бд
@@ -29,6 +88,8 @@ class OfferPattern(BasePattern):
                 serializer = MappingSerializer(data=data[mapping_name])
             if serializer.is_valid():
                 serializer.save(offer=offer_instance, mappingType=mapping_type)
+                self.created_objects.extend(serializer.created_objs)
+                self.updated_objects.extend(serializer.updated_objs)
             else:
                 print(serializer.errors)
         else:
@@ -49,7 +110,11 @@ class OfferPattern(BasePattern):
 
             if serializer.is_valid():
                 offer_instance = serializer.save(user=user)
+                self.created_objects.extend(serializer.created_objs)
+                self.updated_objects.extend(serializer.updated_objs)
                 for mapping_name, mapping_type in self.MAPPINGS.items():
                     self.save_mapping(item, offer_instance, mapping_name, mapping_type)
             else:
                 print(serializer.errors)
+
+        self.bulk_create_update()
