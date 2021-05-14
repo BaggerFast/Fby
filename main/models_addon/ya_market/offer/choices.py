@@ -34,22 +34,6 @@ class AvailabilityChoices(models.TextChoices):
     INACTIVE = 'INACTIVE', 'Товар есть на складе, и его поставок не будет'
     DELISTED = 'DELISTED', 'Архив: товар закончился на складе, и его поставок больше не будет.'
 
-    def find_choice(description):
-        """
-        Найти нужный пункт и возратить его. Если не найдёт, то возращается лист со строкой 'Active'
-        :param description: Русское описание пункта(-ов).
-        :return: Лист из пунктов.
-        """
-        choices = []
-        for choice in AvailabilityChoices.choices:
-            if choice[1] in description:
-                choices.append(choice)
-
-        if choices:
-            return choices
-        else:
-            return [('ACTIVE', 'Поставки будут')]
-
 
 class SupplyScheduleDayChoices(models.TextChoices):
     """

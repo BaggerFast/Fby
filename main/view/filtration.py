@@ -3,6 +3,24 @@ class Filtration:
         self.fields_to_filter = fields_to_filter
         self.choices = choices
 
+    @staticmethod
+    def find_choice(choices_class, description):
+        """
+        Найти нужный пункт и возратить его. Если не найдёт, то возращается лист со строкой 'Active'
+        :param choices_class: Класс choices'а.
+        :param description: Русское описание пункта(-ов).
+        :return: Лист из пунктов.
+        """
+        choices = []
+        for choice in choices_class.choices:
+            if choice[1] in description:
+                choices.append(choice)
+
+        if choices:
+            return choices
+        else:
+            return [('ACTIVE', 'Поставки будут')]
+
     def get_filter_types(self, items):
         filter_types = {}
         for field, name in self.fields_to_filter.items():
@@ -28,7 +46,7 @@ class Filtration:
         for index, (field, filter_type) in enumerate(filter_types.items()):
             if field in self.choices.keys():
                 str_options = [choice[0] for choice in
-                               self.choices[field].find_choice(str_options)]
+                               self.find_choice(self.choices[field], str_options)]
             else:
                 str_options = [filter_type['options'][int(option)]
                                for option in request.GET.getlist(str(index), '')]
