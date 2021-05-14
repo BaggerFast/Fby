@@ -1,9 +1,7 @@
-from main.models_addon.ya_market.offer.choices import AvailabilityChoices
-
-
 class Filtration:
-    def __init__(self, fields_to_filter):
+    def __init__(self, fields_to_filter, choices={}):
         self.fields_to_filter = fields_to_filter
+        self.choices = choices
 
     def get_filter_types(self, items):
         filter_types = {}
@@ -25,14 +23,15 @@ class Filtration:
             }
         return filter_types
 
-    @staticmethod
-    def filters_from_request(request, filter_types):
+    def filters_from_request(self, request, filter_types):
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
-            str_options = [filter_type['options'][int(option)]
-                           for option in request.GET.getlist(str(index), '')]
-            if field == 'availability':
-                str_options = [choice[0] for choice in AvailabilityChoices.find_choice(str_options)]
+            if field in self.choices.keys():
+                str_options = [choice[0] for choice in
+                               self.choices[field].find_choice(str_options)]
+            else:
+                str_options = [filter_type['options'][int(option)]
+                               for option in request.GET.getlist(str(index), '')]
             filters[field] = str_options
         return filters
 
