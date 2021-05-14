@@ -1,3 +1,6 @@
+from main.models_addon.ya_market.offer.choices import AvailabilityChoices
+
+
 class Filtration:
     def __init__(self, fields_to_filter):
         self.fields_to_filter = fields_to_filter
@@ -28,6 +31,8 @@ class Filtration:
         for index, (field, filter_type) in enumerate(filter_types.items()):
             str_options = [filter_type['options'][int(option)]
                            for option in request.GET.getlist(str(index), '')]
+            if field == 'availability':
+                str_options = [choice[0] for choice in AvailabilityChoices.find_choice(str_options)]
             filters[field] = str_options
         return filters
 

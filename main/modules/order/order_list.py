@@ -14,7 +14,6 @@ class OrderListView(BaseView):
     filtration = Filtration({
         'status': 'Статус',
         'paymentType': 'Тип оплаты'
-        # todo filtration
     })
 
     def post(self, request) -> HttpResponse:
