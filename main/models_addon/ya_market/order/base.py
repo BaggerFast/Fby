@@ -74,7 +74,6 @@ class Order(models.Model):
             total += item.per_item_price
         return total
 
-
     def total_net_price(self, offer):
         """
         Рассчитать общую себестоимость

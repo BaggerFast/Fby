@@ -3,7 +3,7 @@ import datetime
 from django.shortcuts import render
 from django.views.generic.base import View
 from main.models_addon import Offer
-from main.models_addon.ya_market.order.base import Order
+from main.models_addon.ya_market.order.base import Order, Item, Warehouse
 from main.view import Page, get_navbar
 
 
@@ -66,10 +66,6 @@ def calculate_revenue(income, net_cost):
     return income - net_cost
 
 
-def calculate_profitability(income, revenue):
-    return income / revenue * 100
-
-
 class SecondaryStats:
     """
     Класс второстепенных stats.
@@ -125,6 +121,34 @@ class Stat:
         self.name = name
 
 
+def get_warehouse_items(orders, warehouse_id: list):
+    """
+    Получить товары со складов.
+    :param warehouse_id: Лист ИД складов
+    :return: Объект класса Django QuerySet
+    """
+    warehouse_items = []
+
+    for order in orders:
+        # items = order.get_items.objects.filter(warehouse__in=warehouse_id)
+        items = order.get_items.filter(warehouse__in=warehouse_id)
+        warehouse_items.append(*items)
+
+    return warehouse_items
+
+
+def calculate_item_total_cost(items):
+    """
+    Подсчитать доход
+    :param orders: Заказы для подсчёта
+    :return: Общий доход
+    """
+    total_cost = 0
+    for item in items:
+        total_cost += item.per_item_price
+    return total_cost
+
+
 class SummaryView(View):
     context = {}
 
@@ -137,6 +161,7 @@ class SummaryView(View):
         included_statuses = ('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING')
         orders = [orders_for_current_month(included_statuses, user=request.user),
                   get_orders_for_previous_month(included_statuses, user=request.user)]
+        warehouse_items = get_warehouse_items(orders[1], Warehouse.objects.all())
         local_context = {
             'navbar': get_navbar(request),
             'stats': [
@@ -145,6 +170,8 @@ class SummaryView(View):
                 Stat('Доставленные в этом месяце заказы', orders, ('DELIVERED', 'PICKUP'), request=request),
             ],
             'title': 'Отчёт',
+            'warehouse_items_amount': len(warehouse_items),
+            'warehouse_items_cost': calculate_item_total_cost(warehouse_items),
         }
         self.context_update(local_context)
         return render(request, Page.summary, self.context)
