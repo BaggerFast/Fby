@@ -21,11 +21,12 @@ from django.contrib.auth.views import LogoutView
 import debug_toolbar
 
 from fby_market import settings
-from main.modules import *
+from main.modules.user import MyRegisterFormView, MyLoginFormView
+from main.modules import MainView
 import fby_market.additional_url.catalogue as catalogue
 import fby_market.additional_url.orders as orders
 import fby_market.additional_url.profile as profile
-from main.view.others import save_db_from_files
+import fby_market.additional_url.analytics as analytics
 
 urlpatterns = [
     # basic
@@ -36,6 +37,7 @@ urlpatterns = [
     path('catalogue/', include(catalogue)),
     path('orders/', include(orders)),
     path('profile/', include(profile)),
+    path('analytics/', include(analytics)),
 
     # authorize
     path('register/', MyRegisterFormView.as_view(), name="register"),

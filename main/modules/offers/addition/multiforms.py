@@ -1,7 +1,7 @@
 from typing import List
 from main.forms import WeightDimensionForm, UrlForm, BarcodeForm, ShelfLifeForm, LifeTimeForm, \
-    GuaranteePeriodForm, CommodityCodeForm, OfferForm, PriceForm, AvailabilityForm
-from main.view import FormSet
+    GuaranteePeriodForm, CommodityCodeForm, OfferForm, PriceForm, AvailabilityForm, ManufacturerCountryForm
+from main.view.form_set import FormSet
 
 
 class OfferBaseFormSet(FormSet):
@@ -17,19 +17,19 @@ class OfferBaseFormSet(FormSet):
 class OfferFormSet(OfferBaseFormSet):
     def configure(self, offer=None):
         self.offer = offer
-        forms_clear = [OfferForm, WeightDimensionForm, UrlForm, BarcodeForm, ShelfLifeForm,
+        forms_clear = [OfferForm, WeightDimensionForm, ManufacturerCountryForm, UrlForm, BarcodeForm, ShelfLifeForm,
                        LifeTimeForm, GuaranteePeriodForm, CommodityCodeForm]
         if self.offer:
-            attrs = [offer, offer.weight_dimensions, offer.url, offer.barcode, offer.shelf_life,
-                     offer.life_time, offer.guarantee_period, offer.commodity_codes]
+            attrs = [offer, offer.weight_dimensions, offer.manufacturer_country, offer.url, offer.barcode,
+                     offer.shelf_life, offer.life_time, offer.guarantee_period, offer.commodity_codes]
         else:
             attrs = [None] * len(forms_clear)
         self.forms: list = self.cortege_from_lists(forms=forms_clear, attrs=attrs)
 
     def get_for_context(self) -> dict:
-        print(self.get_form_list([WeightDimensionForm]))
         forms: List[List] = [
-            [list(self.forms_dict[OfferForm])[:6], *self.get_form_list([UrlForm, BarcodeForm, CommodityCodeForm])],
+            [list(self.forms_dict[OfferForm])[:6], *self.get_form_list([ManufacturerCountryForm,
+                                                                        UrlForm, BarcodeForm, CommodityCodeForm])],
             self.get_form_list([ShelfLifeForm, LifeTimeForm, GuaranteePeriodForm]),
             self.get_form_list([WeightDimensionForm]), [list(self.forms_dict[OfferForm])[6:]]
         ]

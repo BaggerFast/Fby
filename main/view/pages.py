@@ -17,3 +17,4 @@ class Page:
     order_page = serialize('order/order_page')
     profile = serialize('profile')
     profile_edit = serialize('profile_edit')
+    summary = serialize('analytics/summary')

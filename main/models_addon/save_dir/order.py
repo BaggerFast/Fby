@@ -2,7 +2,7 @@
 
 from django.core.exceptions import ObjectDoesNotExist
 
-from main.models_addon import Order, Commission, PaymentOrder, InitialItem, \
+from main.models_addon.ya_market import Order, Commission, PaymentOrder, InitialItem, \
     Detail, ItemPrice, Payment, Item
 from main.models_addon.save_dir.base import BasePattern
 from main.serializers import OrderSerializer

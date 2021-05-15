@@ -1,7 +1,7 @@
 """Сериализаторы для модели Offer"""
 
 from rest_framework import serializers
-from main.models_addon import *
+from main.models_addon.ya_market import *
 from main.serializers import BaseListSerializer, BaseModelSerializer, SimpleModelSerializer
 
 

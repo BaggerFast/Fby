@@ -88,6 +88,14 @@ class BarcodeForm(ModelForm, Func):
         exclude = ('offer',)
 
 
+class ManufacturerCountryForm(ModelForm, Func):
+    prefix = 'countries'
+
+    class Meta:
+        model = ManufacturerCountry
+        exclude = ('offer',)
+
+
 class UrlForm(ModelForm, Func):
     class Meta:
         model = Url
@@ -95,12 +103,13 @@ class UrlForm(ModelForm, Func):
 
 
 class OfferForm(ModelForm, Func):
-    disabled = ['shopSku', 'marketSku']
+    # disabled = ['shopSku', 'marketSku']
+    prefix = 'offer'
 
     class Meta:
         model = Offer
-        fields = ['name', 'category', 'vendor', 'vendorCode', 'manufacturer', 'description', 'transportUnitSize',
-                  'minShipment', 'quantumOfSupply', 'deliveryDurationDays', 'boxCount']
+        fields = ['name', 'shopSku', 'category', 'vendor', 'vendorCode', 'manufacturer', 'description',
+                  'transportUnitSize',  'minShipment', 'quantumOfSupply', 'deliveryDurationDays', 'boxCount']
         widgets = {
             'description': forms.Textarea(),
         }

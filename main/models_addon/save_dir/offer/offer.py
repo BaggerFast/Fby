@@ -2,7 +2,7 @@
 
 from django.core.exceptions import ObjectDoesNotExist
 
-from main.models_addon import Offer, Mapping, SupplyScheduleDays, CustomsCommodityCode, Barcode, Url, \
+from main.models_addon.ya_market import Offer, Mapping, SupplyScheduleDays, CustomsCommodityCode, Barcode, Url, \
     ManufacturerCountry, ProcessingState, ProcessingStateNote, GuaranteePeriod, LifeTime, ShelfLife, WeightDimension, \
     Price
 from main.models_addon.save_dir.base import BasePattern

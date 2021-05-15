@@ -3,7 +3,7 @@ import json
 from typing import List
 from django.http import HttpRequest
 
-from main.models_addon import Offer
+from main.models_addon.ya_market import Offer
 from main.models_addon.save_dir import *
 from main.serializers import OfferSerializer
 from main.ya_requests.base import Requests
