@@ -51,10 +51,11 @@ class CatalogueView(BaseView):
             2: Q(processingState__status='IN_WORK'),
             3: Q(processingState__status__in=['NEED_INFO', 'REJECTED', 'SUSPENDED', 'OTHER']),
             4: Q(processingState__isnull=True),
-            5: Q(rent__lte=8)  # todo rent
         }
         if index == 5:
-            return [offer for offer in Offer.objects.filter(user=self.request.user) if offer.rent and offer.rent < 8]
+            return [offer for offer in
+                    Offer.objects.select_related('price').filter(user=self.request.user)
+                    if offer.rent and offer.rent < 8]
         return Offer.objects.filter(user=self.request.user).filter(query[index])
 
     def get(self, request: HttpRequest) -> HttpResponse:
