@@ -36,7 +36,6 @@ urlpatterns = [
     path('catalogue/', include(catalogue)),
     path('orders/', include(orders)),
     path('profile/', include(profile)),
-    path('db_save/', save_db_from_files),
 
     # authorize
     path('register/', MyRegisterFormView.as_view(), name="register"),

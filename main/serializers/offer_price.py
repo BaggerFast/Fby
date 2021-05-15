@@ -24,7 +24,7 @@ class PriceSerializer(SimpleModelSerializer):
 
 
 class OfferForPriceSerializer(BaseModelSerializer):
-    """Сериализатор для модели Offer (встроенный, для сериализации Price)"""
+    """Сериализатор для модели Offer (для сериализации Price)"""
     price = PriceSerializer()
 
     @staticmethod

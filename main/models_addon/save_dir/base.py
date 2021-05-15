@@ -9,6 +9,7 @@ class BasePattern:
         self.json: dict = json
         self.created_objects: List = []
         self.updated_objects: List = []
+        self.errors = []
 
     def save(self, user) -> None:
         """Сохранение данных order из json в БД

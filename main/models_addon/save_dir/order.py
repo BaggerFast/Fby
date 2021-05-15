@@ -53,7 +53,7 @@ class OrderPattern(BasePattern):
     }
 
     def save(self, user) -> None:
-        """Сохранение данных order из json в БД"""
+        """Сохраняет заказы"""
         for item in self.json:
             try:
                 instance = Order.objects.get(order_id=item.get('id'), user=user)

@@ -10,7 +10,9 @@ from main.serializers import OfferSerializer, MappingSerializer
 
 
 class OfferPattern(BasePattern):
-    """Класс, сохраняющий данные offer из json в БД"""
+    """
+    Класс, сохраняющий данные offer из json в БД
+    """
     MAPPINGS = {
         'mapping': "BASE",
         'awaitingModerationMapping': 'AWAITING_MODERATION',

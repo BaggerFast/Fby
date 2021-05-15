@@ -2,9 +2,8 @@
 
 from typing import List
 from rest_framework import serializers
-from main.models import *
 from main.models_addon import Hiding, Inclusion, Storage, Tariff, Stock, Offer, Warehouse, OfferReport
-from main.serializers import BaseListSerializer, BaseModelSerializer
+from main.serializers import BaseListSerializer, BaseModelSerializer, SimpleModelSerializer
 
 
 class HidingListSerializer(BaseListSerializer):
@@ -12,7 +11,7 @@ class HidingListSerializer(BaseListSerializer):
     key_fields = ['code']
 
 
-class HidingSerializer(serializers.ModelSerializer):
+class HidingSerializer(SimpleModelSerializer):
     """Сериализатор для модели Hiding"""
 
     class Meta:
@@ -26,7 +25,7 @@ class InclusionListSerializer(BaseListSerializer):
     key_fields = ['type']
 
 
-class InclusionSerializer(serializers.ModelSerializer):
+class InclusionSerializer(SimpleModelSerializer):
     """Сериализатор для модели Inclusion"""
 
     class Meta:
@@ -60,7 +59,7 @@ class TariffListSerializer(BaseListSerializer):
     key_fields = ['type']
 
 
-class TariffSerializer(serializers.ModelSerializer):
+class TariffSerializer(SimpleModelSerializer):
     """Сериализатор для модели Tariff"""
 
     class Meta:
@@ -74,7 +73,7 @@ class StockListSerializer(BaseListSerializer):
     key_fields = ['type']
 
 
-class StockSerializer(serializers.ModelSerializer):
+class StockSerializer(SimpleModelSerializer):
     """Сериализатор для модели Stock"""
 
     class Meta:
