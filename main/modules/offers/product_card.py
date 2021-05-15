@@ -35,11 +35,11 @@ class ProductPageView(BaseView):
 
     def end_it(self, pk) -> HttpResponse:
         """Окончательная настройка контекста и отправка ответа на запрос"""
-        rent = Offer.objects.get(pk=pk).rent
+        offers = Offer.objects.get(pk=pk)
+        rent = offers.check_rent
         if rent:
-            self.context['rent'] = math.floor(rent)
-            if rent < 8:
-                messages.error(self.request, f'Рентабельность: {math.floor(rent)}% < 8%. Не прибыльно!!!')
+            messages.error(self.request, f'Рентабельность: {rent} % < 8%. Не прибыльно!!!')
+        self.context['rent'] = offers.rent
         self.context_update({'forms': self.form.get_for_context(),
                              'disable': self.disable,
                              'offer': Offer.objects.get(pk=pk)})
@@ -86,6 +86,7 @@ class ProductPageView(BaseView):
 
         btn = request.POST.get('yandex', '')
         if btn in buttons.keys():
+            print(btn)
             return buttons[btn]()
 
         self.pre_init(request=request, pk=pk)
