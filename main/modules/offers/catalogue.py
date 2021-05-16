@@ -6,7 +6,6 @@ from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
 from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OfferList, OfferPrice
-from main.models_addon.ya_market.offer.choices import AvailabilityChoices
 import re
 
 
@@ -19,8 +18,6 @@ class CatalogueView(BaseView):
         "vendor": "Торговая марка",
         "category": "Категория",
         "availability": "Планы по поставкам",
-    }, {
-        "availability": AvailabilityChoices,
     })
     types = [
         'Весь список',
