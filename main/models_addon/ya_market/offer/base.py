@@ -14,7 +14,6 @@ def decor(func):
             return func(self)
         except Exception:
             return None
-
     return wrapper
 
 
