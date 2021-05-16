@@ -2,6 +2,7 @@
 Основная модель для хранения товара
 docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/get-campaigns-id-offer-mapping-entries.html
 """
+import math
 
 from django.db import models
 from main.models import User
@@ -218,6 +219,13 @@ class Offer(models.Model):
         }
         clear_profit = price.value - price.value * data[price.vat]
         return (clear_profit - price.net_cost) / clear_profit * 100
+
+    @property
+    def check_rent(self):
+        rent = self.rent
+        if rent and rent < 8:
+            return math.floor(rent)
+        return False
 
     @property
     @decor
