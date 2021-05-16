@@ -16,6 +16,9 @@ class DeliveryRegion(models.Model):
     region_id = models.PositiveIntegerField(verbose_name='Идентификатор региона доставки', null=True)
     name = models.CharField(max_length=255, verbose_name='Название региона доставки', null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Order(models.Model):
     """
