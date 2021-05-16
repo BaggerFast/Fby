@@ -1,30 +1,4 @@
 from main.models_addon.ya_market import Offer
-from main.models_addon.ya_market.order.base import Order
-import datetime
-
-
-def orders_for_current_month(included_statuses, user):
-    """
-    Возвращает заказы за текущий месяц
-    :return: Объект класса Django QuerySet
-    """
-    return Order.objects.filter(
-        creationDate__gt=datetime.date.today().replace(day=1),
-        status__in=included_statuses,
-        user=user
-    )
-
-
-def get_orders_for_previous_month(included_statuses, user):
-    """
-    Возвращает заказы за прошлые месяцы
-    :return: Объект класса Django QuerySet
-    """
-    return Order.objects.filter(
-        creationDate__lt=datetime.date.today().replace(day=1),
-        status__in=included_statuses,
-        user=user
-    )
 
 
 def calculate_total_cost(orders):
@@ -106,7 +80,6 @@ class Stat:
         if len(all_orders) == 1:
             all_orders.append(None)
         filtered_orders = []
-
         for in_orders in all_orders:
             if in_orders is not None:
                 filtered_orders.append(in_orders.filter(status__in=included_statuses))

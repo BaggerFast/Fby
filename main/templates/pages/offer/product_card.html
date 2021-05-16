@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <p>Рентабельность: {% if rent %} {{rent}}% {% else %} недостаточно данных для расчета {% endif %}</p>
-    {% if offer.processingState.get_notes %}
-    {% for note in offer.processingState.get_notes %}
-     <p>Модерация: {{ note.get_type_display|capfirst }}
-    {% endfor %}
-    {% elif offer.processingState %}
-       <p>Модерация: {{offer.processingState.get_status_display}}
-    {% else %}
-      <p>Модерация: товар не отправлен на Яндекс Маркет</p>
-    {% endif %}
+  {% include 'components/product_card/rent.html' %}
   {% include 'components/product_card/buttons.html' %}
   {% include 'components/product_card/back.html' %}
   {% include 'components/product_card/delete.html' %}

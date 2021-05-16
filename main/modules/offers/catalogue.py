@@ -1,6 +1,3 @@
-import operator
-from functools import reduce
-
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect

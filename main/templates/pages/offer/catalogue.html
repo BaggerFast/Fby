@@ -2,8 +2,8 @@
 {% block content %}
   <div class="row mt-5">
     {% include 'components/update.html' %}
-    {% include 'components/catalogue/check.html' %}
     {% if offers %}
+      {% include 'components/catalogue/check.html' %}
       {% include 'components/catalogue/offers.html' %}
       {% include 'components/delete.html' %}
     {% else %}
