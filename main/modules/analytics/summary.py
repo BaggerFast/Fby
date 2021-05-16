@@ -2,12 +2,14 @@
 import datetime
 from django.shortcuts import render
 from django.views.generic.base import View
+from django.utils import timezone
+
 from main.models_addon import Offer
-from main.models_addon.ya_market.order.base import Order, Item, Warehouse
+from main.models_addon.ya_market.order.base import Order
 from main.view import Page, get_navbar
 
 
-def orders_for_current_month(included_statuses, user):
+def get_orders_for_current_month(included_statuses, user):
     """
     Возвращает заказы за текущий месяц
     :return: Объект класса Django QuerySet
@@ -15,6 +17,16 @@ def orders_for_current_month(included_statuses, user):
     return Order.objects.filter(
         creationDate__gt=datetime.date.today().replace(day=1),
         status__in=included_statuses,
+        user=user
+    )
+
+
+def get_offers(user):
+    """
+    Возвращает товары пользователя
+    :return: Объект класса Django QuerySet
+    """
+    return Offer.objects.filter(
         user=user
     )
 
@@ -71,7 +83,7 @@ class SecondaryStats:
     Класс второстепенных stats.
     """
 
-    def __init__(self, time='', orders=None, request=None):
+    def __init__(self, time='', orders=None, user=None):
         """
         Инициализация объекта
         :param time: В какое время подсчитывалось время(прошлый, текущий месяц и т.п.). Строка должна отвечать на вопрос
@@ -82,8 +94,8 @@ class SecondaryStats:
             self.time = time
             self.amount = len(orders)
             self.total_cost = calculate_total_cost(orders)
-            if request:
-                self.total_net_cost = calculate_total_net_cost(orders, offers=Offer.objects.filter(user=request.user))
+            if user:
+                self.total_net_cost = calculate_total_net_cost(orders, offers=Offer.objects.filter(user=user))
             else:
                 self.total_net_cost = 0
             self.revenue = calculate_revenue(float(self.total_cost), float(self.total_net_cost))
@@ -96,7 +108,7 @@ class Stat:
 
     def __init__(self, name=None, all_orders=None,
                  included_statuses=('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING'),
-                 request=None):
+                 user=None):
         """
         Инициализация объекта класса параметр
         :param name: Название параметра
@@ -115,38 +127,10 @@ class Stat:
                 filtered_orders.append(None)
 
         self.secondary_stats = [
-            SecondaryStats('в этом месяце', filtered_orders[0], request=request),
-            SecondaryStats('ранее', filtered_orders[1], request=request)
+            SecondaryStats('в этом месяце', filtered_orders[0], user),
+            SecondaryStats('ранее', filtered_orders[1], user)
         ]
         self.name = name
-
-
-def get_warehouse_items(orders, warehouse_id: list):
-    """
-    Получить товары со складов.
-    :param warehouse_id: Лист ИД складов
-    :return: Объект класса Django QuerySet
-    """
-    warehouse_items = []
-
-    for order in orders:
-        # items = order.get_items.objects.filter(warehouse__in=warehouse_id)
-        items = order.get_items.filter(warehouse__in=warehouse_id)
-        warehouse_items.append(*items)
-
-    return warehouse_items
-
-
-def calculate_item_total_cost(items):
-    """
-    Подсчитать доход
-    :param orders: Заказы для подсчёта
-    :return: Общий доход
-    """
-    total_cost = 0
-    for item in items:
-        total_cost += item.per_item_price
-    return total_cost
 
 
 class SummaryView(View):
@@ -159,19 +143,27 @@ class SummaryView(View):
 
     def get(self, request):
         included_statuses = ('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING')
-        orders = [orders_for_current_month(included_statuses, user=request.user),
-                  get_orders_for_previous_month(included_statuses, user=request.user)]
-        warehouse_items = get_warehouse_items(orders[1], Warehouse.objects.all())
+        user = request.user
+
+        orders = [get_orders_for_current_month(included_statuses, user),
+                  get_orders_for_previous_month(included_statuses, user)]
+
+        offers = get_offers(user)
+
         local_context = {
             'navbar': get_navbar(request),
             'stats': [
                 Stat('', [orders[0]], included_statuses),
-                Stat('Заказы в доставке', orders, ('DELIVERY', 'PROCESSING', 'PICKUP'), request=request),
-                Stat('Доставленные в этом месяце заказы', orders, ('DELIVERED', 'PICKUP'), request=request),
+                Stat('Заказы в доставке', orders, ('DELIVERY', 'PROCESSING', 'PICKUP'), user),
+                Stat('Доставленные в этом месяце заказы',
+                     [orders[0], orders[1].filter(statusUpdateDate=timezone.now())],
+                     ('DELIVERED', 'PICKUP'),
+                     user)
             ],
             'title': 'Отчёт',
-            'warehouse_items_amount': len(warehouse_items),
-            'warehouse_items_cost': calculate_item_total_cost(warehouse_items),
+            'delisted_offers_amount': len(offers.filter(availability='DELISTED'))
         }
+
         self.context_update(local_context)
+
         return render(request, Page.summary, self.context)

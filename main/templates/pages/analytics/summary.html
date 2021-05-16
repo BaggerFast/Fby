@@ -22,18 +22,21 @@
       {% endfor %}
     </div>
 
-    <div class="col-sm-3 text-center border rounded">
+    <div class="col-sm-3 p-3 text-center border rounded">
       <h2>Товары</h2>
       <div class="row d-flex justify-content-between border rounded">
         <div class="col-sm-6 mx-auto">
-          Всего товаров: <u>{{ warehouse_items_amount }}</u><br>
-          На сумму: <u>{{ warehouse_items_cost }}₽</u>
+          Всего скрытых товаров: <u>{{ delisted_offers_amount }}</u><br>
         </div>
       </div>
     </div>
 
     <div class="col-sm-4 text-center border rounded">
-      Эффективность
+      <h2>Эффективность</h2>
+      <div class="row d-flex justify-content-between border rounded">
+        <div class="col-sm-6 mx-auto">
+        </div>
+      </div>
     </div>
 </div>
 {% endblock %}
