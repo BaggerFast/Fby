@@ -21,16 +21,20 @@ class Filtration:
         else:
             return [('ACTIVE', 'Поставки будут')]
 
+    @staticmethod
+    def get_display_name(item, field):
+        get_display_name = "get_{}_display".format(field)
+        if hasattr(item, get_display_name):
+            return getattr(item, get_display_name)()
+        else:
+            return getattr(item, field)
+
     def get_filter_types(self, items):
         filter_types = {}
         for field, name in self.fields_to_filter.items():
             options = set()
             for item in items:
-                get_display_name = "get_{}_display".format(field)
-                if hasattr(item, get_display_name):
-                    options.add(getattr(item, get_display_name)())
-                else:
-                    options.add(getattr(item, field))
+                options.add(self.get_display_name(item, field))
             if None in options:
                 options.remove(None)
             options = sorted(options)
@@ -50,8 +54,7 @@ class Filtration:
             filters[field] = str_options
         return filters
 
-    @staticmethod
-    def filter_items(items, filters):
+    def filter_items(self, items, filters):
         filtered_items = []
         for item in items:
             used_filters = 0
@@ -60,9 +63,9 @@ class Filtration:
                     used_filters += 1
 
             passed_fields = 0
-            for filter_attr, filter_values in filters.items():
+            for filter_field, filter_values in filters.items():
                 for filter_value in filter_values:
-                    if filter_value == getattr(item, filter_attr):
+                    if filter_value == self.get_display_name(item, filter_field):
                         passed_fields += 1
                         break
 
