@@ -25,9 +25,9 @@ class CatalogueView(BaseView):
     })
     types = [
         'Весь список',
-        'Прошел модерацию',
+        'Прошли модерацию',
         'На модерации',
-        'Не прошел модерацию',
+        'Не прошли модерацию',
         'Не отправленные',
         'Не рентабельные',
         ]
@@ -61,7 +61,7 @@ class CatalogueView(BaseView):
         category_index = int(request.GET.get('content', 0))
         offers = self.configure_offer(category_index)
         if not offers and category_index:
-            messages.error(self.request, f'Каталог {self.types[category_index].lower()} пуст')
+            messages.success(self.request, f'Каталог {self.types[category_index].lower()} пуст')
             return redirect(reverse('catalogue_list'))
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {
