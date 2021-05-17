@@ -7,20 +7,20 @@ from main.serializers import BaseListSerializer, BaseModelSerializer, SimpleMode
 
 class ChangePriceSerializer(serializers.ModelSerializer):
     """Сериализатор для модели Price (для изменения цены)"""
-    def get_data(self) -> dict:
-        return {**self.data, 'currencyId': 'RUR'}
 
     class Meta:
         model = Price
-        fields = ['value']
+        fields = ['value', 'currencyId']
 
 
 class PriceSerializer(SimpleModelSerializer):
     """Сериализатор для модели Price (встроенный, для сериализации OfferForPrice)"""
+    def to_internal_value(self, data):
+        return {**data, 'has_changed': False}
 
     class Meta:
         model = Price
-        fields = ['currencyId', 'discountBase', 'value', 'vat']
+        fields = ['currencyId', 'discountBase', 'value', 'vat', 'has_changed']
 
 
 class OfferForPriceSerializer(BaseModelSerializer):

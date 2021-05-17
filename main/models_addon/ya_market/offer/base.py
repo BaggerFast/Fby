@@ -15,6 +15,7 @@ def decor(func):
             return func(self)
         except Exception:
             return None
+
     return wrapper
 
 
@@ -106,6 +107,10 @@ class Offer(models.Model):
                                            blank=True,
                                            null=True
                                            )
+
+    has_changed = models.BooleanField(verbose_name='Есть изменения, не отправленные на Яндекс',
+                                      help_text="True, если изменения есть, False, если изменений нет",
+                                      default=True)
 
     class Meta:
         ordering = ['id']

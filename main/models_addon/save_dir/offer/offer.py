@@ -111,7 +111,7 @@ class OfferPattern(BasePattern):
                 serializer = OfferSerializer(data=item['offer'])
 
             if serializer.is_valid():
-                offer_instance = serializer.save(user=user)
+                offer_instance = serializer.save(user=user, has_changed=False)
                 self.created_objects.extend(serializer.created_objs)
                 self.updated_objects.extend(serializer.updated_objs)
                 for mapping_name, mapping_type in self.MAPPINGS.items():

@@ -6,6 +6,8 @@ from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.shortcuts import redirect
+
+from main.forms import AvailabilityForm, PriceForm
 from main.models_addon.ya_market import Offer, Price
 from main.modules.offers.addition import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
@@ -33,6 +35,20 @@ class ProductPageView(BaseView):
         else:
             raise Http404()
 
+    def offer_has_changed(self):
+        """Возвращает True, если было изменено хотя бы одно поле Товара"""
+        if self.context['content'] == 'info':
+            return self.form.has_changed()
+        else:
+            return self.form.forms_dict[AvailabilityForm].has_changed()
+
+    def prise_has_changed(self):
+        """Возвращает True, если было изменено хотя бы одно поле Цены"""
+        if self.context['content'] == 'accommodation':
+            return self.form.forms_dict[PriceForm].has_changed()
+        else:
+            return False
+
     def end_it(self, pk) -> HttpResponse:
         """Окончательная настройка контекста и отправка ответа на запрос"""
         offers = Offer.objects.get(pk=pk)
@@ -58,8 +74,8 @@ class ProductPageView(BaseView):
         def update_price() -> HttpResponse:
             """"Обработка запроса на изменение цены на Яндексе"""
             price = Price.objects.get(offer_id=pk)
-            ChangePrices(['ya_requests', 'update'], price_list=[price], request=request)
-            return redirect(reverse('catalogue_list'))
+            ChangePrices(['ya_requests'], price_list=[price], request=request)
+            return self.get(request, pk)
 
         def save_to_ym() -> HttpResponse:
             """Обработка запроса на обновление или сохранение товара на Яндексе"""
@@ -86,7 +102,6 @@ class ProductPageView(BaseView):
 
         btn = request.POST.get('yandex', '')
         if btn in buttons.keys():
-            print(btn)
             return buttons[btn]()
 
         self.pre_init(request=request, pk=pk)
@@ -95,6 +110,10 @@ class ProductPageView(BaseView):
         self.disable = self.form.is_valid()
         if self.disable:
             self.form.save()
+            if self.offer_has_changed():
+                Offer.objects.filter(id=pk).update(has_changed=True)
+            if self.prise_has_changed():
+                Price.objects.filter(offer_id=pk).update(has_changed=True)
         else:
             self.form.set_disable(False)
         return self.end_it(pk)

@@ -56,12 +56,21 @@ class FormSet:
     def write_foreign_key(self, instance):
         return instance
 
+    def has_changed(self) -> bool:
+        """Проверка, были ли изменены формы.
+        Возвращает True, если была изменена хотя бы одна из форм из списка"""
+        for form in self.forms_dict.values():
+            if form.has_changed():
+                return True
+        return False
+
     def save(self) -> None:
         """Сохранение всех форм, если они не пустые."""
         for form in self.forms_dict.values():
             if form.is_valid():
-                instance = self.write_foreign_key(form.save(commit=False))
+                instance = form.save(commit=False)
                 if self.not_empty(instance):
+                    instance = self.write_foreign_key(instance)
                     instance.save()
                     """удаляем сохраненный объект, если он стал пустым"""
                     if not self.not_empty(instance, exclude_forwards=True):
