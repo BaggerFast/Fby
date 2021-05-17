@@ -1,42 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
   <h1>Отчёт</h1>
-  <div class="row d-flex justify-content-between">
-    <div class="col-sm-4 p-3 text-center border rounded">
-      <h2>Заказы и доставка</h2>
+  <div class="row-12 d-flex justify-content-space-between">
+{#    <div class="col-sm-6 mx-auto">#}
+{#      Всего скрытых товаров: <u>{{ delisted_offers_amount }}</u><br>#}
+{#    </div>#}
 
-      {% for stat in stats %}
-        <h3>{{ stat.name }}</h3>
-        <div class="row d-flex justify-content-between border rounded">
-          {% for secondary_stat in stat.secondary_stats %}
-            {% if secondary_stat.amount is not None and secondary_stat.total_cost is not None %}
-              <div class="col-sm-6 mx-auto">
-                Закаказанные {{ secondary_stat.time }}:<br> {{ secondary_stat.amount }}
-                на сумму <u>{{ secondary_stat.total_cost }}₽</u><br>
-                Себестоимость <u>{{ secondary_stat.total_net_cost }}₽</u><br>
-                Прибыль <u>{{ secondary_stat.revenue }}₽</u>
-              </div>
-            {% endif %}
-          {% endfor %}
-        </div>
-      {% endfor %}
-    </div>
-
-    <div class="col-sm-3 p-3 text-center border rounded">
-      <h2>Товары</h2>
-      <div class="row d-flex justify-content-between border rounded">
-        <div class="col-sm-6 mx-auto">
-          Всего скрытых товаров: <u>{{ delisted_offers_amount }}</u><br>
-        </div>
+    {% for stat in stats %}
+    <div class="col-sm-4 bg-light m-1 p-3 text-center border rounded">
+      <h3>{{ stat.name }}</h3>
+      <div class="row bg-white d-flex justify-content-between border rounded">
+        {% for secondary_stat in stat.secondary_stats %}
+          {% if secondary_stat.amount is not None and secondary_stat.total_cost is not None %}
+            <div class="col-sm-6 mx-auto">
+              Закаказанные {{ secondary_stat.time }}:<br> {{ secondary_stat.amount }}
+              на сумму <u>{{ secondary_stat.total_cost }}₽</u><br>
+              Себестоимость <u>{{ secondary_stat.total_net_cost }}₽</u><br>
+              Прибыль <u>{{ secondary_stat.revenue }}₽</u>
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
-
-    <div class="col-sm-4 text-center border rounded">
-      <h2>Эффективность</h2>
-      <div class="row d-flex justify-content-between border rounded">
-        <div class="col-sm-6 mx-auto">
-        </div>
-      </div>
-    </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}
