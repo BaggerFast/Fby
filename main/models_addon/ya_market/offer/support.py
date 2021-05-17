@@ -74,6 +74,9 @@ class Price(models.Model):
                               choices=VatType.choices
                               )
     net_cost = models.PositiveIntegerField(verbose_name="Себестоимость", null=True, blank=True)
+    has_changed = models.BooleanField(verbose_name='Есть изменения, не отправленные на Яндекс',
+                                      help_text="True, если изменения есть, False, если изменений нет",
+                                      default=True)
 
     def clean(self):
         pass
