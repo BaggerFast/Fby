@@ -1,0 +1,2409 @@
+{
+  "status": "OK",
+  "result": {
+    "offers": [
+      {
+        "marketSku": 100830888747,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 100
+          }
+        ]
+      },
+      {
+        "marketSku": 647123423,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 205
+          },
+          {
+            "type": "BUYBOX",
+            "price": 523
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 480
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 523
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 672
+          }
+        ]
+      },
+      {
+        "marketSku": 100856991755,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 180
+          }
+        ]
+      },
+      {
+        "marketSku": 100774659035,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 409
+          }
+        ]
+      },
+      {
+        "marketSku": 663894328,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1540
+          }
+        ]
+      },
+      {
+        "marketSku": 623090319,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 446
+          },
+          {
+            "type": "BUYBOX",
+            "price": 489
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 489
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 584
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 693
+          }
+        ]
+      },
+      {
+        "marketSku": 641424576,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 114
+          }
+        ]
+      },
+      {
+        "marketSku": 100774859729,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 170
+          }
+        ]
+      },
+      {
+        "marketSku": 514794001,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 166
+          },
+          {
+            "type": "BUYBOX",
+            "price": 370
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 235
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 422
+          }
+        ]
+      },
+      {
+        "marketSku": 100820648223,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 415
+          },
+          {
+            "type": "BUYBOX",
+            "price": 570
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 579
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 630
+          }
+        ]
+      },
+      {
+        "marketSku": 654177415,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1640
+          },
+          {
+            "type": "BUYBOX",
+            "price": 2016
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 2030
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 2842
+          }
+        ]
+      },
+      {
+        "marketSku": 520671317,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 316
+          },
+          {
+            "type": "BUYBOX",
+            "price": 424
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 516
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 722
+          }
+        ]
+      },
+      {
+        "marketSku": 14252675,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 255
+          },
+          {
+            "type": "BUYBOX",
+            "price": 290
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 320
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 260
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 448
+          }
+        ]
+      },
+      {
+        "marketSku": 530929542,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 691
+          },
+          {
+            "type": "BUYBOX",
+            "price": 822
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 825
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1155
+          }
+        ]
+      },
+      {
+        "marketSku": 647145093,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 210
+          },
+          {
+            "type": "BUYBOX",
+            "price": 426
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 422
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 387
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 590
+          }
+        ]
+      },
+      {
+        "marketSku": 100830892756,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 301
+          },
+          {
+            "type": "BUYBOX",
+            "price": 414
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 419
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 396
+          }
+        ]
+      },
+      {
+        "marketSku": 100774711912,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 200
+          }
+        ]
+      },
+      {
+        "marketSku": 650307012,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 540
+          }
+        ]
+      },
+      {
+        "marketSku": 642290215,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 321
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1282
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 905
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1302
+          }
+        ]
+      },
+      {
+        "marketSku": 649710736,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 289
+          },
+          {
+            "type": "BUYBOX",
+            "price": 594
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 499
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 439
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 698
+          }
+        ]
+      },
+      {
+        "marketSku": 514786043,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 284
+          },
+          {
+            "type": "BUYBOX",
+            "price": 360
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 275
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 314
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 428
+          }
+        ]
+      },
+      {
+        "marketSku": 531671088,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 301
+          },
+          {
+            "type": "BUYBOX",
+            "price": 610
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 534
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 580
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 757
+          }
+        ]
+      },
+      {
+        "marketSku": 530338054,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 684
+          },
+          {
+            "type": "BUYBOX",
+            "price": 871
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 479
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 970
+          }
+        ]
+      },
+      {
+        "marketSku": 478556129,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1450
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1536
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 1484
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1525
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 2115
+          }
+        ]
+      },
+      {
+        "marketSku": 650314063,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 272
+          },
+          {
+            "type": "BUYBOX",
+            "price": 311
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 750
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 311
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1050
+          }
+        ]
+      },
+      {
+        "marketSku": 100940009728,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 699
+          },
+          {
+            "type": "BUYBOX",
+            "price": 699
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 679
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 699
+          }
+        ]
+      },
+      {
+        "marketSku": 521723534,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 443
+          },
+          {
+            "type": "BUYBOX",
+            "price": 600
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 443
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 554
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 708
+          }
+        ]
+      },
+      {
+        "marketSku": 536096059,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1086
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1329
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 930
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1311
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1532
+          }
+        ]
+      },
+      {
+        "marketSku": 100836234826,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 130
+          }
+        ]
+      },
+      {
+        "marketSku": 100836756767,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 114
+          },
+          {
+            "type": "BUYBOX",
+            "price": 415
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 399
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 309
+          }
+        ]
+      },
+      {
+        "marketSku": 589520379,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 380
+          },
+          {
+            "type": "BUYBOX",
+            "price": 470
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 445
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 415
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 623
+          }
+        ]
+      },
+      {
+        "marketSku": 100774717217,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 152
+          }
+        ]
+      },
+      {
+        "marketSku": 100777482754,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 330
+          }
+        ]
+      },
+      {
+        "marketSku": 672917214,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 246
+          },
+          {
+            "type": "BUYBOX",
+            "price": 423
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 421
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 589
+          }
+        ]
+      },
+      {
+        "marketSku": 14232596,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 261
+          },
+          {
+            "type": "BUYBOX",
+            "price": 290
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 320
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 265
+          }
+        ]
+      },
+      {
+        "marketSku": 100957276786,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 3000
+          },
+          {
+            "type": "BUYBOX",
+            "price": 3755
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 3000
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 3755
+          }
+        ]
+      },
+      {
+        "marketSku": 100773420127,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 890
+          },
+          {
+            "type": "BUYBOX",
+            "price": 890
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 890
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 890
+          }
+        ]
+      },
+      {
+        "marketSku": 650140569,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 332
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1026
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 1025
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 500
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1435
+          }
+        ]
+      },
+      {
+        "marketSku": 573635044,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 418
+          }
+        ]
+      },
+      {
+        "marketSku": 573945000,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1996
+          },
+          {
+            "type": "BUYBOX",
+            "price": 2199
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 2199
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 2270
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 3078
+          }
+        ]
+      },
+      {
+        "marketSku": 650491338,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 233
+          }
+        ]
+      },
+      {
+        "marketSku": 650141974,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 240
+          },
+          {
+            "type": "BUYBOX",
+            "price": 870
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 845
+          }
+        ]
+      },
+      {
+        "marketSku": 586043299,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 327
+          },
+          {
+            "type": "BUYBOX",
+            "price": 475
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 529
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 378
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 740
+          }
+        ]
+      },
+      {
+        "marketSku": 650524029,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 330
+          },
+          {
+            "type": "BUYBOX",
+            "price": 690
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 518
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 725
+          }
+        ]
+      },
+      {
+        "marketSku": 632488472,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 446
+          }
+        ]
+      },
+      {
+        "marketSku": 100595340380,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 99
+          },
+          {
+            "type": "BUYBOX",
+            "price": 197
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 290
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 217
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 406
+          }
+        ]
+      },
+      {
+        "marketSku": 100779103792,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 650
+          }
+        ]
+      },
+      {
+        "marketSku": 626707061,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 520
+          },
+          {
+            "type": "BUYBOX",
+            "price": 650
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 576
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 595
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 806
+          }
+        ]
+      },
+      {
+        "marketSku": 514778017,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 370
+          },
+          {
+            "type": "BUYBOX",
+            "price": 480
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 413
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 578
+          }
+        ]
+      },
+      {
+        "marketSku": 561627126,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 368
+          },
+          {
+            "type": "BUYBOX",
+            "price": 920
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 754
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 920
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1230
+          }
+        ]
+      },
+      {
+        "marketSku": 100774780752,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 155
+          }
+        ]
+      },
+      {
+        "marketSku": 558177072,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 327
+          },
+          {
+            "type": "BUYBOX",
+            "price": 609
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 489
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 780
+          }
+        ]
+      },
+      {
+        "marketSku": 515114312,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 275
+          },
+          {
+            "type": "BUYBOX",
+            "price": 524
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 472
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 660
+          }
+        ]
+      },
+      {
+        "marketSku": 514787011,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 201
+          },
+          {
+            "type": "BUYBOX",
+            "price": 360
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 338
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 473
+          }
+        ]
+      },
+      {
+        "marketSku": 519704496,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 290
+          },
+          {
+            "type": "BUYBOX",
+            "price": 399
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 335
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 469
+          }
+        ]
+      },
+      {
+        "marketSku": 100812767007,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 555
+          },
+          {
+            "type": "BUYBOX",
+            "price": 599
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 599
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 680
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 838
+          }
+        ]
+      },
+      {
+        "marketSku": 647046004,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 235
+          },
+          {
+            "type": "BUYBOX",
+            "price": 477
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 440
+          }
+        ]
+      },
+      {
+        "marketSku": 647041018,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 330
+          },
+          {
+            "type": "BUYBOX",
+            "price": 430
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 470
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 430
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 658
+          }
+        ]
+      },
+      {
+        "marketSku": 100777321090,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 247
+          }
+        ]
+      },
+      {
+        "marketSku": 100724974833,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 303
+          },
+          {
+            "type": "BUYBOX",
+            "price": 330
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 306
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 310
+          }
+        ]
+      },
+      {
+        "marketSku": 650772145,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 460
+          }
+        ]
+      },
+      {
+        "marketSku": 582962144,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1298
+          }
+        ]
+      },
+      {
+        "marketSku": 1716371689,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 4490
+          }
+        ]
+      },
+      {
+        "marketSku": 100818299757,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 173
+          },
+          {
+            "type": "BUYBOX",
+            "price": 250
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 239
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 211
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 334
+          }
+        ]
+      },
+      {
+        "marketSku": 101116801980,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 152
+          }
+        ]
+      },
+      {
+        "marketSku": 573945001,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1330
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1638
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 1531
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1575
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 2143
+          }
+        ]
+      },
+      {
+        "marketSku": 673075033,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 515
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1063
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 1461
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1091
+          }
+        ]
+      },
+      {
+        "marketSku": 647004211,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 240
+          },
+          {
+            "type": "BUYBOX",
+            "price": 770
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 389
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 804
+          }
+        ]
+      },
+      {
+        "marketSku": 651075744,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 410
+          }
+        ]
+      },
+      {
+        "marketSku": 100834032564,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 239
+          },
+          {
+            "type": "BUYBOX",
+            "price": 350
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 439
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 343
+          }
+        ]
+      },
+      {
+        "marketSku": 521723669,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 191
+          },
+          {
+            "type": "BUYBOX",
+            "price": 403
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 655
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 917
+          }
+        ]
+      },
+      {
+        "marketSku": 12828742,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 2315
+          },
+          {
+            "type": "BUYBOX",
+            "price": 2590
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 2990
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 2520
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 4186
+          }
+        ]
+      },
+      {
+        "marketSku": 520672345,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 302
+          },
+          {
+            "type": "BUYBOX",
+            "price": 380
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 285
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 443
+          }
+        ]
+      },
+      {
+        "marketSku": 514703012,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 350
+          },
+          {
+            "type": "BUYBOX",
+            "price": 469
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 391
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 547
+          }
+        ]
+      },
+      {
+        "marketSku": 577015081,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 950
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1234
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 1223
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1234
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1712
+          }
+        ]
+      },
+      {
+        "marketSku": 100627609999,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 152
+          },
+          {
+            "type": "BUYBOX",
+            "price": 235
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 222
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 225
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 310
+          }
+        ]
+      },
+      {
+        "marketSku": 12808759,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1500
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1635
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 1640
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1801
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 2296
+          }
+        ]
+      },
+      {
+        "marketSku": 100777394732,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 145
+          }
+        ]
+      },
+      {
+        "marketSku": 100733049740,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 52
+          },
+          {
+            "type": "BUYBOX",
+            "price": 160
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 92
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 160
+          }
+        ]
+      },
+      {
+        "marketSku": 592359022,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 405
+          }
+        ]
+      },
+      {
+        "marketSku": 643311025,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 128
+          },
+          {
+            "type": "BUYBOX",
+            "price": 588
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 188
+          }
+        ]
+      },
+      {
+        "marketSku": 660550064,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 341
+          }
+        ]
+      },
+      {
+        "marketSku": 643041607,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 490
+          }
+        ]
+      },
+      {
+        "marketSku": 100777891862,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 114
+          }
+        ]
+      },
+      {
+        "marketSku": 475770038,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 170
+          },
+          {
+            "type": "BUYBOX",
+            "price": 240
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 319
+          }
+        ]
+      },
+      {
+        "marketSku": 100732740728,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 470
+          },
+          {
+            "type": "BUYBOX",
+            "price": 530
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 530
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 500
+          }
+        ]
+      },
+      {
+        "marketSku": 576814022,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1127
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1224
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 1230
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1224
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1722
+          }
+        ]
+      },
+      {
+        "marketSku": 100777453728,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 310
+          }
+        ]
+      },
+      {
+        "marketSku": 100627669049,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 152
+          },
+          {
+            "type": "BUYBOX",
+            "price": 235
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 212
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 225
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 296
+          }
+        ]
+      },
+      {
+        "marketSku": 653347486,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 176
+          }
+        ]
+      },
+      {
+        "marketSku": 647120663,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 188
+          },
+          {
+            "type": "BUYBOX",
+            "price": 466
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 399
+          }
+        ]
+      },
+      {
+        "marketSku": 645435860,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 150
+          }
+        ]
+      },
+      {
+        "marketSku": 665056133,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 397
+          }
+        ]
+      },
+      {
+        "marketSku": 100830900759,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 979
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1265
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 1191
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1139
+          }
+        ]
+      },
+      {
+        "marketSku": 100777485768,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 219
+          }
+        ]
+      },
+      {
+        "marketSku": 100779096913,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 140
+          },
+          {
+            "type": "BUYBOX",
+            "price": 186
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 186
+          }
+        ]
+      },
+      {
+        "marketSku": 656593390,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 790
+          }
+        ]
+      },
+      {
+        "marketSku": 576045010,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 190
+          },
+          {
+            "type": "BUYBOX",
+            "price": 254
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 139
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 253
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 281
+          }
+        ]
+      },
+      {
+        "marketSku": 650536056,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 239
+          }
+        ]
+      },
+      {
+        "marketSku": 590358983,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 504
+          },
+          {
+            "type": "BUYBOX",
+            "price": 630
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 615
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 569
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 861
+          }
+        ]
+      },
+      {
+        "marketSku": 530361599,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 717
+          }
+        ]
+      },
+      {
+        "marketSku": 646823336,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 464
+          }
+        ]
+      },
+      {
+        "marketSku": 651859652,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 240
+          }
+        ]
+      },
+      {
+        "marketSku": 650491022,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 48
+          }
+        ]
+      },
+      {
+        "marketSku": 623089241,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 480
+          },
+          {
+            "type": "BUYBOX",
+            "price": 569
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 569
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 569
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 796
+          }
+        ]
+      },
+      {
+        "marketSku": 100675883694,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 75
+          }
+        ]
+      },
+      {
+        "marketSku": 100820134770,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 475
+          },
+          {
+            "type": "BUYBOX",
+            "price": 640
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 649
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 675
+          }
+        ]
+      },
+      {
+        "marketSku": 590364609,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 230
+          },
+          {
+            "type": "BUYBOX",
+            "price": 310
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 279
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 390
+          }
+        ]
+      },
+      {
+        "marketSku": 662684692,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 102
+          }
+        ]
+      },
+      {
+        "marketSku": 100831300759,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 145
+          },
+          {
+            "type": "BUYBOX",
+            "price": 145
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 124
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 145
+          }
+        ]
+      },
+      {
+        "marketSku": 586038012,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 399
+          },
+          {
+            "type": "BUYBOX",
+            "price": 788
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 791
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1107
+          }
+        ]
+      },
+      {
+        "marketSku": 573465082,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 551
+          }
+        ]
+      },
+      {
+        "marketSku": 12692301,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1700
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1770
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 1850
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 2075
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 2590
+          }
+        ]
+      },
+      {
+        "marketSku": 652536529,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 203
+          },
+          {
+            "type": "BUYBOX",
+            "price": 671
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 300
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 662
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 790
+          }
+        ]
+      },
+      {
+        "marketSku": 590366899,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 276
+          },
+          {
+            "type": "BUYBOX",
+            "price": 400
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 366
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 512
+          }
+        ]
+      },
+      {
+        "marketSku": 645423421,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 200
+          },
+          {
+            "type": "BUYBOX",
+            "price": 742
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 705
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 593
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 987
+          }
+        ]
+      },
+      {
+        "marketSku": 530337006,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 700
+          },
+          {
+            "type": "BUYBOX",
+            "price": 869
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 869
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1216
+          }
+        ]
+      },
+      {
+        "marketSku": 642777577,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 520
+          },
+          {
+            "type": "BUYBOX",
+            "price": 584
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 584
+          }
+        ]
+      },
+      {
+        "marketSku": 645434637,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 80
+          },
+          {
+            "type": "BUYBOX",
+            "price": 167
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 120
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 168
+          }
+        ]
+      },
+      {
+        "marketSku": 100802754174,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 59
+          },
+          {
+            "type": "BUYBOX",
+            "price": 160
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 160
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 160
+          }
+        ]
+      },
+      {
+        "marketSku": 530363054,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 900
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1156
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 975
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1107
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1365
+          }
+        ]
+      },
+      {
+        "marketSku": 647028484,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 631
+          },
+          {
+            "type": "BUYBOX",
+            "price": 720
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 590
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 720
+          }
+        ]
+      },
+      {
+        "marketSku": 478557061,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 1367
+          },
+          {
+            "type": "BUYBOX",
+            "price": 1550
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 1383
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 1466
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1936
+          }
+        ]
+      },
+      {
+        "marketSku": 1716371690,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 4600
+          },
+          {
+            "type": "BUYBOX",
+            "price": 6400
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 6860
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 9604
+          }
+        ]
+      },
+      {
+        "marketSku": 531302015,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 334
+          },
+          {
+            "type": "BUYBOX",
+            "price": 871
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 888
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 854
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1243
+          }
+        ]
+      },
+      {
+        "marketSku": 650524037,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 234
+          },
+          {
+            "type": "BUYBOX",
+            "price": 311
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 311
+          }
+        ]
+      },
+      {
+        "marketSku": 586011000,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 200
+          },
+          {
+            "type": "BUYBOX",
+            "price": 396
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 225
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 418
+          }
+        ]
+      },
+      {
+        "marketSku": 590366821,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 330
+          },
+          {
+            "type": "BUYBOX",
+            "price": 558
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 579
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 810
+          }
+        ]
+      },
+      {
+        "marketSku": 650493186,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 167
+          }
+        ]
+      },
+      {
+        "marketSku": 643041366,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 116
+          }
+        ]
+      },
+      {
+        "marketSku": 573855462,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 768
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 799
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 1162
+          }
+        ]
+      },
+      {
+        "marketSku": 642756555,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 60
+          }
+        ]
+      },
+      {
+        "marketSku": 100835718858,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 96
+          },
+          {
+            "type": "BUYBOX",
+            "price": 356
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 575
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 356
+          }
+        ]
+      },
+      {
+        "marketSku": 530357022,
+        "priceSuggestion": [
+          {
+            "type": "MIN_PRICE_MARKET",
+            "price": 2098
+          },
+          {
+            "type": "BUYBOX",
+            "price": 2388
+          },
+          {
+            "type": "DEFAULT_OFFER",
+            "price": 2430
+          },
+          {
+            "type": "MAX_DISCOUNT_BASE",
+            "price": 2301
+          },
+          {
+            "type": "MARKET_OUTLIER_PRICE",
+            "price": 3402
+          }
+        ]
+      }
+    ]
+  }
+}

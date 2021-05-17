@@ -11,6 +11,7 @@ from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from main.models_addon.save_dir import OfferPattern, OrderPattern, PricePattern, OfferReportPattern
+from main.models_addon.save_dir.offer.prices import PriceSuggestionPattern
 
 
 def save_db_from_files(user: User):
@@ -25,7 +26,8 @@ def save_db_from_files(user: User):
         OfferPattern: {'file': "offer_data", 'attrs': 'offerMappingEntries'},
         OrderPattern: {'file': "order_data", 'attrs': 'orders'},
         PricePattern: {'file': "price_data", 'attrs': 'offers'},
-        OfferReportPattern: {'file': "offer_report_data", 'attrs': 'shopSkus'}
+        OfferReportPattern: {'file': "offer_report_data", 'attrs': 'shopSkus'},
+        PriceSuggestionPattern: {'file': "price_suggestion_data", 'attrs': 'offers'}
     }
     for pattern, attrs in context.items():
         pattern(json=get_json_data_from_file(file=attrs['file'])[attrs['attrs']]).save(user=user)

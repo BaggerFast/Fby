@@ -13,6 +13,34 @@ class ChangePriceSerializer(serializers.ModelSerializer):
         fields = ['value', 'currencyId']
 
 
+class PriceSuggestionListSerializer(BaseListSerializer):
+    """Сериализатор списков для модели PriceSuggestion"""
+    key_fields = ['type']
+
+
+class PriceSuggestionSerializer(SimpleModelSerializer):
+    """Сериализатор для модели PriceSuggestion"""
+
+    class Meta:
+        model = PriceSuggestion
+        fields = ['type', 'price']
+        list_serializer_class = PriceSuggestionListSerializer
+
+
+class OfferForPriceSuggestionSerializer(BaseModelSerializer):
+    """Сериализатор для модели Offer (для сериализации PriceSuggestion)"""
+    priceSuggestion = PriceSuggestionSerializer(many=True, required=False)
+
+    @staticmethod
+    def forward_name():
+        """Ключ для передачи вложенным моделям"""
+        return 'offer'
+
+    class Meta:
+        model = Offer
+        fields = ['marketSku', 'priceSuggestion']
+
+
 class PriceSerializer(SimpleModelSerializer):
     """Сериализатор для модели Price (встроенный, для сериализации OfferForPrice)"""
     def to_internal_value(self, data):
@@ -25,7 +53,7 @@ class PriceSerializer(SimpleModelSerializer):
 
 class OfferForPriceSerializer(BaseModelSerializer):
     """Сериализатор для модели Offer (для сериализации Price)"""
-    price = PriceSerializer()
+    price = PriceSerializer(required=False)
 
     @staticmethod
     def forward_name():

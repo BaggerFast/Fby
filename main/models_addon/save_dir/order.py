@@ -44,7 +44,7 @@ class OrderPattern(BasePattern):
         },
         Payment: {
             'unique_fields': ['order', 'type', 'source'],
-            'update_fields': ['payment_id', 'date', 'total', 'paymentOrder']
+            'update_fields': ['payment_id', 'date', 'total']
         },
         Item: {
             'unique_fields': ['order', 'shopSku'],
