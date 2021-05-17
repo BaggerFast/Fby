@@ -31,7 +31,7 @@ class SummaryView(BaseView):
         local_context = {
             'navbar': get_navbar(request),
             'stats': [
-                Stat('', [orders[0]], included_statuses),
+                Stat(name='Заказы и доставка', all_orders=[orders[0]], included_statuses=included_statuses),
                 Stat(name='Заказы в доставке', all_orders=orders,
                      included_statuses=('DELIVERY', 'PROCESSING', 'PICKUP'),
                      request=request),
