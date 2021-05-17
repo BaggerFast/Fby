@@ -4,7 +4,6 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from fby_market.settings import MEDIA_URL, DEBUG, YaMarket
 
-
 def get_path(instance, filename):
     return f'{instance.username}/image.{filename.split(".")[-1]}'
 
@@ -14,6 +13,7 @@ class User(AbstractUser):
     client_id = models.CharField(verbose_name='Client ID', max_length=255, default='', blank=True)
     token = models.CharField(verbose_name='YM token', max_length=255, default='', blank=True)
     shop_id = models.CharField(verbose_name='Shop ID', max_length=255, default='', blank=True)
+    verified = models.BooleanField(default=False)
 
     @property
     def get_image(self):
@@ -28,6 +28,9 @@ class User(AbstractUser):
             raise ValidationError('Введите все 3 ключа')
         if not self.image and not os.path.exists(self.get_image.replace('\\', '/')):
             self.image = f'base/base.png'
+
+        if User.objects.get(email=self.email):
+            raise ValidationError('Данная почта уже зарегистрирована')
 
     @staticmethod
     def __debug_mod(db, sett):

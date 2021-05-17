@@ -21,11 +21,6 @@ class Migration(migrations.Migration):
             field=models.CharField(help_text='Составляйте по схеме: тип товара + бренд или производитель + модель +\n                                      отличительные характеристики.', max_length=255, null=True, verbose_name='Название товара'),
         ),
         migrations.AlterField(
-            model_name='offer',
-            name='shopSku',
-            field=models.CharField(max_length=255, null=True, unique=True, verbose_name='Ваш SKU'),
-        ),
-        migrations.AlterField(
             model_name='price',
             name='currencyId',
             field=models.CharField(choices=[('RUR', 'Руб.')], default='R', max_length=3, verbose_name='Валюта'),
