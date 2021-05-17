@@ -6,6 +6,7 @@ from fby_market.settings import MEDIA_URL, DEBUG, YaMarket
 
 
 def get_path(instance, filename):
+    """Метод для получения пути сохранения аватарки пользователя"""
     return f'{instance.username}/image.{filename.split(".")[-1]}'
 
 
@@ -17,6 +18,7 @@ class User(AbstractUser):
 
     @property
     def get_image(self):
+        """Метод для получения пути хранения картинки пользователя"""
         return f'{MEDIA_URL}/{self.image}'
 
     def clean(self):
@@ -31,15 +33,19 @@ class User(AbstractUser):
 
     @staticmethod
     def __debug_mod(db, sett):
+        """Метод для получения необходимых данных, в зависимости от наличия DEBUG режима"""
         if DEBUG:
             return sett
         return db
 
     def get_client_id(self):
+        """Метод для получения client id в зависимости от DEBUG режима"""
         return self.__debug_mod(db=self.client_id, sett=YaMarket.CLIENT_ID)
 
     def get_token(self):
+        """Метод для получения token в зависимости от DEBUG режима"""
         return self.__debug_mod(db=self.token, sett=YaMarket.TOKEN)
 
     def get_shop_id(self):
+        """Метод для получения shop id в зависимости от DEBUG режима"""
         return self.__debug_mod(db=self.shop_id, sett=YaMarket.SHOP_ID)

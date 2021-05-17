@@ -31,6 +31,7 @@ class CatalogueView(BaseView):
     ]
 
     def find_offers_id_by_regular(self, request, regular_string=r'form-checkbox:'):
+        """Метод для получения товаров, отмеченных в checkbox"""
         offers_ids = [re.sub(regular_string, '', line) for line in list(dict(request.POST).keys())[1:-1]]
         return self.configure_offer(int(request.GET.get('content', 0))).filter(id__in=offers_ids)
 
@@ -43,6 +44,7 @@ class CatalogueView(BaseView):
         return self.get(request)
 
     def configure_offer(self, index):
+        """Метод для получения товаров с нужным статусом"""
         query = {
             0: Q(),
             1: Q(processingState__status='READY'),
