@@ -4,17 +4,22 @@
   </a>
   {% if not create and disable %}
     {% ifequal content 'info' %}
+      {% if offer.has_changed %}
       <form class="mt-4" method="post">
         {% csrf_token %}
         <input type="text" class="form-control d-none" name="yandex" value="offer">
         <button type="submit" class="btn btn-danger">Отправить товар на Яндекс</button>
       </form>
+      {% endif %}
     {% else %}
+      {% if offer.get_price.has_changed %}
       <form class="mt-4" method="post">
         {% csrf_token %}
         <input type="text" class="form-control d-none" name="yandex" value="price">
         <button type="submit" class="btn btn-danger">Отправить цену на Яндекс</button>
       </form>
+      {% endif %}
     {% endifequal %}
-  {% endif %}
-{% endblock %}
+    {% endif %}
+ {% endblock %}
+

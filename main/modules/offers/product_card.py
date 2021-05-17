@@ -54,12 +54,32 @@ class ProductPageView(BaseView):
         offers = Offer.objects.get(pk=pk)
         rent = offers.check_rent
         if rent:
-            messages.error(self.request, f'Рентабельность: {rent} % < 8%. Не прибыльно!!!')
-        self.context['rent'] = offers.rent
+            messages.error(self.request, f'Рентабельность: {offers.rent} % < 8%. Не прибыльно!!!')
         self.context_update({'forms': self.form.get_for_context(),
                              'disable': self.disable,
                              'offer': Offer.objects.get(pk=pk)})
         return render(self.request, Page.product_card, self.context)
+
+    def save_to_ym(self):
+        """Обработка запроса на обновление или сохранение товара на Яндексе"""
+        offer = Offer.objects.get(pk=self.pk)
+        if offer.has_changed:
+            sku = offer.shopSku
+            update_request = UpdateOfferList(offers=[offer], request=self.request)
+            update_request.update_offers()
+
+            if sku in update_request.success:
+                messages.success(self.request, f'Товар shopSku = {sku} успешно сохранен на Яндексе')
+            elif sku in update_request.errors:
+                messages.error(self.request, f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.')
+                for error_text in update_request.errors[sku]:
+                    messages.error(self.request, error_text)
+
+    def update_price(self):
+        """"Обработка запроса на изменение цены на Яндексе"""
+        offer = Offer.objects.get(pk=self.pk)
+        if offer.get_price and offer.get_price.has_changed:
+            ChangePrices(['ya_requests'], price_list=[offer.get_price], request=self.request)
 
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         """Обработка post-запроса"""
@@ -70,39 +90,21 @@ class ProductPageView(BaseView):
             offer.delete()
             messages.success(request, f'Товар "{offer.name}" успешно удален')
             return redirect(reverse('catalogue_list'))
-
-        def update_price() -> HttpResponse:
-            """"Обработка запроса на изменение цены на Яндексе"""
-            price = Price.objects.get(offer_id=pk)
-            ChangePrices(['ya_requests'], price_list=[price], request=request)
-            return self.get(request, pk)
-
-        def save_to_ym() -> HttpResponse:
-            """Обработка запроса на обновление или сохранение товара на Яндексе"""
-            offer = Offer.objects.get(id=pk)
-            sku = offer.shopSku
-            update_request = UpdateOfferList(offers=[offer], request=request)
-            update_request.update_offers()
-
-            if sku in update_request.success:
-                messages.success(request, f'Товар shopSku = {sku} успешно сохранен на Яндексе')
-            elif sku in update_request.errors:
-                messages.error(request, f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.')
-                for error_text in update_request.errors[sku]:
-                    messages.error(request, error_text)
-            return self.get(request, pk)
+        self.request = request
+        self.pk = pk
 
         if 'delete' in request.POST:
             return delete()
 
-        buttons = {
-            'offer': save_to_ym,
-            'price': update_price
+        btns = {
+            'offer': self.save_to_ym,
+            'price': self.update_price
         }
 
-        btn = request.POST.get('yandex', '')
-        if btn in buttons.keys():
-            return buttons[btn]()
+        data = request.POST.get('yandex', '')
+        if data in btns:
+            btns[data]()
+            return self.get(request, pk)
 
         self.pre_init(request=request, pk=pk)
         self.form.set_post(post=self.request.POST)

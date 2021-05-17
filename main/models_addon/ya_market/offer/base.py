@@ -223,7 +223,7 @@ class Offer(models.Model):
             7: 0.2,
         }
         clear_profit = price.value - price.value * data[price.vat]
-        return (clear_profit - price.net_cost) / clear_profit * 100
+        return round((clear_profit - price.net_cost) / clear_profit * 100, 2)
 
     @property
     def check_rent(self):

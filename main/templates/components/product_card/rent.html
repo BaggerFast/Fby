@@ -1,6 +1,6 @@
 {% block rent %}
 {% if not create %}
-    <p>Рентабельность: {% if rent %} {{rent}}% {% else %} недостаточно данных для расчета {% endif %}</p>
+    <p>Рентабельность: {% if offer.rent %} {{offer.rent}}% {% else %} недостаточно данных для расчета {% endif %}</p>
     {% if offer.processingState.get_notes %}
     {% for note in offer.processingState.get_notes %}
      <p>Модерация: {{ note.get_type_display|capfirst }}
