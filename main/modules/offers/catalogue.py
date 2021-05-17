@@ -25,9 +25,10 @@ class CatalogueView(BaseView):
         'Прошли модерацию',
         'На модерации',
         'Не прошли модерацию',
-        'Не отправленные',
+        'Изменены локально',
+        'Созданы локально',
         'Не рентабельные',
-        ]
+    ]
 
     def find_offers_id_by_regular(self, request, regular_string=r'form-checkbox:'):
         offers_ids = [re.sub(regular_string, '', line) for line in list(dict(request.POST).keys())[1:-1]]
@@ -47,9 +48,11 @@ class CatalogueView(BaseView):
             1: Q(processingState__status='READY'),
             2: Q(processingState__status='IN_WORK'),
             3: Q(processingState__status__in=['NEED_CONTENT', 'NEED_INFO', 'REJECTED', 'SUSPENDED', 'OTHER']),
-            4: Q(processingState__isnull=True),
+            4: Q(processingState__isnull=False, has_changed=True) | Q(processingState__isnull=False,
+                                                                      price__has_changed=True),
+            5: Q(processingState__isnull=True),
         }
-        if index == 5:
+        if index == 6:
             return [offer for offer in Offer.objects.filter(user=self.request.user) if offer.check_rent]
         return Offer.objects.filter(user=self.request.user).filter(query[index])
 

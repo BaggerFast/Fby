@@ -128,7 +128,7 @@ class PriceForm(ModelForm, Func):
 
     class Meta:
         model = Price
-        exclude = ('offer',)
+        exclude = ('offer', 'has_changed')
 
 
 class AvailabilityForm(ModelForm, Func):

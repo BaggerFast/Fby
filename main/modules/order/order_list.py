@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from main.models_addon.ya_market import Order
+from django.urls import reverse
+
+from main.models_addon.ya_market import Order, Item
 from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OrderList
 from main.modules.base import BaseView
@@ -14,7 +16,6 @@ class OrderListView(BaseView):
     filtration = Filtration({
         'status': 'Статус',
         'paymentType': 'Тип оплаты'
-        # todo filtration
     })
 
     def post(self, request) -> HttpResponse:
@@ -37,6 +38,12 @@ class OrderPageView(BaseView):
     context = {'title': 'Order', 'page_name': 'Информация о заказе'}
 
     def get(self, request, pk) -> HttpResponse:
+        item_id = int(request.GET.get('item_id', 0))
+        if item_id:
+            item = Item.objects.get(pk=item_id)
+            offer_id = item.get_offer_id(self.request.user)
+            if offer_id:
+                return redirect(reverse('offer_by_sku', args=[offer_id]))
         order = get_object_or_404(Order, pk=pk)
         self.context_update({'navbar': get_navbar(request), 'order': order})
         return render(request, Page.order_page, self.context)

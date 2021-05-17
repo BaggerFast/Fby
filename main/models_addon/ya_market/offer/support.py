@@ -1,5 +1,5 @@
 """Вспомогательные модели для модели Offer"""
-
+from django.core.exceptions import ValidationError
 from django.db import models
 from main.models_addon.ya_market.base import BaseWeightDimension
 from main.models_addon.ya_market.offer.base import Offer
@@ -79,8 +79,10 @@ class Price(models.Model):
                                       default=True)
 
     def clean(self):
-        pass
-        #  todo save as discountBase > 0 and > value, else error
+        if self.discountBase and self.discountBase < self.value:
+            raise ValidationError({'discountBase': 'Цена на товар без скидки меньше цены на товар'})
+        if self.discountBase is not None and not self.discountBase > 0:
+            raise ValidationError({'discountBase': 'Цена на товар без скидки должна быть больше'})
 
 
 class ManufacturerCountry(models.Model):

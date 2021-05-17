@@ -4,7 +4,7 @@
     <a class="btn btn-danger mb-5" href="{% url 'catalogue_list' %}">← Назад</a>
   {% endif %}
   <div class="col">
-    <span class="badge bg-secondary mb-4">{{ offers|length }} товаров</span>
+    <span class="badge bg-secondary mb-4">Товаров: {{ offers|length }}</span>
     <div class="table-wrapper">
       <form id="table" method="post">
         {% csrf_token %}
