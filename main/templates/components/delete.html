@@ -3,4 +3,11 @@
     <button id="checkbox" form="table" name="checkbox" type="submit" class="btn btn-danger mt-4 mb-5">Удалить</button>
     <input id="content" type="text" class="form-control d-none" name="content" value={{current_type}}>
   </div>
+  {% ifequal current_type 4 %}
+  <form method="post">
+    {% csrf_token %}
+    <button id="button_push" form="table" name="button_push" type="submit" class="btn btn-primary">Отправить данные</button>
+    <input id="content" type="text" class="form-control d-none" name="content" value={{current_type}}>
+  </form>
+  {% endifequal %}
 {% endblock %}

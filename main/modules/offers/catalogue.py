@@ -9,6 +9,9 @@ from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OfferList, OfferPrice
 import re
 
+from main.ya_requests.price import ChangePrices
+from main.ya_requests.request import UpdateOfferList
+
 
 class CatalogueView(BaseView):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
@@ -34,9 +37,35 @@ class CatalogueView(BaseView):
         offers_ids = [re.sub(regular_string, '', line) for line in list(dict(request.POST).keys())[1:-1]]
         return self.configure_offer(int(request.GET.get('content', 0))).filter(id__in=offers_ids)
 
+    def update_price(self, offers):
+        """"Обработка запроса на изменение цены на Яндексе"""
+        price = [offer.get_price for offer in offers if offer.price.has_changed]
+        ChangePrices(['ya_requests'], price_list=list(price), request=self.request)
+
+    def save_to_ym(self, offers):
+        """Обработка запроса на обновление или сохранение товара на Яндексе"""
+        offers = offers.filter(has_changed=True)
+        skus = [offer.shopSku for offer in list(offers)]
+        update_request = UpdateOfferList(offers=list(offers), request=self.request)
+        update_request.update_offers()
+        for sku in skus:
+            if sku in update_request.success:
+                messages.success(self.request, f'Товар shopSku = {sku} успешно сохранен на Яндексе')
+            elif sku in update_request.errors:
+                messages.error(self.request, f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.')
+                for error_text in update_request.errors[sku]:
+                    messages.error(self.request, error_text)
+
     def post(self, request: HttpRequest) -> HttpResponse:
         if 'button_loader' in request.POST:
             return self.save_models(request=request)
+        elif 'button_push' in request.POST:
+            offers = self.find_offers_id_by_regular(request)
+            if not offers:
+                offers = self.configure_offer(int(request.GET.get('content', 0)))
+            self.save_to_ym(offers=offers)
+            self.update_price(offers=offers)
+            return self.get(request)
         elif 'checkbox' in request.POST:
             for offer in self.find_offers_id_by_regular(request):
                 offer.delete()
