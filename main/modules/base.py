@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpRequest
 from django.views import View
+from main.view import get_item_display_name
 import itertools
 
 
@@ -26,8 +27,11 @@ class BaseView(LoginRequiredMixin, View):
         scores = {}
         for item, keyword in itertools.product(objects, keywords):
             for field in self.fields:
-                attr = getattr(item, field)
-                if attr is not None and keyword in str(attr).lower():
+                attr_display = get_item_display_name(item, field)
+                attr_actual = getattr(item, field)
+                if attr_actual is not None and \
+                    keyword in str(attr_display).lower() or \
+                        keyword in str(attr_actual).lower():
                     if item not in scores:
                         scores[item] = 0
                     scores[item] += 1
