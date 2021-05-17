@@ -1,3 +1,11 @@
+def get_item_display_name(item, field):
+    get_display_name = "get_{}_display".format(field)
+    if hasattr(item, get_display_name):
+        return getattr(item, get_display_name)()
+    else:
+        return None
+
+
 class Filtration:
     def __init__(self, fields_to_filter):
         self.fields_to_filter = fields_to_filter
@@ -6,20 +14,13 @@ class Filtration:
         filter_types = {}
         for field, name in self.fields_to_filter.items():
             options = set()
-            options_actual = set()
             for item in items:
-                get_display_name = "get_{}_display".format(field)
-                actual_option = getattr(item, field)
-                if hasattr(item, get_display_name):
-                    options.add(getattr(item, get_display_name)())
-                    options_actual.add(actual_option)
-                else:
-                    options.add(actual_option)
-                    options_actual.add(actual_option)
+                actual_name = getattr(item, field)
+                options.add((get_item_display_name(item, field) or actual_name, actual_name))
             if None in options:
                 options.remove(None)
-            options = sorted(options)
-            options_actual = sorted(options_actual)
+            options = sorted(options, key=lambda x: x[0])
+            options, options_actual = zip(*options)
 
             filter_types[field] = {
                 'name': name,
