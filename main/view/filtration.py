@@ -30,14 +30,10 @@ class Filtration:
 
     @staticmethod
     def filters_from_request(request, filter_types):
-        no_search = request.GET.get("no_search", False)
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
-            if no_search:
-                filters[field] = []
-            else:
-                str_options = [filter_type['options_actual'][int(option)] for option in request.GET.getlist(str(index), '')]
-                filters[field] = str_options
+            str_options = [filter_type['options_actual'][int(option)] for option in request.GET.getlist(str(index), '')]
+            filters[field] = str_options
         return filters
 
     @staticmethod

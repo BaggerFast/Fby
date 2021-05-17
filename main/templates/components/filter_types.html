@@ -1,4 +1,5 @@
 {% load index %}
+{% load static %}
 
 {% block filter_types %}
   {% for filter_field, filter_type in filter_types %}
@@ -18,4 +19,10 @@
     </div>
   </div>
   {% endfor %}
+  <div>
+    <button class="btn btn-danger" id="reset_filters">Сбросить фильтры</button>
+  </div>
+{% endblock %}
+{% block scripts %}
+  <script src="{% static 'js/reset_filters.js' %}"></script>
 {% endblock %}
