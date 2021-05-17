@@ -31,7 +31,7 @@ class AvailabilityChoices(models.TextChoices):
     Доступен ли товар.
     """
     ACTIVE = 'ACTIVE', 'Поставки будут'
-    INACTIVE = 'INACTIVE', 'Поставок не будет: товар есть на складе, но вы больше не планируете его поставлять.'
+    INACTIVE = 'INACTIVE', 'Товар есть на складе, и его поставок не будет'
     DELISTED = 'DELISTED', 'Архив: товар закончился на складе, и его поставок больше не будет.'
 
 
@@ -83,7 +83,7 @@ class ProcessingStateNoteType(models.TextChoices):
     INCORRECT_INFORMATION = 'INCORRECT_INFORMATION', """Информация о товаре, которую вы предоставили, противоречит'
                                                         описанию от производителя."""
 
-    LEGAL_CONFLICT = 'LEGAL_CONFLICT', 'товар не прошел модерацию по юридическим причинам.'
+    LEGAL_CONFLICT = 'LEGAL_CONFLICT', 'Товар не прошел модерацию по юридическим причинам.'
 
     NEED_CLASSIFICATION_INFORMATION = 'NEED_CLASSIFICATION_INFORMATION', """Информации о товаре, которую вы 
                                             предоставили, не хватает, чтобы отнести его к категории"""
@@ -98,12 +98,12 @@ class ProcessingStateNoteType(models.TextChoices):
 
     NO_KNOWLEDGE = 'NO_KNOWLEDGE', ''
 
-    NO_PARAMETERS_IN_SHOP_TITLE = 'NO_PARAMETERS_IN_SHOP_TITLE', 'товар производится в разных вариантах, и из ' \
+    NO_PARAMETERS_IN_SHOP_TITLE = 'NO_PARAMETERS_IN_SHOP_TITLE', 'Товар производится в разных вариантах, и из ' \
                                                                  'указанного названия непонятно, о каком идет речь.'
 
-    NO_SIZE_MEASURE = 'NO_SIZE_MEASURE', 'для этого товара нужна размерная сетка. Отправьте ее в службу поддержки'
+    NO_SIZE_MEASURE = 'NO_SIZE_MEASURE', 'Для этого товара нужна размерная сетка. Отправьте ее в службу поддержки'
 
-    UNKNOWN = 'UNKNOWN', 'товар не прошел модерацию по другой причине. Обратитесь в службу поддержки или к вашему' \
+    UNKNOWN = 'UNKNOWN', 'Товар не прошел модерацию по другой причине. Обратитесь в службу поддержки или к вашему' \
                          ' менеджеру'
 
 

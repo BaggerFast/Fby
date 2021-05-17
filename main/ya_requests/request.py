@@ -3,7 +3,7 @@ import json
 from typing import List
 from django.http import HttpRequest
 
-from main.models_addon import Offer
+from main.models_addon.ya_market import Offer
 from main.models_addon.save_dir import *
 from main.serializers import OfferSerializer
 from main.ya_requests.base import Requests
@@ -93,7 +93,7 @@ class OfferUpdate(Requests):
     @staticmethod
     def get_offer_mapping_entry(offer: Offer) -> dict:
         """Возвращает элемент словаря для товара offer"""
-        offer_serializer = OfferSerializer(offer)
+        offer_serializer = OfferSerializer(instance=offer)
         offer_data = json.loads(json.dumps(offer_serializer.data, ensure_ascii=False))
         offer_data = {key: value for key, value in offer_data.items() if value and key != 'processingState'}
 
@@ -162,6 +162,8 @@ class UpdateOfferList:
                 self.errors[sku] = self.get_error_messages(answer)
             elif answer['status'] == 'OK':
                 self.success[sku] = 'OK'
+                offer.has_changed = False
+                offer.save(update_fields=['has_changed'])
 
     def get_error_messages(self, answer: dict) -> List[str]:
         """Формирует список сообщений об ошибках"""

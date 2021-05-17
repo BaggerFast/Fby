@@ -3,7 +3,9 @@
   <div class="row mt-5">
     {% include 'components/update.html' %}
     {% if offers %}
+      {% include 'components/catalogue/check.html' %}
       {% include 'components/catalogue/offers.html' %}
+      {% include 'components/delete.html' %}
     {% else %}
       {% include 'components/catalogue/empty.html' %}
     {% endif %}

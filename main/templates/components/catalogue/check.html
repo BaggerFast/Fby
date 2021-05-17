@@ -1,0 +1,13 @@
+{% block check %}
+  <form class="mt-4" method="get">
+    <div class="buttons-group">
+      <input id="content" type="text" class="form-control d-none" name="content" value={{current_type}}>
+      {% for type in types %}
+        {% with counter=forloop.counter0 %}
+            <button id="{{ counter }}" type="submit" class="btn btn-light btn-sm {% ifequal current_type counter %}
+                    active_btn{% endifequal %}" onclick="inputEdit(this.id)">{{ type }}</button>
+        {% endwith %}
+      {% endfor %}
+    </div>
+  </form>
+{% endblock %}

@@ -1,30 +1,30 @@
 """Сериализаторы для модели Offer"""
 
 from rest_framework import serializers
-from main.models_addon import *
-from main.serializers import BaseListSerializer, BaseModelSerializer
+from main.models_addon.ya_market import *
+from main.serializers import BaseListSerializer, BaseModelSerializer, SimpleModelSerializer
 
 
 class ChangePriceSerializer(serializers.ModelSerializer):
     """Сериализатор для модели Price (для изменения цены)"""
-    def get_data(self) -> dict:
-        return {**self.data, 'currencyId': 'RUR'}
 
     class Meta:
         model = Price
-        fields = ['value']
+        fields = ['value', 'currencyId']
 
 
-class PriceSerializer(serializers.ModelSerializer):
-    """Сериализатор для модели Price (встроенный, для сериализации Offer)"""
+class PriceSerializer(SimpleModelSerializer):
+    """Сериализатор для модели Price (встроенный, для сериализации OfferForPrice)"""
+    def to_internal_value(self, data):
+        return {**data, 'has_changed': False}
 
     class Meta:
         model = Price
-        fields = ['currencyId', 'discountBase', 'value', 'vat']
+        fields = ['currencyId', 'discountBase', 'value', 'vat', 'has_changed']
 
 
 class OfferForPriceSerializer(BaseModelSerializer):
-    """Сериализатор для модели Offer (встроенный, для сериализации Price)"""
+    """Сериализатор для модели Offer (для сериализации Price)"""
     price = PriceSerializer()
 
     @staticmethod
@@ -37,28 +37,28 @@ class OfferForPriceSerializer(BaseModelSerializer):
         fields = ['price', 'shopSku', 'marketSku', 'updatedAt']
 
 
-class WeightDimensionSerializer(serializers.ModelSerializer):
+class WeightDimensionSerializer(SimpleModelSerializer):
     """Сериализатор для модели WeightDimension"""
     class Meta:
         model = WeightDimension
-        exclude = ('offer', 'id')
+        fields = ['length', 'width', 'height', 'weight']
 
 
-class ShelfLifeSerializer(serializers.ModelSerializer):
+class ShelfLifeSerializer(SimpleModelSerializer):
     """Сериализатор для модели ShelfLife"""
     class Meta:
         model = ShelfLife
         fields = ['timePeriod', 'timeUnit', 'comment']
 
 
-class LifeTimeSerializer(serializers.ModelSerializer):
+class LifeTimeSerializer(SimpleModelSerializer):
     """Сериализатор для модели LifeTime"""
     class Meta:
         model = LifeTime
         fields = ['timePeriod', 'timeUnit', 'comment']
 
 
-class GuaranteePeriodSerializer(serializers.ModelSerializer):
+class GuaranteePeriodSerializer(SimpleModelSerializer):
     """Сериализатор для модели GuaranteePeriod"""
     class Meta:
         model = GuaranteePeriod
@@ -70,11 +70,11 @@ class ProcessingStateNoteListSerializer(BaseListSerializer):
     key_fields = ['type']
 
 
-class ProcessingStateNoteSerializer(serializers.ModelSerializer):
+class ProcessingStateNoteSerializer(SimpleModelSerializer):
     """Сериализатор для модели ProcessingStateNote"""
     class Meta:
         model = ProcessingStateNote
-        exclude = ('processingState', 'id')
+        fields = ['type', 'payload']
         list_serializer_class = ProcessingStateNoteListSerializer
 
 
@@ -92,11 +92,11 @@ class ProcessingStateSerializer(BaseModelSerializer):
         fields = ['status', 'notes']
 
 
-class MappingSerializer(serializers.ModelSerializer):
+class MappingSerializer(SimpleModelSerializer):
     """Сериализатор для модели Mapping"""
     class Meta:
         model = Mapping
-        exclude = ('offer', 'mappingType', 'id')
+        fields = ['marketSku', 'modelId', 'categoryId']
 
 
 class ManufacturerCountryListSerializer(BaseListSerializer):
@@ -104,7 +104,7 @@ class ManufacturerCountryListSerializer(BaseListSerializer):
     key_fields = ['name']
 
 
-class ManufacturerCountrySerializer(serializers.ModelSerializer):
+class ManufacturerCountrySerializer(SimpleModelSerializer):
     """Сериализатор для модели ManufacturerCountry"""
     def to_representation(self, instance):
         return instance.name
@@ -123,7 +123,7 @@ class UrlListSerializer(BaseListSerializer):
     key_fields = ['url']
 
 
-class UrlSerializer(serializers.ModelSerializer):
+class UrlSerializer(SimpleModelSerializer):
     """Сериализатор для модели Url"""
     def to_representation(self, instance):
         return instance.url
@@ -142,7 +142,7 @@ class BarcodeListSerializer(BaseListSerializer):
     key_fields = ['barcode']
 
 
-class BarcodeSerializer(serializers.ModelSerializer):
+class BarcodeSerializer(SimpleModelSerializer):
     """Сериализатор для модели Barcode"""
     def to_representation(self, instance):
         return instance.barcode
@@ -161,7 +161,7 @@ class CustomsCommodityCodeListSerializer(BaseListSerializer):
     key_fields = ['code']
 
 
-class CustomsCommodityCodeSerializer(serializers.ModelSerializer):
+class CustomsCommodityCodeSerializer(SimpleModelSerializer):
     """Сериализатор для модели CustomsCommodityCode"""
     def to_representation(self, instance):
         return instance.code
@@ -180,7 +180,7 @@ class SupplyScheduleDaysListSerializer(BaseListSerializer):
     key_fields = ['supplyScheduleDay']
 
 
-class SupplyScheduleDaysSerializer(serializers.ModelSerializer):
+class SupplyScheduleDaysSerializer(SimpleModelSerializer):
     """Сериализатор для модели SupplyScheduleDays"""
     def to_representation(self, instance):
         return instance.supplyScheduleDay

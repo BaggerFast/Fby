@@ -2,6 +2,7 @@
 Основная модель для хранения товара
 docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/get-campaigns-id-offer-mapping-entries.html
 """
+import math
 
 from django.db import models
 from main.models import User
@@ -29,7 +30,7 @@ class Offer(models.Model):
 
     updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
 
-    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU', null=True)
+    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU')
 
     name = models.CharField(max_length=255,
                             help_text="""Составляйте по схеме: тип товара + бренд или производитель + модель +
@@ -107,6 +108,10 @@ class Offer(models.Model):
                                            null=True
                                            )
 
+    has_changed = models.BooleanField(verbose_name='Есть изменения, не отправленные на Яндекс',
+                                      help_text="True, если изменения есть, False, если изменений нет",
+                                      default=True)
+
     class Meta:
         ordering = ['id']
 
@@ -179,13 +184,18 @@ class Offer(models.Model):
         return self.customsCommodityCodes.first()
 
     @property
+    @decor
+    def processing_state(self):
+        return self.processingState
+
+    @property
     def processingState(self):
         """
         Информация о статусе публикации товара на Маркете
 
-        Рассчитывается на основе поля :class:`processingState_set`. Берётся последнее значение.
+        Рассчитывается на основе поля :class:`processingState_set`.
         """
-        return self.processingState_set.last()
+        return self.processingState_set
 
     @property
     def mapping(self):
@@ -214,3 +224,15 @@ class Offer(models.Model):
         }
         clear_profit = price.value - price.value * data[price.vat]
         return (clear_profit - price.net_cost) / clear_profit * 100
+
+    @property
+    def check_rent(self):
+        rent = self.rent
+        if rent and rent < 8:
+            return math.floor(rent)
+        return False
+
+    @property
+    @decor
+    def manufacturer_country(self):
+        return self.manufacturerCountries.first()

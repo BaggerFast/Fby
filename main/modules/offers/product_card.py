@@ -6,8 +6,10 @@ from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.shortcuts import redirect
-from main.models_addon import Offer, Price
-from main.modules.offers import OfferFormSet, PriceFormSet
+
+from main.forms import AvailabilityForm, PriceForm
+from main.models_addon.ya_market import Offer, Price
+from main.modules.offers.addition import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
 from main.view import Page, get_navbar
 from main.ya_requests.price import ChangePrices
@@ -33,14 +35,30 @@ class ProductPageView(BaseView):
         else:
             raise Http404()
 
+    def offer_has_changed(self):
+        """Возвращает True, если было изменено хотя бы одно поле Товара"""
+        if self.context['content'] == 'info':
+            return self.form.has_changed()
+        else:
+            return self.form.forms_dict[AvailabilityForm].has_changed()
+
+    def prise_has_changed(self):
+        """Возвращает True, если было изменено хотя бы одно поле Цены"""
+        if self.context['content'] == 'accommodation':
+            return self.form.forms_dict[PriceForm].has_changed()
+        else:
+            return False
+
     def end_it(self, pk) -> HttpResponse:
         """Окончательная настройка контекста и отправка ответа на запрос"""
-        rent = Offer.objects.get(pk=pk).rent
+        offers = Offer.objects.get(pk=pk)
+        rent = offers.check_rent
         if rent:
-            self.context['rent'] = math.floor(rent)
-            if rent < 8:
-                messages.error(self.request, f'Рентабельность: {math.floor(rent)}% < 8%. Не прибыльно!!!')
-        self.context_update({'forms': self.form.get_for_context(), 'disable': self.disable})
+            messages.error(self.request, f'Рентабельность: {rent} % < 8%. Не прибыльно!!!')
+        self.context['rent'] = offers.rent
+        self.context_update({'forms': self.form.get_for_context(),
+                             'disable': self.disable,
+                             'offer': Offer.objects.get(pk=pk)})
         return render(self.request, Page.product_card, self.context)
 
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
@@ -56,8 +74,8 @@ class ProductPageView(BaseView):
         def update_price() -> HttpResponse:
             """"Обработка запроса на изменение цены на Яндексе"""
             price = Price.objects.get(offer_id=pk)
-            ChangePrices(['ya_requests', 'update'], price_list=[price], request=request)
-            return redirect(reverse('catalogue_list'))
+            ChangePrices(['ya_requests'], price_list=[price], request=request)
+            return self.get(request, pk)
 
         def save_to_ym() -> HttpResponse:
             """Обработка запроса на обновление или сохранение товара на Яндексе"""
@@ -92,6 +110,10 @@ class ProductPageView(BaseView):
         self.disable = self.form.is_valid()
         if self.disable:
             self.form.save()
+            if self.offer_has_changed():
+                Offer.objects.filter(id=pk).update(has_changed=True)
+            if self.prise_has_changed():
+                Price.objects.filter(offer_id=pk).update(has_changed=True)
         else:
             self.form.set_disable(False)
         return self.end_it(pk)

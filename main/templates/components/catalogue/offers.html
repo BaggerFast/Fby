@@ -1,15 +1,18 @@
 {% block offers %}
   {% include 'components/search.html' %}
   {% if search %}
-    <a href="{% url 'catalogue_list' %}" class="btn-link">← Назад</a>
+    <a class="btn btn-danger mb-5" href="{% url 'catalogue_list' %}">← Назад</a>
   {% endif %}
   <div class="col">
-    <span class="badge bg-secondary mb-4">{{ offers|length }} товаров</span>
+    <span class="badge bg-secondary mb-4">Товаров: {{ offers|length }}</span>
     <div class="table-wrapper">
-      <table class="table table-hover table-borderless">
-        {% include 'components/catalogue/thead.html' %}
-        {% include 'components/catalogue/tbody.html' %}
-      </table>
+      <form id="table" method="post">
+        {% csrf_token %}
+          <table class="table table-hover table-borderless">
+            {% include 'components/catalogue/thead.html' %}
+            {% include 'components/catalogue/tbody.html' %}
+          </table>
+      </form>
     </div>
   </div>
 {% endblock %}

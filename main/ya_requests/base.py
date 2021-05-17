@@ -27,8 +27,8 @@ class Requests:
 
     def __init__(self, json_name: str, base_context_name: str, name: str, request: HttpRequest):
         self.request = request
-        self.url: str = 'https://api.partner.market.yandex.ru/v2/campaigns/' \
-                        f'{self.request.user.get_shop_id()}/{json_name}.json'
+        main_url = 'https://api.partner.market.yandex.ru/v2/campaigns'
+        self.url: str = f'{main_url}/{self.request.user.get_shop_id()}/{json_name}.json'
         self.headers_str: str = f'OAuth oauth_token={self.request.user.get_token()},' \
                                 f' oauth_client_id={self.request.user.get_client_id()}'
         self.headers: dict = {'Authorization': self.headers_str, 'Content-type': 'application/json'}

@@ -1,8 +1,9 @@
 from typing import List
 
 from django.http import HttpRequest
+from django.contrib import messages
 
-from main.models_addon import Price
+from main.models_addon.ya_market import Price
 from main.models_addon.save_dir import PricePattern
 from main.serializers import ChangePriceSerializer
 from main.ya_requests.base import Requests
@@ -50,7 +51,7 @@ class ChangePrices:
 
     def yandex_change(self) -> None:
         """Изменение цен на YM."""
-        YandexChangePrices(self.price_list, self.request)
+        YandexChangePrices(self.price_list, self.request).update_prices()
 
     def local_change(self) -> None:
         """Локальное изменение цен."""
@@ -69,7 +70,7 @@ class ChangePrices:
 
 
 def sku_and_price(price):
-    return {'shopSku': price.offer.shopSku, 'price': ChangePriceSerializer(price).get_data()}
+    return {'shopSku': price.offer.shopSku, 'price': ChangePriceSerializer(price).data}
 
 
 class LocalChangePrices:
@@ -103,8 +104,15 @@ class YandexChangePrices(Requests):
     """
     Класс для изменения цены на товар на сервере YM
     """
+    ERRORS = {
+        'DUPLICATE_OFFER': 'в теле запроса передано два или более товара '
+                           'с одинаковыми значениями параметров market-sku',
+        'LIMIT_EXCEEDED': 'превышено индивидуальное ограничение на количество передаваемых товаров',
+        'REQUEST_LIMIT_EXCEEDED': 'в теле запроса в параметре offers передано больше 2000 товаров'
+    }
 
-    def __init__(self, price_list: List, request: HttpRequest):
+    def __init__(self, price_list: List[Price], request: HttpRequest):
+        self.price_list: List[Price] = price_list
         self.temp_params: List = []
         [self.add_params(price) for price in price_list]
         self.PARAMS: dict = {'offers': self.temp_params}
@@ -112,7 +120,7 @@ class YandexChangePrices(Requests):
                          name='ChangePrices', request=request)
 
     @staticmethod
-    def get_dict(price) -> dict:
+    def get_dict(price: Price) -> dict:
         """Получить словарь, отправляемый для изменения цен на YM."""
         return sku_and_price(price)
 
@@ -120,7 +128,31 @@ class YandexChangePrices(Requests):
         """Получение данных от YM."""
         return self.get_next_page()
 
-    def add_params(self, price) -> None:
+    def add_params(self, price: Price) -> None:
         """Добавить в PARAMS запрос на одну цену."""
         if price.value:
             self.temp_params += [self.get_dict(price)]
+
+    def errors(self) -> List[str]:
+        """Формирует список сообщений об ошибках"""
+        errors = []
+        if self.json_data['status'] == 'ERROR':
+            for item in self.json_data['errors']:
+                if item['code'] in self.ERRORS:
+                    item['code'] = f'{item["code"]} ({self.ERRORS[item["code"]]})'
+                errors.append(f'{item["code"]}: {item["message"]}')
+        return errors
+
+    def update_prices(self) -> None:
+        """Устанавливает для отправленных цен статус has_changed=False
+        и выдает сообщения об успехе или ошибках"""
+        if self.json_data['status'] == 'OK':
+            for price in self.price_list:
+                price.has_changed = False
+                price.save(update_fields=['has_changed'])
+                messages.success(self.request, f'Цена на товар shopSku = {price.offer.shopSku} '
+                                               f'успешно сохранена на Яндексе')
+        else:
+            messages.error(self.request, f'Ошибка при сохранении цены на Яндексе')
+            for error in self.errors():
+                messages.error(self.request, error)

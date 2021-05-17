@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  {% if rent %}
-    <p>Рентабельность: {{rent}}%</p>
-  {% else %}
-    <p>Рентабельность: недостаточно данных для расчета</p>
-  {% endif %}
+  {% include 'components/product_card/rent.html' %}
   {% include 'components/product_card/buttons.html' %}
   {% include 'components/product_card/back.html' %}
   {% include 'components/product_card/delete.html' %}
