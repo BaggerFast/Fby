@@ -48,7 +48,7 @@ urlpatterns = [
     path('logout/', login_required(LogoutView.as_view()), name='logout'),
 
     path('email/', include(email_urls)),
-    path('email-confirm/', EmailConfirmation.as_view(), name="email")
+    path('confirmation_resend/', EmailConfirmation.as_view(), name="email")  # TODO: сделать это адекватным по вёрстке
 ]
 
 if settings.DEBUG:

@@ -9,13 +9,11 @@ class EmailConfirmation(BaseView):
     context = {'title': 'EmailConfirm', 'page_name': 'Подтвердить почту'}
 
     def get(self, request) -> HttpResponse:
-        user = request.user
-        user.is_active = False
-        send_email(user)
+        send_email(request.user)
 
         local_context = {
             'navbar': get_navbar(request),
         }
         self.context_update(local_context)
 
-        return render(self.request, Page.profile, self.context)
+        return render(self.request, Page.email_confirm, self.context)
