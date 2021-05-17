@@ -15,9 +15,4 @@ class Migration(migrations.Migration):
             name='barcode',
             field=models.CharField(help_text='Штрихкод обязателен при размещении товара по модели FBY и FBY+.\n                                         Допустимые форматы: EAN-13, EAN-8, UPC-A, UPC-E, Code 128. Для книг\n                                          — ISBN-10 или ISBN-13. Для товаров определённых производителей передайте\n                                         только код GTIN. Если штрихкодов несколько, укажите их через запятую.', max_length=255, verbose_name='Штрихкод'),
         ),
-        migrations.AlterField(
-            model_name='offer',
-            name='shopSku',
-            field=models.CharField(max_length=255, verbose_name='Ваш SKU'),
-        ),
     ]

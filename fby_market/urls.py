@@ -23,10 +23,13 @@ import debug_toolbar
 from fby_market import settings
 from main.modules.user import MyRegisterFormView, MyLoginFormView
 from main.modules import MainView
+from django_email_verification import urls as email_urls
 import fby_market.additional_url.catalogue as catalogue
 import fby_market.additional_url.orders as orders
 import fby_market.additional_url.profile as profile
 import fby_market.additional_url.analytics as analytics
+from main.modules.user.email_confirmation import EmailConfirmation
+
 
 urlpatterns = [
     # basic
@@ -43,6 +46,9 @@ urlpatterns = [
     path('register/', MyRegisterFormView.as_view(), name="register"),
     path('login/', MyLoginFormView.as_view(), name='login'),
     path('logout/', login_required(LogoutView.as_view()), name='logout'),
+
+    path('email/', include(email_urls)),
+    path('confirmation_resend/', EmailConfirmation.as_view(), name="email")  # TODO: сделать это адекватным по вёрстке
 ]
 
 if settings.DEBUG:

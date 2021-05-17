@@ -16,7 +16,6 @@ from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = 'asu)%c(yfxy)g&6ap$dmg+48%+t$xjn%j2_=^svmb)dnc(34vy'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -40,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'debug_toolbar',
+    'django_email_verification',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fby_market.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -85,7 +83,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -105,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -119,11 +115,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -153,3 +147,25 @@ AUTH_USER_MODEL = 'main.User'
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+
+def verified_callback(user):
+    user.verified = True
+
+# For django_email_verification
+EMAIL_VERIFIED_CALLBACK = verified_callback
+EMAIL_FROM_ADDRESS = 'insert_here'
+EMAIL_MAIL_SUBJECT = 'Подтверждение почты'
+EMAIL_MAIL_HTML = 'pages/mail_confirmation/confirm_email.html'
+EMAIL_MAIL_PLAIN = 'pages/mail_confirmation/confirm_email_plain.txt'
+EMAIL_TOKEN_LIFE = 60 * 60
+EMAIL_PAGE_TEMPLATE = 'pages/mail_confirmation/email_page.html'
+EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000'
+
+# For Django Email Backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'insert_here'
+EMAIL_HOST_PASSWORD = os.environ.get('password', 'define me!')
+EMAIL_USE_SSL = True
