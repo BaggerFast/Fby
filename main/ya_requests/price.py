@@ -27,17 +27,23 @@ class ChangePrices:
     """
     errors = []
 
+    def check_prices(self) -> None:
+        """Проверка цен в БД и price_list."""
+        for price in self.price_list:
+            db_price = Price.objects.get(offer=price.offer)
+            if db_price.value != price.value:
+                self.errors.append(price)
+
     def __init__(self, keys: List[str], price_list: List = None, request: HttpRequest = None):
         self.command = {
-            'ya_requests': self.yandex_change,
-            'local': self.local_change,
-            'update': self.update_db,
+            'ya_requests': lambda: YandexChangePrices(self.price_list, self.request).update_prices(),
+            'local': lambda: LocalChangePrices(price_list),
+            'update': lambda: OfferPrice(self.request).save(),
             'check': self.check_prices,
         }
 
         """
         Перенаправление на нужные функции по ключу
-
         ya_requests - отправка данных на YM
         local - изменение данных локально в БД, не затрагивает YM
         update - обновить данные в БД из YM
@@ -46,27 +52,10 @@ class ChangePrices:
 
         self.price_list: List = price_list
         self.request: HttpRequest = request
+
         for key in keys:
-            self.command[key]()
-
-    def yandex_change(self) -> None:
-        """Изменение цен на YM."""
-        YandexChangePrices(self.price_list, self.request).update_prices()
-
-    def local_change(self) -> None:
-        """Локальное изменение цен."""
-        LocalChangePrices(self.price_list)
-
-    def update_db(self) -> None:
-        """Обновление БД."""
-        OfferPrice(self.request).save()
-
-    def check_prices(self) -> None:
-        """Проверка цен в БД и price_list."""
-        for price in self.price_list:
-            db_price = Price.objects.get(offer=price.offer)
-            if db_price.value != price.value:
-                self.errors.append(price)
+            if key in keys:
+                self.command[key]()
 
 
 def sku_and_price(price):

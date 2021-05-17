@@ -151,7 +151,6 @@ class UpdateOfferList:
         self.request: HttpRequest = request
         self.offers: List[Offer] = offers
         self.errors: dict = dict()
-        self.success: dict = dict()
 
     def update_offers(self) -> None:
         """Обновляет или добавляет товары из списка self.offers."""
@@ -161,7 +160,6 @@ class UpdateOfferList:
             if answer['status'] == 'ERROR':
                 self.errors[sku] = self.get_error_messages(answer)
             elif answer['status'] == 'OK':
-                self.success[sku] = 'OK'
                 offer.has_changed = False
                 offer.save(update_fields=['has_changed'])
 
@@ -170,6 +168,6 @@ class UpdateOfferList:
         error_messages = []
         for item in answer['errors']:
             if item['code'] in self.ERRORS:
-                item['code'] = f'{item["code"]} ({self.ERRORS[item["code"]]})'
+                item['code'] = f'{self.ERRORS[item["code"]]}'
             error_messages.append(f'{item["code"]}: {item["message"]}')
         return error_messages

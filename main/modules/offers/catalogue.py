@@ -48,13 +48,15 @@ class CatalogueView(BaseView):
         skus = [offer.shopSku for offer in list(offers)]
         update_request = UpdateOfferList(offers=list(offers), request=self.request)
         update_request.update_offers()
-        for sku in skus:
-            if sku in update_request.success:
-                messages.success(self.request, f'Товар shopSku = {sku} успешно сохранен на Яндексе')
-            elif sku in update_request.errors:
-                messages.error(self.request, f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.')
-                for error_text in update_request.errors[sku]:
-                    messages.error(self.request, error_text)
+        if update_request.errors:
+            for sku in skus:
+                if sku in update_request.errors:
+                    errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе. '
+                    for error_text in update_request.errors[sku]:
+                        errors += error_text + ' '
+                    messages.error(self.request, errors)
+        else:
+            messages.error(self.request, "Все товары успешно отправлены")
 
     def post(self, request: HttpRequest) -> HttpResponse:
         if 'button_loader' in request.POST:
