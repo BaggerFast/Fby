@@ -35,6 +35,9 @@ class BaseView(LoginRequiredMixin, View):
         return sorted(scores, key=scores.get, reverse=True)
 
     def sort_object(self, offer, filter_types) -> list:
+        self.context_update({
+            "checked": self.filtration.checked_filters_from_request(self.request, filter_types),
+        })
         keywords = self.request.GET.get('input', '').lower().strip().split()
         filters = self.filtration.filters_from_request(self.request, filter_types)
         objects = self.search_algorithm(keywords, self.filtration.filter_items(offer, filters))

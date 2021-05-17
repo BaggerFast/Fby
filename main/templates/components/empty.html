@@ -1,10 +1,15 @@
+{% load static %}
+
 {% block empty %}
   <div class="mt-5">
     {% if search %}
       <p>Ничего не найдено</p>
-      <a class="btn btn-danger mb-5" href="{% url 'orders_list' %}">Назад</a>
+      <a class="btn btn-danger mb-5" id="go_back">Назад</a>
     {% else %}
       <p>У вас нет данных, нажмите кнопку обновить</p>
     {% endif %}
   </div>
+{% endblock %}
+{% block scripts %}
+  <script src="{% static 'js/go_back.js' %}"></script>
 {% endblock %}

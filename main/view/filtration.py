@@ -30,10 +30,14 @@ class Filtration:
 
     @staticmethod
     def filters_from_request(request, filter_types):
+        no_search = request.GET.get("no_search", False)
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
-            str_options = [filter_type['options_actual'][int(option)] for option in request.GET.getlist(str(index), '')]
-            filters[field] = str_options
+            if no_search:
+                filters[field] = []
+            else:
+                str_options = [filter_type['options_actual'][int(option)] for option in request.GET.getlist(str(index), '')]
+                filters[field] = str_options
         return filters
 
     @staticmethod
@@ -55,3 +59,13 @@ class Filtration:
             if passed_fields == used_filters:
                 filtered_items.append(item)
         return filtered_items
+
+    @staticmethod
+    def checked_filters_from_request(request, filter_types):
+        checked = []
+        for index, field in enumerate(filter_types.values()):
+            checked_sub = [False] * len(field.get("options"))
+            for checked_option in request.GET.getlist(str(index), ''):
+                checked_sub[int(checked_option)] = True
+            checked.append(checked_sub)
+        return checked
