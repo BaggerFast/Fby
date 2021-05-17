@@ -152,9 +152,10 @@ INTERNAL_IPS = [
 def verified_callback(user):
     user.verified = True
 
+
 # For django_email_verification
 EMAIL_VERIFIED_CALLBACK = verified_callback
-EMAIL_FROM_ADDRESS = 'insert_here'
+EMAIL_FROM_ADDRESS = 'mark_system@bk.ru'
 EMAIL_MAIL_SUBJECT = 'Подтверждение почты'
 EMAIL_MAIL_HTML = 'pages/mail_confirmation/confirm_email.html'
 EMAIL_MAIL_PLAIN = 'pages/mail_confirmation/confirm_email_plain.txt'
@@ -166,6 +167,6 @@ EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'insert_here'
-EMAIL_HOST_PASSWORD = os.environ.get('password', 'define me!')
+EMAIL_HOST_USER = 'mark_system@bk.ru'
+EMAIL_HOST_PASSWORD = 'jojosadventures'
 EMAIL_USE_SSL = True

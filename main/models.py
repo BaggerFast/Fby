@@ -30,7 +30,7 @@ class User(AbstractUser):
         if not self.image and not os.path.exists(self.get_image.replace('\\', '/')):
             self.image = f'base/base.png'
 
-        if User.objects.get(email=self.email):
+        if User.objects.filter(email=self.email):
             raise ValidationError('Данная почта уже зарегистрирована')
 
     @staticmethod
