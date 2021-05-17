@@ -6,19 +6,25 @@ class Filtration:
         filter_types = {}
         for field, name in self.fields_to_filter.items():
             options = set()
+            options_actual = set()
             for item in items:
                 get_display_name = "get_{}_display".format(field)
+                actual_option = getattr(item, field)
                 if hasattr(item, get_display_name):
                     options.add(getattr(item, get_display_name)())
+                    options_actual.add(actual_option)
                 else:
-                    options.add(getattr(item, field))
+                    options.add(actual_option)
+                    options_actual.add(actual_option)
             if None in options:
                 options.remove(None)
             options = sorted(options)
+            options_actual = sorted(options_actual)
 
             filter_types[field] = {
                 'name': name,
                 'options': options,
+                'options_actual': options_actual,
             }
         return filter_types
 
@@ -26,8 +32,7 @@ class Filtration:
     def filters_from_request(request, filter_types):
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
-            str_options = [filter_type['options'][int(option)]
-                           for option in request.GET.getlist(str(index), '')]
+            str_options = [filter_type['options_actual'][int(option)] for option in request.GET.getlist(str(index), '')]
             filters[field] = str_options
         return filters
 
@@ -50,3 +55,13 @@ class Filtration:
             if passed_fields == used_filters:
                 filtered_items.append(item)
         return filtered_items
+
+    @staticmethod
+    def checked_filters_from_request(request, filter_types):
+        checked = []
+        for index, field in enumerate(filter_types.values()):
+            checked_sub = [False] * len(field.get("options"))
+            for checked_option in request.GET.getlist(str(index), ''):
+                checked_sub[int(checked_option)] = True
+            checked.append(checked_sub)
+        return checked
