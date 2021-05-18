@@ -20,7 +20,9 @@ class Filtration:
             if None in options:
                 options.remove(None)
             options = sorted(options, key=lambda x: x[0])
-            options, options_actual = zip(*options)
+            options_actual = None
+            if options:
+                options, options_actual = zip(*options)
 
             filter_types[field] = {
                 'name': name,
