@@ -1,4 +1,4 @@
-"""Паррерн для сохранения данных о заказах в БД"""
+"""Паттерн для сохранения данных о заказах в БД"""
 
 from django.core.exceptions import ObjectDoesNotExist
 

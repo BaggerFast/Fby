@@ -1,7 +1,6 @@
 from django.urls import path
-from main.modules import *
+from main.modules import SummaryView
 
 urlpatterns = [
-    # path('compare', price_compare)
     path('', SummaryView.as_view(), name='summary'),
 ]

@@ -110,8 +110,8 @@ class Item(models.Model):
                   Если из заказа удалены все единицы товара, его не будет в списке items —
                   только в списке initialItems.
                   Если в заказе осталась хотя бы одна единица товара, он будет и в списке items
-                  (с уменьшенным количеством единиц count), 
-                  и в списке initialItems (с первоначальным количеством единиц initialCount).""",
+                  (с уменьшенным количеством единиц count), и в списке initialItems 
+                  (с первоначальным количеством единиц initialCount).""",
         null=True
     )
     offerName = models.CharField(max_length=255, verbose_name='Название товара', null=True)

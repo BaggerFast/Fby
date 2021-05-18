@@ -27,8 +27,9 @@ class ShelfLifeForm(ModelForm, Func):
         model = ShelfLife
         exclude = ('offer',)
         help_texts = {
-            'timePeriod': """Через сколько дней товар станет непригоден для использования. Например, срок годности есть 
-                            у таких категорий, как продукты питания и медицинские препараты.""",
+            'timePeriod': """Через сколько дней товар станет непригоден для использования.
+                            Например, срок годности есть у таких категорий, 
+                            как продукты питания и медицинские препараты.""",
             'comment': 'Дополнительные условия хранения.',
         }
         labels = {
@@ -45,7 +46,7 @@ class LifeTimeForm(ModelForm, Func):
         exclude = ('offer',)
         help_texts = {
             'timePeriod': """В течение какого периода товар будет исправно выполнять свою функцию, 
-                            а изготовитель — нести ответственность за его существенные недостатки.""",
+                                а изготовитель — нести ответственность за его существенные недостатки.""",
             'comment': 'Дополнительные условия использования в течение срока службы.',
         }
         labels = {
@@ -109,7 +110,7 @@ class OfferForm(ModelForm, Func):
     class Meta:
         model = Offer
         fields = ['name', 'shopSku', 'category', 'vendor', 'vendorCode', 'manufacturer', 'description',
-                  'transportUnitSize',  'minShipment', 'quantumOfSupply', 'deliveryDurationDays', 'boxCount']
+                  'transportUnitSize', 'minShipment', 'quantumOfSupply', 'deliveryDurationDays', 'boxCount']
         widgets = {
             'description': forms.Textarea(),
         }

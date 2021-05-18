@@ -1,7 +1,6 @@
-"""Паррерн для сохранения данных о цене в БД"""
+"""Паттерн для сохранения данных о цене в БД"""
 
 from django.core.exceptions import ObjectDoesNotExist
-
 from main.models_addon.ya_market import Offer, Price, PriceSuggestion
 from main.models_addon.save_dir.base import BasePattern
 from main.serializers.offer_price import OfferForPriceSerializer, OfferForPriceSuggestionSerializer
