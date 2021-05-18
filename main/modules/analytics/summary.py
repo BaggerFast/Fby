@@ -23,7 +23,7 @@ class SummaryView(BaseView):
         data_today = datetime.date.today().replace(day=1)
         if not orders:
             messages.success(self.request, 'Каталог заказов пуст, статистика не возможна')
-            return redirect(reverse('orders_list'))
+            return redirect(reverse('catalogue_order'))
         filter_cur_month = Q(creationDate__gt=data_today, status__in=included_statuses)
         filter_prev_month = Q(creationDate__lt=data_today, status__in=included_statuses)
         orders = [orders.filter(filter_cur_month), orders.filter(filter_prev_month)]

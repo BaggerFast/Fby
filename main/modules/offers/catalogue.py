@@ -74,18 +74,18 @@ class CatalogueView(BaseView):
 
     def post(self, request: HttpRequest) -> HttpResponse:
         if 'button_loader' in request.POST:
-            return self.save_models(request=request)
+            return self.save_models(request=request, name='catalogue_offer')
         elif 'button_push' in request.POST:
             offers = self.find_offers_id_by_regular(request)
             if not offers:
                 offers = self.configure_offer(int(request.GET.get('content', 0)))
             self.save_to_ym(offers=offers)
             self.update_price(offers=offers)
-            return self.get(request)
+            return redirect(reverse('catalogue_offer'))
         elif 'checkbox' in request.POST:
             for offer in self.find_offers_id_by_regular(request):
                 offer.delete()
-        return self.get(request)
+        return redirect(reverse('catalogue_offer'))
 
     def configure_offer(self, index):
         """Метод для получения товаров с нужным статусом"""
@@ -108,7 +108,7 @@ class CatalogueView(BaseView):
         offers = self.configure_offer(category_index)
         if not offers and category_index:
             messages.success(self.request, f'Каталог {self.types[category_index].lower()} пуст')
-            return redirect(reverse('catalogue_list'))
+            return redirect(reverse('catalogue_offer'))
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {
             'navbar': get_navbar(request),

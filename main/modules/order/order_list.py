@@ -19,7 +19,7 @@ class OrderListView(BaseView):
     })
 
     def post(self, request) -> HttpResponse:
-        return self.save_models(request=request)
+        return self.save_models(request=request,  name='catalogue_order')
 
     def get(self, request) -> HttpResponse:
         orders = Order.objects.filter(user=request.user).prefetch_related('items')

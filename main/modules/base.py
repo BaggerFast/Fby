@@ -1,5 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpRequest
+from django.shortcuts import redirect
+from django.urls import reverse
 from django.views import View
 from main.view import get_item_display_name
 import itertools
@@ -15,11 +17,11 @@ class BaseView(LoginRequiredMixin, View):
     def context_update(self, data: dict):
         self.context = {**data, **self.context}
 
-    def save_models(self, request: HttpRequest) -> HttpResponse:
+    def save_models(self, request: HttpRequest, name) -> HttpResponse:
         for model in self.models_to_save:
             if not model(request=request).save():
                 break
-        return self.get(request=request)
+        return redirect(reverse(name))
 
     def search_algorithm(self, keywords, objects):
         if not len(keywords):
