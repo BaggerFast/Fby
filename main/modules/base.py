@@ -11,7 +11,7 @@ class BaseView(LoginRequiredMixin, View):
     """
     Базовый класс для отображения каталога
     """
-    context = {}
+    context = dict()
     request = None
 
     def context_update(self, data: dict):

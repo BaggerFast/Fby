@@ -66,13 +66,12 @@ class ProductPageView(BaseView):
             sku = offer.shopSku
             update_request = UpdateOfferList(offers=[offer], request=self.request)
             update_request.update_offers()
-            if sku in update_request.errors:
-                errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе. '
-                for error_text in update_request.errors[sku]:
-                    errors += error_text + ' '
-                messages.error(self.request)
-            else:
+            if sku not in update_request.errors:
                 messages.success(self.request, f'Товар shopSku = {sku} успешно сохранен на Яндексе')
+                return
+            errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.'
+            errors += ''.join(update_request.errors[sku])
+            messages.error(self.request, errors)
 
     def update_price(self, offer):
         """"Обработка запроса на изменение цены на Яндексе"""
@@ -81,13 +80,12 @@ class ProductPageView(BaseView):
             sku = offer.shopSku
             changed_prices = YandexChangePricesList(prices=list(price), request=self.request)
             changed_prices.update_prices()
-            if sku in changed_prices.errors:
-                errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе. '
-                for error_text in changed_prices.errors[sku]:
-                    errors += error_text + ' '
-                messages.error(self.request, errors)
-            else:
+            if not sku in changed_prices.errors:
                 messages.success(self.request, f'Цена товара shopSku = {sku} успешно сохранена на Яндексе')
+                return
+            errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе. '
+            errors += ' '.join(changed_prices[sku])
+            messages.error(self.request, errors)
 
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         """Обработка post-запроса"""
@@ -98,6 +96,7 @@ class ProductPageView(BaseView):
             offer.delete()
             messages.success(request, f'Товар "{offer.name}" успешно удален')
             return redirect(reverse('catalogue_list'))
+
         self.request = request
         self.pk = pk
 

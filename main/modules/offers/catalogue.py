@@ -8,7 +8,6 @@ from main.modules.base import BaseView
 from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OfferList, OfferPrice
 import re
-
 from main.ya_requests.price import YandexChangePricesList
 from main.ya_requests.request import UpdateOfferList
 
@@ -41,19 +40,23 @@ class CatalogueView(BaseView):
     def update_price(self, offers):
         """"Обработка запроса на изменение цены на Яндексе"""
         price = [offer.get_price for offer in offers if offer.price.has_changed]
-        if price:
-            skus = [offer.shopSku for offer in list(offers)]
-            changed_prices = YandexChangePricesList(prices=list(price), request=self.request)
-            changed_prices.update_prices()
-            if changed_prices.errors:
-                for sku in skus:
-                    if sku in changed_prices.errors:
-                        errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе. '
-                        for error_text in changed_prices.errors[sku]:
-                            errors += error_text + ' '
-                        messages.error(self.request, errors)
-            else:
-                messages.success(self.request, "Все цены успешно отправлены")
+
+        if not price:
+            return
+
+        skus = [offer.shopSku for offer in list(offers)]
+        changed_prices = YandexChangePricesList(prices=list(price), request=self.request)
+        changed_prices.update_prices()
+
+        if not changed_prices.errors:
+            messages.success(self.request, "Все цены успешно отправлены")
+            return
+
+        for sku in skus:
+            if sku in changed_prices.errors:
+                errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе. '
+                errors += ' '.join(changed_prices.errors[sku])
+                messages.error(self.request, errors)
 
     def save_to_ym(self, offers):
         """Обработка запроса на обновление или сохранение товара на Яндексе"""
@@ -72,19 +75,28 @@ class CatalogueView(BaseView):
                 errors += ' '.join(update_request.errors[sku])
                 messages.error(self.request, errors)
 
+    def button_push(self):
+        offers = self.find_offers_id_by_regular(self.request)
+        if not offers:
+            offers = self.configure_offer(int(self.request.GET.get('content', 0)))
+        self.save_to_ym(offers=offers)
+        self.update_price(offers=offers)
+        return redirect(reverse('catalogue_offer'))
+
+    def check_box(self):
+        [offer.delete() for offer in self.find_offers_id_by_regular(self.request)]
+        return redirect(reverse('catalogue_offer'))
+
     def post(self, request: HttpRequest) -> HttpResponse:
-        if 'button_loader' in request.POST:
-            return self.save_models(request=request, name='catalogue_offer')
-        elif 'button_push' in request.POST:
-            offers = self.find_offers_id_by_regular(request)
-            if not offers:
-                offers = self.configure_offer(int(request.GET.get('content', 0)))
-            self.save_to_ym(offers=offers)
-            self.update_price(offers=offers)
-            return redirect(reverse('catalogue_offer'))
-        elif 'checkbox' in request.POST:
-            for offer in self.find_offers_id_by_regular(request):
-                offer.delete()
+        self.request = request
+        data = {
+            'button_loader': lambda: self.save_models(request=request, name='catalogue_offer'),
+            'button_push': self.button_push,
+            'checkbox': self.check_box,
+        }
+        for key in data.keys():
+            if key in request.POST:
+                return data[key]()
         return redirect(reverse('catalogue_offer'))
 
     def configure_offer(self, index):
@@ -94,13 +106,13 @@ class CatalogueView(BaseView):
             1: Q(processingState__status='READY'),
             2: Q(processingState__status='IN_WORK'),
             3: Q(processingState__status__in=['NEED_CONTENT', 'NEED_INFO', 'REJECTED', 'SUSPENDED', 'OTHER']),
-            4: Q(processingState__isnull=False, has_changed=True) | Q(processingState__isnull=False,
-                                                                      price__has_changed=True),
+            4: Q(processingState__isnull=False) & (Q(has_changed=True) | Q(price__has_changed=True)),
             5: Q(processingState__isnull=True),
         }
         if index == 6:
-            return [offer for offer in Offer.objects.filter(user=self.request.user) if offer.check_rent]
-        return Offer.objects.filter(user=self.request.user).filter(query[index])
+            return [offer for offer in Offer.objects.select_related('price').filter(user=self.request.user)
+                    if offer.check_rent]
+        return Offer.objects.filter(Q(user=self.request.user) & query[index])
 
     def get(self, request: HttpRequest) -> HttpResponse:
         self.request = request
