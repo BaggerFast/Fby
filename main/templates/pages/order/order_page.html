@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <h2><b>№{{ order.order_id }}</b></h2>
-  <a href="{% url 'orders_list' %}" class="btn btn-danger" role="button">Вернуться</a><br>
+  <a href="{% url 'catalogue_order' %}" class="btn btn-danger" role="button">Вернуться</a><br>
   <div class="mt-2">
     <span class="badge bg-primary" style="font-size: 15px;">{{ order.creationDate }}</span>
     <span class="badge bg-dark" style="font-size: 15px;">{{ order.get_status_display|capfirst }}</span>

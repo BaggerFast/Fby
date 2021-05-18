@@ -45,6 +45,7 @@ make html
 ```
 
 
+
 ## Codestyle
 ```bash
 DJANGO_SETTINGS_MODULE=fby_market.settings pylint fby_market main manage.py
