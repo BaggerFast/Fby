@@ -99,8 +99,9 @@ class CatalogueView(BaseView):
             5: Q(processingState__isnull=True),
         }
         if index == 6:
-            return [offer for offer in Offer.objects.filter(user=self.request.user) if offer.check_rent]
-        return Offer.objects.filter(user=self.request.user).filter(query[index])
+            return [offer for offer in Offer.objects.select_related('price').filter(user=self.request.user)
+                    if offer.check_rent]
+        return Offer.objects.filter(Q(user=self.request.user) | query[index])
 
     def get(self, request: HttpRequest) -> HttpResponse:
         self.request = request
