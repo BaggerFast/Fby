@@ -24,9 +24,9 @@ def get_navbar(request) -> Dict[str, Union[list, List[Dict[str, str]]]]:
     def auth_point(nav: List):
         if request.user.is_authenticated:
             nav += [
-                {'label': 'Товары', 'list': [{'url': 'catalogue_list', 'label': "Каталог"},
+                {'label': 'Товары', 'list': [{'url': 'catalogue_offer', 'label': "Каталог"},
                                              {'url': 'create_offer', 'label': "Создать"}]},
-                {'label': 'Заказы', 'url': 'orders_list'},
+                {'label': 'Заказы', 'url': 'catalogue_order'},
                 {'label': 'Отчёт', 'url': 'summary'}
             ]
         return nav
