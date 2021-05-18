@@ -3,6 +3,7 @@ import json
 from typing import List
 from django.http import HttpRequest
 
+from main.models_addon.save_dir.offer.prices import PriceSuggestionPattern
 from main.models_addon.ya_market import Offer
 from main.models_addon.save_dir import *
 from main.serializers import OfferSerializer
@@ -29,7 +30,7 @@ class OrderList(Requests):
 
     PARAMS = {  # параметры надо предварительно запросить
         "dateFrom": "2021-01-01",
-        "dateTo": "2021-04-17"
+        "dateTo": "2021-05-17"
     }
 
     def __init__(self, request: HttpRequest, params: dict = None):
@@ -37,7 +38,7 @@ class OrderList(Requests):
             self.PARAMS = params
         super().__init__(json_name='/stats/orders', base_context_name='orders', name="Order", request=request)
 
-    def save(self) -> None:
+    def pattern_save(self) -> None:
         OrderPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)
 
 
@@ -62,7 +63,7 @@ class OfferReport(Requests):
         """Получение данных от YM."""
         return self.get_next_page()
 
-    def save(self) -> None:
+    def pattern_save(self) -> None:
         OfferReportPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)
 
 
@@ -171,3 +172,33 @@ class UpdateOfferList:
                 item['code'] = f'{self.ERRORS[item["code"]]}'
             error_messages.append(f'{item["code"]}: {item["message"]}')
         return error_messages
+
+
+class PriceSuggestion(Requests):
+    """
+    Класс для получения цен для продвижения
+
+    Если задан market_sku, возвращает отчет по одному товару,
+    иначе - по всему списку товаров из каталога
+    """
+
+    def __init__(self, request: HttpRequest, market_sku: str = None):
+        self.PARAMS = self.get_params(request) if market_sku is None else {"offers": [{"marketSku": market_sku}]}
+        super().__init__(json_name='/offer-prices/suggestions', base_context_name='offers', name="PriceSuggestion", request=request)
+
+    @staticmethod
+    def get_params(request: HttpRequest) -> dict:
+        """Возвращает словарь для get-запроса, содержащий список всех
+        marketSku из каталога текущего пользователя """
+        market_skus = set()
+        for offer in Offer.objects.only('marketSku').filter(user=request.user):
+            if offer.marketSku:
+                market_skus.add(offer.marketSku)
+        return {"offers": [{"marketSku": marketSku} for marketSku in market_skus]}
+
+    def get_json(self) -> dict:
+        """Получение данных от YM."""
+        return self.get_next_page()
+
+    def pattern_save(self) -> None:
+        PriceSuggestionPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)

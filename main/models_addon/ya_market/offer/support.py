@@ -8,10 +8,21 @@ from main.models_addon.ya_market.offer.choices import TimeUnitChoices, MappingTy
 
 
 class PriceSuggestion(models.Model):
-    price = models.FloatField(verbose_name='Цена')
-    type = models.CharField(max_length=21, choices=PriceSuggestionChoices.choices, verbose_name='Типы цен',
-                            null=True, blank=True)
-    offer = models.OneToOneField(to=Offer, on_delete=models.CASCADE, related_name="priceSuggestion")
+    """
+    Модель для хранения цен для продвижения
+    """
+    offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name='priceSuggestion')
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name='Цена',
+        help_text='Указана в рублях. Точность — два знака после запятой',
+        null=True)
+    type = models.CharField(
+        max_length=21,
+        choices=PriceSuggestionChoices.choices,
+        verbose_name='Типы цен',
+        null=True, blank=True)
 
 
 class Timing(models.Model):
@@ -22,10 +33,8 @@ class Timing(models.Model):
         abstract = True
 
     timePeriod = models.PositiveSmallIntegerField(null=True, blank=True)
-
     timeUnit = models.CharField(max_length=5, choices=TimeUnitChoices.choices, verbose_name='Единица измерения',
                                 null=True, blank=True)
-
     comment = models.CharField(max_length=2000, null=True, blank=True)
 
     def get_days(self):
