@@ -4,6 +4,11 @@ python manage.py dumpdata \
     --exclude auth.permission \
     --exclude contenttypes --indent=4 > main\tests\fixtures\tmp_data.json
 """
+
+"""
+    по поводу binary_path
+    https://pypi.org/project/chromedriver-py/
+"""
 import os
 from time import sleep
 
@@ -27,7 +32,7 @@ class LoadingСommodityTestCase(LiveServerTestCase):
         self.client = Client()
         options = Options()
         options.headless = HEADLESS
-        self.driver = webdriver.Chrome(executable_path='chromedriver', options=options)
+        self.driver = webdriver.Chrome(executable_path=binary_path, options=options)
         self.auth_manager = AuthManager(self.driver, self.client)
 
     def tearDown(self):
@@ -87,12 +92,18 @@ class CreateCommodity(LiveServerTestCase):
         form_values_placeholder(self.ID_list_second, test_values[1], self.driver)
         button = self.driver.find_element_by_id("button_save")
         button.click()
-        assert self.driver.find_element_by_tag_name("title").text != "Catalogue"
 
     def test_create_commodity(self):
         """переходит на страницу загрузки каталога Заполняет форму значениями проверяет переход на catalogue"""
-        for test_values in self.CTT_values:
-            self.create_commodity_base(test_values)
+        self.create_commodity_base(self.CTT_values[0])
+        assert self.driver.find_element_by_tag_name("title").text != "Catalogue"
+
+    def test_create_false_commodity(self):
+        """переходит на страницу загрузки каталога, заполняет форму неправельными или пустыми значениями проверяет отсутствие
+        перехода"""
+        self.create_commodity_base(self.CTT_values[1])
+        assert self.self.driver.find_element_by_tag_name("title").text != "Create offer"
+
 
 
 
