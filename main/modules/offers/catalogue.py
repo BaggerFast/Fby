@@ -9,7 +9,7 @@ from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OfferList, OfferPrice
 import re
 
-from main.ya_requests.price import ChangePrices
+from main.ya_requests.price import YandexChangePricesList
 from main.ya_requests.request import UpdateOfferList
 
 
@@ -40,23 +40,36 @@ class CatalogueView(BaseView):
     def update_price(self, offers):
         """"Обработка запроса на изменение цены на Яндексе"""
         price = [offer.get_price for offer in offers if offer.price.has_changed]
-        ChangePrices(['ya_requests'], price_list=list(price), request=self.request)
+        if price:
+            skus = [offer.shopSku for offer in list(offers)]
+            changed_prices = YandexChangePricesList(prices=list(price), request=self.request)
+            changed_prices.update_prices()
+            if changed_prices.errors:
+                for sku in skus:
+                    if sku in changed_prices.errors:
+                        errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе. '
+                        for error_text in changed_prices.errors[sku]:
+                            errors += error_text + ' '
+                        messages.error(self.request, errors)
+            else:
+                messages.success(self.request, "Все цены успешно отправлены")
 
     def save_to_ym(self, offers):
         """Обработка запроса на обновление или сохранение товара на Яндексе"""
         offers = offers.filter(has_changed=True)
-        skus = [offer.shopSku for offer in list(offers)]
-        update_request = UpdateOfferList(offers=list(offers), request=self.request)
-        update_request.update_offers()
-        if update_request.errors:
-            for sku in skus:
-                if sku in update_request.errors:
-                    errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе. '
-                    for error_text in update_request.errors[sku]:
-                        errors += error_text + ' '
-                    messages.error(self.request, errors)
-        else:
-            messages.error(self.request, "Все товары успешно отправлены")
+        if offers:
+            skus = [offer.shopSku for offer in list(offers)]
+            update_request = UpdateOfferList(offers=list(offers), request=self.request)
+            update_request.update_offers()
+            if update_request.errors:
+                for sku in skus:
+                    if sku in update_request.errors:
+                        errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе. '
+                        for error_text in update_request.errors[sku]:
+                            errors += error_text + ' '
+                        messages.error(self.request, errors)
+            else:
+                messages.success(self.request, "Все товары успешно отправлены")
 
     def post(self, request: HttpRequest) -> HttpResponse:
         if 'button_loader' in request.POST:

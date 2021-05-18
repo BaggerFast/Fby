@@ -131,19 +131,19 @@ class UpdateOfferList:
     :param success: сообщения об успехах (словарь вида: {shopSku: 'OK'})
     """
     ERRORS = {
-        'BAD_REQUEST': 'у вас нет доступа к добавлению товаров в каталог'
+        'BAD_REQUEST': 'У вас нет доступа к добавлению товаров в каталог'
                        'Убедитесь, что отправляете корректный запрос',
-        'CONSTRAINT_VIOLATION': 'у товара не указаны значения параметров manufacturer-countries '
+        'CONSTRAINT_VIOLATION': 'У товара не указаны значения параметров manufacturer-countries '
                                 'и/или url',
-        'DUPLICATE_OFFER': 'в запросе передан другой товар с тем же значением параметра shop-sku',
-        'INVALID_MARKET_SKU': 'у товара указано несуществующее значение параметра market-sku',
-        'INVALID_OFFER_ID': 'у товара длина значения параметра shop-sku превышает 80 символов '
+        'DUPLICATE_OFFER': 'В запросе передан другой товар с тем же значением параметра shop-sku',
+        'INVALID_MARKET_SKU': 'У товара указано несуществующее значение параметра market-sku',
+        'INVALID_OFFER_ID': 'У товара длина значения параметра shop-sku превышает 80 символов '
                             'и/или оно содержит символы, которые отличаются от печатных символов '
                             'из таблицы ASCII',
-        'INVALID_SHOP_SKU': 'у товара указано некорректное значение параметра shop-sku',
-        'MISSING_OFFER': 'у товара нет параметра offer',
-        'NO_REQUIRED_FIELDS': 'у товара нет обязательных параметров',
-        'PROBLEMS_IN_OTHER_OFFERS': 'информация о товаре корректна, но не отправлена на модерацию '
+        'INVALID_SHOP_SKU': 'У товара указано некорректное значение параметра shop-sku',
+        'MISSING_OFFER': 'У товара нет параметра offer',
+        'NO_REQUIRED_FIELDS': 'У товара нет обязательных параметров',
+        'PROBLEMS_IN_OTHER_OFFERS': ' Информация о товаре корректна, но не отправлена на модерацию '
                                     'из‑за ошибок в других товарах'
     }
 
@@ -168,6 +168,6 @@ class UpdateOfferList:
         error_messages = []
         for item in answer['errors']:
             if item['code'] in self.ERRORS:
-                item['code'] = f'{self.ERRORS[item["code"]]}'
-            error_messages.append(f'{item["code"]}: {item["message"]}')
+                item['code'] = self.ERRORS[item["code"]]
+            error_messages.append(f' {item["code"]}: {item["message"]}')
         return error_messages

@@ -114,4 +114,3 @@ class OfferReportPattern(BasePattern):
             if offer not in actual_reports:
                 report.delete()
                 Stock.objects.filter(offer=offer).delete()
-

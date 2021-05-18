@@ -12,7 +12,7 @@ from main.models_addon.ya_market import Offer, Price
 from main.modules.offers.addition import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
 from main.view import Page, get_navbar
-from main.ya_requests.price import ChangePrices
+from main.ya_requests.price import ChangePrices, YandexChangePricesList
 from main.ya_requests.request import UpdateOfferList
 
 
@@ -60,26 +60,34 @@ class ProductPageView(BaseView):
                              'offer': Offer.objects.get(pk=pk)})
         return render(self.request, Page.product_card, self.context)
 
-    def save_to_ym(self):
+    def save_to_ym(self, offer):
         """Обработка запроса на обновление или сохранение товара на Яндексе"""
-        offer = Offer.objects.get(pk=self.pk)
         if offer.has_changed:
             sku = offer.shopSku
             update_request = UpdateOfferList(offers=[offer], request=self.request)
             update_request.update_offers()
-
-            if sku in update_request.success:
-                messages.success(self.request, f'Товар shopSku = {sku} успешно сохранен на Яндексе')
-            elif sku in update_request.errors:
-                messages.error(self.request, f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.')
+            if sku in update_request.errors:
+                errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе. '
                 for error_text in update_request.errors[sku]:
-                    messages.error(self.request, error_text)
+                    errors += error_text + ' '
+                messages.error(self.request)
+            else:
+                messages.success(self.request, f'Товар shopSku = {sku} успешно сохранен на Яндексе')
 
-    def update_price(self):
+    def update_price(self, offer):
         """"Обработка запроса на изменение цены на Яндексе"""
-        offer = Offer.objects.get(pk=self.pk)
         if offer.get_price and offer.get_price.has_changed:
-            ChangePrices(['ya_requests'], price_list=[offer.get_price], request=self.request)
+            price = [offer.get_price]
+            sku = offer.shopSku
+            changed_prices = YandexChangePricesList(prices=list(price), request=self.request)
+            changed_prices.update_prices()
+            if sku in changed_prices.errors:
+                errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе. '
+                for error_text in changed_prices.errors[sku]:
+                    errors += error_text + ' '
+                messages.error(self.request, errors)
+            else:
+                messages.success(self.request, f'Цена товара shopSku = {sku} успешно сохранена на Яндексе')
 
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         """Обработка post-запроса"""
@@ -103,7 +111,8 @@ class ProductPageView(BaseView):
 
         data = request.POST.get('yandex', '')
         if data in btns:
-            btns[data]()
+            offer = Offer.objects.get(pk=pk)
+            btns[data](offer)
             return self.get(request, pk)
 
         self.pre_init(request=request, pk=pk)

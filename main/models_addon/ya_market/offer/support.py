@@ -3,8 +3,8 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from main.models_addon.ya_market.base import BaseWeightDimension
 from main.models_addon.ya_market.offer.base import Offer
-from main.models_addon.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType,\
-     ProcessingStateStatus, SupplyScheduleDayChoices, VatType,  CurrencyChoices, PriceSuggestionChoices
+from main.models_addon.ya_market.offer.choices import TimeUnitChoices, MappingType, ProcessingStateNoteType, \
+    ProcessingStateStatus, SupplyScheduleDayChoices, VatType, CurrencyChoices, PriceSuggestionChoices
 
 
 class PriceSuggestion(models.Model):
@@ -18,6 +18,7 @@ class Timing(models.Model):
     """
     Модель для хранения периода времени.
     """
+
     class Meta:
         abstract = True
 
@@ -89,7 +90,7 @@ class ManufacturerCountry(models.Model):
     """
     Модель для хранения страны производителя.
     """
-    offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="manufacturerCountries",)
+    offer = models.ForeignKey(to=Offer, on_delete=models.CASCADE, related_name="manufacturerCountries", )
     name = models.CharField(max_length=255, verbose_name='Страна производства товара')
 
 
