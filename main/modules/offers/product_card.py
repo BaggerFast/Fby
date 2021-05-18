@@ -95,7 +95,7 @@ class ProductPageView(BaseView):
             offer = get_object_or_404(Offer, id=pk)
             offer.delete()
             messages.success(request, f'Товар "{offer.name}" успешно удален')
-            return redirect(reverse('catalogue_list'))
+            return redirect(reverse('catalogue_offer'))
 
         self.request = request
         self.pk = pk
@@ -110,7 +110,7 @@ class ProductPageView(BaseView):
 
         data = request.POST.get('yandex', '')
         if data in btns:
-            offer = Offer.objects.get(pk=pk)
+            offer = Offer.objects.select_related('price').get(pk=pk)
             btns[data](offer)
             return self.get(request, pk)
 

@@ -22,7 +22,7 @@ class OrderListView(BaseView):
         return self.save_models(request=request,  name='catalogue_order')
 
     def get(self, request) -> HttpResponse:
-        orders = Order.objects.filter(user=request.user).prefetch_related('items')
+        orders = Order.objects.prefetch_related('items').filter(user=request.user)
         filter_types = self.filtration.get_filter_types(orders)
         local_context = {
             'navbar': get_navbar(request),

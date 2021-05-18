@@ -63,7 +63,8 @@ class CatalogueView(BaseView):
         offers = offers.filter(has_changed=True)
         if not offers:
             return
-        sku_list = [offer.shopSku for offer in list(offers)]
+        sku_list = offers.values_list('shopSku', flat=True).distinct()
+        print(sku_list)
         update_request = UpdateOfferList(offers=list(offers), request=self.request)
         update_request.update_offers()
         if not update_request.errors:
@@ -110,7 +111,7 @@ class CatalogueView(BaseView):
             5: Q(processingState__isnull=True),
         }
         if index == 6:
-            return [offer for offer in Offer.objects.select_related('price').filter(user=self.request.user)
+            return [offer for offer in Offer.objects.filter(user=self.request.user).select_related('price')
                     if offer.check_rent]
         return Offer.objects.filter(Q(user=self.request.user) & query[index])
 
