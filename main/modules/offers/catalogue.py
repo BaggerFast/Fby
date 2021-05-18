@@ -58,19 +58,19 @@ class CatalogueView(BaseView):
     def save_to_ym(self, offers):
         """Обработка запроса на обновление или сохранение товара на Яндексе"""
         offers = offers.filter(has_changed=True)
-        if offers:
-            skus = [offer.shopSku for offer in list(offers)]
-            update_request = UpdateOfferList(offers=list(offers), request=self.request)
-            update_request.update_offers()
-            if update_request.errors:
-                for sku in skus:
-                    if sku in update_request.errors:
-                        errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе. '
-                        for error_text in update_request.errors[sku]:
-                            errors += error_text + ' '
-                        messages.error(self.request, errors)
-            else:
-                messages.success(self.request, "Все товары успешно отправлены")
+        if not offers:
+            return
+        sku_list = [offer.shopSku for offer in list(offers)]
+        update_request = UpdateOfferList(offers=list(offers), request=self.request)
+        update_request.update_offers()
+        if not update_request.errors:
+            messages.success(self.request, "Все товары успешно отправлены")
+            return
+        for sku in sku_list:
+            if sku in update_request.errors:
+                errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе. '
+                errors += ' '.join(update_request.errors[sku])
+                messages.error(self.request, errors)
 
     def post(self, request: HttpRequest) -> HttpResponse:
         if 'button_loader' in request.POST:
