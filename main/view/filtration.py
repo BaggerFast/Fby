@@ -1,3 +1,11 @@
+def get_item_display_name(item, field):
+    get_display_name = "get_{}_display".format(field)
+    if hasattr(item, get_display_name):
+        return getattr(item, get_display_name)()
+    else:
+        return None
+
+
 class Filtration:
     def __init__(self, fields_to_filter):
         self.fields_to_filter = fields_to_filter
@@ -5,9 +13,21 @@ class Filtration:
     def get_filter_types(self, items):
         filter_types = {}
         for field, name in self.fields_to_filter.items():
+            options = set()
+            for item in items:
+                actual_name = getattr(item, field)
+                options.add((get_item_display_name(item, field) or actual_name, actual_name))
+            if None in options:
+                options.remove(None)
+            options = sorted(options, key=lambda x: x[0])
+            options_actual = None
+            if options:
+                options, options_actual = zip(*options)
+
             filter_types[field] = {
                 'name': name,
-                'options': sorted(list(set([getattr(item, field) for item in items if getattr(item, field)])))
+                'options': options,
+                'options_actual': options_actual,
             }
         return filter_types
 
@@ -15,8 +35,7 @@ class Filtration:
     def filters_from_request(request, filter_types):
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
-            str_options = [filter_type['options'][int(option)]
-                           for option in request.GET.getlist(str(index), '')]
+            str_options = [filter_type['options_actual'][int(option)] for option in request.GET.getlist(str(index), '')]
             filters[field] = str_options
         return filters
 
@@ -39,3 +58,13 @@ class Filtration:
             if passed_fields == used_filters:
                 filtered_items.append(item)
         return filtered_items
+
+    @staticmethod
+    def checked_filters_from_request(request, filter_types):
+        checked = []
+        for index, field in enumerate(filter_types.values()):
+            checked_sub = [False] * len(field.get("options"))
+            for checked_option in request.GET.getlist(str(index), ''):
+                checked_sub[int(checked_option)] = True
+            checked.append(checked_sub)
+        return checked

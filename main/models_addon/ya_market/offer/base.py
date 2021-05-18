@@ -2,10 +2,21 @@
 Основная модель для хранения товара
 docs: https://yandex.ru/dev/market/partner-marketplace/doc/dg/reference/get-campaigns-id-offer-mapping-entries.html
 """
+import math
 
 from django.db import models
 from main.models import User
 from main.models_addon.ya_market.offer.choices import AvailabilityChoices, MappingType
+
+
+def decor(func):
+    def wrapper(self):
+        try:
+            return func(self)
+        except Exception:
+            return None
+
+    return wrapper
 
 
 class Offer(models.Model):
@@ -19,11 +30,11 @@ class Offer(models.Model):
 
     updatedAt = models.DateTimeField(verbose_name="Дата и время последнего обновления цены на товар", null=True)
 
-    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU', null=True)
+    shopSku = models.CharField(max_length=255, verbose_name='Ваш SKU')
 
     name = models.CharField(max_length=255,
-                            help_text='Составляйте по схеме: тип товара + бренд или производитель + модель + '
-                                      'отличительные характеристики.',
+                            help_text="""Составляйте по схеме: тип товара + бренд или производитель + модель +
+                                      отличительные характеристики.""",
                             verbose_name='Название товара', null=True)
 
     category = models.CharField(max_length=255, verbose_name='Категория', null=True)
@@ -76,25 +87,30 @@ class Offer(models.Model):
 
     quantumOfSupply = models.PositiveSmallIntegerField(
         verbose_name='Добавочная партия',
-        help_text="По сколько товаров можно добавлять к минимальной партии. Например, вы планируете поставлять"
-                  " детское питание партиями, причем к минимальной партии хотите прибавлять минимум по 2 коробки, "
-                  "а в каждой коробке по 6 баночек. Тогда добавочная партия — 12 баночек, а к минимальной партии "
-                  "можно добавлять 12, 24, 36 баночек и т. д.",
+        help_text="""По сколько товаров можно добавлять к минимальной партии. Например, вы планируете поставлять
+                  детское питание партиями, причем к минимальной партии хотите прибавлять минимум по 2 коробки,
+                  а в каждой коробке по 6 баночек. Тогда добавочная партия — 12 баночек, а к минимальной партии
+                  можно добавлять 12, 24, 36 баночек и т. д.""",
         blank=True,
         null=True
     )
 
     deliveryDurationDays = models.PositiveSmallIntegerField(verbose_name='Срок поставки',
-                                                            help_text="За какое время вы поставите товар на склад.(в днях)",
+                                                            help_text="За сколько дней вы поставите товар на склад.",
                                                             null=True,
                                                             blank=True)
 
     boxCount = models.PositiveIntegerField(verbose_name='Товар занимает больше одного места',
-                                           help_text='Если нет — оставьте поле пустым. Если да — укажите количество мест '
-                                                     '(например, кондиционер занимает 2 грузовых места — внешний и внутренний блоки в двух коробках).',
+                                           help_text="""Если нет — оставьте поле пустым. Если да — укажите количество
+                                           мест(например, кондиционер занимает 2 грузовых места — внешний и внутренний 
+                                           блоки в двух коробках).""",
                                            blank=True,
                                            null=True
                                            )
+
+    has_changed = models.BooleanField(verbose_name='Есть изменения, не отправленные на Яндекс',
+                                      help_text="True, если изменения есть, False, если изменений нет",
+                                      default=True)
 
     class Meta:
         ordering = ['id']
@@ -107,11 +123,7 @@ class Offer(models.Model):
     def shelfLifeDays(self):
         """
         Срок годности товара: через сколько дней товар станет непригоден для использования.
-
         Рассчитывается на основе поля :class:`shelfLife`
-
-        .. todo::
-           Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
         """
         return self.shelfLife.get_days()
 
@@ -119,11 +131,7 @@ class Offer(models.Model):
     def lifeTimeDays(self):
         """
         Срок службы товара: течение какого периода товар будет исправно выполнять свою функцию,
-
         Рассчитывается на основе поля :class:`lifeTime`
-
-        .. todo::
-           Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
         """
         return self.lifeTime.get_days()
 
@@ -131,22 +139,63 @@ class Offer(models.Model):
     def guaranteePeriodDays(self):
         """
         Гарантийный срок товара: в течение какого периода возможны обслуживание и ремонт товара или возврат денег
-
         Рассчитывается на основе поля :class:`guaranteePeriod`
-
-        .. todo::
-           Добавить функцию-сеттер для этого поля (спасибо Я.API за это)
         """
         return self.guaranteePeriod.get_days()
+
+    @property
+    @decor
+    def shelf_life(self):
+        return self.shelfLife
+
+    @property
+    @decor
+    def life_time(self):
+        return self.lifeTime
+
+    @property
+    @decor
+    def guarantee_period(self):
+        return self.guaranteePeriod
+
+    @property
+    @decor
+    def get_price(self):
+        return self.price
+
+    @property
+    @decor
+    def url(self):
+        return self.urls.first()
+
+    @property
+    @decor
+    def barcode(self):
+        return self.barcodes.first()
+
+    @property
+    @decor
+    def weight_dimensions(self):
+        return self.weightDimensions
+
+    @property
+    @decor
+    def commodity_codes(self):
+        return self.customsCommodityCodes.first()
+
+    @property
+    @decor
+    def processing_state(self):
+        return self.processingState
 
     @property
     def processingState(self):
         """
         Информация о статусе публикации товара на Маркете
 
-        Рассчитывается на основе поля :class:`processingState_set`. Берётся последнее значение.
+        Рассчитывается на основе поля :class:`processingState_set`.
         """
-        return self.processingState_set.last()
+        return self.processingState_set
 
     @property
     def mapping(self):
@@ -164,5 +213,26 @@ class Offer(models.Model):
         return self.mapping_set.get(mappingType=MappingType.REJECTED)
 
     @property
-    def image(self):
-        return self.urls.all()[0].url
+    @decor
+    def rent(self):
+        price = self.get_price
+        data = {
+            2: 0.1,
+            5: 0,
+            6: 0,
+            7: 0.2,
+        }
+        clear_profit = price.value - price.value * data[price.vat]
+        return round((clear_profit - price.net_cost) / clear_profit * 100, 2)
+
+    @property
+    def check_rent(self):
+        rent = self.rent
+        if rent and rent < 8:
+            return math.floor(rent)
+        return False
+
+    @property
+    @decor
+    def manufacturer_country(self):
+        return self.manufacturerCountries.first()

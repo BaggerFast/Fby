@@ -3,42 +3,9 @@
     <span class="fs-4">MarkSystem</span>
   </a>
   <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
-    {% for item in navbar.main %}
-      {% if item.list %}
-        <li class="nav-item dropdown mb-1">
-          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ item.label }}
-          </a>
-          <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-            {% for path in item.list %}
-              <a class="dropdown-item {% if not path.active%}active disabled{% endif %}" href="{% url path.url %}">
-                {{ path.label }}
-              </a>
-            {% endfor %}
-          </div>
-        </li>
-      {% else %}
-        <li class="nav-item mb-1">
-          <a href="{% url item.url %}" class="nav-link {% if not item.active%}active disabled{% else %}text-white{% endif %}">
-            {{ item.label }}
-          </a>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
+  {% include 'components/pills.html' %}
   {% if user.is_authenticated %}
   <hr>
-  <div class="dropdown">
-    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="/media/{{user.image}}" alt="mdo" width="45" height="45" class="rounded-circle me-2">
-      <strong>{{ user }}</strong>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-      {% for item in navbar.user %}
-        <li><a class="dropdown-item" href="{% url item.url %}">{{ item.label }}</a></li>
-      {% endfor %}
-    </ul>
-  </div>
+  {% include 'components/dropdown.html' %}
   {% endif %}
 </div>

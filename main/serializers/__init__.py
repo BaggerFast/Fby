@@ -1,4 +1,4 @@
-from .base import BaseListSerializer, BaseModelSerializer
+from .base import BaseListSerializer, BaseModelSerializer, SimpleModelSerializer
 from .offer_price import PriceSerializer, OfferSerializer, MappingSerializer,\
     ChangePriceSerializer, WeightDimensionSerializer
 from .orders import OrderSerializer

@@ -1,6 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
-  <p>{{ user.username }}</p>
+{% block form_data %}
   <form enctype="multipart/form-data" method="post">
     {% csrf_token %}
     {% include 'components/errors.html' %}
@@ -16,22 +14,7 @@
             {{ item }}
         </label>
       </div>
-    {%endfor%}
+    {% endfor %}
     <button class="btn btn-primary" type="submit">Сохранить</button>
   </form>
-  <hr>
-  <form class="mb-3" method="post">
-    {% csrf_token %}
-    {% include 'components/errors.html' %}
-    {% for item in passwd_form %}
-      <div class="mb-3">
-        <label>
-          {{ item.label }} {% if item.field.required %}*{% endif %}
-          {{ item }}
-        </label>
-      </div>
-    {%endfor%}
-    <button class="btn btn-primary" type="submit">Сохранить</button>
-  </form>
-  <a class="btn btn-primary mb-5" href="{% url 'profile' %}">Назад</a>
 {% endblock %}

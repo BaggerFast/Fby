@@ -3,7 +3,8 @@ import json
 from typing import List
 from django.http import HttpRequest
 
-from main.models_addon import Offer
+from main.models_addon.save_dir.offer.prices import PriceSuggestionPattern
+from main.models_addon.ya_market import Offer
 from main.models_addon.save_dir import *
 from main.serializers import OfferSerializer
 from main.ya_requests.base import Requests
@@ -29,7 +30,7 @@ class OrderList(Requests):
 
     PARAMS = {  # параметры надо предварительно запросить
         "dateFrom": "2021-01-01",
-        "dateTo": "2021-04-17"
+        "dateTo": "2021-05-17"
     }
 
     def __init__(self, request: HttpRequest, params: dict = None):
@@ -37,7 +38,7 @@ class OrderList(Requests):
             self.PARAMS = params
         super().__init__(json_name='/stats/orders', base_context_name='orders', name="Order", request=request)
 
-    def save(self) -> None:
+    def pattern_save(self) -> None:
         OrderPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)
 
 
@@ -62,7 +63,7 @@ class OfferReport(Requests):
         """Получение данных от YM."""
         return self.get_next_page()
 
-    def save(self) -> None:
+    def pattern_save(self) -> None:
         OfferReportPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)
 
 
@@ -93,7 +94,7 @@ class OfferUpdate(Requests):
     @staticmethod
     def get_offer_mapping_entry(offer: Offer) -> dict:
         """Возвращает элемент словаря для товара offer"""
-        offer_serializer = OfferSerializer(offer)
+        offer_serializer = OfferSerializer(instance=offer)
         offer_data = json.loads(json.dumps(offer_serializer.data, ensure_ascii=False))
         offer_data = {key: value for key, value in offer_data.items() if value and key != 'processingState'}
 
@@ -131,19 +132,19 @@ class UpdateOfferList:
     :param success: сообщения об успехах (словарь вида: {shopSku: 'OK'})
     """
     ERRORS = {
-        'BAD_REQUEST': 'у вас нет доступа к добавлению товаров в каталог'
+        'BAD_REQUEST': 'У вас нет доступа к добавлению товаров в каталог'
                        'Убедитесь, что отправляете корректный запрос',
-        'CONSTRAINT_VIOLATION': 'у товара не указаны значения параметров manufacturer-countries '
+        'CONSTRAINT_VIOLATION': 'У товара не указаны значения параметров manufacturer-countries '
                                 'и/или url',
-        'DUPLICATE_OFFER': 'в запросе передан другой товар с тем же значением параметра shop-sku',
-        'INVALID_MARKET_SKU': 'у товара указано несуществующее значение параметра market-sku',
-        'INVALID_OFFER_ID': 'у товара длина значения параметра shop-sku превышает 80 символов '
+        'DUPLICATE_OFFER': 'В запросе передан другой товар с тем же значением параметра shop-sku',
+        'INVALID_MARKET_SKU': 'У товара указано несуществующее значение параметра market-sku',
+        'INVALID_OFFER_ID': 'У товара длина значения параметра shop-sku превышает 80 символов '
                             'и/или оно содержит символы, которые отличаются от печатных символов '
                             'из таблицы ASCII',
-        'INVALID_SHOP_SKU': 'у товара указано некорректное значение параметра shop-sku',
-        'MISSING_OFFER': 'у товара нет параметра offer',
-        'NO_REQUIRED_FIELDS': 'у товара нет обязательных параметров',
-        'PROBLEMS_IN_OTHER_OFFERS': 'информация о товаре корректна, но не отправлена на модерацию '
+        'INVALID_SHOP_SKU': 'У товара указано некорректное значение параметра shop-sku',
+        'MISSING_OFFER': 'У товара нет параметра offer',
+        'NO_REQUIRED_FIELDS': 'У товара нет обязательных параметров',
+        'PROBLEMS_IN_OTHER_OFFERS': ' Информация о товаре корректна, но не отправлена на модерацию '
                                     'из‑за ошибок в других товарах'
     }
 
@@ -151,7 +152,6 @@ class UpdateOfferList:
         self.request: HttpRequest = request
         self.offers: List[Offer] = offers
         self.errors: dict = dict()
-        self.success: dict = dict()
 
     def update_offers(self) -> None:
         """Обновляет или добавляет товары из списка self.offers."""
@@ -161,13 +161,44 @@ class UpdateOfferList:
             if answer['status'] == 'ERROR':
                 self.errors[sku] = self.get_error_messages(answer)
             elif answer['status'] == 'OK':
-                self.success[sku] = 'OK'
+                offer.has_changed = False
+                offer.save(update_fields=['has_changed'])
 
     def get_error_messages(self, answer: dict) -> List[str]:
         """Формирует список сообщений об ошибках"""
         error_messages = []
         for item in answer['errors']:
             if item['code'] in self.ERRORS:
-                item['code'] = f'{item["code"]} ({self.ERRORS[item["code"]]})'
-            error_messages.append(f'{item["code"]}: {item["message"]}')
+                item['code'] = self.ERRORS[item["code"]]
+            error_messages.append(f' {item["code"]}: {item["message"]}')
         return error_messages
+
+
+class PriceSuggestion(Requests):
+    """
+    Класс для получения цен для продвижения
+
+    Если задан market_sku, возвращает отчет по одному товару,
+    иначе - по всему списку товаров из каталога
+    """
+
+    def __init__(self, request: HttpRequest, market_sku: str = None):
+        self.PARAMS = self.get_params(request) if market_sku is None else {"offers": [{"marketSku": market_sku}]}
+        super().__init__(json_name='/offer-prices/suggestions', base_context_name='offers', name="PriceSuggestion", request=request)
+
+    @staticmethod
+    def get_params(request: HttpRequest) -> dict:
+        """Возвращает словарь для get-запроса, содержащий список всех
+        marketSku из каталога текущего пользователя """
+        market_skus = set()
+        for offer in Offer.objects.only('marketSku').filter(user=request.user):
+            if offer.marketSku:
+                market_skus.add(offer.marketSku)
+        return {"offers": [{"marketSku": marketSku} for marketSku in market_skus]}
+
+    def get_json(self) -> dict:
+        """Получение данных от YM."""
+        return self.get_next_page()
+
+    def pattern_save(self) -> None:
+        PriceSuggestionPattern(json=self.json_data['result'][self.base_context_name]).save(self.request.user)

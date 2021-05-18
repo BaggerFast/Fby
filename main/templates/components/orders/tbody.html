@@ -1,0 +1,14 @@
+{% block thead %}
+  <tbody>
+    {% for order in orders %}
+      <tr>
+        <td>
+          <a class="name_link" href="{% url 'order_by_sku' order.id %}">{{ order.order_id }}</a>
+        </td>
+        <td>{{ order.creationDate }}</td>
+        <td>{{ order.total_price }}</td>
+        <td>{{ order.get_status_display|capfirst }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% block rent %}
+{% if not create %}
+    <p>Рентабельность: {% if offer.rent %} {{offer.rent}}% {% else %} недостаточно данных для расчета {% endif %}</p>
+    {% if offer.processingState.get_notes %}
+    {% for note in offer.processingState.get_notes %}
+     <p>Модерация: {{ note.get_type_display|capfirst }}
+    {% endfor %}
+    {% elif offer.processingState %}
+       <p>Модерация: {{offer.processingState.get_status_display}}
+    {% else %}
+      <p>Модерация: товар не отправлен на Яндекс Маркет</p>
+    {% endif %}
+  {% endif %}
+{% endblock %}

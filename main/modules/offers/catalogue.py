@@ -1,66 +1,122 @@
-import itertools
-from django.shortcuts import render
+from django.contrib import messages
+from django.db.models import Q
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
-from main.models_addon import Offer
+from django.urls import reverse
+from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
 from main.view import get_navbar, Page, Filtration
 from main.ya_requests import OfferList, OfferPrice
+import re
+
+from main.ya_requests.price import YandexChangePricesList
+from main.ya_requests.request import UpdateOfferList
 
 
 class CatalogueView(BaseView):
     context = {'title': 'Catalogue', 'page_name': 'Каталог'}
     models_to_save = [OfferList, OfferPrice]
     fields = ['name', 'description', 'shopSku', 'category', 'vendor']
-    table = ['Название', 'SKU', 'Категория', 'Продавец']
+    table = ['', 'Название', 'SKU', 'Категория', 'Продавец']
     filtration = Filtration({
         "vendor": "Торговая марка",
         "category": "Категория",
         "availability": "Планы по поставкам",
     })
+    types = [
+        'Весь список',
+        'Прошли модерацию',
+        'На модерации',
+        'Не прошли модерацию',
+        'Изменены локально',
+        'Созданы локально',
+        'Не рентабельные',
+    ]
 
-    def search_algorithm(self, keywords, objects):
-        if not len(keywords):
-            return objects
-        scores = {}
-        for item, keyword in itertools.product(objects, keywords):
-            for field in self.fields:
-                attr = getattr(item, field)
-                if attr is not None and keyword in str(attr).lower():
-                    if item not in scores:
-                        scores[item] = 0
-                    scores[item] += 1
-                    break
-        return sorted(scores, key=scores.get, reverse=True)
+    def find_offers_id_by_regular(self, request, regular_string=r'form-checkbox:'):
+        """Метод для получения товаров, отмеченных в checkbox"""
+        offers_ids = [re.sub(regular_string, '', line) for line in list(dict(request.POST).keys())[1:-1]]
+        return self.configure_offer(int(request.GET.get('content', 0))).filter(id__in=offers_ids)
 
-    def reformat_offer(self, offer, filter_types) -> list:
-        def offer_search(offers) -> list:
-            keywords = self.request.GET.get('input', '').lower().strip().split()
-            filters = self.filtration.filters_from_request(self.request, filter_types)
+    def update_price(self, offers):
+        """"Обработка запроса на изменение цены на Яндексе"""
+        price = [offer.get_price for offer in offers if offer.price.has_changed]
+        if price:
+            skus = [offer.shopSku for offer in list(offers)]
+            changed_prices = YandexChangePricesList(prices=list(price), request=self.request)
+            changed_prices.update_prices()
+            if changed_prices.errors:
+                for sku in skus:
+                    if sku in changed_prices.errors:
+                        errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе. '
+                        for error_text in changed_prices.errors[sku]:
+                            errors += error_text + ' '
+                        messages.error(self.request, errors)
+            else:
+                messages.success(self.request, "Все цены успешно отправлены")
 
-            objects = self.filtration.filter_items(offers, filters)
-            objects = self.search_algorithm(keywords, objects)
-
-            was_searching_used = len(keywords) != 0
-            if not was_searching_used:
-                filter_values = [j for sub in filters.values() for j in sub]
-                if len(filter_values):
-                    was_searching_used = True
-
-            self.context_update({'search': was_searching_used})
-            return objects
-        return offer_search(offer)
+    def save_to_ym(self, offers):
+        """Обработка запроса на обновление или сохранение товара на Яндексе"""
+        offers = offers.filter(has_changed=True)
+        if not offers:
+            return
+        sku_list = [offer.shopSku for offer in list(offers)]
+        update_request = UpdateOfferList(offers=list(offers), request=self.request)
+        update_request.update_offers()
+        if not update_request.errors:
+            messages.success(self.request, "Все товары успешно отправлены")
+            return
+        for sku in sku_list:
+            if sku in update_request.errors:
+                errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе. '
+                errors += ' '.join(update_request.errors[sku])
+                messages.error(self.request, errors)
 
     def post(self, request: HttpRequest) -> HttpResponse:
-        return self.save_models(request=request)
+        if 'button_loader' in request.POST:
+            return self.save_models(request=request, name='catalogue_offer')
+        elif 'button_push' in request.POST:
+            offers = self.find_offers_id_by_regular(request)
+            if not offers:
+                offers = self.configure_offer(int(request.GET.get('content', 0)))
+            self.save_to_ym(offers=offers)
+            self.update_price(offers=offers)
+            return redirect(reverse('catalogue_offer'))
+        elif 'checkbox' in request.POST:
+            for offer in self.find_offers_id_by_regular(request):
+                offer.delete()
+        return redirect(reverse('catalogue_offer'))
+
+    def configure_offer(self, index):
+        """Метод для получения товаров с нужным статусом"""
+        query = {
+            0: Q(),
+            1: Q(processingState__status='READY'),
+            2: Q(processingState__status='IN_WORK'),
+            3: Q(processingState__status__in=['NEED_CONTENT', 'NEED_INFO', 'REJECTED', 'SUSPENDED', 'OTHER']),
+            4: Q(processingState__isnull=False, has_changed=True) | Q(processingState__isnull=False,
+                                                                      price__has_changed=True),
+            5: Q(processingState__isnull=True),
+        }
+        if index == 6:
+            return [offer for offer in Offer.objects.filter(user=self.request.user) if offer.check_rent]
+        return Offer.objects.filter(user=self.request.user).filter(query[index])
 
     def get(self, request: HttpRequest) -> HttpResponse:
-        offers = Offer.objects.filter(user=request.user)
+        self.request = request
+        category_index = int(request.GET.get('content', 0))
+        offers = self.configure_offer(category_index)
+        if not offers and category_index:
+            messages.success(self.request, f'Каталог {self.types[category_index].lower()} пуст')
+            return redirect(reverse('catalogue_offer'))
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {
             'navbar': get_navbar(request),
-            'offers': self.reformat_offer(offers, filter_types),
             'table': self.table,
             'filter_types': filter_types.items(),
+            'current_type': category_index,
+            'types': self.types,
+            'offers': self.sort_object(offers, filter_types),
         }
         self.context_update(local_context)
         return render(request, Page.catalogue, self.context)
