@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, Http404
 from django.urls import reverse
 from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
@@ -22,20 +22,21 @@ class CatalogueView(BaseView):
         "category": "Категория",
         "availability": "Планы по поставкам",
     })
-    types = [
-        'Весь список',
-        'Прошли модерацию',
-        'На модерации',
-        'Не прошли модерацию',
-        'Изменены локально',
-        'Созданы локально',
-        'Не рентабельные',
-    ]
+    types = {
+        'Весь список': Q(),
+        'Прошли модерацию': Q(processingState__status='READY'),
+        'На модерации': Q(processingState__status='IN_WORK'),
+        'Не прошли модерацию': Q(processingState__status__in=['NEED_CONTENT', 'NEED_INFO', 'REJECTED', 'SUSPENDED',
+                                                              'OTHER']),
+        'Изменены локально': Q(processingState__isnull=False) & (Q(has_changed=True) | Q(price__has_changed=True)),
+        'Созданы локально': Q(processingState__isnull=True),
+        'Не рентабельные': None,
+    }
 
     def find_offers_id_by_regular(self, request, regular_string=r'form-checkbox:'):
         """Метод для получения товаров, отмеченных в checkbox"""
         offers_ids = [re.sub(regular_string, '', line) for line in list(dict(request.POST).keys())[1:-1]]
-        return self.configure_offer(int(request.GET.get('content', 0))).filter(id__in=offers_ids)
+        return self.configure_offer().filter(id__in=offers_ids)
 
     def update_price(self, offers):
         """"Обработка запроса на изменение цены на Яндексе"""
@@ -64,7 +65,6 @@ class CatalogueView(BaseView):
         if not offers:
             return
         sku_list = offers.values_list('shopSku', flat=True).distinct()
-        print(sku_list)
         update_request = UpdateOfferList(offers=list(offers), request=self.request)
         update_request.update_offers()
         if not update_request.errors:
@@ -79,7 +79,7 @@ class CatalogueView(BaseView):
     def button_push(self):
         offers = self.find_offers_id_by_regular(self.request)
         if not offers:
-            offers = self.configure_offer(int(self.request.GET.get('content', 0)))
+            offers = self.configure_offer()
         self.save_to_ym(offers=offers)
         self.update_price(offers=offers)
         return redirect(reverse('catalogue_offer'))
@@ -100,27 +100,24 @@ class CatalogueView(BaseView):
                 return data[key]()
         return redirect(reverse('catalogue_offer'))
 
-    def configure_offer(self, index):
+    def configure_offer(self):
+        index = self.request.GET.get('content', 'Весь список')
         """Метод для получения товаров с нужным статусом"""
-        query = {
-            0: Q(),
-            1: Q(processingState__status='READY'),
-            2: Q(processingState__status='IN_WORK'),
-            3: Q(processingState__status__in=['NEED_CONTENT', 'NEED_INFO', 'REJECTED', 'SUSPENDED', 'OTHER']),
-            4: Q(processingState__isnull=False) & (Q(has_changed=True) | Q(price__has_changed=True)),
-            5: Q(processingState__isnull=True),
-        }
-        if index == 6:
+        if index not in self.types:
+            raise Http404()
+        if index == 'Не рентабельные':
             return [offer for offer in Offer.objects.filter(user=self.request.user).select_related('price')
                     if offer.check_rent]
-        return Offer.objects.filter(Q(user=self.request.user) & query[index])
+        return Offer.objects.filter(Q(user=self.request.user) & self.types[index])
 
     def get(self, request: HttpRequest) -> HttpResponse:
         self.request = request
-        category_index = int(request.GET.get('content', 0))
-        offers = self.configure_offer(category_index)
+        category_index = request.GET.get('content', 'Весь список')
+        if category_index not in self.types:
+            raise Http404()
+        offers = self.configure_offer()
         if not offers and category_index:
-            messages.success(self.request, f'Каталог {self.types[category_index].lower()} пуст')
+            messages.success(self.request, f'Каталог {category_index.lower()} пуст')
             return redirect(reverse('catalogue_offer'))
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {
