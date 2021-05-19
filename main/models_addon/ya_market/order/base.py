@@ -63,7 +63,7 @@ class Order(models.Model):
 
     @property
     def get_payments(self):
-        return self.payments.filter(type='PAYMENT') | self.payments.filter(type='REFUND')
+        return self.payments.filter(Q(type='PAYMENT') | Q(type='REFUND'))
 
     @property
     def total_price(self):
