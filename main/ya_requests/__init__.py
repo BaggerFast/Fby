@@ -1,2 +1,3 @@
-from .price import OfferPrice
-from .request import OfferList, OrderList
+from .price import OfferPrice, YandexChangePricesList
+from .request import OfferList, OrderList, UpdateOfferList
+

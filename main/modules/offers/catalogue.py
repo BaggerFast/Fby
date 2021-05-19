@@ -6,10 +6,8 @@ from django.urls import reverse
 from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
 from main.view import get_navbar, Page, Filtration
-from main.ya_requests import OfferList, OfferPrice
+from main.ya_requests import OfferList, OfferPrice, UpdateOfferList, YandexChangePricesList
 import re
-from main.ya_requests.price import YandexChangePricesList
-from main.ya_requests.request import UpdateOfferList
 
 
 class CatalogueView(BaseView):
@@ -22,15 +20,15 @@ class CatalogueView(BaseView):
         "category": "Категория",
         "availability": "Планы по поставкам",
     })
-    types = {
-        'Весь список': Q(),
-        'Прошли модерацию': Q(processingState__status='READY'),
-        'На модерации': Q(processingState__status='IN_WORK'),
-        'Не прошли модерацию': Q(processingState__status__in=['NEED_CONTENT', 'NEED_INFO', 'REJECTED', 'SUSPENDED',
+    content_types = {
+        'ВесьСписок': Q(),
+        'ПрошлиМодерацию': Q(processingState__status='READY'),
+        'НаМодерации': Q(processingState__status='IN_WORK'),
+        'НеПрошлиМодерацию': Q(processingState__status__in=['NEED_CONTENT', 'NEED_INFO', 'REJECTED', 'SUSPENDED',
                                                               'OTHER']),
-        'Изменены локально': Q(processingState__isnull=False) & (Q(has_changed=True) | Q(price__has_changed=True)),
-        'Созданы локально': Q(processingState__isnull=True),
-        'Не рентабельные': None,
+        'ИзмененыЛокально': Q(processingState__isnull=False) & (Q(has_changed=True) | Q(price__has_changed=True)),
+        'СозданыЛокально': Q(),
+        'НеРентабельные': None,
     }
 
     def find_offers_id_by_regular(self, request, regular_string=r'form-checkbox:'):
@@ -40,24 +38,14 @@ class CatalogueView(BaseView):
 
     def update_price(self, offers):
         """"Обработка запроса на изменение цены на Яндексе"""
-        price = [offer.get_price for offer in offers if offer.price.has_changed]
+        prices = [offer.get_price for offer in offers if offer.price.has_changed]
 
-        if not price:
+        if not prices:
             return
-
-        skus = [offer.shopSku for offer in list(offers)]
-        changed_prices = YandexChangePricesList(prices=list(price), request=self.request)
+        sku_list = offers.values_list('shopSku', flat=True).distinct()
+        changed_prices = YandexChangePricesList(prices=prices, request=self.request)
         changed_prices.update_prices()
-
-        if not changed_prices.errors:
-            messages.success(self.request, "Все цены успешно отправлены")
-            return
-
-        for sku in skus:
-            if sku in changed_prices.errors:
-                errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе. '
-                errors += ' '.join(changed_prices.errors[sku])
-                messages.error(self.request, errors)
+        changed_prices.messages(sku_list=sku_list, success_message="Все цены успешно отправлены")
 
     def save_to_ym(self, offers):
         """Обработка запроса на обновление или сохранение товара на Яндексе"""
@@ -67,14 +55,7 @@ class CatalogueView(BaseView):
         sku_list = offers.values_list('shopSku', flat=True).distinct()
         update_request = UpdateOfferList(offers=list(offers), request=self.request)
         update_request.update_offers()
-        if not update_request.errors:
-            messages.success(self.request, "Все товары успешно отправлены")
-            return
-        for sku in sku_list:
-            if sku in update_request.errors:
-                errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе. '
-                errors += ' '.join(update_request.errors[sku])
-                messages.error(self.request, errors)
+        update_request.messages(sku_list=sku_list, success_message="Все товары успешно отправлены")
 
     def button_push(self):
         offers = self.find_offers_id_by_regular(self.request)
@@ -101,19 +82,20 @@ class CatalogueView(BaseView):
         return redirect(reverse('catalogue_offer'))
 
     def configure_offer(self):
-        index = self.request.GET.get('content', 'Весь список')
+        index = self.request.GET.get('content', 'ВесьСписок')
         """Метод для получения товаров с нужным статусом"""
-        if index not in self.types:
+        if index not in self.content_types:
             raise Http404()
-        if index == 'Не рентабельные':
+        if index == 'НеРентабельные':
             return [offer for offer in Offer.objects.filter(user=self.request.user).select_related('price')
                     if offer.check_rent]
-        return Offer.objects.filter(Q(user=self.request.user) & self.types[index])
+        return Offer.objects.filter(Q(user=self.request.user) & self.content_types[index])
 
     def get(self, request: HttpRequest) -> HttpResponse:
         self.request = request
-        category_index = request.GET.get('content', 'Весь список')
-        if category_index not in self.types:
+        print(request.GET)
+        category_index = request.GET.get('content', 'ВесьСписок')
+        if category_index not in self.content_types:
             raise Http404()
         offers = self.configure_offer()
         if not offers and category_index:
@@ -125,7 +107,7 @@ class CatalogueView(BaseView):
             'table': self.table,
             'filter_types': filter_types.items(),
             'current_type': category_index,
-            'types': self.types,
+            'types': self.content_types,
             'offers': self.sort_object(offers, filter_types),
         }
         self.context_update(local_context)
