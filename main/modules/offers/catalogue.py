@@ -21,14 +21,14 @@ class CatalogueView(BaseView):
         "availability": "Планы по поставкам",
     })
     content_types = {
-        'ВесьСписок': Q(),
-        'ПрошлиМодерацию': Q(processingState__status='READY'),
-        'НаМодерации': Q(processingState__status='IN_WORK'),
-        'НеПрошлиМодерацию': Q(processingState__status__in=['NEED_CONTENT', 'NEED_INFO', 'REJECTED', 'SUSPENDED',
+        'Весь список': Q(),
+        'Прошли модерацию': Q(processingState__status='READY'),
+        'На модерации': Q(processingState__status='IN_WORK'),
+        'Не прошли модерацию': Q(processingState__status__in=['NEED_CONTENT', 'NEED_INFO', 'REJECTED', 'SUSPENDED',
                                                               'OTHER']),
-        'ИзмененыЛокально': Q(processingState__isnull=False) & (Q(has_changed=True) | Q(price__has_changed=True)),
-        'СозданыЛокально': Q(),
-        'НеРентабельные': None,
+        'Изменены локально': Q(processingState__isnull=False) & (Q(has_changed=True) | Q(price__has_changed=True)),
+        'Созданы локально': Q(),
+        'Не рентабельные': None,
     }
 
     def find_offers_id_by_regular(self, request, regular_string=r'form-checkbox:'):
@@ -82,11 +82,11 @@ class CatalogueView(BaseView):
         return redirect(reverse('catalogue_offer'))
 
     def configure_offer(self):
-        index = self.request.GET.get('content', 'ВесьСписок')
+        index = self.request.GET.get('content', 'Весь список')
         """Метод для получения товаров с нужным статусом"""
         if index not in self.content_types:
             raise Http404()
-        if index == 'НеРентабельные':
+        if index == 'Не рентабельные':
             return [offer for offer in Offer.objects.filter(user=self.request.user).select_related('price')
                     if offer.check_rent]
         return Offer.objects.filter(Q(user=self.request.user) & self.content_types[index])
@@ -94,7 +94,7 @@ class CatalogueView(BaseView):
     def get(self, request: HttpRequest) -> HttpResponse:
         self.request = request
         print(request.GET)
-        category_index = request.GET.get('content', 'ВесьСписок')
+        category_index = request.GET.get('content', 'Весь список')
         if category_index not in self.content_types:
             raise Http404()
         offers = self.configure_offer()

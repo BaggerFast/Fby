@@ -39,7 +39,7 @@ class CreateOfferView(BaseView):
     def save_message(self):
         if self.context['content'] == 'accommodation':
             messages.success(self.request, f'Товар добавлен. id = {self.offer_id}')
-            return redirect(reverse('catalogue_list'))
+            return redirect(reverse('catalogue_offer'))
         else:
             messages.success(self.request, 'Первая часть модели сохранена')
 
