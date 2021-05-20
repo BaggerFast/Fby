@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect
@@ -93,7 +95,6 @@ class CatalogueView(BaseView):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         self.request = request
-        print(request.GET)
         category_index = request.GET.get('content', 'Весь список')
         if category_index not in self.content_types:
             raise Http404()
@@ -102,6 +103,7 @@ class CatalogueView(BaseView):
             messages.success(self.request, f'Каталог {category_index.lower()} пуст')
             return redirect(reverse('catalogue_offer'))
         filter_types = self.filtration.get_filter_types(offers)
+        pprint(dict(filter_types.items()))
         local_context = {
             'navbar': get_navbar(request),
             'table': self.table,
