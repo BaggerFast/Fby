@@ -17,8 +17,7 @@ class Filtration:
             for item in items:
                 actual_name = getattr(item, field)
                 options.add((get_item_display_name(item, field) or actual_name, actual_name))
-            if None in options:
-                options.remove(None)
+                options.remove((None, None))
             options = sorted(options, key=lambda x: x[0])
             options_actual = None
             if options:

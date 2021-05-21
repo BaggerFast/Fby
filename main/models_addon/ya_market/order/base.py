@@ -79,6 +79,7 @@ class Order(models.Model):
         :return: Общая себестоимость
         """
         total = 0
+
         for item in self.items.all():
             total += item.per_item_net_price(offer)
         return total
@@ -149,7 +150,7 @@ class Item(models.Model):
     @property
     def total_price(self):
         """полная цена за текущий товар"""
-        return round(self.prices.aggregate(Sum('total'))['total__sum'], 2)
+        return round(self.prices.aggregate(Sum('total'))['total__sum'])
 
     def per_item_net_price(self, offers):
         """цена за текущий товар без учета скидок"""
