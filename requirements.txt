@@ -16,7 +16,8 @@ django-filter == 2.4.0
 requests==2.25.1
 
 # Analytics
-pandas == 1.2.3
+numpy
+pandas
 
 # Excel
 openpyxl == 3.0.7
