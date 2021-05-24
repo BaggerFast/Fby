@@ -34,7 +34,6 @@ urlpatterns = [
     path('auth/', include(Url.auth)),
     # email
     path('email/', include(Url.email)),
-
 ]
 
 if settings.DEBUG:
