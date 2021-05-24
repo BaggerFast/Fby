@@ -25,7 +25,10 @@ SECRET_KEY = 'asu)%c(yfxy)g&6ap$dmg+48%+t$xjn%j2_=^svmb)dnc(34vy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '195.161.41.98',
+    'marksystem.site'
+]
 
 # Application definition
 
