@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'fby_market.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'fby_db',
+            'NAME': 'fbby_db',
             'USER': 'fby_admin_market',
             'PASSWORD':  '4XgR4dz24z46ngpF1kQ120P2kX0xHGZG',
             'HOST': 'localhost',
