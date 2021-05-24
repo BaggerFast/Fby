@@ -4,4 +4,4 @@ class Url:
     profile = 'fby_market.additional_url.profile'
     analytics = 'fby_market.additional_url.analytics'
     auth = 'fby_market.additional_url.auth'
-    email = 'fby_market.additional_url.email'
+    # email = 'fby_market.additional_url.email'

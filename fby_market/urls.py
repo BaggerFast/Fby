@@ -33,7 +33,7 @@ urlpatterns = [
     # auth
     path('auth/', include(Url.auth)),
     # email
-    path('email/', include(Url.email)),
+    # path('email/', include(Url.email)),
 ]
 
 if settings.DEBUG:

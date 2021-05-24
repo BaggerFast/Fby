@@ -1,7 +1,7 @@
 # Engine
 Django==3.1.7
 Pillow==8.2.0
-django_email_verification
+django_email_verification==0.1.0
 
 # Documentation
 Sphinx==3.5.2
@@ -16,8 +16,8 @@ django-filter == 2.4.0
 requests==2.25.1
 
 # Analytics
-numpy
-pandas
+numpy == 1.20.2
+pandas == 1.2.3
 
 # Excel
 openpyxl == 3.0.7
