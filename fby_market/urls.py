@@ -20,7 +20,7 @@ import debug_toolbar
 
 from fby_market import settings
 from main.modules import MainView
-from fby_market.additional_url import*
+from fby_market.additional_url import *
 
 urlpatterns = [
     # basic
