@@ -15,7 +15,6 @@ django-filter == 2.4.0
 requests==2.25.1
 
 # Analytics
-numpy == 1.20.2
 pandas == 1.2.3
 
 # Excel
