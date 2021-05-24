@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'fby_market.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASE = {
+DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'fby_db',
