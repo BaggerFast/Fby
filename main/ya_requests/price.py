@@ -141,3 +141,13 @@ class YandexChangePricesList:
                 item['code'] = self.ERRORS[item["code"]]
             error_messages.append(f' {item["code"]}: {item["message"]}')
         return error_messages
+
+    def messages(self, sku_list: list, success_message: str):
+        if not self.errors:
+            messages.success(self.request, success_message)
+            return
+        for sku in sku_list:
+            if sku in self.errors:
+                errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе.'
+                errors += ' '.join(self.errors[sku])
+                messages.error(self.request, errors)

@@ -1,6 +1,8 @@
 """Формирование запросов в YM для получения данных и сохранения их в БД"""
 import json
 from typing import List
+
+from django.contrib import messages
 from django.http import HttpRequest
 
 from main.models_addon.save_dir.offer.prices import PriceSuggestionPattern
@@ -172,6 +174,16 @@ class UpdateOfferList:
                 item['code'] = self.ERRORS[item["code"]]
             error_messages.append(f' {item["code"]}: {item["message"]}')
         return error_messages
+
+    def messages(self, sku_list: list, success_message: str):
+        if not self.errors:
+            messages.success(self.request, success_message)
+            return
+        for sku in sku_list:
+            if sku in self.errors:
+                errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.'
+                errors += ' '.join(self.errors[sku])
+                messages.error(self.request, errors)
 
 
 class PriceSuggestion(Requests):

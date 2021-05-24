@@ -63,14 +63,13 @@ class Order(models.Model):
 
     @property
     def get_payments(self):
-        return self.payments.filter(type='PAYMENT') | self.payments.filter(type='REFUND')
+        return self.payments.filter(Q(type='PAYMENT') | Q(type='REFUND'))
 
     @property
     def total_price(self):
         """полная цена заказа"""
         total = 0
         for item in self.items.all():
-            # total += item.per_item_price
             total += item.total_price
         return total
 
@@ -156,7 +155,7 @@ class Item(models.Model):
         """цена за текущий товар без учета скидок"""
         pr = 0
         for price in self.discounts:
-            offer = offers.filter(marketSku=price.item.marketSku)
+            offer = offers.filter(marketSku=price.item.marketSku).select_related('price')
             if offer:
                 net_cost = offer.first().price.net_cost
                 if net_cost:

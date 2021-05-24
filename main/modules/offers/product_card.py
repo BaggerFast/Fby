@@ -66,28 +66,20 @@ class ProductPageView(BaseView):
             sku = offer.shopSku
             update_request = UpdateOfferList(offers=[offer], request=self.request)
             update_request.update_offers()
-            if sku in update_request.errors:
-                errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе. '
-                for error_text in update_request.errors[sku]:
-                    errors += error_text + ' '
-                messages.error(self.request)
-            else:
-                messages.success(self.request, f'Товар shopSku = {sku} успешно сохранен на Яндексе')
+            update_request.messages(sku_list=list(sku),
+                                    success_message=f'Товар shopSku = {sku} успешно сохранен на Яндексе')
 
     def update_price(self, offer):
         """"Обработка запроса на изменение цены на Яндексе"""
         if offer.get_price and offer.get_price.has_changed:
             price = [offer.get_price]
-            sku = offer.shopSku
-            changed_prices = YandexChangePricesList(prices=list(price), request=self.request)
+            sku = [offer.shopSku]
+            if not price:
+                return
+            changed_prices = YandexChangePricesList(prices=price, request=self.request)
             changed_prices.update_prices()
-            if sku in changed_prices.errors:
-                errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе. '
-                for error_text in changed_prices.errors[sku]:
-                    errors += error_text + ' '
-                messages.error(self.request, errors)
-            else:
-                messages.success(self.request, f'Цена товара shopSku = {sku} успешно сохранена на Яндексе')
+            changed_prices.messages(sku_list=sku,
+                                    success_message=f'Цена товара shopSku = {sku} успешно сохранена на Яндексе')
 
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         """Обработка post-запроса"""
@@ -97,7 +89,8 @@ class ProductPageView(BaseView):
             offer = get_object_or_404(Offer, id=pk)
             offer.delete()
             messages.success(request, f'Товар "{offer.name}" успешно удален')
-            return redirect(reverse('catalogue_list'))
+            return redirect(reverse('catalogue_offer'))
+
         self.request = request
         self.pk = pk
 
@@ -111,7 +104,7 @@ class ProductPageView(BaseView):
 
         data = request.POST.get('yandex', '')
         if data in btns:
-            offer = Offer.objects.get(pk=pk)
+            offer = Offer.objects.select_related('price').get(pk=pk)
             btns[data](offer)
             return self.get(request, pk)
 

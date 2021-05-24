@@ -29,7 +29,3 @@ pylint-django==2.4.2
 
 # Debug
 django-debug-toolbar==3.2.1
-
-Pygments~=2.8.1
-
-plotly~=4.14.3

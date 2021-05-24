@@ -11,11 +11,11 @@ class BaseView(LoginRequiredMixin, View):
     """
     Базовый класс для отображения каталога
     """
-    context = {}
+    context = dict()
     request = None
 
     def context_update(self, data: dict):
-        self.context = {**data, **self.context}
+        self.context.update(data)
 
     def save_models(self, request: HttpRequest, name) -> HttpResponse:
         for model in self.models_to_save:

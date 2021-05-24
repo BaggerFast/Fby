@@ -1,5 +1,5 @@
-from django.http import HttpResponse
 from django.views.generic.edit import FormView
+
 from main.view import get_navbar
 
 
