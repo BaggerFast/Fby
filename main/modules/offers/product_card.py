@@ -66,26 +66,20 @@ class ProductPageView(BaseView):
             sku = offer.shopSku
             update_request = UpdateOfferList(offers=[offer], request=self.request)
             update_request.update_offers()
-            if sku not in update_request.errors:
-                messages.success(self.request, f'Товар shopSku = {sku} успешно сохранен на Яндексе')
-                return
-            errors = f'Ошибка при сохранении товара shopSku = {sku} на Яндексе.'
-            errors += ''.join(update_request.errors[sku])
-            messages.error(self.request, errors)
+            update_request.messages(sku_list=list(sku),
+                                    success_message=f'Товар shopSku = {sku} успешно сохранен на Яндексе')
 
     def update_price(self, offer):
         """"Обработка запроса на изменение цены на Яндексе"""
         if offer.get_price and offer.get_price.has_changed:
             price = [offer.get_price]
-            sku = offer.shopSku
-            changed_prices = YandexChangePricesList(prices=list(price), request=self.request)
-            changed_prices.update_prices()
-            if not sku in changed_prices.errors:
-                messages.success(self.request, f'Цена товара shopSku = {sku} успешно сохранена на Яндексе')
+            sku = [offer.shopSku]
+            if not price:
                 return
-            errors = f'Ошибка при сохранении цены товара shopSku = {sku} на Яндексе. '
-            errors += ' '.join(changed_prices[sku])
-            messages.error(self.request, errors)
+            changed_prices = YandexChangePricesList(prices=price, request=self.request)
+            changed_prices.update_prices()
+            changed_prices.messages(sku_list=sku,
+                                    success_message=f'Цена товара shopSku = {sku} успешно сохранена на Яндексе')
 
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         """Обработка post-запроса"""

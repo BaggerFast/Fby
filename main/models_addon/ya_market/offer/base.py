@@ -215,7 +215,7 @@ class Offer(models.Model):
     @property
     @decor
     def rent(self):
-        price = self.get_price
+        price = self.price
         data = {
             2: 0.1,
             5: 0,

@@ -25,7 +25,10 @@ SECRET_KEY = 'asu)%c(yfxy)g&6ap$dmg+48%+t$xjn%j2_=^svmb)dnc(34vy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '195.161.41.98',
+    'marksystem.site'
+]
 
 # Application definition
 
@@ -77,12 +80,22 @@ WSGI_APPLICATION = 'fby_market.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'fbby_db',
+            'USER': 'fby_admin_market',
+            'PASSWORD':  '4XgR4dz24z46ngpF1kQ120P2kX0xHGZG',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
+ }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -123,6 +136,7 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

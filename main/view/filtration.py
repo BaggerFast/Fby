@@ -1,5 +1,5 @@
 def get_item_display_name(item, field):
-    get_display_name = "get_{}_display".format(field)
+    get_display_name = f"get_{field}_display"
     if hasattr(item, get_display_name):
         return getattr(item, get_display_name)()
     else:
