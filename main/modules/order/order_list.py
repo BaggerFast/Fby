@@ -14,8 +14,8 @@ class OrderListView(BaseView):
     models_to_save = [OrderList]
     fields = ['status', 'order_id', 'paymentType', 'total_price']
     filtration = Filtration({
-        'status': 'Статус',
-        'paymentType': 'Тип оплаты'
+        'Статус': {'enum': 'status'},
+        'Тип оплаты': {'enum': 'paymentType'}
     })
 
     def post(self, request) -> HttpResponse:

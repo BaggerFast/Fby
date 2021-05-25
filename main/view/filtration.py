@@ -1,9 +1,8 @@
+from collections import OrderedDict
+
+
 def get_item_display_name(item, field):
-    get_display_name = f"get_{field}_display"
-    if hasattr(item, get_display_name):
-        return getattr(item, field), getattr(item, get_display_name)()
-    else:
-        return None, None
+    return getattr(item, field), getattr(item, f'get_{field}_display')()
 
 
 class Filtration:
@@ -11,42 +10,30 @@ class Filtration:
         self.fields_to_filter = fields_to_filter
 
     def get_filter_types(self, items):
-        # todo refactor don't change the structure of return
         filter_types = {}
-        for field, name in self.fields_to_filter.items():
-            options = set()
-            options_actual = []
-            for item in items:
-                actual_name = getattr(item, field)
-                options_s, choice_name = get_item_display_name(item, field)
-                if options_s and choice_name:
-                    options_actual.append(options_s)
-                options.add((choice_name or actual_name))
+        for name, field in self.fields_to_filter.items():
+            if 'enum' not in field:
+                filter_types[field] = {
+                    'name': name,
+                    'options': sorted(set(items.values_list(field, flat=True).distinct())),
+                }
+            else:
+                field = field['enum']
+                options_actual = items.values_list(field, flat=True).distinct()
+                options = [getattr(item, f'get_{field}_display')() for item in items]
 
-            if None in options:
-                options.remove(None)
-
-            # todo sorted is not safety
-            options = sorted(options, key=lambda x: x[0])
-
-            filter_types[field] = {
-                'name': name,
-                'options': options,
-            }
-
-            if options_actual:
-                filter_types[field].update({'options_actual': options_actual})
-
+                filter_types[field] = {
+                    'name': name,
+                    'options': list(OrderedDict.fromkeys(options)),
+                    'options_actual': list(OrderedDict.fromkeys(options_actual)),
+                }
         return filter_types
 
-    # todo refactor of this functions
     @staticmethod
     def filters_from_request(request, filter_types):
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
             type = 'options_actual' if 'options_actual' in filter_type else 'options'
-            data = [option for option in request.GET.getlist(str(index), '')]
-            print(data)
             str_options = [filter_type[type][int(option)] for option in request.GET.getlist(str(index), '')]
             filters[field] = str_options
         return filters
