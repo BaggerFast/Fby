@@ -93,7 +93,6 @@ class CatalogueView(BaseView):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         self.request = request
-        print(request.GET)
         category_index = request.GET.get('content', 'Весь список')
         if category_index not in self.content_types:
             raise Http404()
