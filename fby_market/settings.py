@@ -132,11 +132,8 @@ LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
-STATIC_ROOT = 'static'
+STATIC_ROOT = 'statics'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -161,26 +158,3 @@ AUTH_USER_MODEL = 'main.User'
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
-
-
-def verified_callback(user):
-    user.verified = True
-
-
-# For django_email_verification
-EMAIL_VERIFIED_CALLBACK = verified_callback
-EMAIL_FROM_ADDRESS = 'mark_system@bk.ru'
-EMAIL_MAIL_SUBJECT = 'Подтверждение почты'
-EMAIL_MAIL_HTML = 'pages/mail_confirmation/confirm_email.html'
-EMAIL_MAIL_PLAIN = 'pages/mail_confirmation/confirm_email_plain.txt'
-EMAIL_TOKEN_LIFE = 60 * 60
-EMAIL_PAGE_TEMPLATE = 'pages/mail_confirmation/email_page.html'
-EMAIL_PAGE_DOMAIN = 'http://127.0.0.1:8000'
-
-# For Django Email Backend
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'mark_system@bk.ru'
-EMAIL_HOST_PASSWORD = 'jojosadventures'
-EMAIL_USE_SSL = True
