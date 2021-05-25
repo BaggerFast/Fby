@@ -22,5 +22,4 @@ class MyRegisterFormView(BaseView):
         login(self.request, user)
         messages.success(self.request, 'Вы успешно зарегистрировались! Проверьте свою почту для подтверждения '
                                        'регистрации!')
-        send_email(user)
         return redirect(reverse('index'))
