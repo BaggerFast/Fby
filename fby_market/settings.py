@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'debug_toolbar',
-    'django_email_verification',
 ]
 
 MIDDLEWARE = [
@@ -77,25 +76,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fby_market.wsgi.application'
 
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-DATABASES = {
-    'default': {
+if True:
+    DATABASES = {
+        'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'fbby_db',
             'USER': 'fby_admin_market',
-            'PASSWORD':  '4XgR4dz24z46ngpF1kQ120P2kX0xHGZG',
+            'PASSWORD': '4XgR4dz24z46ngpF1kQ120P2kX0xHGZG',
             'HOST': 'localhost',
             'PORT': '3306',
         }
- }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -133,7 +136,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'statics'
+STATIC_ROOT = 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
