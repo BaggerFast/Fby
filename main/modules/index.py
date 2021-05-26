@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import View
-from main.view import *
+from main.view import get_navbar, Page
 
 
 class MainView(View):

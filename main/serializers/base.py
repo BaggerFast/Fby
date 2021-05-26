@@ -3,7 +3,7 @@
 Определяют методы create() и update() для сериалайзеров сложной структуры
 для поддержки десериализации
 """
-import json
+
 from typing import List
 from rest_framework import serializers
 from rest_framework.utils import model_meta
