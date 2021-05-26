@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.urls import reverse
@@ -40,10 +41,12 @@ class OrderPageView(BaseView):
     def get(self, request, pk) -> HttpResponse:
         item_id = int(request.GET.get('item_id', 0))
         if item_id:
-            item = Item.objects.get(pk=item_id).prefetch_related('prices')
+            item = Item.objects.filter(pk=item_id).prefetch_related('prices')[0]
             offer_id = item.get_offer_id(self.request.user)
             if offer_id:
                 return redirect(reverse('offer_by_sku', args=[offer_id]))
+            else:
+                messages.error(self.request, 'В каталоге такой товар не найден. Попробуйте обновить данные')
         order = get_object_or_404(Order, pk=pk)
         self.context_update({'navbar': get_navbar(request), 'order': order})
         return render(request, Page.order_page, self.context)
