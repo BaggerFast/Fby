@@ -16,9 +16,9 @@ class CatalogueView(BaseView):
     fields = ['name', 'description', 'shopSku', 'category', 'vendor']
     table = ['', 'Название', 'SKU', 'Категория', 'Продавец']
     filtration = Filtration({
-        "vendor": "Торговая марка",
-        "category": "Категория",
-        "availability": "Планы по поставкам",
+        "Торговая марка": "vendor",
+        "Категория": "category",
+        "Планы по поставкам": {'enum': "availability"},
     })
     content_types = {
         'Весь список': Q(),

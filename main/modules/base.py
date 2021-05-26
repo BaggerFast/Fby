@@ -24,6 +24,7 @@ class BaseView(LoginRequiredMixin, View):
         return redirect(reverse(name))
 
     def search_algorithm(self, keywords, objects):
+        # todo refactor and optimizations of search
         if not len(keywords):
             return objects
         scores = {}
