@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'debug_toolbar',
-    'django_email_verification',
 ]
 
 MIDDLEWARE = [

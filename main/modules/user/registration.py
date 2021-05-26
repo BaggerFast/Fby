@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.urls import reverse
 from django.shortcuts import redirect
-from django_email_verification import send_email
 
 from main.forms import UserRegistrationForm
 from main.modules.user.base import BaseView
