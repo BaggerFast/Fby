@@ -16,9 +16,9 @@ class CatalogueView(BaseView):
     fields = ['name', 'description', 'shopSku', 'category', 'vendor']
     table = ['', 'Название', 'SKU', 'Категория', 'Продавец']
     filtration = Filtration({
-        "vendor": "Торговая марка",
-        "category": "Категория",
-        "availability": "Планы по поставкам",
+        "Торговая марка": "vendor",
+        "Категория": "category",
+        "Планы по поставкам": {'enum': "availability"},
     })
     content_types = {
         'Весь список': Q(),
@@ -97,7 +97,7 @@ class CatalogueView(BaseView):
         if category_index not in self.content_types:
             raise Http404()
         offers = self.configure_offer()
-        if not offers and category_index:
+        if not offers and category_index != 'Весь список':
             messages.success(self.request, f'Каталог {category_index.lower()} пуст')
             return redirect(reverse('catalogue_offer'))
         filter_types = self.filtration.get_filter_types(offers)
