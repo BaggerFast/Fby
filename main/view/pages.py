@@ -16,4 +16,3 @@ class Page:
     profile = serialize('profile/profile')
     profile_edit = serialize('profile/profile_edit')
     summary = serialize('analytics/summary')
-    email_confirm = serialize('mail_confirmation/resend_confirmation')

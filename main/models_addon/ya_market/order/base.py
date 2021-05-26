@@ -73,17 +73,6 @@ class Order(models.Model):
             total += item.total_price
         return total
 
-    def total_net_price(self, offer):
-        """
-        Рассчитать общую себестоимость
-        :return: Общая себестоимость
-        """
-        total = 0
-
-        for item in self.items.all():
-            total += item.per_item_net_price(offer)
-        return total
-
     class Meta:
         ordering = ['id']
 
@@ -151,17 +140,6 @@ class Item(models.Model):
     def total_price(self):
         """полная цена за текущий товар"""
         return round(self.prices.aggregate(Sum('total'))['total__sum'])
-
-    def per_item_net_price(self, offers):
-        """цена за текущий товар без учета скидок"""
-        pr = 0
-        for price in self.discounts:
-            offer = offers.filter(marketSku=price.item.marketSku).select_related('price')
-            if offer:
-                net_cost = offer.first().price.net_cost
-                if net_cost:
-                    pr += net_cost
-        return pr
 
 
 class ItemPrice(models.Model):

@@ -18,6 +18,5 @@ class MyRegisterFormView(BaseView):
         form.save()
         user = authenticate(username=form.data.get('username'), password=form.data.get('password2'))
         login(self.request, user)
-        messages.success(self.request, 'Вы успешно зарегистрировались! Проверьте свою почту для подтверждения '
-                                       'регистрации!')
+        messages.success(self.request, 'Вы успешно зарегистрировались!')
         return redirect(reverse('index'))
