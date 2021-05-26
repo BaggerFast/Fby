@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from django.db.models import Q
 
 
 def get_item_display_name(item, field):
@@ -40,23 +41,14 @@ class Filtration:
 
     @staticmethod
     def filter_items(items, filters):
-        filtered_items = []
-        for item in items:
-            used_filters = 0
-            for filter_values in filters.values():
-                if filter_values:
-                    used_filters += 1
-
-            passed_fields = 0
-            for filter_attr, filter_values in filters.items():
-                for filter_value in filter_values:
-                    if filter_value == getattr(item, filter_attr):
-                        passed_fields += 1
-                        break
-
-            if passed_fields == used_filters:
-                filtered_items.append(item)
-        return filtered_items
+        query_set_or = Q()
+        query_set_and = Q()
+        for key, data in filters.items():
+            for index in data:
+                query_set_or = query_set_or | Q(**{key: index})
+            query_set_and = query_set_and & query_set_or
+            query_set_or = Q()
+        return items.filter(query_set_and)
 
     @staticmethod
     def checked_filters_from_request(request, filter_types):
