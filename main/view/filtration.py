@@ -1,9 +1,9 @@
+from collections import OrderedDict
+from django.db.models import Q
+
+
 def get_item_display_name(item, field):
-    get_display_name = f"get_{field}_display"
-    if hasattr(item, get_display_name):
-        return getattr(item, get_display_name)()
-    else:
-        return None
+    return getattr(item, field), getattr(item, f'get_{field}_display')()
 
 
 class Filtration:
@@ -12,51 +12,43 @@ class Filtration:
 
     def get_filter_types(self, items):
         filter_types = {}
-        for field, name in self.fields_to_filter.items():
-            options = set()
-            for item in items:
-                actual_name = getattr(item, field)
-                options.add((get_item_display_name(item, field) or actual_name, actual_name))
-                options.remove((None, None))
-            options = sorted(options, key=lambda x: x[0])
-            options_actual = None
-            if options:
-                options, options_actual = zip(*options)
+        for name, field in self.fields_to_filter.items():
+            if 'enum' not in field:
+                filter_types[field] = {
+                    'name': name,
+                    'options': sorted(set(items.values_list(field, flat=True).distinct())),
+                }
+            else:
+                field = field['enum']
+                options_actual = items.values_list(field, flat=True).distinct()
+                options = [getattr(item, f'get_{field}_display')() for item in items]
 
-            filter_types[field] = {
-                'name': name,
-                'options': options,
-                'options_actual': options_actual,
-            }
+                filter_types[field] = {
+                    'name': name,
+                    'options': list(OrderedDict.fromkeys(options)),
+                    'options_actual': list(OrderedDict.fromkeys(options_actual)),
+                }
         return filter_types
 
     @staticmethod
     def filters_from_request(request, filter_types):
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
-            str_options = [filter_type['options_actual'][int(option)] for option in request.GET.getlist(str(index), '')]
+            type = 'options_actual' if 'options_actual' in filter_type else 'options'
+            str_options = [filter_type[type][int(option)] for option in request.GET.getlist(str(index), '')]
             filters[field] = str_options
         return filters
 
     @staticmethod
     def filter_items(items, filters):
-        filtered_items = []
-        for item in items:
-            used_filters = 0
-            for filter_values in filters.values():
-                if filter_values:
-                    used_filters += 1
-
-            passed_fields = 0
-            for filter_attr, filter_values in filters.items():
-                for filter_value in filter_values:
-                    if filter_value == getattr(item, filter_attr):
-                        passed_fields += 1
-                        break
-
-            if passed_fields == used_filters:
-                filtered_items.append(item)
-        return filtered_items
+        query_set_or = Q()
+        query_set_and = Q()
+        for key, data in filters.items():
+            for index in data:
+                query_set_or = query_set_or | Q(**{key: index})
+            query_set_and = query_set_and & query_set_or
+            query_set_or = Q()
+        return items.filter(query_set_and)
 
     @staticmethod
     def checked_filters_from_request(request, filter_types):

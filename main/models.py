@@ -31,9 +31,6 @@ class User(AbstractUser):
             raise ValidationError('Введите все 3 ключа')
         if not self.image and not os.path.exists(self.get_image.replace('\\', '/')):
             self.image = f'base/base.png'
-        if self.email != '':
-            if User.objects.filter(email=self.email) and User.objects.filter(email=self.email)[0] != self:
-                raise ValidationError('Данная почта уже зарегистрирована')
 
     @staticmethod
     def __debug_mod(db, sett):
