@@ -2,10 +2,6 @@ from collections import OrderedDict
 from django.db.models import Q
 
 
-def get_item_display_name(item, field):
-    return getattr(item, field), getattr(item, f'get_{field}_display')()
-
-
 class Filtration:
     def __init__(self, fields_to_filter):
         self.fields_to_filter = fields_to_filter
@@ -16,11 +12,12 @@ class Filtration:
             if 'enum' not in field:
                 filter_types[field] = {
                     'name': name,
-                    'options': sorted(set(items.values_list(field, flat=True).distinct())),
+                    'options': sorted(set(items.values_list(field, flat=True))),
                 }
             else:
                 field = field['enum']
-                options_actual = items.values_list(field, flat=True).distinct()
+
+                options_actual = items.values_list(field, flat=True)
                 options = [getattr(item, f'get_{field}_display')() for item in items]
 
                 filter_types[field] = {
@@ -41,13 +38,12 @@ class Filtration:
 
     @staticmethod
     def filter_items(items, filters):
-        query_set_or = Q()
         query_set_and = Q()
         for key, data in filters.items():
+            query_set_or = Q()
             for index in data:
                 query_set_or = query_set_or | Q(**{key: index})
             query_set_and = query_set_and & query_set_or
-            query_set_or = Q()
         return items.filter(query_set_and)
 
     @staticmethod
