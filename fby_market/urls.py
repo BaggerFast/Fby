@@ -17,22 +17,21 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 import debug_toolbar
-
 from fby_market import settings
 from main.modules import MainView
-from fby_market.additional_url import*
+from fby_market.additional_url import Url
 
 urlpatterns = [
     # basic
     path('', MainView.as_view(), name="index"),
     path('admin/', admin.site.urls),
     # nested
-    path('catalogue/', include(catalogue)),
-    path('orders/', include(orders)),
-    path('profile/', include(profile)),
-    path('analytics/', include(analytics)),
+    path('catalogue/', include(Url.catalogue)),
+    path('orders/', include(Url.orders)),
+    path('profile/', include(Url.profile)),
+    path('analytics/', include(Url.analytics)),
     # auth
-    path('auth/', include(auth)),
+    path('auth/', include(Url.auth)),
 ]
 
 if settings.DEBUG:
