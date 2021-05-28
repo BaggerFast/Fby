@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import redirect
@@ -38,17 +40,17 @@ class BaseView(LoginRequiredMixin, View):
     def search_algorithm(self, keywords: List[str], objects: List[Offer]) -> List[Offer]:
         if not len(keywords):
             return objects
-        scores = {}
+        scores = []
         for item, keyword in itertools.product(objects, keywords):
             for field in self.fields:
                 attr_display = str(self.get_item_display_name(item, field)).lower()
                 attr_actual = str(getattr(item, field)).lower()
                 if attr_actual and keyword in attr_display or keyword in attr_actual:
                     if item not in scores:
-                        scores[item] = 0
-                    scores[item] += 1
+                        scores.append(item)
+                    pprint(scores)
                     break
-        return sorted(scores, key=scores.get, reverse=True)
+        return scores
 
     def sort_object(self, offers, filter_types):
         self.context_update({
@@ -63,6 +65,7 @@ class BaseView(LoginRequiredMixin, View):
         keywords = self.request.GET.get('input', '').lower().strip().split()
         filters = self.filtration.filters_from_request(self.request, filter_types)
         objects = self.search_algorithm(keywords, self.filtration.filter_items(offers, filters))
+        pprint(objects)
         was_searching_used = len(keywords) != 0
         if not was_searching_used:
             filter_values = [j for sub in filters.values() for j in sub]
