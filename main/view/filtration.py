@@ -1,5 +1,5 @@
-import dataclasses
 from collections import OrderedDict
+from typing import Dict
 from django.db.models import Q
 from dataclasses import dataclass
 
@@ -19,28 +19,22 @@ class Filtration:
         filter_types = {}
         for name, field in self.fields_to_filter.items():
             if 'enum' not in field:
-                filter_types[field] = {
-                    'name': name,
-                    'options': sorted(set(items.values_list(field, flat=True))),
-                }
+                filter_types[field] = FilterType(name=name, options=sorted(set(items.values_list(field, flat=True))),
+                                                 options_actions=[])
             else:
                 options_actual = items.values_list(field['enum'], flat=True)
                 options = [getattr(item, f'get_{field["enum"]}_display')() for item in items]
 
-                filter_types[field['enum']] = {
-                    'name': name,
-                    'options': list(OrderedDict.fromkeys(options)),
-                    'options_actual': list(OrderedDict.fromkeys(options_actual)),
-                }
+                filter_types[field['enum']] = FilterType(name=name, options=list(OrderedDict.fromkeys(options)),
+                                                         options_actions=list(OrderedDict.fromkeys(options_actual)))
         return filter_types
 
     @staticmethod
     def filters_from_request(request, filter_types):
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
-            type = 'options_actual' if 'options_actual' in filter_type else 'options'
-            str_options = [filter_type[type][int(option)] for option in request.GET.getlist(str(index), '')]
-            filters[field] = str_options
+            filter = filter_type.options_actions if getattr(filter_type, 'options_actions') else filter_type.options
+            filters[field] = [filter[int(option)] for option in request.GET.getlist(str(index), '')]
         return filters
 
     @staticmethod
@@ -57,7 +51,7 @@ class Filtration:
     def checked_filters_from_request(request, filter_types):
         checked = []
         for index, field in enumerate(filter_types.values()):
-            checked_sub = [False] * len(field.get("options"))
+            checked_sub = [False] * len(field.options)
             for checked_option in request.GET.getlist(str(index), ''):
                 checked_sub[int(checked_option)] = True
             checked.append(checked_sub)
