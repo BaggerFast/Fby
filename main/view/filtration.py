@@ -5,10 +5,10 @@ from dataclasses import dataclass
 
 
 @dataclass
-class FilterType:
+class FillType:
     name: str
     options: []
-    options_actions: []
+    enum: []
 
 
 class Filtration:
@@ -19,22 +19,22 @@ class Filtration:
         filter_types = {}
         for name, field in self.fields_to_filter.items():
             if 'enum' not in field:
-                filter_types[field] = FilterType(name=name, options=sorted(set(items.values_list(field, flat=True))),
-                                                 options_actions=[])
+                filter_types[field] = FillType(name=name, options=sorted(set(items.values_list(field, flat=True))),
+                                               enum=[])
             else:
                 options_actual = items.values_list(field['enum'], flat=True)
                 options = [getattr(item, f'get_{field["enum"]}_display')() for item in items]
 
-                filter_types[field['enum']] = FilterType(name=name, options=list(OrderedDict.fromkeys(options)),
-                                                         options_actions=list(OrderedDict.fromkeys(options_actual)))
+                filter_types[field['enum']] = FillType(name=name, options=list(OrderedDict.fromkeys(options)),
+                                                       enum=list(OrderedDict.fromkeys(options_actual)))
         return filter_types
 
     @staticmethod
-    def filters_from_request(request, filter_types):
+    def filters_from_request(request, filter_types: Dict[str, FillType]):
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
-            filter = filter_type.options_actions if getattr(filter_type, 'options_actions') else filter_type.options
-            filters[field] = [filter[int(option)] for option in request.GET.getlist(str(index), '')]
+            filt = filter_type.enum if filter_type.enum else filter_type.options
+            filters[field] = [filt[int(option)] for option in request.GET.getlist(str(index), '')]
         return filters
 
     @staticmethod

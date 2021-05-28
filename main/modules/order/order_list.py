@@ -29,7 +29,7 @@ class OrderListView(BaseView):
             'navbar': get_navbar(request),
             'orders': self.sort_object(orders, filter_types),
             'table': ["Номер заказа", "Дата заказа", "Цена, ₽", "Статус"],
-            'filter_types': filter_types.items(),
+            'filter_types': filter_types,
         }
         self.context_update(local_context)
         return render(request, Page.order, self.context)

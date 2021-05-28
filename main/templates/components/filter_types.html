@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block filter_types %}
-  {% for filter_type in filter_types %}
+  {% for filter_type in filter_types.values %}
   <div class="dropdown no-close-on-choose me-4">
     <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
       {{ filter_type.name }}

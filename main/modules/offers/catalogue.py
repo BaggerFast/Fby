@@ -104,7 +104,7 @@ class CatalogueView(BaseView):
         local_context = {
             'navbar': get_navbar(request),
             'table': self.table,
-            'filter_types': filter_types.items(),
+            'filter_types': filter_types,
             'current_type': category_index,
             'types': self.content_types,
             'offers': self.sort_object(offers, filter_types),
