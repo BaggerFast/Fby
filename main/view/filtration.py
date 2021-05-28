@@ -15,12 +15,10 @@ class Filtration:
                     'options': sorted(set(items.values_list(field, flat=True))),
                 }
             else:
-                field = field['enum']
+                options_actual = items.values_list(field['enum'], flat=True)
+                options = [getattr(item, f'get_{field["enum"]}_display')() for item in items]
 
-                options_actual = items.values_list(field, flat=True)
-                options = [getattr(item, f'get_{field}_display')() for item in items]
-
-                filter_types[field] = {
+                filter_types[field['enum']] = {
                     'name': name,
                     'options': list(OrderedDict.fromkeys(options)),
                     'options_actual': list(OrderedDict.fromkeys(options_actual)),

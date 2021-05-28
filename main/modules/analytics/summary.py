@@ -16,7 +16,6 @@ class SummaryView(BaseView):
     }
 
     """Отображение страницы с отчётом"""
-
     def get(self, request):
         included_statuses = ('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING')
         orders = Order.objects.filter(user=self.request.user)
