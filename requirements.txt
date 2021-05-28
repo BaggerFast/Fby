@@ -10,7 +10,6 @@ sphinxcontrib-spelling==7.1.0
 
 # API
 djangorestframework == 3.12.2
-markdown == 3.3.4
 requests==2.25.1
 
 # Code style
