@@ -79,7 +79,6 @@ WSGI_APPLICATION = 'fby_market.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 if DEBUG:
     DATABASES = {
         'default': {
@@ -90,14 +89,14 @@ if DEBUG:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'fbby_db',
-            'USER': 'fby_admin_market',
-            'PASSWORD': '4XgR4dz24z46ngpF1kQ120P2kX0xHGZG',
-            'HOST': 'localhost',
-            'PORT': '3306',
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'fbby_db',
+                'USER': 'fby_admin_market',
+                'PASSWORD':  '4XgR4dz24z46ngpF1kQ120P2kX0xHGZG',
+                'HOST': 'localhost',
+                'PORT': '3306',
+            }
         }
-    }
 
 
 
@@ -123,13 +122,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'ru-ru'
-
 TIME_ZONE = 'Europe/Moscow'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 LOGIN_URL = '/auth/login/'

@@ -1,8 +1,6 @@
 # Engine
 Django==3.1.7
 Pillow==8.2.0
-mysqlclient
-gunicorn
 
 # Documentation
 Sphinx==3.5.2
@@ -12,16 +10,7 @@ sphinxcontrib-spelling==7.1.0
 
 # API
 djangorestframework == 3.12.2
-markdown == 3.3.4
-django-filter == 2.4.0
 requests==2.25.1
-
-# Analytics
-numpy
-pandas
-
-# Excel
-openpyxl == 3.0.7
 
 # Code style
 pycodestyle==2.7.0

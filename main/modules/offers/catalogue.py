@@ -27,7 +27,7 @@ class CatalogueView(BaseView):
         'Не прошли модерацию': Q(processingState__status__in=['NEED_CONTENT', 'NEED_INFO', 'REJECTED', 'SUSPENDED',
                                                               'OTHER']),
         'Изменены локально': Q(processingState__isnull=False) & (Q(has_changed=True) | Q(price__has_changed=True)),
-        'Созданы локально': Q(),
+        'Созданы локально': Q(processingState__isnull=True),
         'Не рентабельные': None,
     }
 

@@ -16,14 +16,13 @@ class Filtration:
             if 'enum' not in field:
                 filter_types[field] = {
                     'name': name,
-                    'options': sorted(set(items.values_list(field, flat=True).distinct())),
+                    'options': sorted(set(items.values_list(field, flat=True))),
                 }
             else:
-                field = field['enum']
-                options_actual = items.values_list(field, flat=True).distinct()
-                options = [getattr(item, f'get_{field}_display')() for item in items]
+                options_actual = items.values_list(field['enum'], flat=True)
+                options = [getattr(item, f'get_{field["enum"]}_display')() for item in items]
 
-                filter_types[field] = {
+                filter_types[field['enum']] = {
                     'name': name,
                     'options': list(OrderedDict.fromkeys(options)),
                     'options_actual': list(OrderedDict.fromkeys(options_actual)),
@@ -41,13 +40,12 @@ class Filtration:
 
     @staticmethod
     def filter_items(items, filters):
-        query_set_or = Q()
         query_set_and = Q()
         for key, data in filters.items():
+            query_set_or = Q()
             for index in data:
                 query_set_or = query_set_or | Q(**{key: index})
             query_set_and = query_set_and & query_set_or
-            query_set_or = Q()
         return items.filter(query_set_and)
 
     @staticmethod

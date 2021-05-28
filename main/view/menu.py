@@ -1,10 +1,7 @@
 from typing import List, Dict, Union
-
 from django.urls import reverse
 
-
 def get_navbar(request) -> Dict[str, Union[list, List[Dict[str, str]]]]:
-
     def off_current(nav: List):
         for menu_item in nav:
             if menu_item.get('list', False):
@@ -26,8 +23,9 @@ def get_navbar(request) -> Dict[str, Union[list, List[Dict[str, str]]]]:
             nav += [
                 {'label': 'Товары', 'list': [{'url': 'catalogue_offer', 'label': "Каталог"},
                                              {'url': 'create_offer', 'label': "Создать"}]},
-                {'label': 'Заказы', 'url': 'catalogue_order'},
-                {'label': 'Отчёт', 'url': 'summary'}
+                {'label': 'Заказы', 'list': [{'url': 'catalogue_order', 'label': "Каталог"},
+                                             {'url': 'summary' , 'label': 'Отчёт'}]}
+
             ]
         return nav
 

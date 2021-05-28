@@ -3,7 +3,6 @@ from django.http import HttpResponse, HttpRequest
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views import View
-from main.view import get_item_display_name
 import itertools
 
 
@@ -23,18 +22,27 @@ class BaseView(LoginRequiredMixin, View):
                 break
         return redirect(reverse(name))
 
+    # todo fix algorithm of all functions under me
+    @staticmethod
+    def get_item_display_name(item, field):
+        get_display_name = "get_{}_display".format(field)
+        if hasattr(item, get_display_name):
+            return getattr(item, get_display_name)()
+        else:
+            return None
+
     def search_algorithm(self, keywords, objects):
-        # todo refactor and optimizations of search
         if not len(keywords):
             return objects
         scores = {}
         for item, keyword in itertools.product(objects, keywords):
             for field in self.fields:
-                attr_display = get_item_display_name(item, field)
+                print(field)
+                attr_display = self.get_item_display_name(item, field)
                 attr_actual = getattr(item, field)
                 if attr_actual is not None and \
                     keyword in str(attr_display).lower() or \
-                        keyword in str(attr_actual).lower():
+                    keyword in str(attr_actual).lower():
                     if item not in scores:
                         scores[item] = 0
                     scores[item] += 1
