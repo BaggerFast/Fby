@@ -1,5 +1,14 @@
+import dataclasses
 from collections import OrderedDict
 from django.db.models import Q
+from dataclasses import dataclass
+
+
+@dataclass
+class FilterType:
+    name: str
+    options: []
+    options_actions: []
 
 
 class Filtration:
