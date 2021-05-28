@@ -16,7 +16,7 @@ class Filtration:
                 }
             else:
                 options_actual = items.values_list(field['enum'], flat=True)
-                options = [getattr(item, f'get_{field}_display')() for item in items]
+                options = [getattr(item, f'get_{field["enum"]}_display')() for item in items]
 
                 filter_types[field['enum']] = {
                     'name': name,
