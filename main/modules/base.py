@@ -5,6 +5,10 @@ from django.urls import reverse
 from django.views import View
 import itertools
 
+from typing import List
+
+from main.models_addon.ya_market import Offer
+
 
 class BaseView(LoginRequiredMixin, View):
     """
@@ -24,32 +28,29 @@ class BaseView(LoginRequiredMixin, View):
 
     # todo fix algorithm of all functions under me
     @staticmethod
-    def get_item_display_name(item, field):
-        get_display_name = "get_{}_display".format(field)
+    def get_item_display_name(item, field: str):
+        get_display_name = f"get_{field}_display"
         if hasattr(item, get_display_name):
             return getattr(item, get_display_name)()
         else:
             return None
 
-    def search_algorithm(self, keywords, objects):
+    def search_algorithm(self, keywords: List[str], objects: List[Offer]) -> List[Offer]:
         if not len(keywords):
             return objects
         scores = {}
         for item, keyword in itertools.product(objects, keywords):
             for field in self.fields:
-                print(field)
-                attr_display = self.get_item_display_name(item, field)
-                attr_actual = getattr(item, field)
-                if attr_actual is not None and \
-                    keyword in str(attr_display).lower() or \
-                    keyword in str(attr_actual).lower():
+                attr_display = str(self.get_item_display_name(item, field)).lower()
+                attr_actual = str(getattr(item, field)).lower()
+                if attr_actual and keyword in attr_display or keyword in attr_actual:
                     if item not in scores:
                         scores[item] = 0
                     scores[item] += 1
                     break
         return sorted(scores, key=scores.get, reverse=True)
 
-    def sort_object(self, offer, filter_types) -> list:
+    def sort_object(self, offers, filter_types):
         self.context_update({
             "checked": self.filtration.checked_filters_from_request(self.request, filter_types),
             "input": self.request.GET.get('input', '').strip(),
@@ -57,11 +58,11 @@ class BaseView(LoginRequiredMixin, View):
 
         if self.request.GET.get("no_search"):
             self.context_update({'search': False})
-            return offer
+            return offers
 
         keywords = self.request.GET.get('input', '').lower().strip().split()
         filters = self.filtration.filters_from_request(self.request, filter_types)
-        objects = self.search_algorithm(keywords, self.filtration.filter_items(offer, filters))
+        objects = self.search_algorithm(keywords, self.filtration.filter_items(offers, filters))
         was_searching_used = len(keywords) != 0
         if not was_searching_used:
             filter_values = [j for sub in filters.values() for j in sub]
