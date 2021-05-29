@@ -32,4 +32,7 @@ pylint:
       paths:
         - public/pylint.svg
         - public/pylint.html
+    only:
+        - develop
+        - master
 
