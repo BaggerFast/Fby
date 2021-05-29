@@ -40,17 +40,16 @@ class BaseView(LoginRequiredMixin, View):
     def search_algorithm(self, keywords: List[str], objects: List[Offer]) -> List[Offer]:
         if not len(keywords):
             return objects
-        scores = []
+        search_results = []
         for item, keyword in itertools.product(objects, keywords):
             for field in self.fields:
                 attr_display = str(self.get_item_display_name(item, field)).lower()
                 attr_actual = str(getattr(item, field)).lower()
                 if attr_actual and keyword in attr_display or keyword in attr_actual:
-                    if item not in scores:
-                        scores.append(item)
-                    pprint(scores)
+                    search_results.append(item)
+                    pprint(search_results)
                     break
-        return scores
+        return search_results
 
     def sort_object(self, offers, filter_types):
         self.context_update({
@@ -62,7 +61,7 @@ class BaseView(LoginRequiredMixin, View):
             self.context_update({'search': False})
             return offers
 
-        keywords = self.request.GET.get('input', '').lower().strip().split()
+        keywords = self.request.GET.get('input', '').lower().strip().split('|')
         filters = self.filtration.filters_from_request(self.request, filter_types)
         objects = self.search_algorithm(keywords, self.filtration.filter_items(offers, filters))
         pprint(objects)
