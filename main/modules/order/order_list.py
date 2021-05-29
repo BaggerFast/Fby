@@ -2,9 +2,8 @@ from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.urls import reverse
-
 from main.models_addon.ya_market import Order, Item
-from main.view import get_navbar, Page, Filtration
+from main.view import Navbar, Page, Filtration
 from main.ya_requests import OrderList
 from main.modules.base import BaseView
 
@@ -26,7 +25,7 @@ class OrderListView(BaseView):
         orders = Order.objects.prefetch_related('items').filter(user=request.user)
         filter_types = self.filtration.get_filter_types(orders)
         local_context = {
-            'navbar': get_navbar(request),
+            'navbar': Navbar(request).get(),
             'orders': self.sort_object(orders, filter_types),
             'table': ["Номер заказа", "Дата заказа", "Цена, ₽", "Статус"],
             'filter_types': filter_types,

@@ -19,8 +19,8 @@ class Filtration:
         filter_types = {}
         for name, field in self.fields_to_filter.items():
             if 'enum' not in field:
-                filter_types[field] = FillType(name=name, options=sorted(set(items.values_list(field, flat=True))),
-                                               enum=[])
+                filter_types[field] = FillType(name=name,
+                                               options=sorted(set(items.values_list(field, flat=True))), enum=[])
             else:
                 options_actual = items.values_list(field['enum'], flat=True)
                 options = [getattr(item, f'get_{field["enum"]}_display')() for item in items]

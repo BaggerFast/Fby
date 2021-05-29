@@ -11,8 +11,8 @@ from main.forms import AvailabilityForm, PriceForm
 from main.models_addon.ya_market import Offer, Price
 from main.modules.offers.addition import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
-from main.view import Page, get_navbar
-from main.ya_requests.price import ChangePrices, YandexChangePricesList
+from main.view import Page, Navbar
+from main.ya_requests.price import YandexChangePricesList
 from main.ya_requests.request import UpdateOfferList
 
 
@@ -27,7 +27,7 @@ class ProductPageView(BaseView):
 
     def pre_init(self, pk: int, request: HttpRequest) -> None:
         """Предварительная настройка контекста"""
-        self.context_update({'navbar': get_navbar(request),
+        self.context_update({'navbar': Navbar(request).get(),
                              'content': request.GET.get('content', 'info')})
         if self.context['content'] in self.form_types:
             self.form = self.form_types[self.context['content']]()

@@ -4,8 +4,6 @@
 Параметры:
 -n, --name NAME- задать username=NAME для пользователя, если не задан - username=vasya
 """
-
-import json
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 

@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpRequest, Http404
 from django.urls import reverse
 from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
-from main.view import get_navbar, Page, Filtration
+from main.view import Navbar, Page, Filtration
 from main.ya_requests import OfferList, OfferPrice, UpdateOfferList, YandexChangePricesList
 import re
 
@@ -102,7 +102,7 @@ class CatalogueView(BaseView):
             return redirect(reverse('catalogue_offer'))
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {
-            'navbar': get_navbar(request),
+            'navbar': Navbar(request).get(),
             'table': self.table,
             'filter_types': filter_types,
             'current_type': category_index,

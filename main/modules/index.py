@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import View
-from main.view import get_navbar, Page
+from main.view import Navbar, Page
 
 
 class MainView(View):
@@ -8,5 +8,5 @@ class MainView(View):
     context = {'title': 'Main'}
 
     def get(self, request):
-        self.context['navbar'] = get_navbar(request)
+        self.context['navbar'] = Navbar(request).get()
         return render(request, Page.index, self.context)
