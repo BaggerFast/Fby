@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="row mt-5">
+<section
+  class="header3 mbr-fullscreen mbr-parallax-background"
+  id="header10-l"
+>
+  <div class="align-center container">
+    <div class="row mt-5">
     {% include 'components/update.html' %}
     {% if offers %}
       {% include 'components/catalogue/check.html' %}
@@ -10,5 +15,8 @@
       {% include 'components/empty.html' %}
     {% endif %}
   </div>
+  </div>
+</section>
+
   {% include 'components/preloader.html' %}
 {% endblock %}
