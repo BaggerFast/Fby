@@ -24,7 +24,11 @@ class SummaryView(BaseView):
             messages.success(self.request, 'Каталог заказов пуст, статистика не возможна')
             return redirect(reverse('catalogue_order'))
         filter_cur_month = Q(creationDate__gt=data_today, status__in=included_statuses)
-        filter_prev_month = Q(creationDate__lt=data_today, status__in=included_statuses)
+        filter_prev_month = Q(
+            creationDate__lt=data_today,
+            creationDate__gt=data_today.replace(month=data_today.month-1),
+            status__in=included_statuses
+        )
         orders = [orders.filter(filter_cur_month).prefetch_related('items').prefetch_related('items__prices'),
                   orders.filter(filter_prev_month).prefetch_related('items').prefetch_related('items__prices')]
 

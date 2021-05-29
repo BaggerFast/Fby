@@ -52,8 +52,8 @@ class ProcessingStateStatus(models.TextChoices):
     """
     Статус модерации товара.
     """
-    READY = 'READY', """товар прошел модерацию. Чтобы разместить его на Маркете, установите для него цену и 
-                        создайте поставку на склад."""
+    READY = 'READY', 'товар прошел модерацию. Чтобы разместить его на Маркете, установите для него цену и создайте ' \
+                     'поставку на склад. '
 
     IN_WORK = 'IN_WORK', 'Товар проходит модерацию. Может занять несколько дней'
 
@@ -80,13 +80,14 @@ class ProcessingStateNoteType(models.TextChoices):
 
     DEPARTMENT_FROZEN = 'DEPARTMENT_FROZEN', 'Правила размещения товаров в данной категории перерабатываются,'
 
-    INCORRECT_INFORMATION = 'INCORRECT_INFORMATION', """Информация о товаре, которую вы предоставили, противоречит'
-                                                        описанию от производителя."""
+    INCORRECT_INFORMATION = 'INCORRECT_INFORMATION', 'Информация о товаре, которую вы предоставили, противоречит' \
+                                                     'описанию от производителя.'
 
     LEGAL_CONFLICT = 'LEGAL_CONFLICT', 'Товар не прошел модерацию по юридическим причинам.'
 
-    NEED_CLASSIFICATION_INFORMATION = 'NEED_CLASSIFICATION_INFORMATION', """Информации о товаре, которую вы 
-                                            предоставили, не хватает, чтобы отнести его к категории"""
+    NEED_CLASSIFICATION_INFORMATION = 'NEED_CLASSIFICATION_INFORMATION', 'Информации о товаре, которую вы ' \
+                                                                         'предоставили, не хватает, чтобы отнести его' \
+                                                                         ' к категории '
 
     NEED_INFORMATION = 'NEED_INFORMATION', 'Товар раньше не продавался в России и пока не размещается на Маркете.'
 

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -89,14 +90,14 @@ if DEBUG:
 else:
     DATABASES = {
         'default': {
-                'ENGINE': 'django.db.backends.mysql',
-                'NAME': 'fbby_db',
-                'USER': 'fby_admin_market',
-                'PASSWORD':  '4XgR4dz24z46ngpF1kQ120P2kX0xHGZG',
-                'HOST': 'localhost',
-                'PORT': '3306',
-            }
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'fbby_db',
+            'USER': 'fby_admin_market',
+            'PASSWORD': '4XgR4dz24z46ngpF1kQ120P2kX0xHGZG',
+            'HOST': 'localhost',
+            'PORT': '3306',
         }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

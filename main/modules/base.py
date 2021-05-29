@@ -42,7 +42,7 @@ class BaseView(LoginRequiredMixin, View):
                 attr_actual = getattr(item, field)
                 if attr_actual is not None and \
                     keyword in str(attr_display).lower() or \
-                    keyword in str(attr_actual).lower():
+                        keyword in str(attr_actual).lower():
                     if item not in scores:
                         scores[item] = 0
                     scores[item] += 1

@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm
+
 from main.models_addon.ya_market.offer.support import *
 
 
@@ -28,7 +29,7 @@ class ShelfLifeForm(ModelForm, Func):
         exclude = ('offer',)
         help_texts = {
             'timePeriod': """Через сколько дней товар станет непригоден для использования.
-                            Например, срок годности есть у таких категорий, 
+                            Например, срок годности есть у таких категорий,
                             как продукты питания и медицинские препараты.""",
             'comment': 'Дополнительные условия хранения.',
         }
@@ -45,7 +46,7 @@ class LifeTimeForm(ModelForm, Func):
         model = LifeTime
         exclude = ('offer',)
         help_texts = {
-            'timePeriod': """В течение какого периода товар будет исправно выполнять свою функцию, 
+            'timePeriod': """В течение какого периода товар будет исправно выполнять свою функцию,
                                 а изготовитель — нести ответственность за его существенные недостатки.""",
             'comment': 'Дополнительные условия использования в течение срока службы.',
         }
