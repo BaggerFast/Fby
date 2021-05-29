@@ -12,7 +12,7 @@ from main.modules.analytics.addition import Stat
 
 class SummaryView(BaseView):
     context = {
-        'title': 'Отчёт',
+        'title': 'Отчёт по заказам', 'page_name': 'Отчет по заказам'
     }
     included_statuses = ['DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING']
 

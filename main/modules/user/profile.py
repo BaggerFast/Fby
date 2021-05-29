@@ -9,7 +9,7 @@ from django.urls import reverse
 
 
 class ProfileView(BaseView):
-    context = {'title': 'Profile', 'page_name': 'Личный кабинет'}
+    context = {'title': 'Аккаунт', 'page_name': 'Личный кабинет'}
 
     def get(self, request) -> HttpResponse:
         user = User.objects.get(username=request.user)
@@ -22,7 +22,7 @@ class ProfileView(BaseView):
 
 
 class ProfileEditView(BaseView):
-    context = {'title': 'Profile edit', 'page_name': 'Редактирование профиля'}
+    context = {'title': 'Настройки аккаунта', 'page_name': 'Редактирование профиля'}
 
     def get(self, request) -> HttpResponse:
         user = User.objects.get(username=request.user)

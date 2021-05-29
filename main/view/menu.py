@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Dict, Union
+from typing import Dict
 from django.urls import reverse
 
 
@@ -23,8 +23,8 @@ class Navbar:
         for menu_item in self.__nav:
             if type(menu_item) == self.__Field:
                 # для атрибута меню с выпадающим списком
-                for i in range(len(menu_item.nested_fields)):
-                    menu_item.nested_fields[i].active = self.__request.path != reverse(menu_item.nested_fields[i].url)
+                for field in menu_item.nested_fields:
+                    field.active = self.__request.path != reverse(field.url)
             else:
                 # для обычных атрибутов
                 menu_item.active = self.__request.path != reverse(menu_item.url)

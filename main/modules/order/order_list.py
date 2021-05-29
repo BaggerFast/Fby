@@ -10,7 +10,7 @@ from main.modules.base import BaseView
 
 class OrderListView(BaseView):
     """отображение каталога"""
-    context = {'title': 'Order', 'page_name': 'Заказы'}
+    context = {'title': 'Каталог заказов', 'page_name': 'Каталог заказов'}
     models_to_save = [OrderList]
     fields = ['status', 'order_id', 'paymentType', 'total_price']
     filtration = Filtration({

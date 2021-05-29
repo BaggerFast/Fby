@@ -10,7 +10,7 @@ from main.view import Navbar, Page
 
 
 class CreateOfferView(BaseView):
-    context = {'title': 'Create offer', 'page_name': 'Создать товар'}
+    context = {'title': 'Создание товара', 'page_name': 'Создать товар'}
     form = offer_id = None
     form_types = {"info": OfferFormSet, "accommodation": PriceFormSet}
 

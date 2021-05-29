@@ -10,7 +10,7 @@ class Page:
     registration = serialize('profile/registration')
     login = serialize('profile/login')
     catalogue = serialize('offer/catalogue')
-    create_offer = product_card = serialize('offer/product_card')
+    product_card = serialize('offer/product_card')
     order = serialize('order/orders')
     order_page = serialize('order/order_page')
     profile = serialize('profile/profile')

@@ -20,7 +20,7 @@ class ProductPageView(BaseView):
     """
     Класс, управляющий отображением карточки товара
     """
-    context = {'title': 'Product card', 'page_name': 'Карточка товара'}
+    context = {'title': 'Товар', 'page_name': 'Карточка товара'}
     form = None
     disable: bool = False
     form_types = {"info": OfferFormSet, "accommodation": PriceFormSet}

@@ -6,7 +6,7 @@ class BaseView(FormView):
     context = None
 
     def context_update(self, data: dict):
-        self.context.append(data)
+        self.context.update(data)
 
     def get(self, request, *args, **kwargs):
         self.context_update({'navbar': Navbar(request).get(), 'form': self.get_context_data()['form']})
