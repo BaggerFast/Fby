@@ -7,7 +7,7 @@ from django.http import HttpRequest
 
 from main.models_addon.save_dir.offer.prices import PriceSuggestionPattern
 from main.models_addon.ya_market import Offer
-from main.models_addon.save_dir import *
+from main.models_addon.save_dir import OfferPattern, OrderPattern, OfferReportPattern
 from main.serializers import OfferSerializer
 from main.ya_requests.base import Requests
 
@@ -30,14 +30,14 @@ class OrderList(Requests):
     Класс для получения списка заказов и сохранения в БД Order
     """
 
-    PARAMS = {  # параметры надо предварительно запросить
+    params = {  # параметры надо предварительно запросить
         "dateFrom": "2021-01-01",
         "dateTo": "2021-05-17"
     }
 
     def __init__(self, request: HttpRequest, params: dict = None):
         if params is not None:
-            self.PARAMS = params
+            self.params = params
         super().__init__(json_name='/stats/orders', base_context_name='orders', name="Order", request=request)
 
     def pattern_save(self) -> None:
@@ -53,7 +53,7 @@ class OfferReport(Requests):
     """
 
     def __init__(self, request: HttpRequest, shop_sku: str = None):
-        self.PARAMS = self.get_params(request) if shop_sku is None else {"shopSkus": [shop_sku]}
+        self.params = self.get_params(request) if shop_sku is None else {"shopSkus": [shop_sku]}
         super().__init__(json_name='/stats/skus', base_context_name='shopSkus', name="OfferReport", request=request)
 
     @staticmethod
@@ -80,7 +80,7 @@ class OfferUpdate(Requests):
 
     def __init__(self, request: HttpRequest, offer: Offer):
         self.offer = offer
-        self.PARAMS = self.get_params()
+        self.params = self.get_params()
         super().__init__(json_name='offer-mapping-entries/updates',
                          base_context_name='offerMappingEntries',
                          name="OfferUpdate",
@@ -195,8 +195,9 @@ class PriceSuggestion(Requests):
     """
 
     def __init__(self, request: HttpRequest, market_sku: str = None):
-        self.PARAMS = self.get_params(request) if market_sku is None else {"offers": [{"marketSku": market_sku}]}
-        super().__init__(json_name='/offer-prices/suggestions', base_context_name='offers', name="PriceSuggestion", request=request)
+        self.params = self.get_params(request) if market_sku is None else {"offers": [{"marketSku": market_sku}]}
+        super().__init__(json_name='/offer-prices/suggestions', base_context_name='offers', name="PriceSuggestion",
+                         request=request)
 
     @staticmethod
     def get_params(request: HttpRequest) -> dict:

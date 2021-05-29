@@ -1,7 +1,9 @@
 """Сериализаторы для модели Offer"""
 
 from rest_framework import serializers
-from main.models_addon.ya_market import *
+from main.models_addon.ya_market import Price, PriceSuggestion, Offer, WeightDimension, ShelfLife, LifeTime, \
+    GuaranteePeriod, ProcessingState, ProcessingStateNote, ManufacturerCountry, Url, Barcode, CustomsCommodityCode, \
+    SupplyScheduleDays, Mapping
 from main.serializers import BaseListSerializer, BaseModelSerializer, SimpleModelSerializer
 
 

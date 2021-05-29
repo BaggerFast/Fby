@@ -26,20 +26,20 @@ class User(AbstractUser):
             self.image = f'base/base.png'
 
     @staticmethod
-    def __debug_mod(db, sett):
+    def __debug_mod(value, sett):
         """Метод для получения необходимых данных, в зависимости от наличия DEBUG режима"""
         if DEBUG:
             return sett
-        return db
+        return value
 
     def get_client_id(self):
         """Метод для получения client id в зависимости от DEBUG режима"""
-        return self.__debug_mod(db=self.client_id, sett=YaMarket.CLIENT_ID)
+        return self.__debug_mod(value=self.client_id, sett=YaMarket.CLIENT_ID)
 
     def get_token(self):
         """Метод для получения token в зависимости от DEBUG режима"""
-        return self.__debug_mod(db=self.token, sett=YaMarket.TOKEN)
+        return self.__debug_mod(value=self.token, sett=YaMarket.TOKEN)
 
     def get_shop_id(self):
         """Метод для получения shop id в зависимости от DEBUG режима"""
-        return self.__debug_mod(db=self.shop_id, sett=YaMarket.SHOP_ID)
+        return self.__debug_mod(value=self.shop_id, sett=YaMarket.SHOP_ID)

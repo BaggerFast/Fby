@@ -1,5 +1,5 @@
 from django.urls import path
-from main.modules.offers import *
+from main.modules.offers import CatalogueView, CreateOfferView, ProductPageView
 
 urlpatterns = [
     path('', CatalogueView.as_view(), name='catalogue_offer'),
