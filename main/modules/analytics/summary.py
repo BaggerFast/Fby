@@ -1,31 +1,43 @@
 """Модуль для рендера страницы аналитики"""
+from django.contrib import messages
+from django.db.models import Q
+import datetime
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from main.models_addon.ya_market import Order
+from main.modules.base import BaseView
+from main.view import Page, Navbar
+from main.modules.analytics.addition import Stat
 
-from django.shortcuts import render
-from django.views.generic.base import View
-from main.view import Page, get_navbar
-from main.modules.analytics.addition import *
 
-
-class SummaryView(View):
-    context = {}
-
-    def context_update(self, data: dict):
-        self.context = {**data, **self.context}
+class SummaryView(BaseView):
+    context = {
+        'title': 'Отчёт по заказам', 'page_name': 'Отчет по заказам'
+    }
+    included_statuses = ['DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING']
 
     """Отображение страницы с отчётом"""
-
     def get(self, request):
-        included_statuses = ('DELIVERY', 'DELIVERED', 'PARTIALLY_RETURNED', 'PICKUP', 'PROCESSING')
-        orders = [orders_for_current_month(included_statuses, user=request.user),
-                  get_orders_for_previous_month(included_statuses, user=request.user)]
+        orders = Order.objects.filter(user=self.request.user)
+        data_today = datetime.date.today().replace(day=1)
+        if not orders:
+            messages.success(self.request, 'Каталог заказов пуст, статистика не возможна')
+            return redirect(reverse('catalogue_order'))
+        filter_cur_month = Q(creationDate__gt=data_today, status__in=self.included_statuses)
+        filter_prev_month = Q(creationDate__lt=data_today, status__in=self.included_statuses)
+        orders = [*[orders.filter(fill).prefetch_related('items').prefetch_related('items__prices')
+                    for fill in [filter_cur_month, filter_prev_month]]]
         local_context = {
-            'navbar': get_navbar(request),
+            'navbar': Navbar(request).get(),
             'stats': [
-                Stat('', [orders[0]], included_statuses),
-                Stat('Заказы в доставке', orders, ('DELIVERY', 'PROCESSING', 'PICKUP'), request=request),
-                Stat('Доставленные в этом месяце заказы', orders, ('DELIVERED', 'PICKUP'), request=request),
+                Stat(name='Заказы и доставка', all_orders=[orders[0]], included_statuses=self.included_statuses),
+                Stat(name='Заказы в доставке', all_orders=orders,
+                     included_statuses=('DELIVERY', 'PROCESSING', 'PICKUP'),
+                     request=request),
+                Stat(name='Доставленные в этом месяце заказы', all_orders=orders, included_statuses=('DELIVERED',
+                                                                                                     'PICKUP'),
+                     request=request),
             ],
-            'title': 'Отчёт',
         }
         self.context_update(local_context)
         return render(request, Page.summary, self.context)

@@ -1,10 +1,10 @@
 {% block orders %}
   {% include 'components/search.html' %}
   {% if search %}
-    <a href="{% url 'orders_list' %}" class="btn-link">← Назад</a>
+    <a class="btn btn-danger mb-5" href="{% url 'catalogue_order' %}">← Назад</a>
   {% endif %}
   <div class="col">
-    <span class="badge bg-secondary mb-4">{{ orders|length }} товаров</span>
+    <span class="badge bg-secondary mb-4">Заказов: {{ orders|length }}</span>
     <div class="table-wrapper">
       <table class="table table-hover table-borderless">
         {% include 'components/orders/thead.html' %}

@@ -15,6 +15,7 @@ def decor(func):
             return func(self)
         except Exception:
             return None
+
     return wrapper
 
 
@@ -106,6 +107,10 @@ class Offer(models.Model):
                                            blank=True,
                                            null=True
                                            )
+
+    has_changed = models.BooleanField(verbose_name='Есть изменения, не отправленные на Яндекс',
+                                      help_text="True, если изменения есть, False, если изменений нет",
+                                      default=True)
 
     class Meta:
         ordering = ['id']
@@ -210,7 +215,7 @@ class Offer(models.Model):
     @property
     @decor
     def rent(self):
-        price = self.get_price
+        price = self.price
         data = {
             2: 0.1,
             5: 0,
@@ -218,7 +223,7 @@ class Offer(models.Model):
             7: 0.2,
         }
         clear_profit = price.value - price.value * data[price.vat]
-        return (clear_profit - price.net_cost) / clear_profit * 100
+        return round((clear_profit - price.net_cost) / clear_profit * 100, 2)
 
     @property
     def check_rent(self):

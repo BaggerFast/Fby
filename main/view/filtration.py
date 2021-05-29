@@ -1,52 +1,67 @@
+from collections import OrderedDict
+from typing import Dict, NamedTuple
+from django.db.models import Q
+
+
+class FillType(NamedTuple):
+    name: str
+    options: list
+    enum: list = []
+
+
+class FilterCollection(NamedTuple):
+    display_name: str
+    # использовать для обычных полей
+    filter_name: str = ''
+    # использовать для enum
+    enum: str = ''
+
+
 class Filtration:
     def __init__(self, fields_to_filter):
-        self.fields_to_filter = fields_to_filter
+        self.fields_to_filter: list[FilterCollection] = fields_to_filter
 
     def get_filter_types(self, items):
         filter_types = {}
-        for field, name in self.fields_to_filter.items():
-            options = set()
-            for item in items:
-                get_display_name = "get_{}_display".format(field)
-                if hasattr(item, get_display_name):
-                    options.add(getattr(item, get_display_name)())
-                else:
-                    options.add(getattr(item, field))
-            if None in options:
-                options.remove(None)
-            options = sorted(options)
+        for field in self.fields_to_filter:
+            if not field.enum:
+                filter_types[field.filter_name] = FillType(name=field.display_name,
+                                                           options=sorted(
+                                                               set(items.values_list(field.filter_name, flat=True))))
+            else:
+                options_actual = items.values_list(field.enum, flat=True)
+                options = [getattr(item, f'get_{field.enum}_display')() for item in items]
 
-            filter_types[field] = {
-                'name': name,
-                'options': options,
-            }
+                filter_types[field.enum] = FillType(name=field.display_name,
+                                                    options=list(OrderedDict.fromkeys(options)),
+                                                    enum=list(OrderedDict.fromkeys(options_actual)))
+        print(filter_types)
         return filter_types
 
     @staticmethod
-    def filters_from_request(request, filter_types):
+    def filters_from_request(request, filter_types: Dict[str, FillType]):
         filters = {}
         for index, (field, filter_type) in enumerate(filter_types.items()):
-            str_options = [filter_type['options'][int(option)]
-                           for option in request.GET.getlist(str(index), '')]
-            filters[field] = str_options
+            filt = filter_type.enum if filter_type.enum else filter_type.options
+            filters[field] = [filt[int(option)] for option in request.GET.getlist(str(index), '')]
         return filters
 
     @staticmethod
     def filter_items(items, filters):
-        filtered_items = []
-        for item in items:
-            used_filters = 0
-            for filter_values in filters.values():
-                if filter_values:
-                    used_filters += 1
+        query_set_and = Q()
+        for key, data in filters.items():
+            query_set_or = Q()
+            for index in data:
+                query_set_or = query_set_or | Q(**{key: index})
+            query_set_and = query_set_and & query_set_or
+        return items.filter(query_set_and)
 
-            passed_fields = 0
-            for filter_attr, filter_values in filters.items():
-                for filter_value in filter_values:
-                    if filter_value == getattr(item, filter_attr):
-                        passed_fields += 1
-                        break
-
-            if passed_fields == used_filters:
-                filtered_items.append(item)
-        return filtered_items
+    @staticmethod
+    def checked_filters_from_request(request, filter_types):
+        checked = []
+        for index, field in enumerate(filter_types.values()):
+            checked_sub = [False] * len(field.options)
+            for checked_option in request.GET.getlist(str(index), ''):
+                checked_sub[int(checked_option)] = True
+            checked.append(checked_sub)
+        return checked

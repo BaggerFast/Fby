@@ -15,34 +15,23 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.decorators import login_required
 from django.urls import path, include
-from django.contrib.auth.views import LogoutView
 import debug_toolbar
-
 from fby_market import settings
-from main.modules.user import MyRegisterFormView, MyLoginFormView
 from main.modules import MainView
-import fby_market.additional_url.catalogue as catalogue
-import fby_market.additional_url.orders as orders
-import fby_market.additional_url.profile as profile
-import fby_market.additional_url.analytics as analytics
+from fby_market.additional_url import Url
 
 urlpatterns = [
     # basic
     path('', MainView.as_view(), name="index"),
     path('admin/', admin.site.urls),
-
     # nested
-    path('catalogue/', include(catalogue)),
-    path('orders/', include(orders)),
-    path('profile/', include(profile)),
-    path('analytics/', include(analytics)),
-
-    # authorize
-    path('register/', MyRegisterFormView.as_view(), name="register"),
-    path('login/', MyLoginFormView.as_view(), name='login'),
-    path('logout/', login_required(LogoutView.as_view()), name='logout'),
+    path('catalogue/', include(Url.catalogue)),
+    path('orders/', include(Url.orders)),
+    path('profile/', include(Url.profile)),
+    path('analytics/', include(Url.analytics)),
+    # auth
+    path('auth/', include(Url.auth)),
 ]
 
 if settings.DEBUG:

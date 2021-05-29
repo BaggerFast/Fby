@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <h2><b>№{{ order.order_id }}</b></h2>
-  <a href="{% url 'orders_list' %}" class="btn btn-danger" role="button">Вернуться</a><br>
+  <a href="{% url 'catalogue_order' %}" class="btn btn-danger" role="button">Вернуться</a><br>
   <div class="mt-2">
     <span class="badge bg-primary" style="font-size: 15px;">{{ order.creationDate }}</span>
     <span class="badge bg-dark" style="font-size: 15px;">{{ order.get_status_display|capfirst }}</span>
@@ -19,7 +19,11 @@
               <p class="card-text"> {{disc.get_type_display}} {{disc.costPerItem}}</p>
             {% endfor %}
             <p class="card-text"> Количество: {{ item.count }} </p>
-            {# <a target="_blank" href="{% url 'offer_by_sku' item.id %}" class="card-link">Перейти</a> ]#}
+            <form class="mt-4" method="get">
+                  <input id="item_id" type="text" class="form-control d-none" name="item_id" value={{item.id}}>
+                  <button type="submit">Перейти</button>
+            </form>
+<!--            <a target="_blank" href="{% url 'offer_by_sku' item.id %}" class="card-link">Перейти</a>-->
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
     {% for order in orders %}
       <tr>
         <td>
-          <a class="name_link" target="_blank" href="{% url 'order_by_sku' order.id %}">{{ order.order_id }}</a>
+          <a class="name_link" href="{% url 'order_by_sku' order.id %}">{{ order.order_id }}</a>
         </td>
         <td>{{ order.creationDate }}</td>
         <td>{{ order.total_price }}</td>

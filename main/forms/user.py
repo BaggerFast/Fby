@@ -37,11 +37,12 @@ class UserRegistrationForm(UserCreationForm, Func):
 
     class Meta:
         model = User
-        fields = ('first_name', 'username', 'email', 'password1', 'password2', 'image', 'client_id', 'token', 'shop_id')
+        fields = ('first_name', 'username', 'password1', 'password2', 'image', 'client_id', 'token', 'shop_id')
         labels = {'username': 'Логин', 'first_name': 'ФИО'}
 
 
 class UserChangeForm(Us, Func):
+    """Модель юзера для изменения данных"""
     def __init__(self, *args, **kwargs):
         self.del_old_image(args, kwargs['instance'])
         disabled = False
@@ -54,6 +55,7 @@ class UserChangeForm(Us, Func):
 
     @staticmethod
     def del_old_image(args, user):
+        """Метод для удаления старой картинки, в случае её изменения"""
         if args and 'image' in args[1].keys() and str(user.image) != f'base/base.png':
             try:
                 os.remove((MEDIA_ROOT + '/' + str(user.image)).replace('\\', '/'))
@@ -63,6 +65,7 @@ class UserChangeForm(Us, Func):
 
     @staticmethod
     def check_image(instance):
+        """Метод для проверки наличия картинки у юзера"""
         if not instance.image:
             instance.image = f'base/base.png'
             instance.save()
@@ -70,7 +73,7 @@ class UserChangeForm(Us, Func):
 
     class Meta:
         model = User
-        fields = ('first_name', 'email', 'image', 'client_id', 'token', 'shop_id')
+        fields = ('first_name', 'image', 'client_id', 'token', 'shop_id')
         labels = {'username': 'Логин', 'first_name': 'ФИО'}
 
     def save(self, commit=True):

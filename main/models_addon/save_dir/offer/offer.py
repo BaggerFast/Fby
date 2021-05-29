@@ -1,4 +1,4 @@
-"""Паррерн для сохранения данных о товаре в БД"""
+"""Паттерн для сохранения данных о товаре в БД"""
 
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -48,8 +48,8 @@ class OfferPattern(BasePattern):
             'update_fields': []
         },
         ProcessingState: {
-            'unique_fields': ['offer', 'status'],
-            'update_fields': []
+            'unique_fields': ['offer'],
+            'update_fields': ['status']
         },
         ProcessingStateNote: {
             'unique_fields': ['processingState', 'type'],
@@ -89,6 +89,11 @@ class OfferPattern(BasePattern):
             except ObjectDoesNotExist:
                 serializer = MappingSerializer(data=data[mapping_name])
             if serializer.is_valid():
+                if mapping_name == 'mapping':
+                    market_sku = data['mapping'].get('marketSku', None)
+                    if market_sku and getattr(offer_instance, 'marketSku', None) != market_sku:
+                        offer_instance.marketSku = market_sku
+                        offer_instance.save(update_fields=['marketSku'])
                 serializer.save(offer=offer_instance, mappingType=mapping_type)
                 self.created_objects.extend(serializer.created_objs)
                 self.updated_objects.extend(serializer.updated_objs)
@@ -111,7 +116,7 @@ class OfferPattern(BasePattern):
                 serializer = OfferSerializer(data=item['offer'])
 
             if serializer.is_valid():
-                offer_instance = serializer.save(user=user)
+                offer_instance = serializer.save(user=user, has_changed=False)
                 self.created_objects.extend(serializer.created_objs)
                 self.updated_objects.extend(serializer.updated_objs)
                 for mapping_name, mapping_type in self.MAPPINGS.items():

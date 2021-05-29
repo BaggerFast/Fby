@@ -2,19 +2,19 @@ from django.http import HttpResponse
 from django.contrib import messages
 from main.forms.user import UserChangeForm, UserPasswordChangeForm
 from main.modules.base import BaseView
-from main.view import get_navbar, Page
+from main.view import Navbar, Page
 from main.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
 
 class ProfileView(BaseView):
-    context = {'title': 'Profile', 'page_name': 'Личный кабинет'}
+    context = {'title': 'Аккаунт', 'page_name': 'Личный кабинет'}
 
     def get(self, request) -> HttpResponse:
         user = User.objects.get(username=request.user)
         local_context = {
-            'navbar': get_navbar(request),
+            'navbar': Navbar(request).get(),
             'base_form': UserChangeForm(instance=user, disable=True),
         }
         self.context_update(local_context)
@@ -22,12 +22,12 @@ class ProfileView(BaseView):
 
 
 class ProfileEditView(BaseView):
-    context = {'title': 'Profile edit', 'page_name': 'Редактирование профиля'}
+    context = {'title': 'Настройки аккаунта', 'page_name': 'Редактирование профиля'}
 
     def get(self, request) -> HttpResponse:
         user = User.objects.get(username=request.user)
         local_context = {
-            'navbar': get_navbar(request),
+            'navbar': Navbar(request).get(),
             'base_form': UserChangeForm(instance=user),
             'passwd_form': UserPasswordChangeForm(user=user),
         }

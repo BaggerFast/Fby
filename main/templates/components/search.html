@@ -1,12 +1,12 @@
 {% load static %}
-
 {% block search %}
   <form class="mt-4" method="get">
     <div class="input-group mb-3">
       {% include 'components/filter_types.html' %}
     </div>
+    <input id="content" type="text" class="form-control d-none" name="content" value="{{current_type}}">
     <div class="input-group mb-3">
-      <input type="text" class="form-control" name="input" aria-describedby="button-addon">
+      <input type="text" class="form-control" name="input" aria-describedby="button-addon" value="{{ input }}">
       <button class="btn btn-outline-secondary" type="submit" id="button-addon">Поиск</button>
     </div>
   </form>

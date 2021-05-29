@@ -1,4 +1,4 @@
-"""Паррерн для сохранения данных о заказах в БД"""
+"""Паттерн для сохранения данных о заказах в БД"""
 
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -44,7 +44,7 @@ class OrderPattern(BasePattern):
         },
         Payment: {
             'unique_fields': ['order', 'type', 'source'],
-            'update_fields': ['payment_id', 'date', 'total', 'paymentOrder']
+            'update_fields': ['payment_id', 'date', 'total']
         },
         Item: {
             'unique_fields': ['order', 'shopSku'],

@@ -1,13 +1,13 @@
 {% block pills %}
   <ul class="nav nav-pills flex-column mb-auto">
     {% for item in navbar.main %}
-      {% if item.list %}
+      {% if item.nested_fields %}
         <li class="nav-item dropdown mb-1">
           <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ item.label }}
           </a>
           <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-            {% for path in item.list %}
+            {% for path in item.nested_fields %}
               <a class="dropdown-item {% if not path.active%}active disabled{% endif %}" href="{% url path.url %}">
                 {{ path.label }}
               </a>
