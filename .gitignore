@@ -85,8 +85,6 @@ instance/
 
 # Sphinx documentation
 docs/build/
-docs/source/coverage/
-docs/source/coverage.rst
 
 # PyBuilder
 target/
