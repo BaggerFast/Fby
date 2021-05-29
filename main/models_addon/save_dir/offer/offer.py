@@ -3,8 +3,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 
 from main.models_addon.ya_market import Offer, Mapping, SupplyScheduleDays, CustomsCommodityCode, Barcode, Url, \
-    ManufacturerCountry, ProcessingState, ProcessingStateNote, GuaranteePeriod, LifeTime, ShelfLife, WeightDimension, \
-    Price
+    ManufacturerCountry, ProcessingState, ProcessingStateNote, GuaranteePeriod, LifeTime, ShelfLife, WeightDimension
 from main.models_addon.save_dir.base import BasePattern
 from main.serializers import OfferSerializer, MappingSerializer
 
@@ -97,8 +96,6 @@ class OfferPattern(BasePattern):
                 serializer.save(offer=offer_instance, mappingType=mapping_type)
                 self.created_objects.extend(serializer.created_objs)
                 self.updated_objects.extend(serializer.updated_objs)
-            else:
-                print(serializer.errors)
         else:
             try:
                 instance = Mapping.objects.get(offer=offer_instance, mappingType=mapping_type)
@@ -121,7 +118,5 @@ class OfferPattern(BasePattern):
                 self.updated_objects.extend(serializer.updated_objs)
                 for mapping_name, mapping_type in self.MAPPINGS.items():
                     self.save_mapping(item, offer_instance, mapping_name, mapping_type)
-            else:
-                print(serializer.errors)
 
         self.bulk_create_update()
