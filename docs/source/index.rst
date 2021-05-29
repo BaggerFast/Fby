@@ -11,7 +11,8 @@ Welcome to FBY Market Provider's documentation!
    :caption: Contents:
 
    code.rst
-   todo.rst
+   main_models.rst
+   minor_models.rst
    coverage.rst
 
 Indices and tables
