@@ -21,7 +21,7 @@ pep8:
     - develop
     - master
   
-  pylint:
+pylint:
     stage: style
     before_script:
     - pip install -r ci/pylint/requirements.txt
