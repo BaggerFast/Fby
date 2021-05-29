@@ -1,0 +1,38 @@
+image: python:latest
+
+cache:
+  paths:
+    - ~/.cache/pip/
+
+stages:
+    - style
+
+pep8:
+  stage: style
+  before_script:
+    - pip install -r ci/pycodestyle/requirements.txt
+    - chmod +x ci/pycodestyle/runner.sh
+  script:
+    - ./ci/pycodestyle/runner.sh
+  artifacts:
+    paths:
+      - public/pycodestyle.txt
+  only:
+    - develop
+    - master
+  
+pylint:
+    stage: style
+    before_script:
+    - pip install -r ci/pylint/requirements.txt
+    - chmod +x ci/pylint/runner.sh
+    script:
+    - ./ci/pylint/runner.sh
+    artifacts:
+      paths:
+        - public/pylint.svg
+        - public/pylint.html
+    only:
+        - develop
+        - master
+
