@@ -1,1 +1,1 @@
-from main.modules.analytics.addition.add import Stat
+from .add import Stat
