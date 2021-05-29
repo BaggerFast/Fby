@@ -1,3 +1,5 @@
+from typing import NamedTuple
+
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect
@@ -5,7 +7,7 @@ from django.http import HttpResponse, HttpRequest, Http404
 from django.urls import reverse
 from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
-from main.view import Navbar, Page, Filtration
+from main.view import Navbar, Page, Filtration, FilterCollection
 from main.ya_requests import OfferList, OfferPrice, UpdateOfferList, YandexChangePricesList
 import re
 
@@ -15,11 +17,13 @@ class CatalogueView(BaseView):
     models_to_save = [OfferList, OfferPrice]
     fields = ['name', 'shopSku', 'category', 'vendor']
     table = ['', 'Название', 'SKU', 'Категория', 'Продавец']
-    filtration = Filtration({
-        "Торговая марка": "vendor",
-        "Категория": "category",
-        "Планы по поставкам": {'enum': "availability"},
-    })
+
+    filtration = Filtration([
+        FilterCollection(display_name='Торговая марка', filter_name='vendor'),
+        FilterCollection(display_name='Категория', filter_name='category'),
+        FilterCollection(display_name='Планы по поставкам', enum='availability'),
+    ])
+
     content_types = {
         'Весь список': Q(),
         'Прошли модерацию': Q(processingState__status='READY'),

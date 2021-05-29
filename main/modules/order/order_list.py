@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.urls import reverse
 from main.models_addon.ya_market import Order, Item
-from main.view import Navbar, Page, Filtration
+from main.view import Navbar, Page, Filtration, FilterCollection
 from main.ya_requests import OrderList
 from main.modules.base import BaseView
 
@@ -13,10 +13,12 @@ class OrderListView(BaseView):
     context = {'title': 'Каталог заказов', 'page_name': 'Каталог заказов'}
     models_to_save = [OrderList]
     fields = ['status', 'order_id', 'paymentType', 'total_price']
-    filtration = Filtration({
-        'Статус': {'enum': 'status'},
-        'Тип оплаты': {'enum': 'paymentType'}
-    })
+
+    FilterCollection(display_name='Планы по поставкам', enum='availability'),
+    filtration = Filtration([
+        FilterCollection(display_name='Статус', enum='status'),
+        FilterCollection(display_name='Тип оплаты', enum='paymentType'),
+    ])
 
     def post(self, request) -> HttpResponse:
         return self.save_models(request=request,  name='catalogue_order')

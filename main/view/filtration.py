@@ -9,21 +9,33 @@ class FillType(NamedTuple):
     enum: list = []
 
 
+class FilterCollection(NamedTuple):
+    display_name: str
+    # использовать для обычных полей
+    filter_name: str = ''
+    # использовать для enum
+    enum: str = ''
+
+
 class Filtration:
     def __init__(self, fields_to_filter):
-        self.fields_to_filter = fields_to_filter
+        self.fields_to_filter: list[FilterCollection] = fields_to_filter
 
     def get_filter_types(self, items):
         filter_types = {}
-        for name, field in self.fields_to_filter.items():
-            if 'enum' not in field:
-                filter_types[field] = FillType(name=name, options=sorted(set(items.values_list(field, flat=True))))
+        for field in self.fields_to_filter:
+            if not field.enum:
+                filter_types[field.filter_name] = FillType(name=field.display_name,
+                                                           options=sorted(
+                                                               set(items.values_list(field.filter_name, flat=True))))
             else:
-                options_actual = items.values_list(field['enum'], flat=True)
-                options = [getattr(item, f'get_{field["enum"]}_display')() for item in items]
+                options_actual = items.values_list(field.enum, flat=True)
+                options = [getattr(item, f'get_{field.enum}_display')() for item in items]
 
-                filter_types[field['enum']] = FillType(name=name, options=list(OrderedDict.fromkeys(options)),
-                                                       enum=list(OrderedDict.fromkeys(options_actual)))
+                filter_types[field.enum] = FillType(name=field.display_name,
+                                                    options=list(OrderedDict.fromkeys(options)),
+                                                    enum=list(OrderedDict.fromkeys(options_actual)))
+        print(filter_types)
         return filter_types
 
     @staticmethod
