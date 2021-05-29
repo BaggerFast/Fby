@@ -1,6 +1,4 @@
 """Модуль для отображения карточки товара"""
-import math
-
 from django.contrib import messages
 from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404
@@ -13,8 +11,6 @@ from main.modules.offers.addition import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
 from main.modules.offers.addition.save_yandex import push_offer_to_ym, push_offer_price_to_ym
 from main.view import Page, Navbar
-from main.ya_requests.price import YandexChangePricesList
-from main.ya_requests.request import UpdateOfferList
 
 
 class ProductPageView(BaseView):

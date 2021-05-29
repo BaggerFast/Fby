@@ -1,5 +1,3 @@
-from typing import NamedTuple
-
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect
