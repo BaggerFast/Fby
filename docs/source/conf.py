@@ -10,13 +10,13 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+import django
+from django.db.models.query import QuerySet
 import inspect
 import os
 import sys
 
 sys.path.insert(0, os.path.abspath('../../'))
-
-import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fby_market.settings')
 django.setup()
@@ -24,7 +24,6 @@ django.setup()
 # Django sphinx setup by https://gist.github.com/codingjoe/314bda5a07ff3b41f247
 
 # Stop Django from executing DB queries
-from django.db.models.query import QuerySet
 
 QuerySet.__repr__ = lambda self: self.__class__.__name__
 

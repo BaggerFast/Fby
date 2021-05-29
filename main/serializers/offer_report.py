@@ -106,8 +106,7 @@ class WarehouseReportSerializer(BaseModelSerializer):
         all_nested_objects = getattr(instance, field, [])
         if all_nested_objects:
             return all_nested_objects.filter(offer=self.offer)
-        else:
-            return []
+        return []
 
     class Meta:
         model = Warehouse

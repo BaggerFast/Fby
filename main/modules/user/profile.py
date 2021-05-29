@@ -1,10 +1,10 @@
 from django.http import HttpResponse
 from django.contrib import messages
+from django.shortcuts import render, redirect
 from main.forms.user import UserChangeForm, UserPasswordChangeForm
 from main.modules.base import BaseView
 from main.view import Navbar, Page
 from main.models import User
-from django.shortcuts import render, redirect
 from django.urls import reverse
 
 
@@ -45,6 +45,5 @@ class ProfileEditView(BaseView):
             form.save()
             messages.success(request, form.success_message)
             return redirect(reverse('profile'))
-        else:
-            messages.error(request, 'Ошибка')
+        messages.error(request, 'Ошибка')
         return self.get(request=request)

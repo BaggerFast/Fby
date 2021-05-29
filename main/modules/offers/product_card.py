@@ -36,22 +36,20 @@ class ProductPageView(BaseView):
         """Возвращает True, если было изменено хотя бы одно поле Товара"""
         if self.context['content'] == 'info':
             return self.form.has_changed()
-        else:
-            return self.form.forms_dict[AvailabilityForm].has_changed()
+        return self.form.forms_dict[AvailabilityForm].has_changed()
 
     def prise_has_changed(self):
         """Возвращает True, если было изменено хотя бы одно поле Цены"""
         if self.context['content'] == 'accommodation':
             return self.form.forms_dict[PriceForm].has_changed()
-        else:
-            return False
+        return False
 
     def end_it(self, pk) -> HttpResponse:
         """Окончательная настройка контекста и отправка ответа на запрос"""
         offers = Offer.objects.get(pk=pk)
         rent = offers.check_rent
         if rent:
-            messages.error(self.request, f'Рентабельность: {offers.rent} % < 8%. Не прибыльно!!!')
+            messages.error(self.request, f'Рентабельность: {offers.rent} % < 8.0 %')
         self.context_update({'forms': self.form.get_for_context(),
                              'disable': self.disable,
                              'offer': Offer.objects.get(pk=pk)})

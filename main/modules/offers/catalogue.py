@@ -7,7 +7,7 @@ from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
 from main.modules.offers.addition.save_yandex import push_offer_to_ym, push_offer_price_to_ym
 from main.view import Navbar, Page, Filtration, FilterCollection
-from main.ya_requests import OfferList, OfferPrice, UpdateOfferList, YandexChangePricesList
+from main.ya_requests import OfferList, OfferPrice
 import re
 
 

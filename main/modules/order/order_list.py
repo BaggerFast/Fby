@@ -14,7 +14,6 @@ class OrderListView(BaseView):
     models_to_save = [OrderList]
     fields = ['status', 'order_id', 'paymentType', 'total_price']
 
-    FilterCollection(display_name='Планы по поставкам', enum='availability'),
     filtration = Filtration([
         FilterCollection(display_name='Статус', enum='status'),
         FilterCollection(display_name='Тип оплаты', enum='paymentType'),
@@ -46,8 +45,7 @@ class OrderPageView(BaseView):
             offer_id = item.get_offer_id(self.request.user)
             if offer_id:
                 return redirect(reverse('offer_by_sku', args=[offer_id]))
-            else:
-                messages.error(self.request, 'В каталоге такой товар не найден. Попробуйте обновить данные')
+            messages.error(self.request, 'В каталоге такой товар не найден. Попробуйте обновить данные')
         order = get_object_or_404(Order, pk=pk)
-        self.context_update({'navbar': get_navbar(request), 'order': order})
+        self.context_update({'navbar': Navbar(request).get(), 'order': order})
         return render(request, Page.order_page, self.context)
