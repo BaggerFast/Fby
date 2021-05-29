@@ -20,3 +20,15 @@ pep8:
   only:
     - develop
     - master
+  
+  pylint:
+    stage: style
+    before_script:
+    - pip install -r ci/pylint/requirements.txt
+    script:
+    - ./ci/pylint/runner.sh
+    artifacts:
+      paths:
+        - public/pylint.svg
+        - public/pylint.html
+
