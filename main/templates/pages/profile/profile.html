@@ -1,19 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
-  <img src="{{user.get_image}}" style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%; border: solid 3px black;"/>
-  <br>
-  <h4 class="mt-4"><mark>{{ user.username }}</mark></h4>
-  {% for form in base_form %}
-    {% ifnotequal form.label 'Аватарка' %}
-      <div class="mb-3">
-        <label>
-            <div>
-              {{ form.label }}
-              {{ form }}
+
+<section class="team2 cid-syPUe7H8cZ" xmlns="http://www.w3.org/1999/html" id="team2-1c">
+
+
+    <div class="container align-center">
+        <div class="card">
+            <div class="card-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-4 ml-5">
+                        <div class="image-wrapper">
+                            <img src="{{user.get_image}}">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md pt-5 pb-5">
+                        <div class="card-box">
+                            <h5 class="card-title mbr-fonts-style m-0 display-5">
+                            <strong>{{ user.username }}</strong>
+                        </h5>
+                            {% for form in base_form %}
+                      {% ifnotequal form.label 'Аватарка' %}
+                        <div class="mb-3">
+                          <label>
+                              <div>
+                                {{ form.label }}
+                                {{ form }}
+                              </div>
+                          </label>
+                        </div>
+                      {% endifnotequal %}
+                    {%endfor%}
+                        <a href="{% url 'profile_edit' %}">Редактировать профиль</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </label>
-      </div>
-    {% endifnotequal %}
-  {%endfor%}
-  <a href="{% url 'profile_edit' %}">Редактировать профиль</a>
+        </div>
+    </div>
+</section>
 {% endblock %}

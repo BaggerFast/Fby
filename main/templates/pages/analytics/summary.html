@@ -1,22 +1,70 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="row-12 d-flex justify-content-space-between">
-    {% for stat in stats %}
-    <div class="col-sm-4 bg-light m-1 p-3 text-center border rounded">
-      <h3>{{ stat.name }}</h3>
-      <div class="row bg-white d-flex justify-content-between border rounded">
-        {% for secondary_stat in stat.secondary_stats %}
-          {% if secondary_stat.amount is not None and secondary_stat.total_cost is not None %}
-            <div class="col-sm-6 mx-auto">
-              Заказанные {{ secondary_stat.time }}:<br> {{ secondary_stat.amount }}
-              на сумму <u>{{ secondary_stat.total_cost }}₽</u><br>
-              Себестоимость <u>{{ secondary_stat.total_net_cost }}₽</u><br>
-              Прибыль <u>{{ secondary_stat.revenue }}₽</u>
+{% for stat in stats %}
+<section class="features21 cid-syPEWpCcXp" id="features22-18" style="padding-bottom: 0;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <div class="item mbr-flex">
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-2">
+                            <strong>{{ stat.name }}</strong>
+                        </h4>
+                    </div>
+                </div>
             </div>
-          {% endif %}
-        {% endfor %}
-      </div>
+        </div>
     </div>
-    {% endfor %}
-  </div>
-{% endblock %}
+</section>
+{% for secondary_stat in stat.secondary_stats %}
+          {% if secondary_stat.amount is not None and secondary_stat.total_cost is not None %}
+<section class="pricing2 cid-syPETfsW2j" id="pricing2-17">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 align-center col-lg-4">
+                <div class="plan">
+                    <div class="plan-header">
+                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
+                            <strong>Закаказанные {{ secondary_stat.time }}: {{ secondary_stat.amount }}</strong>
+                        </h6>
+                        <div class="plan-price pb-3">
+                            <p class="price mbr-fonts-style m-0 display-2"><strong>{{ secondary_stat.total_cost }}₽</strong></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-6 align-center col-lg-4">
+                <div class="plan">
+                    <div class="plan-header">
+                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
+                            <strong>Себестоимость</strong>
+                        </h6>
+                        <div class="plan-price pb-3">
+                            <p class="price mbr-fonts-style m-0 display-2"><strong>{{ secondary_stat.total_net_cost }}₽</strong></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-6 align-center col-lg-4">
+                <div class="plan">
+                    <div class="plan-header">
+                        <h6 class="plan-title mbr-fonts-style mb-3 display-5">
+                            <strong>Прибыль</strong>
+                        </h6>
+                        <div class="plan-price pb-3">
+                            <p class="price mbr-fonts-style m-0 display-2"><strong>{{ secondary_stat.revenue }}₽</strong></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endif %}
+        {% endfor %}
+{% endfor %}
+  {% endblock %}
