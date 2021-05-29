@@ -48,11 +48,12 @@ class Navbar:
                     self.__Nested(url='login', label='Войти'),
                     self.__Nested(url='register', label='Зарегистрироваться')])
             ]
+        else:
+            self.__nav += [
+                self.__Field(label='Профиль', nested_fields=[self.__Nested(url='logout', label="Выйти"),
+                                                             self.__Nested(url='profile', label="Личный кабинет")])]
 
-    def __user_point(self):
-        return [self.__Nested(url='logout', label="Выйти"), self.__Nested(url='profile', label="Личный кабинет")]
-
-    def get(self) -> Dict:
+    def get(self) -> list:
         """
         возвращает аттрибуты для меню
         """
@@ -60,4 +61,4 @@ class Navbar:
         self.__auth_point()
         self.__static_point()
         self.__off_current()
-        return {'main': self.__nav, 'user': self.__user_point()}
+        return self.__nav
