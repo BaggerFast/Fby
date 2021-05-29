@@ -1,7 +1,6 @@
 import csv
 import io
 from typing import List
-
 from django.db.models import QuerySet
 
 

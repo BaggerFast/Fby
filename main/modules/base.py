@@ -24,7 +24,6 @@ class BaseView(LoginRequiredMixin, View):
         return redirect(reverse(name))
 
     def search_algorithm(self, keywords, objects):
-        # todo refactor and optimizations of search
         if not len(keywords):
             return objects
         scores = {}
@@ -43,9 +42,9 @@ class BaseView(LoginRequiredMixin, View):
 
     def sort_object(self, offer, filter_types) -> list:
         self.context_update({
-            "checked": self.filtration.checked_filters_from_request(self.request, filter_types),
-            "input": self.request.GET.get('input', '').strip(),
-        })
+                "checked": self.filtration.checked_filters_from_request(self.request, filter_types),
+                "input": self.request.GET.get('input', '').strip(),
+            })
 
         if self.request.GET.get("no_search"):
             self.context_update({'search': False})

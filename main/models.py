@@ -1,6 +1,5 @@
 import os
 from django.contrib.auth.models import AbstractUser
-from django.core.exceptions import ValidationError
 from django.db import models
 from fby_market.settings import MEDIA_URL, DEBUG, YaMarket
 
@@ -23,12 +22,6 @@ class User(AbstractUser):
         return f'{MEDIA_URL}/{self.image}'
 
     def clean(self):
-        data = {self.client_id, self.token, self.shop_id}
-        if len(data) == 1:
-            if '' not in data:
-                raise ValidationError('Все ключи одинаковые')
-        elif len(data) < 3 or (len(data) == 3 and '' in data):
-            raise ValidationError('Введите все 3 ключа')
         if not self.image and not os.path.exists(self.get_image.replace('\\', '/')):
             self.image = f'base/base.png'
 
