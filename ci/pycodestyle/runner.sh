@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir public
-pycodestyle . --statistics > public/pycodestyle.txt
+pycodestyle . --ignore=E501 --statistics > public/pycodestyle.txt
 
 exit 0
 
