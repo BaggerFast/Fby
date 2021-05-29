@@ -1,0 +1,32 @@
+image: python:latest
+
+# This folder is cached between builds
+# http://docs.gitlab.com/ee/ci/yaml/README.html#cache
+cache:
+  paths:
+    - ~/.cache/pip/
+
+stages:
+    -style
+
+# This is a basic example for a gem or script which doesn't use
+# services such as redis or postgres
+before_script:
+  - python -V  # Print out python version for debugging
+  # Uncomment next line if your Django app needs a JS runtime:
+  # - apt-get update -q && apt-get install nodejs -yqq
+  - pip install -r requirements.txt
+
+pylint:
+  stage: style
+  before_script:
+    - pip install -r ci/pylint/requirements.txt
+    - chmod +x ci/pylint/runner.sh
+  script:
+    - ./ci/pylint/runner.sh
+  artifacts:
+    paths:
+      - public
+  only:
+    - develop
+    - master
