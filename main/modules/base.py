@@ -47,7 +47,6 @@ class BaseView(LoginRequiredMixin, View):
                 attr_actual = str(getattr(item, field)).lower()
                 if attr_actual and keyword in attr_display or keyword in attr_actual:
                     search_results.append(item)
-                    pprint(search_results)
                     break
         return search_results
 
@@ -64,7 +63,6 @@ class BaseView(LoginRequiredMixin, View):
         keywords = self.request.GET.get('input', '').lower().strip().split('|')
         filters = self.filtration.filters_from_request(self.request, filter_types)
         objects = self.search_algorithm(keywords, self.filtration.filter_items(offers, filters))
-        pprint(objects)
         was_searching_used = len(keywords) != 0
         if not was_searching_used:
             filter_values = [j for sub in filters.values() for j in sub]
