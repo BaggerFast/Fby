@@ -2,8 +2,6 @@
 {% block content %}
 
 <section class="team2 cid-syPUe7H8cZ" xmlns="http://www.w3.org/1999/html" id="team2-1c">
-
-
     <div class="container align-center">
         <div class="card">
             <div class="card-wrapper">
@@ -16,21 +14,21 @@
                     <div class="col-12 col-md pt-5 pb-5">
                         <div class="card-box">
                             <h5 class="card-title mbr-fonts-style m-0 display-5">
-                            <strong>{{ user.username }}</strong>
-                        </h5>
+                                <strong>{{ user.username }}</strong>
+                            </h5>
                             {% for form in base_form %}
-                      {% ifnotequal form.label 'Аватарка' %}
-                        <div class="mb-3">
-                          <label>
-                              <div>
-                                {{ form.label }}
-                                {{ form }}
-                              </div>
-                          </label>
-                        </div>
-                      {% endifnotequal %}
-                    {%endfor%}
-                        <a href="{% url 'profile_edit' %}">Редактировать профиль</a>
+                            {% ifnotequal form.label 'Аватарка' %}
+                            <div class="mb-3">
+                                <label>
+                                    <div>
+                                        {{ form.label }}
+                                        {{ form }}
+                                    </div>
+                                </label>
+                            </div>
+                            {% endifnotequal %}
+                            {%endfor%}
+                            <a href="{% url 'profile_edit' %}">Редактировать профиль</a>
                         </div>
                     </div>
                 </div>

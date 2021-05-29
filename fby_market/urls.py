@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 import debug_toolbar
 from fby_market import settings
-from main.modules import MainView
+from main.modules import MainView, FaqView
 from fby_market.additional_url import Url
 
 urlpatterns = [
     # basic
     path('', MainView.as_view(), name="index"),
+    path('faq/', FaqView.as_view(), name="faq"),
     path('admin/', admin.site.urls),
     # nested
     path('catalogue/', include(Url.catalogue)),

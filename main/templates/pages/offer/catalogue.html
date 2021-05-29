@@ -1,20 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<section
-  class="header33"
-  id="header130-l"
->
+<section class="header33" id="header130-l">
   <div class="align-center container">
     <div class="row mt-5">
-    {% include 'components/update.html' %}
-    {% if offers %}
-      {% include 'components/catalogue/check.html' %}
-      {% include 'components/catalogue/offers.html' %}
-      {% include 'components/delete.html' %}
-    {% else %}
-      {% include 'components/empty.html' %}
-    {% endif %}
-  </div>
+      {% include 'components/update.html' %}
+      {% if offers %}
+        {% include 'components/catalogue/check.html' %}
+        {% include 'components/catalogue/offers.html' %}
+        {% include 'components/delete.html' %}
+      {% else %}
+        {% include 'components/empty.html' %}
+      {% endif %}
+    </div>
   </div>
 </section>
 {% include 'components/preloader.html' %}

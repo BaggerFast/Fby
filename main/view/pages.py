@@ -16,3 +16,4 @@ class Page:
     profile = serialize('profile/profile')
     profile_edit = serialize('profile/profile_edit')
     summary = serialize('analytics/summary')
+    faq = serialize('faq')

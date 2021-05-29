@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="content14 cid-syQrqwehL7 pt-0" id="content14-1j">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <ul class="list mbr-fonts-style display-7">
+                    <li><strong>Регистрация и получение</strong><br>Чтобы использовать протокол OAuth при работе с
+                        партнерским API, вам необходимо: <a
+                            href="https://yandex.ru/dev/oauth/doc/dg/tasks/register-client.html" class="text-primary"
+                            target="_blank">зарегистрировать свое приложение</a>.<br>Приложению присваивается уникальный
+                        идентификатор — параметр client_id на <a href="https://oauth.yandex.ru/" class="text-primary"
+                            target="_blank">Яндекс.OAuth</a>. После регистрации приложение сможет получить OAuth-токен
+                        для доступа к данным Маркета.<br></li>
+                    <li><strong>Авторизация</strong><br><a
+                            href="https://yandex.ru/dev/oauth/doc/dg/tasks/get-oauth-token-docpage/"
+                            class="text-primary" target="_blank">Получить отладочный OAuth-токен</a> на логин
+                        пользователя с любым набором прав доступа к нужным магазинам.<br></li>
+                    <li><strong>Использование</strong><br>В запросах к партнерскому API необходимо указывать:
+                        OAuth-токен в параметре oauth_token; идентификатор приложения в параметре
+                        oauth_client_id.<br>Авторизационные данные передаются в HTTPзаголовке Authorization:
+                        Authorization: OAuth oauth_token="авторизационный_токен",
+                        oauth_client_id="идентификатор_приложения"<br>Если ресурс API вызван без авторизационных данных,
+                        сервер Маркета возвратит HTTP-статус 401 Unauthorized.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -35,6 +35,7 @@ class Navbar:
     def __auth_point(self):
         if self.__request.user.is_authenticated:
             self.__nav += [
+                self.__Nested(url='faq', label="FAQ"),
                 self.__Field(label='Товары', nested_fields=[self.__Nested(url='catalogue_offer', label="Каталог"),
                                                             self.__Nested(url='create_offer', label="Создать")]),
                 self.__Field(label='Заказы', nested_fields=[self.__Nested(url='catalogue_order', label="Каталог"),

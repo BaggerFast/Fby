@@ -17,7 +17,7 @@
     </div>
 </section>
 {% for secondary_stat in stat.secondary_stats %}
-          {% if secondary_stat.amount is not None and secondary_stat.total_cost is not None %}
+{% if secondary_stat.amount is not None and secondary_stat.total_cost is not None %}
 <section class="pricing2 cid-syPETfsW2j" id="pricing2-17">
     <div class="container">
         <div class="row justify-content-center">
@@ -28,7 +28,8 @@
                             <strong>Закаказанные {{ secondary_stat.time }}: {{ secondary_stat.amount }}</strong>
                         </h6>
                         <div class="plan-price pb-3">
-                            <p class="price mbr-fonts-style m-0 display-2"><strong>{{ secondary_stat.total_cost }}₽</strong></p>
+                            <p class="price mbr-fonts-style m-0 display-2"><strong>{{ secondary_stat.total_cost
+                                    }}₽</strong></p>
                         </div>
                     </div>
 
@@ -41,7 +42,8 @@
                             <strong>Себестоимость</strong>
                         </h6>
                         <div class="plan-price pb-3">
-                            <p class="price mbr-fonts-style m-0 display-2"><strong>{{ secondary_stat.total_net_cost }}₽</strong></p>
+                            <p class="price mbr-fonts-style m-0 display-2"><strong>{{ secondary_stat.total_net_cost
+                                    }}₽</strong></p>
                         </div>
                     </div>
 
@@ -54,7 +56,8 @@
                             <strong>Прибыль</strong>
                         </h6>
                         <div class="plan-price pb-3">
-                            <p class="price mbr-fonts-style m-0 display-2"><strong>{{ secondary_stat.revenue }}₽</strong></p>
+                            <p class="price mbr-fonts-style m-0 display-2"><strong>{{ secondary_stat.revenue
+                                    }}₽</strong></p>
                         </div>
                     </div>
 
@@ -65,6 +68,6 @@
     </div>
 </section>
 {% endif %}
-        {% endfor %}
 {% endfor %}
-  {% endblock %}
+{% endfor %}
+{% endblock %}
