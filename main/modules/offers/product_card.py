@@ -11,6 +11,7 @@ from main.forms import AvailabilityForm, PriceForm
 from main.models_addon.ya_market import Offer, Price
 from main.modules.offers.addition import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
+from main.modules.offers.addition.save_yandex import push_offer_to_ym, push_offer_price_to_ym
 from main.view import Page, Navbar
 from main.ya_requests.price import YandexChangePricesList
 from main.ya_requests.request import UpdateOfferList
@@ -60,26 +61,17 @@ class ProductPageView(BaseView):
                              'offer': Offer.objects.get(pk=pk)})
         return render(self.request, Page.product_card, self.context)
 
-    def save_to_ym(self, offer):
+    def push_offer(self, offer):
         """Обработка запроса на обновление или сохранение товара на Яндексе"""
         if offer.has_changed:
-            sku = offer.shopSku
-            update_request = UpdateOfferList(offers=[offer], request=self.request)
-            update_request.update_offers()
-            update_request.messages(sku_list=list(sku),
-                                    success_message=f'Товар shopSku = {sku} успешно сохранен на Яндексе')
+            push_offer_to_ym(request=self.request, offers=[offer], sku_list=[offer.shopSku],
+                             success_msg=f'Товар shopSku = {offer.shopSku} успешно сохранен на Яндексе')
 
-    def update_price(self, offer):
+    def push_price(self, offer):
         """"Обработка запроса на изменение цены на Яндексе"""
         if offer.get_price and offer.get_price.has_changed:
-            price = [offer.get_price]
-            sku = [offer.shopSku]
-            if not price:
-                return
-            changed_prices = YandexChangePricesList(prices=price, request=self.request)
-            changed_prices.update_prices()
-            changed_prices.messages(sku_list=sku,
-                                    success_message=f'Цена товара shopSku = {sku} успешно сохранена на Яндексе')
+            push_offer_price_to_ym(request=self.request, prices=[offer.get_price], sku_list=[offer.shopSku],
+                                   success_msg=f'Цена товара shopSku = {offer.shopSku} успешно сохранена на Яндексе')
 
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         """Обработка post-запроса"""
@@ -98,8 +90,8 @@ class ProductPageView(BaseView):
             return delete()
 
         btns = {
-            'offer': self.save_to_ym,
-            'price': self.update_price
+            'offer': self.push_offer,
+            'price': self.push_price
         }
 
         data = request.POST.get('yandex', '')

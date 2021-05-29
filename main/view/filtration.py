@@ -35,7 +35,6 @@ class Filtration:
                 filter_types[field.enum] = FillType(name=field.display_name,
                                                     options=list(OrderedDict.fromkeys(options)),
                                                     enum=list(OrderedDict.fromkeys(options_actual)))
-        print(filter_types)
         return filter_types
 
     @staticmethod
