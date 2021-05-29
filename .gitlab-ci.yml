@@ -1,0 +1,22 @@
+image: python:latest
+
+cache:
+  paths:
+    - ~/.cache/pip/
+
+stages:
+    - style
+
+pep8:
+  stage: style
+  before_script:
+    - pip install -r ci/pycodestyle/requirements.txt
+    - chmod +x ci/pycodestyle/runner.sh
+  script:
+    - ./ci/pycodestyle/runner.sh
+  artifacts:
+    paths:
+      - public/pycodestyle.txt
+  only:
+    - develop
+    - master
