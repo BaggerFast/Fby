@@ -51,3 +51,10 @@ make html
 DJANGO_SETTINGS_MODULE=fby_market.settings pylint fby_market main manage.py
 pycodestyle --ignore=E501 fby_market main manage.py
 ```
+
+
+## Documentation
+```bash
+make html
+```
+
