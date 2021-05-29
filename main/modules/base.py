@@ -37,7 +37,6 @@ class BaseView(LoginRequiredMixin, View):
         scores = {}
         for item, keyword in itertools.product(objects, keywords):
             for field in self.fields:
-                print(field)
                 attr_display = self.get_item_display_name(item, field)
                 attr_actual = getattr(item, field)
                 if attr_actual is not None and \
