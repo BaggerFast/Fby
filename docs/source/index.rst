@@ -14,6 +14,7 @@ Welcome to FBY Market Provider's documentation!
    main_models.rst
    minor_models.rst
    coverage.rst
+   types.rst
 
 Indices and tables
 ==================
