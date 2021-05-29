@@ -38,7 +38,9 @@ class Navbar:
                 self.__Field(label='Товары', nested_fields=[self.__Nested(url='catalogue_offer', label="Каталог"),
                                                             self.__Nested(url='create_offer', label="Создать")]),
                 self.__Field(label='Заказы', nested_fields=[self.__Nested(url='catalogue_order', label="Каталог"),
-                                                            self.__Nested(url='summary', label='Отчёт')])
+                                                            self.__Nested(url='summary', label='Отчёт')]),
+                self.__Field(label='Профиль', nested_fields=[self.__Nested(url='logout', label="Выйти"),
+                                                             self.__Nested(url='profile', label="Личный кабинет")])
             ]
 
     def __not_auth_point(self):
@@ -48,10 +50,6 @@ class Navbar:
                     self.__Nested(url='login', label='Войти'),
                     self.__Nested(url='register', label='Зарегистрироваться')])
             ]
-        else:
-            self.__nav += [
-                self.__Field(label='Профиль', nested_fields=[self.__Nested(url='logout', label="Выйти"),
-                                                             self.__Nested(url='profile', label="Личный кабинет")])]
 
     def get(self) -> list:
         """

@@ -22,9 +22,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-          {% for item in navbar.main %}
-            {% if item.nested_fields %}
-              <li class="nav-item dropdown">
+          {% for item in navbar %}
+          {% if item.nested_fields %}
+          <li class="nav-item dropdown">
                 <a class="nav-link link text-black dropdown-toggle display-4" href="#" data-toggle="dropdown-submenu"
                   aria-expanded="false">{{ item.label }}</a>
                 <div class="dropdown-menu">
@@ -41,21 +41,6 @@
                   class="nav-link link text-black display-4" href="{% url item.url %}">{{ item.label }}</a></li>
             {% endif %}
           {% endfor %}
-          {% if user.is_authenticated %}
-            <li class="nav-item dropdown">
-              <a class="nav-link link text-black dropdown-toggle display-4" href="#" data-toggle="dropdown-submenu"
-                aria-expanded="false">Профиль</a>
-              <div class="dropdown-menu">
-                {% for item in navbar.user %}
-          <a class="text-black dropdown-item display-4"
-                    aria-expanded="false" href="{% url item.url %}">
-                    {{ item.label }}
-                  </a>
-              {% endfor %}
-
-              </div>
-            </li>
-          {% endif %}
         </ul>
       </div>
     </div>
