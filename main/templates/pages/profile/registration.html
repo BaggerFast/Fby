@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% include 'components/errors.html' %}
-    <div>
-      {% include 'components/form.html' %}
-      <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+
+<section class="form7 cid-syPYUl5NmA pt-0" id="form7-1d">
+  <div class="container">
+    <div class="row justify-content-center mt-4">
+      <div class="col-lg-8 mx-auto mbr-form mbr-form form-with-styler " data-form-type="formoid">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {% include 'components/errors.html' %}
+          <div>
+            {% include 'components/form.html' %}
+            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </form>
+  </div>
+</section>
 {% endblock %}

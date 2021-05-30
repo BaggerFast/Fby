@@ -12,7 +12,7 @@ class MyRegisterFormView(BaseView):
 
     form_class = UserRegistrationForm
     template_name = Page.registration
-    context = {'title': 'Registration', 'page_name': 'Регистрация'}
+    context = {'title': 'Регистрация', 'page_name': 'Регистрация'}
 
     def form_valid(self, form):
         form.save()

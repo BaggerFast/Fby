@@ -5,21 +5,24 @@ from django.http import HttpResponse, HttpRequest, Http404
 from django.urls import reverse
 from main.models_addon.ya_market import Offer
 from main.modules.base import BaseView
-from main.view import get_navbar, Page, Filtration
-from main.ya_requests import OfferList, OfferPrice, UpdateOfferList, YandexChangePricesList
+from main.modules.offers.addition.save_yandex import push_offer_to_ym, push_offer_price_to_ym
+from main.view import Navbar, Page, Filtration, FilterCollection
+from main.ya_requests import OfferList, OfferPrice
 import re
 
 
 class CatalogueView(BaseView):
-    context = {'title': 'Catalogue', 'page_name': 'Каталог'}
+    context = {'title': 'Каталог товаров', 'page_name': 'Каталог товаров'}
     models_to_save = [OfferList, OfferPrice]
-    fields = ['name', 'description', 'shopSku', 'category', 'vendor']
+    fields = ['name', 'shopSku', 'category', 'vendor']
     table = ['', 'Название', 'SKU', 'Категория', 'Продавец']
-    filtration = Filtration({
-        "Торговая марка": "vendor",
-        "Категория": "category",
-        "Планы по поставкам": {'enum': "availability"},
-    })
+
+    filtration = Filtration([
+        FilterCollection(display_name='Торговая марка', filter_name='vendor'),
+        FilterCollection(display_name='Категория', filter_name='category'),
+        FilterCollection(display_name='Планы по поставкам', enum='availability'),
+    ])
+
     content_types = {
         'Весь список': Q(),
         'Прошли модерацию': Q(processingState__status='READY'),
@@ -36,33 +39,24 @@ class CatalogueView(BaseView):
         offers_ids = [re.sub(regular_string, '', line) for line in list(dict(request.POST).keys())[1:-1]]
         return self.configure_offer().filter(id__in=offers_ids)
 
-    def update_price(self, offers):
+    def push_price(self, offers):
         """"Обработка запроса на изменение цены на Яндексе"""
         prices = [offer.get_price for offer in offers if offer.price.has_changed]
+        push_offer_price_to_ym(request=self.request, prices=prices, sku_list=offers.values_list('shopSku', flat=True),
+                               success_msg="Все цены на товары успешно отправлены")
 
-        if not prices:
-            return
-        sku_list = offers.values_list('shopSku', flat=True).distinct()
-        changed_prices = YandexChangePricesList(prices=prices, request=self.request)
-        changed_prices.update_prices()
-        changed_prices.messages(sku_list=sku_list, success_message="Все цены успешно отправлены")
-
-    def save_to_ym(self, offers):
+    def push_offer(self, offers):
         """Обработка запроса на обновление или сохранение товара на Яндексе"""
-        offers = offers.filter(has_changed=True)
-        if not offers:
-            return
-        sku_list = offers.values_list('shopSku', flat=True).distinct()
-        update_request = UpdateOfferList(offers=list(offers), request=self.request)
-        update_request.update_offers()
-        update_request.messages(sku_list=sku_list, success_message="Все товары успешно отправлены")
+        push_offer_to_ym(request=self.request, offers=offers.filter(has_changed=True),
+                         sku_list=offers.values_list('shopSku', flat=True),
+                         success_msg="Все товары успешно отправлены")
 
     def button_push(self):
         offers = self.find_offers_id_by_regular(self.request)
         if not offers:
             offers = self.configure_offer()
-        self.save_to_ym(offers=offers)
-        self.update_price(offers=offers)
+        self.push_offer(offers=offers)
+        self.push_price(offers=offers)
         return redirect(reverse('catalogue_offer'))
 
     def check_box(self):
@@ -102,9 +96,9 @@ class CatalogueView(BaseView):
             return redirect(reverse('catalogue_offer'))
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {
-            'navbar': get_navbar(request),
+            'navbar': Navbar(request).get(),
             'table': self.table,
-            'filter_types': filter_types.items(),
+            'filter_types': filter_types,
             'current_type': category_index,
             'types': self.content_types,
             'offers': self.sort_object(offers, filter_types),

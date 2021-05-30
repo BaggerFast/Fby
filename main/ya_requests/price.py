@@ -89,7 +89,7 @@ class YandexChangePrices(Requests):
         self.price_list: Price = price
         self.temp_params: List = [sku_and_price(price)] if price.value else []
         self.errors = {}
-        self.PARAMS: dict = {'offers': self.temp_params}
+        self.params: dict = {'offers': self.temp_params}
         super().__init__(json_name='offer-prices/updates', base_context_name='price', name='ChangePrices',
                          request=request)
 

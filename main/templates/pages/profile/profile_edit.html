@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-  <p>{{ user.username }}</p>
-  {% include 'components/profile/form_data.html' %}
-  <hr>
-  <form class="mb-3" method="post">
-    {% csrf_token %}
-    {% include 'components/profile/errors.html' %}
-    <button class="btn btn-primary" type="submit">Сохранить</button>
-  </form>
-  <a class="btn btn-danger mb-5" href="{% url 'profile' %}">Назад</a>
+
+
+<section class="team1 cid-syPRxtacAQ" id="team1-1b">
+  <div class="container">
+    <div class="row justify-content-center">
+      <p>{{ user.username }}</p>
+      {% include 'components/profile/form_data.html' %}
+      <hr class="m-5">
+      <form class="mb-3" method="post">
+        {% csrf_token %}
+        {% include 'components/profile/errors.html' %}
+        <button class="btn btn-primary" type="submit">Сохранить</button>
+      </form>
+    </div>
+    <a class="btn btn-danger mb-5" href="{% url 'profile' %}">Назад</a>
+  </div>
+</section>
 {% endblock %}

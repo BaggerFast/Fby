@@ -1,7 +1,7 @@
 import json
+from django.http import HttpRequest
 import requests
 from django.contrib import messages
-from django.http import HttpRequest
 
 
 class Requests:
@@ -9,7 +9,7 @@ class Requests:
     Базовый класс для получения данных и сохранения в БД
     """
 
-    PARAMS: dict = None  # параметры запроса в формате json (для post-запросов)
+    params: dict = None  # параметры запроса в формате json (для post-запросов)
 
     errors = {
         206: "Запрос выполнен частично.",
@@ -47,8 +47,8 @@ class Requests:
         (если next_page_token не задан, вернется первая страница)
         """
         url = f'{self.url}?page_token={next_page_token}' if next_page_token else self.url
-        if self.PARAMS:  # если есть входные параметры, формируем post-запрос
-            data = requests.post(url, headers=self.headers, json=self.PARAMS)
+        if self.params:  # если есть входные параметры, формируем post-запрос
+            data = requests.post(url, headers=self.headers, json=self.params)
         else:
             data = requests.get(url, headers=self.headers)
         return data.json()

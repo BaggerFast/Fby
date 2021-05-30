@@ -1,5 +1,4 @@
 """Базовые классы сериалайзеров
-
 Определяют методы create() и update() для сериалайзеров сложной структуры
 для поддержки десериализации
 """
@@ -7,7 +6,6 @@
 from typing import List
 from rest_framework import serializers
 from rest_framework.utils import model_meta
-
 
 class SimpleModelSerializer(serializers.ModelSerializer):
     """
@@ -91,16 +89,14 @@ class BaseModelSerializer(serializers.ModelSerializer):
         nested_serializer = self.fields[field]
         if getattr(nested_serializer, 'many', False):
             return [{**attrs, **self.forward_kwargs(instance)} for attrs in data]
-        else:
-            return {**data, **self.forward_kwargs(instance)}
+        return {**data, **self.forward_kwargs(instance)}
 
     def get_nested_object(self, instance, field: str):
         """Возвращает встроенный объект для поля field"""
         nested_serializer = self.fields[field]
         if getattr(nested_serializer, 'many', False):
             return getattr(instance, field).all()
-        else:
-            return getattr(instance, field, None)
+        return getattr(instance, field, None)
 
     def get_nested_created_objects(self, nested_serializer):
         self.created_objs += nested_serializer.created_objs
