@@ -1,6 +1,7 @@
 import itertools
 from typing import List
 from main.models_addon.ya_market import Offer
+import re
 
 
 def get_item_display_name(item, field: str):
@@ -15,7 +16,9 @@ def search_algorithm(keywords: str, objects: List[Offer], fields) -> List[Offer]
     if not len(keywords):
         return objects
 
-    keywords = keywords.lower().strip().split('|')
+    keywords = keywords.lower().strip()
+    keywords = re.sub(' +', ' ', keywords)
+    keywords = keywords.split('|')
 
     # Защита от дурака
     keywords = list(filter(lambda a: a != '', keywords))
