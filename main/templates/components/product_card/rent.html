@@ -1,28 +1,29 @@
 {% block rent %}
 {% if not create %}
-<section class="content7" id="content7-15">
+    <section class="content7" id="content7-15">
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <div>
-        <blockquote>
-          {% if not create %}
-          <p class="mbr-text mbr-fonts-style display-4"><b>Рентабельность</b>: {% if offer.rent %} {{offer.rent}}% {%
-            else %} недостаточно данных для расчета {% endif %}</p>
-          {% if offer.processingState.get_notes %}
-          {% for note in offer.processingState.get_notes %}
-          <p class="mbr-text mbr-fonts-style display-4"><b>Модерация</b>: {{ note.get_type_display|capfirst }}
-            {% endfor %}
-            {% elif offer.processingState %}
-          <p class="mbr-text mbr-fonts-style display-4"><b>Модерация</b>: {{offer.processingState.get_status_display}}
-            {% else %}
-          <p class="mbr-text mbr-fonts-style display-4"><b>Модерация</b>: товар не отправлен на Яндекс Маркет</p>
-          {% endif %}
-          {% endif %}
+      <div class="container">
+        <div class="row justify-content-center">
+          <div>
+            <blockquote>
+              {% if not create %}
+              <p class="mbr-text mbr-fonts-style display-4"><b>Рентабельность</b>: {% if offer.rent %} {{offer.rent}}%
+                {% else %} недостаточно данных для расчета {% endif %}</p>
+              {% if offer.processingState.get_notes %}
+              {% for note in offer.processingState.get_notes %}
+              <p class="mbr-text mbr-fonts-style display-4"><b>Модерация</b>: {{ note.get_type_display|capfirst }}
+                {% endfor %}
+                {% elif offer.processingState %}
+              <p class="mbr-text mbr-fonts-style display-4"><b>Модерация</b>:
+                {{offer.processingState.get_status_display}}
+                {% else %}
+              <p class="mbr-text mbr-fonts-style display-4"><b>Модерация</b>: товар не отправлен на Яндекс Маркет</p>
+              {% endif %}
+              {% endif %}
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 {% endif %}
 {% endblock %}
