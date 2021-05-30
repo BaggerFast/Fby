@@ -24,7 +24,6 @@ def search_algorithm(keywords: str, objects: List[Offer], fields) -> List[Offer]
 
     keywords = [i.strip() for i in keywords]
 
-    print(keywords)
     search_results = []
     for item, keyword in itertools.product(objects, keywords):
         for field in fields:
