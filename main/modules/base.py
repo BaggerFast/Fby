@@ -1,6 +1,3 @@
-import re
-from typing import List
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import redirect

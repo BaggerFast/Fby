@@ -1,5 +1,4 @@
 import itertools
-import re
 from typing import List
 from main.models_addon.ya_market import Offer
 
