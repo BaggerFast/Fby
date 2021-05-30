@@ -11,7 +11,7 @@ class MyLoginFormView(BaseView):
     """отображение авторизации"""
     form_class = UserLoginForm
     template_name = Page.login
-    context = {'title': 'Login', 'page_name': 'Авторизация'}
+    context = {'title': 'Авторизация', 'page_name': 'Авторизация'}
 
     def form_valid(self, form):
         user = authenticate(username=form.data.get('username'), password=form.data.get('password'))

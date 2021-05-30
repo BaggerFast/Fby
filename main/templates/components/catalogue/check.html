@@ -1,10 +1,10 @@
 {% block check %}
   <form class="mt-4" method="get">
-    <div class="buttons-group">
+    <div class="btn-group">
       <input id="content" type="text" class="form-control d-none" name="content">
       {% for type in types %}
-            <button id="{{ type }}" type="submit" class="btn btn-light btn-sm {% ifequal current_type type %}
-                    active_btn{% endifequal %}" onclick="inputEdit(this.id)">{{ type }}</button>
+        <button id="{{ type }}" type="submit" class="btn btn-light btn-sm {% ifequal current_type type %}
+                    active{% endifequal %}" onclick="inputEdit(this.id)">{{ type }}</button>
       {% endfor %}
     </div>
   </form>

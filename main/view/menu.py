@@ -1,48 +1,62 @@
-from typing import List, Dict, Union
+from dataclasses import dataclass
 from django.urls import reverse
 
-def get_navbar(request) -> Dict[str, Union[list, List[Dict[str, str]]]]:
-    def off_current(nav: List):
-        for menu_item in nav:
-            if menu_item.get('list', False):
+
+class Navbar:
+    @dataclass
+    class __Nested:
+        url: str
+        label: str
+        active: bool = False
+
+    @dataclass
+    class __Field:
+        label: str
+        nested_fields: list
+
+    def __init__(self, request):
+        self.__request = request
+        self.__nav = []
+
+    def __off_current(self):
+        for menu_item in self.__nav:
+            if type(menu_item) == self.__Field:
                 # для атрибута меню с выпадающим списком
-                for i in range(len(menu_item['list'])):
-                    menu_item['list'][i]['active'] = request.path != reverse(menu_item['list'][i]['url'])
+                for field in menu_item.nested_fields:
+                    field.active = self.__request.path != reverse(field.url)
             else:
                 # для обычных атрибутов
-                menu_item['active'] = request.path != reverse(menu_item['url'])
-        return nav
+                menu_item.active = self.__request.path != reverse(menu_item.url)
 
-    def static_point():
-        return [
-            {'url': 'index', 'label': 'Главная'}
-        ]
+    def __static_point(self):
+        return [self.__Nested(url='index', label='Главная')]
 
-    def auth_point(nav: List):
-        if request.user.is_authenticated:
-            nav += [
-                {'label': 'Товары', 'list': [{'url': 'catalogue_offer', 'label': "Каталог"},
-                                             {'url': 'create_offer', 'label': "Создать"}]},
-                {'label': 'Заказы', 'list': [{'url': 'catalogue_order', 'label': "Каталог"},
-                                             {'url': 'summary' , 'label': 'Отчёт'}]}
-
+    def __auth_point(self):
+        if self.__request.user.is_authenticated:
+            self.__nav += [
+                self.__Nested(url='faq', label="FAQ"),
+                self.__Field(label='Товары', nested_fields=[self.__Nested(url='catalogue_offer', label="Каталог"),
+                                                            self.__Nested(url='create_offer', label="Создать")]),
+                self.__Field(label='Заказы', nested_fields=[self.__Nested(url='catalogue_order', label="Каталог"),
+                                                            self.__Nested(url='summary', label='Отчёт')]),
+                self.__Field(label='Профиль', nested_fields=[self.__Nested(url='logout', label="Выйти"),
+                                                             self.__Nested(url='profile', label="Личный кабинет")])
             ]
-        return nav
 
-    def not_auth_point(nav: List):
-        if not request.user.is_authenticated:
-            nav += [
-                {'label': 'Авторизация', 'list': [
-                    {'url': 'login', 'label': 'Войти'},
-                    {'url': 'register', 'label': 'Зарегистрироваться'}
-                ]}
+    def __not_auth_point(self):
+        if not self.__request.user.is_authenticated:
+            self.__nav += [
+                self.__Field(label='Авторизация', nested_fields=[
+                    self.__Nested(url='login', label='Войти'),
+                    self.__Nested(url='register', label='Зарегистрироваться')])
             ]
-        return nav
 
-    def user_point():
-        return [{'url': 'logout', 'label': "Выйти"}, {'url': 'profile', 'label': "Личный кабинет"}]
-
-    """
-    возвращает аттрибуты для меню
-    """
-    return {'main': off_current(not_auth_point(auth_point(static_point()))), 'user': user_point()}
+    def get(self) -> list:
+        """
+        возвращает аттрибуты для меню
+        """
+        self.__not_auth_point()
+        self.__auth_point()
+        self.__static_point()
+        self.__off_current()
+        return self.__nav

@@ -1,6 +1,4 @@
 """Модуль для отображения карточки товара"""
-import math
-
 from django.contrib import messages
 from django.http import Http404, HttpResponse, HttpRequest
 from django.shortcuts import render, get_object_or_404
@@ -11,23 +9,22 @@ from main.forms import AvailabilityForm, PriceForm
 from main.models_addon.ya_market import Offer, Price
 from main.modules.offers.addition import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
-from main.view import Page, get_navbar
-from main.ya_requests.price import ChangePrices, YandexChangePricesList
-from main.ya_requests.request import UpdateOfferList
+from main.modules.offers.addition.save_yandex import push_offer_to_ym, push_offer_price_to_ym
+from main.view import Page, Navbar
 
 
 class ProductPageView(BaseView):
     """
     Класс, управляющий отображением карточки товара
     """
-    context = {'title': 'Product card', 'page_name': 'Карточка товара'}
+    context = {'title': 'Товар', 'page_name': 'Карточка товара'}
     form = None
     disable: bool = False
     form_types = {"info": OfferFormSet, "accommodation": PriceFormSet}
 
     def pre_init(self, pk: int, request: HttpRequest) -> None:
         """Предварительная настройка контекста"""
-        self.context_update({'navbar': get_navbar(request),
+        self.context_update({'navbar': Navbar(request).get(),
                              'content': request.GET.get('content', 'info')})
         if self.context['content'] in self.form_types:
             self.form = self.form_types[self.context['content']]()
@@ -39,47 +36,36 @@ class ProductPageView(BaseView):
         """Возвращает True, если было изменено хотя бы одно поле Товара"""
         if self.context['content'] == 'info':
             return self.form.has_changed()
-        else:
-            return self.form.forms_dict[AvailabilityForm].has_changed()
+        return self.form.forms_dict[AvailabilityForm].has_changed()
 
     def prise_has_changed(self):
         """Возвращает True, если было изменено хотя бы одно поле Цены"""
         if self.context['content'] == 'accommodation':
             return self.form.forms_dict[PriceForm].has_changed()
-        else:
-            return False
+        return False
 
     def end_it(self, pk) -> HttpResponse:
         """Окончательная настройка контекста и отправка ответа на запрос"""
         offers = Offer.objects.get(pk=pk)
         rent = offers.check_rent
         if rent:
-            messages.error(self.request, f'Рентабельность: {offers.rent} % < 8%. Не прибыльно!!!')
+            messages.error(self.request, f'Рентабельность: {offers.rent} % < 8.0 %')
         self.context_update({'forms': self.form.get_for_context(),
                              'disable': self.disable,
                              'offer': Offer.objects.get(pk=pk)})
         return render(self.request, Page.product_card, self.context)
 
-    def save_to_ym(self, offer):
+    def push_offer(self, offer):
         """Обработка запроса на обновление или сохранение товара на Яндексе"""
         if offer.has_changed:
-            sku = offer.shopSku
-            update_request = UpdateOfferList(offers=[offer], request=self.request)
-            update_request.update_offers()
-            update_request.messages(sku_list=list(sku),
-                                    success_message=f'Товар shopSku = {sku} успешно сохранен на Яндексе')
+            push_offer_to_ym(request=self.request, offers=[offer], sku_list=[offer.shopSku],
+                             success_msg=f'Товар shopSku = {offer.shopSku} успешно сохранен на Яндексе')
 
-    def update_price(self, offer):
+    def push_price(self, offer):
         """"Обработка запроса на изменение цены на Яндексе"""
         if offer.get_price and offer.get_price.has_changed:
-            price = [offer.get_price]
-            sku = [offer.shopSku]
-            if not price:
-                return
-            changed_prices = YandexChangePricesList(prices=price, request=self.request)
-            changed_prices.update_prices()
-            changed_prices.messages(sku_list=sku,
-                                    success_message=f'Цена товара shopSku = {sku} успешно сохранена на Яндексе')
+            push_offer_price_to_ym(request=self.request, prices=[offer.get_price], sku_list=[offer.shopSku],
+                                   success_msg=f'Цена товара shopSku = {offer.shopSku} успешно сохранена на Яндексе')
 
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
         """Обработка post-запроса"""
@@ -98,8 +84,8 @@ class ProductPageView(BaseView):
             return delete()
 
         btns = {
-            'offer': self.save_to_ym,
-            'price': self.update_price
+            'offer': self.push_offer,
+            'price': self.push_price
         }
 
         data = request.POST.get('yandex', '')

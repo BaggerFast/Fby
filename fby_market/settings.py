@@ -23,9 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'asu)%c(yfxy)g&6ap$dmg+48%+t$xjn%j2_=^svmb)dnc(34vy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     '195.161.41.98',
     'marksystem.site'
 ]
@@ -76,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fby_market.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 if DEBUG:
@@ -97,9 +97,6 @@ else:
                 'PORT': '3306',
             }
         }
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 

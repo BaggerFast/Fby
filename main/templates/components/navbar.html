@@ -1,13 +1,39 @@
 {% load static %}
-<div class="d-flex flex-column p-3 text-white bg-dark sidebar" style="width: 280px;">
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-    <img src="{% static 'images/logo-2.png' %}" class="d-block mx-auto p-1" height="64">
-    <span class="fs-4">MarkSystem</span>
-  </a>
-  <hr>
-  {% include 'components/pills.html' %}
-  {% if user.is_authenticated %}
-  <hr>
-  {% include 'components/dropdown.html' %}
-  {% endif %}
-</div>
+<section class="menu cid-s48OLK6784" once="menu" id="menu1-h">
+  <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+    <div class="container">
+      <div class="navbar-brand">
+        <span class="navbar-logo">
+          <a href="{% url 'index' %}">
+            <img src="{% static 'assets/images/logo-96x96.png' %}" style="height: 3.8rem;">
+          </a>
+        </span>
+        <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-7"
+            href="{% url 'index' %}">MarkSystem</a></span>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+          {% for item in navbar %}
+          {% if item.nested_fields %}
+          <li class="nav-item dropdown">
+            <a class="nav-link link text-black dropdown-toggle display-4" href="#" data-toggle="dropdown-submenu"
+              aria-expanded="false">{{ item.label }}</a>
+            <div class="dropdown-menu">
+              {% for path in item.nested_fields %}
+              <a class="text-black dropdown-item display-4 {% if not path.active%}active disabled{% endif %}"
+                aria-expanded="false" href="{% url path.url %}">
+                {{ path.label }}
+              </a>
+              {% endfor %}
+            </div>
+          </li>
+          {% else %}
+          <li class="nav-item {% if not item.active%}active disabled{% else %}text-white{% endif %}"><a
+              class="nav-link link text-black display-4" href="{% url item.url %}">{{ item.label }}</a></li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>

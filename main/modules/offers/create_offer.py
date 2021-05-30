@@ -6,11 +6,11 @@ from django.urls import reverse
 from main.models_addon.ya_market import Offer
 from main.modules.offers.addition import OfferFormSet, PriceFormSet
 from main.modules.base import BaseView
-from main.view import get_navbar, Page
+from main.view import Navbar, Page
 
 
 class CreateOfferView(BaseView):
-    context = {'title': 'Create offer', 'page_name': 'Создать товар'}
+    context = {'title': 'Создание товара', 'page_name': 'Создать товар'}
     form = offer_id = None
     form_types = {"info": OfferFormSet, "accommodation": PriceFormSet}
 
@@ -21,7 +21,7 @@ class CreateOfferView(BaseView):
     def pre_init(self, request: HttpRequest):
         self.request: HttpRequest = request
         local_context = {
-            'navbar': get_navbar(request),
+            'navbar': Navbar(request).get(),
             'content_disable': True,
             'content': request.GET.get('content', 'info')
         }
