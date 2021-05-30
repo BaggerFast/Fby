@@ -76,30 +76,27 @@ class CatalogueView(BaseView):
         return redirect(reverse('catalogue_offer'))
 
     def configure_offer(self):
-        index = self.request.GET.get('content', 'Весь список')
         """Метод для получения товаров с нужным статусом"""
-        if index not in self.content_types:
-            raise Http404()
-        if index == 'Не рентабельные':
+        if self.category_index == 'Не рентабельные':
             return [offer for offer in Offer.objects.filter(user=self.request.user).select_related('price')
                     if offer.check_rent]
-        return Offer.objects.filter(Q(user=self.request.user) & self.content_types[index])
+        return Offer.objects.filter(Q(user=self.request.user) & self.content_types[self.category_index])
 
     def get(self, request: HttpRequest) -> HttpResponse:
         self.request = request
-        category_index = request.GET.get('content', 'Весь список')
-        if category_index not in self.content_types:
+        self.category_index = request.GET.get('content', 'Весь список')
+        if self.category_index not in self.content_types:
             raise Http404()
         offers = self.configure_offer()
-        if not offers and category_index != 'Весь список':
-            messages.success(self.request, f'Каталог {category_index.lower()} пуст')
+        if not offers and self.category_index != 'Весь список':
+            messages.success(self.request, f'Каталог {self.category_index.lower()} пуст')
             return redirect(reverse('catalogue_offer'))
         filter_types = self.filtration.get_filter_types(offers)
         local_context = {
             'navbar': Navbar(request).get(),
             'table': self.table,
             'filter_types': filter_types,
-            'current_type': category_index,
+            'current_type': self.category_index,
             'types': self.content_types,
             'offers': self.sort_object(offers, filter_types),
         }
