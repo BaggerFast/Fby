@@ -86,6 +86,7 @@ class CatalogueView(BaseView):
         self.request = request
         self.category_index = request.GET.get('content', 'Весь список')
         if self.category_index not in self.content_types:
+            messages.success(self.request, f'Каталог {self.category_index.lower()} пуст')
             return redirect(reverse('catalogue_offer'))
         offers = self.configure_offer()
         if not offers and self.category_index != 'Весь список':
